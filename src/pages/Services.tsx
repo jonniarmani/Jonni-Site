@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { SEO } from "../config";
 import SEOComp from "../components/SEO";
 import { Link } from "react-router-dom";
-import { ArrowRight, Video, Zap, Stethoscope, User, Play, Heart, Camera } from "lucide-react";
+import { ArrowRight, Video, Zap, Stethoscope, User, Play, Heart, Camera, Briefcase } from "lucide-react";
 import { useContent } from "../lib/ContentContext";
 
 const ICON_MAP = {
@@ -11,6 +11,8 @@ const ICON_MAP = {
   Stethoscope: Stethoscope,
   User: User,
   Heart: Heart,
+  Camera: Camera,
+  Briefcase: Briefcase,
 };
 
 export default function Services() {
@@ -106,7 +108,7 @@ export default function Services() {
                   <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 pt-4">
                     <Link 
                       to="/contact" 
-                      className="inline-flex items-center text-brand-black font-bold uppercase tracking-widest text-xs border-b-2 border-brand-gold pb-2 hover:border-green-600 hover:text-green-600 transition-colors"
+                      className="inline-flex items-center text-brand-black font-bold uppercase tracking-widest text-xs border-b-2 border-brand-gold pb-2 hover:border-brand-black transition-colors"
                     >
                       Inquire About This Service <ArrowRight size={16} className="ml-3" />
                     </Link>
@@ -134,7 +136,7 @@ export default function Services() {
                I don't just show up with a camera. We sit down, define the objective, audit your current brand presence, and build a visual roadmap that hits your targets.
              </p>
              <div className="pt-10 flex flex-col sm:flex-row justify-center gap-6">
-                <Link to="/contact?type=video" className="bg-brand-gold text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-green-600 hover:text-white transition-all">
+                <Link to="/contact?type=video" className="bg-brand-gold text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-black hover:text-white transition-all">
                   Start Video Project
                 </Link>
                 <Link to="/contact?type=photo" className="bg-white/10 backdrop-blur-md border border-white/20 px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-brand-black transition-all">

@@ -39,14 +39,14 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4">
               <Link 
                 to="/contact?type=video" 
-                className="bg-brand-gold text-white px-10 py-5 font-bold uppercase tracking-widest text-sm hover:bg-green-600 hover:text-white transition-all inline-flex items-center group"
+                className="bg-brand-gold text-white px-10 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-black hover:text-white transition-all inline-flex items-center group"
               >
                 Start Video Project
                 <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
                 to="/contact?type=photo" 
-                className="bg-white text-brand-black px-10 py-5 font-bold uppercase tracking-widest text-sm hover:bg-green-600 hover:text-white transition-all inline-flex items-center group"
+                className="bg-white text-brand-black px-10 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold hover:text-white transition-all inline-flex items-center group"
               >
                 Start Photo Project
                 <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -112,7 +112,7 @@ export default function Home() {
             <Link to="/video" className="bg-brand-black text-white px-10 py-6 font-bold uppercase tracking-[0.3em] text-xs hover:bg-brand-gold transition-all w-full sm:w-72 text-center shadow-xl">
               Video Portfolio
             </Link>
-            <Link to="/photo" className="bg-white text-brand-black border-2 border-brand-black px-10 py-6 font-bold uppercase tracking-[0.3em] text-xs hover:bg-green-600 hover:text-white hover:border-green-600 transition-all w-full sm:w-72 text-center shadow-xl">
+            <Link to="/photo" className="bg-white text-brand-black border-2 border-brand-black px-10 py-6 font-bold uppercase tracking-[0.3em] text-xs hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-all w-full sm:w-72 text-center shadow-xl">
               Photo Portfolio
             </Link>
           </div>
@@ -140,10 +140,10 @@ export default function Home() {
              Serving Bradenton, Sarasota, Palmetto, Tampa, and Siesta Key. Let's build your visual legacy.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Link to="/contact?type=video" className="bg-brand-gold text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-green-600 hover:scale-105 transition-all flex items-center justify-center">
+            <Link to="/contact?type=video" className="bg-brand-gold text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-black hover:scale-105 transition-all flex items-center justify-center">
               Start Video Project <ArrowRight size={16} className="ml-3" />
             </Link>
-            <Link to="/contact?type=photo" className="bg-white/10 backdrop-blur-md border border-white/20 px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-green-600 hover:text-white transition-all flex items-center justify-center">
+            <Link to="/contact?type=photo" className="bg-white/10 backdrop-blur-md border border-white/20 px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold hover:text-white transition-all flex items-center justify-center">
               Start Photo Project <ArrowRight size={16} className="ml-3" />
             </Link>
           </div>

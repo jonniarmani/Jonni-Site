@@ -69,20 +69,14 @@ export default function Header() {
             }
 
             if (isSpecial) {
-              const isVideo = item.label === "Video";
-              const activeClass = isVideo 
-                ? "bg-red-600 text-white border-red-600 shadow-[0_0_15px_rgba(220,38,38,0.3)]" 
-                : "bg-green-600 text-white border-green-600 shadow-[0_0_15px_rgba(22,163,74,0.3)]";
-              const hoverClass = isVideo 
-                ? "border-red-600 text-red-600 hover:bg-red-600 hover:text-white" 
-                : "border-green-600 text-green-600 hover:bg-green-600 hover:text-white";
-              
               return (
                 <Link
                   key={item.href}
                   to={item.href}
                   className={`text-[10px] uppercase tracking-[0.2em] font-black px-6 py-2.5 rounded-full border-2 transition-all duration-300 flex items-center ${
-                    location.pathname === item.href ? activeClass : hoverClass
+                    location.pathname === item.href 
+                    ? "bg-brand-black text-white border-brand-black shadow-lg" 
+                    : "border-gray-200 text-brand-black hover:border-brand-black"
                   }`}
                 >
                   {item.label}
@@ -94,7 +88,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 to={item.href}
-                className={`text-sm uppercase tracking-widest font-medium hover:text-green-600 transition-colors ${
+                className={`text-sm uppercase tracking-widest font-medium hover:text-brand-gold transition-colors ${
                   location.pathname === item.href ? "text-brand-gold" : "text-brand-black"
                 }`}
               >
@@ -155,14 +149,14 @@ export default function Header() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-4xl font-display font-bold tracking-tighter uppercase text-brand-black hover:text-green-600 transition-colors"
+                      className="text-4xl font-display font-bold tracking-tighter uppercase text-brand-black hover:text-brand-gold transition-colors"
                     >
                       {item.label}
                     </a>
                   ) : (
                     <Link
                       to={item.href}
-                      className={`text-4xl font-display font-bold tracking-tighter uppercase hover:text-green-600 transition-colors ${
+                      className={`text-4xl font-display font-bold tracking-tighter uppercase hover:text-brand-gold transition-colors ${
                         location.pathname === item.href ? "text-brand-gold" : "text-brand-black"
                       }`}
                     >

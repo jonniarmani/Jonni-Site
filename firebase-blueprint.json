@@ -1,27 +1,67 @@
 {
   "entities": {
-    "siteContent": {
-      "title": "Site Content",
-      "description": "Dynamic content for the website pages",
+    "SiteContent": {
+      "title": "SiteContent",
+      "description": "The main configuration for the entire website content, including brand identity, services, and portfolio.",
       "type": "object",
       "properties": {
         "brand": {
           "type": "object",
           "properties": {
             "name": { "type": "string" },
-            "title": { "type": "string" },
             "tagline": { "type": "string" },
             "taglineExtended": { "type": "string" },
-            "location": { "type": "string" }
-          }
+            "location": { "type": "string" },
+            "contact": {
+              "type": "object",
+              "properties": {
+                "phone": { "type": "string" },
+                "email": { "type": "string" }
+              },
+              "required": ["phone", "email"]
+            }
+          },
+          "required": ["name", "tagline", "taglineExtended", "location", "contact"]
         },
         "services": {
           "type": "array",
-          "items": { "type": "object" }
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "short": { "type": "string" },
+              "description": { "type": "string" },
+              "whoItsFor": { "type": "string" },
+              "outcome": { "type": "string" },
+              "icon": { "type": "string" },
+              "visualUrl": { "type": "string" },
+              "visualType": { "type": "string", "enum": ["image", "video"] },
+              "photoCategory": { "type": "string" }
+            }
+          }
         },
         "portfolio": {
           "type": "array",
-          "items": { "type": "object" }
+          "items": {
+            "type": "object",
+            "properties": {
+              "category": { "type": "string" },
+              "title": { "type": "string" },
+              "placeholder": { "type": "string" },
+              "url": { "type": "string" },
+              "videoUrl": { "type": "string" },
+              "type": { "type": "string", "enum": ["video", "photo"] },
+              "alt": { "type": "string" },
+              "client": { "type": "string" },
+              "year": { "type": "string" },
+              "isFeatured": { "type": "boolean" },
+              "images": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
         },
         "about": {
           "type": "object",
@@ -32,23 +72,64 @@
             "storyText1": { "type": "string" },
             "storyText2": { "type": "string" },
             "storyText3": { "type": "string" },
-            "quote": { "type": "string" }
+            "quote": { "type": "string" },
+            "profileImage": { "type": "string" }
           }
         },
         "home": {
           "type": "object",
           "properties": {
             "lensTitle": { "type": "string" },
-            "lensText": { "type": "string" }
+            "lensText": { "type": "string" },
+            "lensImage": { "type": "string" },
+            "ctaBackground": { "type": "string" },
+            "heroVisuals": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "url": { "type": "string" },
+                  "type": { "type": "string", "enum": ["image", "video"] },
+                  "category": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "promo": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "title": { "type": "string" },
+            "message": { "type": "string" },
+            "code": { "type": "string" }
           }
         }
-      }
+      },
+      "required": ["brand", "services", "portfolio", "about", "home", "promo"]
+    },
+    "Lead": {
+      "title": "Lead",
+      "description": "Information from a potential client inquiry.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "service": { "type": "string" },
+        "message": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "service", "message", "createdAt"]
     }
   },
   "firestore": {
-    "settings/content": {
-      "schema": "siteContent",
-      "description": "Global settings and content for the site"
+    "/settings/content": {
+      "schema": "SiteContent",
+      "description": "Singleton document containing all site-wide content settings."
+    },
+    "/leads/{leadId}": {
+      "schema": "Lead",
+      "description": "Individual client inquiries."
     }
   }
 }

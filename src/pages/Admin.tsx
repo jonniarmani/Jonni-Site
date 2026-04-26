@@ -1,19 +1,36 @@
 import React, { useState } from 'react';
 import { useContent } from '../lib/ContentContext';
-import { auth, googleProvider, signInWithPopup, signOut, db, doc, setDoc, handleFirestoreError, OperationType } from '../lib/firebase';
-import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon } from 'lucide-react';
+import { auth, googleProvider, signInWithPopup, signOut, db, doc, setDoc, handleFirestoreError, OperationType, collection, deleteDoc, onSnapshot } from '../lib/firebase';
+import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare } from 'lucide-react';
 
-type Tab = 'identity' | 'home' | 'about' | 'services' | 'video-work' | 'photo-work' | 'promo';
+type Tab = 'identity' | 'home' | 'about' | 'services' | 'video-work' | 'photo-work' | 'promo' | 'inquiries';
 
 export default function Admin() {
   const { content, user, isAdmin, loading } = useContent();
   const [localContent, setLocalContent] = useState(content);
   const [isSaving, setIsSaving] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>('identity');
+  const [leads, setLeads] = useState<any[]>([]);
+  const [leadsLoading, setLeadsLoading] = useState(false);
 
   React.useEffect(() => {
     if (content) setLocalContent(content);
   }, [content]);
+
+  React.useEffect(() => {
+    if (activeTab === 'inquiries' && isAdmin) {
+      setLeadsLoading(true);
+      const unsub = onSnapshot(collection(db, 'leads'), (snapshot) => {
+        const leadsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setLeads(leadsData.sort((a: any, b: any) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0)));
+        setLeadsLoading(false);
+      }, (error) => {
+        setLeadsLoading(false);
+        handleFirestoreError(error, OperationType.GET, 'leads');
+      });
+      return () => unsub();
+    }
+  }, [activeTab, isAdmin]);
 
   if (loading) return <div className="pt-40 text-center font-display uppercase tracking-widest">Loading Authority...</div>;
 
@@ -64,6 +81,7 @@ export default function Admin() {
     { id: 'video-work', label: 'Video Work', icon: VideoIcon },
     { id: 'photo-work', label: 'Photo Work', icon: ImageIcon },
     { id: 'promo', label: 'Promotions', icon: Megaphone },
+    { id: 'inquiries', label: 'Inquiries', icon: MessageSquare },
   ];
 
   return (
@@ -194,7 +212,7 @@ export default function Admin() {
                           const newHero = [...localContent.home.heroVisuals, { url: "", type: 'image' as const, category: "New" }];
                           setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
                         }}
-                        className="text-[10px] bg-brand-black text-white px-4 py-2 font-bold uppercase tracking-widest hover:bg-green-600 transition-colors"
+                        className="text-[10px] bg-brand-black text-white px-4 py-2 font-bold uppercase tracking-widest hover:bg-brand-gold transition-colors"
                       >
                         + Add Visual
                       </button>
@@ -371,7 +389,7 @@ export default function Admin() {
                       />
                     </div>
                     <div className="md:col-span-2 space-y-4">
-                      <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Call of Action Quote</label>
+                      <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Call to Action Quote</label>
                       <input 
                         className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium italic" 
                         value={localContent.about.quote}
@@ -395,7 +413,7 @@ export default function Admin() {
                         const newServices = [...localContent.services, { id: Date.now().toString(), title: "New Service", short: "", description: "", whoItsFor: "", outcome: "", icon: "Video", visualUrl: "", visualType: 'image' as const }];
                         setLocalContent({...localContent, services: newServices});
                       }}
-                      className="text-[10px] bg-brand-black text-white px-4 py-2 font-bold uppercase tracking-widest hover:bg-green-600 transition-colors"
+                      className="text-[10px] bg-brand-black text-white px-4 py-2 font-bold uppercase tracking-widest hover:bg-brand-gold transition-colors"
                     >
                       + Add Service
                     </button>
@@ -543,14 +561,14 @@ export default function Admin() {
                   <div className="border-b pb-4 mb-8 flex justify-between items-end">
                     <div>
                       <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Video Portfolio</h2>
-                      <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage cinematic motion project</p>
+                      <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage cinematic motion projects</p>
                     </div>
                     <button 
                       onClick={() => {
                         const newWork = [...localContent.portfolio, { category: "Brand Story", title: "New Video Project", placeholder: "", url: "#", videoUrl: "", type: 'video' }];
                         setLocalContent({...localContent, portfolio: newWork});
                       }}
-                      className="text-[10px] bg-brand-black text-white px-4 py-2 font-bold uppercase tracking-widest hover:bg-green-600 transition-colors"
+                      className="text-[10px] bg-brand-black text-white px-4 py-2 font-bold uppercase tracking-widest hover:bg-brand-gold transition-colors"
                     >
                       + Add Video Project
                     </button>
@@ -711,7 +729,7 @@ export default function Admin() {
                         const newWork = [...localContent.portfolio, { category: "Branding", title: "New Photo Project", placeholder: "", url: "#", videoUrl: "", type: 'photo' }];
                         setLocalContent({...localContent, portfolio: newWork});
                       }}
-                      className="text-[10px] bg-brand-black text-white px-4 py-2 font-bold uppercase tracking-widest hover:bg-green-600 transition-colors"
+                      className="text-[10px] bg-brand-black text-white px-4 py-2 font-bold uppercase tracking-widest hover:bg-brand-gold transition-colors"
                     >
                       + Add Photo Project
                     </button>
@@ -921,6 +939,73 @@ export default function Admin() {
                       </div>
                     </div>
                   </div>
+                </div>
+              )}
+
+              {/* Inquiries Tab */}
+              {activeTab === 'inquiries' && (
+                <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                  <div className="border-b pb-4 mb-4">
+                    <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Client Inquiries</h2>
+                    <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage incoming lead transmission history</p>
+                  </div>
+
+                  {leadsLoading ? (
+                    <div className="py-20 text-center text-xs uppercase tracking-widest font-bold text-gray-400 animate-pulse">Loading Transmissions...</div>
+                  ) : leads.length === 0 ? (
+                    <div className="py-20 text-center border-2 border-dashed border-gray-100 rounded-xl">
+                      <p className="text-xs uppercase tracking-widest font-bold text-gray-300">No transmissions recorded.</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-6">
+                      {leads.map((lead) => (
+                        <div key={lead.id} className="bg-gray-50 p-8 border border-gray-100 relative group">
+                          <button 
+                            onClick={async () => {
+                              if (window.confirm("Permanent deletion of lead data?")) {
+                                try {
+                                  await deleteDoc(doc(db, 'leads', lead.id));
+                                } catch (err) {
+                                  handleFirestoreError(err, OperationType.DELETE, `leads/${lead.id}`);
+                                }
+                              }
+                            }}
+                            className="absolute top-4 right-4 text-gray-300 hover:text-red-500 transition-colors"
+                          >
+                            <Trash size={16} />
+                          </button>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+                            <div className="md:col-span-4 space-y-4">
+                              <div className="space-y-1">
+                                <label className="text-[8px] uppercase font-black text-gray-400">Date Received</label>
+                                <p className="text-xs font-bold text-brand-gold">
+                                  {lead.createdAt?.toDate ? lead.createdAt.toDate().toLocaleString() : 'Just Now'}
+                                </p>
+                              </div>
+                              <div className="space-y-1">
+                                <label className="text-[8px] uppercase font-black text-gray-400">Identity</label>
+                                <p className="text-sm font-bold uppercase tracking-tight">{lead.name}</p>
+                                <a href={`mailto:${lead.email}`} className="text-xs text-gray-500 hover:text-brand-gold transition-colors font-medium">{lead.email}</a>
+                              </div>
+                              <div className="space-y-1">
+                                <label className="text-[8px] uppercase font-black text-gray-400">Production Focus</label>
+                                <span className="inline-block px-2 py-1 bg-brand-black text-white text-[9px] font-black uppercase tracking-widest">
+                                  {lead.service}
+                                </span>
+                              </div>
+                            </div>
+                            <div className="md:col-span-8 space-y-2">
+                               <label className="text-[8px] uppercase font-black text-gray-400">Project Overview</label>
+                               <div className="bg-white p-6 border border-gray-100 text-sm leading-relaxed text-gray-600 font-light italic">
+                                 "{lead.message}"
+                               </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>

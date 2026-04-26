@@ -117,10 +117,10 @@ export default function About() {
             </div>
 
             <div className="mt-24 flex flex-col sm:flex-row gap-6">
-              <Link to="/contact?type=video" className="bg-brand-black text-white px-10 py-5 font-bold uppercase tracking-widest text-sm hover:bg-green-600 transition-colors inline-flex items-center justify-center">
+              <Link to="/contact?type=video" className="bg-brand-black text-white px-10 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold transition-colors inline-flex items-center justify-center">
                 Start Video Project <ArrowRight size={18} className="ml-3" />
               </Link>
-              <Link to="/contact?type=photo" className="bg-white border-2 border-brand-black text-brand-black px-10 py-5 font-bold uppercase tracking-widest text-sm hover:bg-green-600 hover:text-white hover:border-green-600 transition-all inline-flex items-center justify-center">
+              <Link to="/contact?type=photo" className="bg-white border-2 border-brand-black text-brand-black px-10 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-all inline-flex items-center justify-center">
                 Start Photo Project <ArrowRight size={18} className="ml-3" />
               </Link>
             </div>

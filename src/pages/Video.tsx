@@ -54,7 +54,7 @@ export default function Video() {
                 key={cat}
                 onClick={() => setFilter(cat)}
                 className={`text-xs uppercase tracking-[0.2em] font-bold pb-2 border-b-2 transition-all ${
-                  filter === cat ? "border-green-600 text-brand-black" : "border-transparent text-gray-400 hover:text-green-600"
+                  filter === cat ? "border-brand-gold text-brand-black" : "border-transparent text-gray-400 hover:text-brand-gold"
                 }`}
               >
                 {cat}
@@ -128,7 +128,7 @@ export default function Video() {
         <section className="mt-24 sm:mt-40 border-t border-gray-100 pt-16 sm:pt-32 text-center">
           <h2 className="text-3xl sm:text-4xl font-display font-bold mb-8 uppercase tracking-tighter italic">Ready to tell your <span className="not-italic text-brand-gold">Video Story?</span></h2>
           <div className="flex justify-center">
-            <Link to="/contact?type=video" className="bg-brand-black text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-green-600 transition-colors inline-flex items-center">
+            <Link to="/contact?type=video" className="bg-brand-black text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold transition-colors inline-flex items-center">
               Start Video Project <ArrowRight size={18} className="ml-3" />
             </Link>
           </div>

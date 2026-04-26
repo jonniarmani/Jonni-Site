@@ -127,9 +127,9 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       }
       setLoading(false);
     }, (error) => {
+      setLoading(false);
       // Use handleFirestoreError to provide context
       handleFirestoreError(error, OperationType.GET, 'settings/content');
-      setLoading(false);
     });
 
     return () => {

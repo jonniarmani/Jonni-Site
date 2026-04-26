@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, setDoc, onSnapshot, collection, deleteDoc } from 'firebase/firestore';
 import firebaseConfig from '../../firebase-applet-config.json';
 
 const app = initializeApp(firebaseConfig);
@@ -55,7 +55,7 @@ export function handleFirestoreError(error: unknown, operationType: OperationTyp
   throw new Error(JSON.stringify(errInfo));
 }
 
-export { signInWithPopup, signOut, doc, getDoc, setDoc, onSnapshot };
+export { signInWithPopup, signOut, doc, getDoc, setDoc, onSnapshot, collection, deleteDoc };
 
 import { getDocFromServer } from 'firebase/firestore';
 

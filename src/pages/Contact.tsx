@@ -4,11 +4,18 @@ import SEOComp from "../components/SEO";
 import { Link, useSearchParams } from "react-router-dom";
 import { Mail, Phone, Calendar, ArrowRight, CheckCircle } from "lucide-react";
 import React, { useState, useEffect } from "react";
+import { db, handleFirestoreError, OperationType } from "../lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export default function Contact() {
   const [searchParams] = useSearchParams();
   const [formState, setFormState] = useState<"idle" | "submitting" | "success">("idle");
   const [selectedService, setSelectedService] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
 
   useEffect(() => {
     const type = searchParams.get("type");
@@ -16,10 +23,22 @@ export default function Contact() {
     if (type === "photo") setSelectedService("Photography (General)");
   }, [searchParams]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormState("submitting");
-    setTimeout(() => setFormState("success"), 1500);
+    
+    try {
+      await addDoc(collection(db, 'leads'), {
+        ...formData,
+        service: selectedService,
+        createdAt: serverTimestamp()
+      });
+      setFormState("success");
+    } catch (err) {
+      console.error("Submission Error:", err);
+      handleFirestoreError(err, OperationType.WRITE, 'leads');
+      setFormState("idle");
+    }
   };
 
   return (
@@ -124,6 +143,8 @@ export default function Contact() {
                       required
                       type="text" 
                       id="name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
                       className="w-full bg-brand-gray px-6 py-4 outline-none border-b-2 border-transparent focus:border-brand-gold transition-all font-medium text-base" 
                       placeholder="Jane Doe"
                     />
@@ -134,6 +155,8 @@ export default function Contact() {
                       required
                       type="email" 
                       id="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
                       className="w-full bg-brand-gray px-6 py-4 outline-none border-b-2 border-transparent focus:border-brand-gold transition-all font-medium text-base" 
                       placeholder="jane@company.com"
                     />
@@ -146,6 +169,7 @@ export default function Contact() {
                     id="service"
                     value={selectedService}
                     onChange={(e) => setSelectedService(e.target.value)}
+                    required
                     className="w-full bg-brand-gray px-6 py-4 outline-none border-b-2 border-transparent focus:border-brand-gold transition-all font-medium appearance-none text-base"
                   >
                     <option value="">Select Service Type...</option>
@@ -176,6 +200,8 @@ export default function Contact() {
                     required
                     id="message"
                     rows={6}
+                    value={formData.message}
+                    onChange={(e) => setFormData({...formData, message: e.target.value})}
                     className="w-full bg-brand-gray px-6 py-4 outline-none border-b-2 border-transparent focus:border-brand-gold transition-all font-medium resize-none text-base" 
                     placeholder="Briefly describe your objectives, timeline, and vision..."
                   ></textarea>
@@ -184,7 +210,7 @@ export default function Contact() {
                 <button 
                   type="submit"
                   disabled={formState === "submitting"}
-                  className="w-full bg-brand-black text-white py-6 font-bold uppercase tracking-[0.4em] text-xs hover:bg-green-600 transition-all disabled:opacity-50"
+                  className="w-full bg-brand-black text-white py-6 font-bold uppercase tracking-[0.4em] text-xs hover:bg-brand-gold transition-all disabled:opacity-50"
                 >
                   {formState === "submitting" ? "Processing..." : "Initiate Connection"}
                 </button>
