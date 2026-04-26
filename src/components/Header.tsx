@@ -36,11 +36,15 @@ export default function Header() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/80 backdrop-blur-md py-4 shadow-sm" : "bg-transparent py-8"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? "px-4 pt-4" : "bg-transparent py-8 px-6"
       }`}
     >
-      <div className="container mx-auto px-6 flex justify-between items-center">
+      <div className={`container mx-auto transition-all duration-500 ${
+        scrolled 
+          ? "bg-white/90 backdrop-blur-lg px-6 py-4 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/20 max-w-5xl" 
+          : "max-w-7xl"
+      } flex justify-between items-center`}>
         <Link 
           to="/" 
           className="font-display text-lg sm:text-2xl font-bold tracking-tighter uppercase group flex items-center"
@@ -98,20 +102,45 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Mobile Toggle Button - Floating at Bottom Right */}
+        {/* Mobile Toggle Button - High Visibility Floating Button */}
         <motion.button 
-          className="fixed bottom-6 right-6 z-[60] md:hidden w-16 h-16 rounded-full bg-brand-black text-white flex items-center justify-center shadow-2xl border border-white/10" 
+          className={`md:hidden p-3 rounded-full transition-colors ${
+            scrolled ? "text-brand-black" : "bg-brand-black text-white shadow-xl"
+          }`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
-          id="floating-mobile-nav-toggle"
+          id="mobile-nav-toggle"
           whileTap={{ scale: 0.9 }}
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5 }}
         >
-          {isOpen ? <X size={32} /> : <Menu size={32} />}
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </motion.button>
       </div>
+
+      {/* Floating Bottom Hub for Mobile - Always Following */}
+      <AnimatePresence>
+        {!isOpen && (
+          <motion.div 
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            className="fixed bottom-8 left-0 right-0 z-50 px-6 md:hidden flex justify-center"
+          >
+            <div className="bg-brand-black/95 backdrop-blur-md text-white rounded-full px-6 py-4 shadow-2xl border border-white/10 flex items-center space-x-6">
+              <Link to="/" className="text-[10px] font-black uppercase tracking-widest text-white/50 hover:text-brand-gold transition-colors">Home</Link>
+              <div className="w-[1px] h-4 bg-white/10" />
+              <Link to="/contact" className="text-[10px] font-black uppercase tracking-widest text-brand-gold">Inquire</Link>
+              <div className="w-[1px] h-4 bg-white/10" />
+              <button 
+                onClick={() => setIsOpen(true)}
+                className="text-[10px] font-black uppercase tracking-widest flex items-center space-x-2"
+              >
+                <span>Menu</span>
+                <Menu size={14} className="text-brand-gold" />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Mobile Nav Overlay */}
       <AnimatePresence>

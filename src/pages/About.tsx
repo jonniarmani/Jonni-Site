@@ -32,9 +32,9 @@ export default function About() {
           <div className="w-24 h-1 bg-brand-gold mx-auto" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
-          <div className="lg:col-span-5 sticky top-40 space-y-12">
-            <div className="aspect-[3/4] bg-brand-gray overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+          <div className="lg:col-span-5 lg:sticky lg:top-40 space-y-8 lg:space-y-12">
+            <div className="aspect-[3/4] bg-brand-gray overflow-hidden shadow-2xl">
                <img 
                 src={about.profileImage} 
                 alt={`${brand.name} - Professional Cinematographer & Photographer Bradenton Florida`} 
