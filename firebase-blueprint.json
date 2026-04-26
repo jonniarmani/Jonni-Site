@@ -1,0 +1,54 @@
+{
+  "entities": {
+    "siteContent": {
+      "title": "Site Content",
+      "description": "Dynamic content for the website pages",
+      "type": "object",
+      "properties": {
+        "brand": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "title": { "type": "string" },
+            "tagline": { "type": "string" },
+            "taglineExtended": { "type": "string" },
+            "location": { "type": "string" }
+          }
+        },
+        "services": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "portfolio": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "about": {
+          "type": "object",
+          "properties": {
+            "heroTitle": { "type": "string" },
+            "heroSubtitle": { "type": "string" },
+            "storyTitle": { "type": "string" },
+            "storyText1": { "type": "string" },
+            "storyText2": { "type": "string" },
+            "storyText3": { "type": "string" },
+            "quote": { "type": "string" }
+          }
+        },
+        "home": {
+          "type": "object",
+          "properties": {
+            "lensTitle": { "type": "string" },
+            "lensText": { "type": "string" }
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "settings/content": {
+      "schema": "siteContent",
+      "description": "Global settings and content for the site"
+    }
+  }
+}

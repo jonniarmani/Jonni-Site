@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 3. Primitives & Helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isAdmin() {
+      return isVerified() && request.auth.token.email == 'jonniarmani@gmail.com';
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidString(val, max) {
+      return val is string && val.size() <= max;
+    }
+
+    // 2. Validation Blueprints
+    function isValidContent(data) {
+      return data.brand is map &&
+             isValidString(data.brand.name, 100) &&
+             isValidString(data.brand.tagline, 200) &&
+             data.services is list &&
+             data.portfolio is list;
+    }
+
+    // Collections
+    match /settings/content {
+      allow read: if true;
+      allow write: if isAdmin() && isValidContent(incoming());
+    }
+  }
+}
