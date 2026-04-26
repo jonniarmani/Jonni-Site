@@ -26,7 +26,7 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="max-w-4xl"
           >
-            <span className="text-brand-gold uppercase tracking-[0.4em] text-xs font-bold mb-8 block">
+            <span className="text-white/40 uppercase tracking-[0.5em] text-[10px] font-black mb-8 block">
               EST. 2018 | {brand.location}
             </span>
             <h1 className="text-4xl sm:text-7xl md:text-9xl font-display font-bold text-white leading-[0.9] mb-10 tracking-tighter uppercase italic">

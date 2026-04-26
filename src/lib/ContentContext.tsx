@@ -81,7 +81,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       client: "Private Client",
       year: "2026",
       isFeatured: true,
-      images: [p.placeholder, p.placeholder, p.placeholder, p.placeholder] // Initialize with 4 placeholders
+      images: [p.placeholder, p.placeholder, p.placeholder, p.placeholder] 
     })),
     about: {
       heroTitle: "The Vision Behind The Craft",
