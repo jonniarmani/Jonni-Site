@@ -79,8 +79,8 @@ export default function Header() {
                   to={item.href}
                   className={`text-[10px] uppercase tracking-[0.2em] font-black px-6 py-2.5 rounded-full border-2 transition-all duration-300 flex items-center ${
                     location.pathname === item.href 
-                    ? "bg-brand-black text-white border-brand-black shadow-lg" 
-                    : "border-gray-200 text-brand-black hover:border-brand-black"
+                    ? "bg-brand-gold text-white border-brand-gold shadow-lg shadow-brand-gold/20" 
+                    : "border-brand-gold text-brand-black hover:bg-brand-gold hover:text-white"
                   }`}
                 >
                   {item.label}
