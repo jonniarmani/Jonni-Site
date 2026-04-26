@@ -79,15 +79,15 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       type: (index % 2 === 0) ? 'video' : 'photo',
       alt: p.title,
       client: "Private Client",
-      year: "2024",
+      year: "2026",
       isFeatured: true,
       images: [p.placeholder, p.placeholder, p.placeholder, p.placeholder] // Initialize with 4 placeholders
     })),
     about: {
       heroTitle: "The Vision Behind The Craft",
-      heroSubtitle: "Jonni Armani Media.",
+      heroSubtitle: "Jonni Armani Media",
       storyTitle: "Pragmatic Strategy. High-Impact Results.",
-      storyText1: "I am a multi-disciplinary visual storyteller based in Bradenton, Florida. With over 14 years of professional reportage, my work is built on the belief that every frame should carry the weight of a narrative.",
+      storyText1: "I am a multidisciplinary visual storyteller based in Bradenton, Florida. With over 14 years of professional reportage, my work is built on the belief that every frame should carry the weight of a narrative.",
       storyText2: "Whether documenting high-stakes commercial productions, breakthroughs in the healthcare field, or elite athletic performances, my approach remains constant: remain unobtrusive, observe with intent, and deliver with technical precision.",
       storyText3: "I value integrity and authenticity above all else. My goal is not just to capture how a moment looks, but to preserve exactly how it felt. I find beauty in the raw, the unscripted, and the honest – translating complex missions into cinematic authority.",
       quote: "My goal is not just to capture how a moment looks, but to preserve exactly how it felt.",

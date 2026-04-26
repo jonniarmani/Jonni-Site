@@ -174,7 +174,7 @@ export const SEO = {
     description: "High-end cinematic video production and commercial photography in Bradenton, Sarasota, and the Tampa Bay area. Specializing in high-impact brand stories, professional sports cinematography at IMG Academy & LECOM Park, and specialized medical visuals.",
   },
   about: {
-    title: "About | premium Bradenton Cinematographer & Sarasota Photographer",
+    title: "About | Premium Bradenton Cinematographer & Sarasota Photographer",
     description: "Jonni Armani is a premium creative professional capturing the intersection of movement and emotion across the Florida Gulf Coast. Expert in high-impact commercial and professional athletic media.",
   },
   services: {

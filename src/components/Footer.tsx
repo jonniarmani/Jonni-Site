@@ -71,7 +71,7 @@ export default function Footer() {
               <li className="hover:text-brand-gold transition-colors">Tampa</li>
               <li className="hover:text-brand-gold transition-colors">St. Pete</li>
               <li className="hover:text-brand-gold transition-colors">Siesta Key</li>
-              <li className="hover:text-brand-gold transition-colors">Anna Maria</li>
+              <li className="hover:text-brand-gold transition-colors">Anna Maria Island</li>
               <li className="hover:text-brand-gold transition-colors">Lakewood Ranch</li>
               <li className="hover:text-brand-gold transition-colors">Venice</li>
             </ul>

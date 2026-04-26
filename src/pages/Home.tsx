@@ -137,7 +137,7 @@ export default function Home() {
             <span className="text-brand-gold not-italic">Your Story?</span>
           </h2>
           <p className="text-gray-400 text-lg sm:text-xl mb-12 max-w-2xl mx-auto font-light">
-             Serving Bradenton, Sarasota, Palmetto, Tampa and Siesta Key. Let's build your visual legacy.
+             Serving Bradenton, Sarasota, Palmetto, Tampa, and Siesta Key. Let's build your visual legacy.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <Link to="/contact?type=video" className="bg-brand-gold text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-green-600 hover:scale-105 transition-all flex items-center justify-center">

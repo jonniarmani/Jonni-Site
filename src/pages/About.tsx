@@ -92,7 +92,7 @@ export default function About() {
             <div className="pt-10 border-t border-gray-100">
                <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-400 mb-8">Selected Collaborations</h4>
                <div className="flex flex-wrap gap-x-12 gap-y-8 grayscale opacity-50 mb-20">
-                  {["Brand Stories", "Healthcare", "Athletics", "Lifestyle", "Fashion"].map(item => (
+                  {["Brand Stories", "Healthcare", "Athletics", "Commercial", "Identity"].map(item => (
                     <span key={item} className="text-2xl font-display font-bold tracking-tighter">{item}</span>
                   ))}
                </div>
@@ -101,7 +101,7 @@ export default function About() {
                <div className="bg-brand-gray p-12 space-y-8">
                   <h3 className="text-xs uppercase tracking-widest font-black text-brand-gold">Current Specializations</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                     {["Cinematic Brand Stories", "Sports Cinematography", "Medical/Dental Media", "Executive Identity"].map(service => (
+                     {["Cinematic Brand Stories", "Sports & Event Media", "Healthcare Production", "Corporate Identity"].map(service => (
                        <div key={service} className="flex items-center space-x-4">
                           <div className="w-1.5 h-1.5 bg-brand-gold rounded-full" />
                           <span className="text-sm font-bold uppercase tracking-widest text-brand-black">{service}</span>
