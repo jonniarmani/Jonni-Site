@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { motion, useScroll } from "motion/react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "./components/Header";
@@ -35,7 +36,15 @@ export default function App() {
     <ContentProvider>
       <Router>
         <ScrollToTop />
-        <div className="flex flex-col min-h-screen selection:bg-brand-gold selection:text-white">
+        <div className="flex flex-col min-h-screen selection:bg-brand-gold selection:text-white relative">
+          <div className="grain-overlay" />
+          
+          {/* Scroll Progress HUD */}
+          <motion.div
+            className="fixed top-0 left-0 right-0 h-[2px] bg-brand-gold z-[101] origin-left"
+            style={{ scaleX: useScroll().scrollYProgress }}
+          />
+
           <Header />
           <PromoPopup />
           <main className="flex-grow">

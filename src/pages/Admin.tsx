@@ -9,6 +9,7 @@ export default function Admin() {
   const { content, user, isAdmin, loading } = useContent();
   const [localContent, setLocalContent] = useState(content);
   const [isSaving, setIsSaving] = useState(false);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(true);
   const [activeTab, setActiveTab] = useState<Tab>('identity');
   const [leads, setLeads] = useState<any[]>([]);
   const [leadsLoading, setLeadsLoading] = useState(false);
@@ -94,6 +95,12 @@ export default function Admin() {
           </div>
           <div className="flex gap-4 w-full md:w-auto">
             <button 
+              onClick={() => setIsPreviewOpen(!isPreviewOpen)}
+              className="flex-grow md:flex-grow-0 bg-white border border-gray-200 px-6 py-3 font-bold uppercase tracking-widest text-[9px] flex items-center justify-center hover:bg-zinc-50 transition-all rounded-sm"
+            >
+              {isPreviewOpen ? "Hide Preview" : "Live Preview"}
+            </button>
+            <button 
               onClick={handleSave}
               disabled={isSaving}
               className="flex-grow md:flex-grow-0 bg-brand-gold text-white px-8 py-3 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:scale-105 transition-all shadow-lg"
@@ -109,37 +116,36 @@ export default function Admin() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className={`grid grid-cols-1 ${isPreviewOpen ? 'lg:grid-cols-12' : 'lg:grid-cols-12'} gap-12`}>
           {/* Navigation Sidebar */}
-          <div className="lg:col-span-3 space-y-2">
+          <div className={`${isPreviewOpen ? 'lg:col-span-2' : 'lg:col-span-3'} space-y-2`}>
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as Tab)}
-                className={`w-full flex items-center space-x-4 px-6 py-4 font-bold uppercase tracking-widest text-xs transition-all ${
+                className={`w-full flex items-center space-x-4 px-6 py-4 font-bold uppercase tracking-widest text-[10px] transition-all rounded-sm ${
                   activeTab === tab.id 
-                    ? 'bg-brand-black text-white shadow-xl translate-x-2' 
-                    : 'bg-white text-gray-400 hover:bg-gray-100 hover:text-brand-black'
+                    ? 'bg-brand-black text-white shadow-xl translate-x-1' 
+                    : 'bg-white text-gray-400 hover:bg-gray-100'
                 }`}
               >
-                <tab.icon size={16} />
+                <tab.icon size={14} />
                 <span>{tab.label}</span>
               </button>
             ))}
             
-            <div className="mt-12 bg-brand-black text-white p-8">
-              <h3 className="text-brand-gold font-bold uppercase tracking-widest text-[10px] mb-6">System Status</h3>
-              <ul className="space-y-4 text-[10px] font-medium text-gray-400 uppercase tracking-wider">
-                 <li className="flex justify-between"><span>Identity</span> <span className="text-green-500">Verified</span></li>
-                 <li className="flex justify-between"><span>Database</span> <span className="text-green-500">Online</span></li>
-                 <li className="flex justify-between"><span>Auth Level</span> <span className="text-brand-gold italic">Admin</span></li>
+            <div className={`mt-12 bg-white border border-gray-100 p-6 rounded-sm ${isPreviewOpen ? 'hidden md:block' : ''}`}>
+              <h3 className="text-brand-gold font-bold uppercase tracking-widest text-[9px] mb-4">System Data</h3>
+              <ul className="space-y-3 text-[9px] font-bold text-gray-400 uppercase tracking-wider">
+                 <li className="flex justify-between"><span>Status</span> <span className="text-green-500">Live</span></li>
+                 <li className="flex justify-between"><span>Auth</span> <span className="text-zinc-900 italic">Owner</span></li>
               </ul>
             </div>
           </div>
 
           {/* Editor Area */}
-          <div className="lg:col-span-9">
-            <div className="bg-white p-10 shadow-sm border border-gray-100 min-h-[600px]">
+          <div className={`${isPreviewOpen ? 'lg:col-span-6' : 'lg:col-span-9'}`}>
+            <div className="bg-white p-8 shadow-sm border border-gray-100 min-h-[600px] rounded-sm">
               
               {/* Identity Tab */}
               {activeTab === 'identity' && (
@@ -1010,6 +1016,46 @@ export default function Admin() {
               )}
             </div>
           </div>
+
+          {/* Preview Panel */}
+          {isPreviewOpen && (
+            <div className="lg:col-span-4 sticky top-32 h-[calc(100vh-160px)]">
+              <div className="bg-brand-black w-full h-full rounded-sm shadow-2xl overflow-hidden border border-zinc-800 flex flex-col relative">
+                <div className="flex items-center justify-between px-4 py-3 bg-zinc-900 border-b border-zinc-800">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 rounded-full bg-red-500" />
+                    <div className="w-2 h-2 rounded-full bg-yellow-500" />
+                    <div className="w-2 h-2 rounded-full bg-green-500" />
+                  </div>
+                  <span className="text-[8px] font-black tracking-[0.3em] text-white/40 uppercase">Viewport Preview</span>
+                  <div className="w-6" />
+                </div>
+                
+                <div className="flex-1 overflow-y-auto overflow-x-hidden p-8 scale-90 origin-top transform-gpu">
+                  <span className="text-brand-gold font-black uppercase tracking-[0.5em] text-[8px] mb-8 block">Project Analysis</span>
+                  <h2 className="text-4xl font-display font-bold text-white mb-8 leading-tight">
+                    {localContent.brand.tagline.split('.')[0]}.<br/>
+                    <span className="text-white/20 italic">{localContent.brand.tagline.split('.')[1] || ""}</span>
+                  </h2>
+                  <p className="text-sm font-light text-gray-400 leading-relaxed mb-12">
+                    {localContent.brand.taglineExtended}
+                  </p>
+                  
+                  <div className="space-y-4">
+                    <div className="aspect-video bg-zinc-800 rounded-sm animate-pulse" />
+                    <div className="h-4 w-3/4 bg-zinc-800 rounded-full" />
+                    <div className="h-4 w-1/2 bg-zinc-800 rounded-full" />
+                  </div>
+                </div>
+                
+                <div className="absolute bottom-4 left-0 right-0 px-4">
+                   <div className="bg-brand-gold/10 border border-brand-gold/20 p-3 rounded-sm text-center">
+                     <span className="text-brand-gold text-[8px] font-black uppercase tracking-widest">Unsaved Changes detected</span>
+                   </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
