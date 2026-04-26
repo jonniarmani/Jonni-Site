@@ -73,17 +73,58 @@ export default function Header() {
             }
 
             if (isSpecial) {
+              const isVideo = item.label === "Video";
               return (
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`text-[10px] uppercase tracking-[0.2em] font-black px-6 py-2.5 rounded-full border-2 transition-all duration-300 flex items-center ${
+                  className={`relative overflow-hidden text-[10px] uppercase tracking-[0.2em] font-black px-6 py-2.5 rounded-full border-2 transition-all duration-300 flex items-center group ${
                     location.pathname === item.href 
                     ? "bg-brand-gold text-white border-brand-gold shadow-lg shadow-brand-gold/20" 
                     : "border-brand-gold text-brand-black hover:bg-brand-gold hover:text-white"
                   }`}
                 >
-                  {item.label}
+                  <span className="relative z-10">{item.label}</span>
+                  
+                  {/* Video: Film Strip Animation */}
+                  {isVideo && (
+                    <motion.div 
+                      className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-20 flex items-center overflow-hidden"
+                      initial={false}
+                    >
+                      <motion.div 
+                        className="flex whitespace-nowrap"
+                        animate={{ x: [0, -100] }}
+                        transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                      >
+                        {[...Array(10)].map((_, i) => (
+                          <div key={i} className="flex items-center mx-1">
+                            <div className="w-6 h-8 border border-white flex flex-col justify-between py-1">
+                              <div className="w-1 h-1 bg-white mx-auto rounded-full" />
+                              <div className="w-1 h-1 bg-white mx-auto rounded-full" />
+                            </div>
+                          </div>
+                        ))}
+                      </motion.div>
+                    </motion.div>
+                  )}
+
+                  {/* Photo: Camera Shutter Click Animation */}
+                  {!isVideo && (
+                    <motion.div 
+                      className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-0 group-hover:opacity-100"
+                    >
+                      <motion.div 
+                        className="w-full h-full bg-white"
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileHover={{ 
+                          scale: [0, 1.2, 1],
+                          opacity: [0, 0.8, 0],
+                        }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </motion.div>
+                  )}
                 </Link>
               );
             }

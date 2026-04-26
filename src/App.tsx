@@ -20,7 +20,6 @@ import Terms from "./pages/Terms";
 
 import { ContentProvider, useContent } from "./lib/ContentContext";
 import Admin from "./pages/Admin";
-import { ChatBot } from "./components/ChatBot";
 
 // Helper to scroll to top on navigation
 function ScrollToTop() {
@@ -38,7 +37,6 @@ export default function App() {
         <ScrollToTop />
         <div className="flex flex-col min-h-screen selection:bg-brand-gold selection:text-white">
           <Header />
-          <ChatBot />
           <PromoPopup />
           <main className="flex-grow">
             <PageTransition>
