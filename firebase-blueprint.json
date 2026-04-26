@@ -104,9 +104,23 @@
             "message": { "type": "string" },
             "code": { "type": "string" }
           }
+        },
+        "testimonials": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "author": { "type": "string" },
+              "role": { "type": "string" },
+              "content": { "type": "string" },
+              "rating": { "type": "number" },
+              "date": { "type": "string" },
+              "avatar": { "type": "string" }
+            }
+          }
         }
       },
-      "required": ["brand", "services", "portfolio", "about", "home", "promo"]
+      "required": ["brand", "services", "portfolio", "about", "home", "promo", "testimonials"]
     },
     "Lead": {
       "title": "Lead",

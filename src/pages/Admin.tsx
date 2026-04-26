@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useContent } from '../lib/ContentContext';
 import { auth, googleProvider, signInWithPopup, signOut, db, doc, setDoc, handleFirestoreError, OperationType, collection, deleteDoc, onSnapshot } from '../lib/firebase';
-import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare } from 'lucide-react';
+import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Sparkles, Wand2 } from 'lucide-react';
 
-type Tab = 'identity' | 'home' | 'about' | 'services' | 'video-work' | 'photo-work' | 'promo' | 'inquiries';
+type Tab = 'identity' | 'home' | 'about' | 'services' | 'video-work' | 'photo-work' | 'promo' | 'testimonials' | 'inquiries' | 'code' | 'theme' | 'ai';
 
 export default function Admin() {
   const { content, user, isAdmin, loading } = useContent();
@@ -13,6 +13,34 @@ export default function Admin() {
   const [activeTab, setActiveTab] = useState<Tab>('identity');
   const [leads, setLeads] = useState<any[]>([]);
   const [leadsLoading, setLeadsLoading] = useState(false);
+  
+  // AI Assistant State
+  const [aiPrompt, setAiPrompt] = useState("");
+  const [aiResponse, setAiResponse] = useState("");
+  const [isAiLoading, setIsAiLoading] = useState(false);
+
+  const handleAiAssistant = async () => {
+    if (!aiPrompt) return;
+    setIsAiLoading(true);
+    try {
+      const { GoogleGenerativeAI } = await import("@google/genai");
+      // Note: In AI Studio environment, GEMINI_API_KEY is available in process.env
+      const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || (process.env.GEMINI_API_KEY as string));
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      
+      const result = await model.generateContent(`You are an expert copywriter for high-end boutique creative agencies.
+      Current context: ${localContent.brand.name} - ${localContent.brand.tagline}
+      Task: ${aiPrompt}
+      Respond with polished, high-impact copy suggestions.`);
+      
+      const response = await result.response;
+      setAiResponse(response.text());
+    } catch (error) {
+      console.error("AI Assistant Error:", error);
+      setAiResponse("Visual cognition failed. Ensure API authority is active.");
+    }
+    setIsAiLoading(false);
+  };
 
   React.useEffect(() => {
     if (content) setLocalContent(content);
@@ -82,7 +110,11 @@ export default function Admin() {
     { id: 'video-work', label: 'Video Work', icon: VideoIcon },
     { id: 'photo-work', label: 'Photo Work', icon: ImageIcon },
     { id: 'promo', label: 'Promotions', icon: Megaphone },
+    { id: 'testimonials', label: 'Testimonials', icon: MessageSquare },
     { id: 'inquiries', label: 'Inquiries', icon: MessageSquare },
+    { id: 'code', label: 'Code Injection', icon: Code },
+    { id: 'theme', label: 'Visual Studio', icon: Palette },
+    { id: 'ai', label: 'AI Assistant', icon: Sparkles },
   ];
 
   return (
@@ -195,6 +227,84 @@ export default function Admin() {
                         value={localContent.brand.contact.phone}
                         onChange={(e) => setLocalContent({...localContent, brand: {...localContent.brand, contact: {...localContent.brand.contact, phone: e.target.value}}})}
                       />
+                    </div>
+                    <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t">
+                      <div className="space-y-4">
+                        <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Instagram URL</label>
+                        <input 
+                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-[#E4405F]" 
+                          value={localContent.brand.socials.instagram}
+                          onChange={(e) => setLocalContent({...localContent, brand: {...localContent.brand, socials: {...localContent.brand.socials, instagram: e.target.value}}})}
+                        />
+                      </div>
+                      <div className="space-y-4">
+                        <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Facebook URL</label>
+                        <input 
+                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-[#1877F2]" 
+                          value={(localContent.brand.socials as any).facebook || ""}
+                          onChange={(e) => setLocalContent({...localContent, brand: {...localContent.brand, socials: {...localContent.brand.socials, facebook: e.target.value}}})}
+                        />
+                      </div>
+                      <div className="space-y-4">
+                        <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">YouTube URL</label>
+                        <input 
+                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-[#FF0000]" 
+                          value={(localContent.brand.socials as any).youtube || ""}
+                          onChange={(e) => setLocalContent({...localContent, brand: {...localContent.brand, socials: {...localContent.brand.socials, youtube: e.target.value}}})}
+                        />
+                      </div>
+                      <div className="space-y-4">
+                        <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Vimeo URL</label>
+                        <input 
+                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-[#1AB7EA]" 
+                          value={localContent.brand.socials.vimeo}
+                          onChange={(e) => setLocalContent({...localContent, brand: {...localContent.brand, socials: {...localContent.brand.socials, vimeo: e.target.value}}})}
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="md:col-span-2 pt-12 border-t space-y-8 mt-4">
+                      <div className="flex items-center space-x-2">
+                        <Wand2 size={16} className="text-brand-gold" />
+                        <h3 className="text-xs font-black uppercase tracking-widest text-brand-black">Advanced SEO & Discovery</h3>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="md:col-span-2 space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Meta Title (Browser Tab)</label>
+                          <input 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-bold" 
+                            value={localContent.seo?.title || ""}
+                            onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), title: e.target.value}})}
+                          />
+                        </div>
+                        <div className="md:col-span-2 space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Meta Description (Search Results)</label>
+                          <textarea 
+                            rows={2}
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium leading-relaxed" 
+                            value={localContent.seo?.description || ""}
+                            onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), description: e.target.value}})}
+                          />
+                        </div>
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Search Keywords</label>
+                          <input 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            placeholder="comma, separated, list"
+                            value={localContent.seo?.keywords || ""}
+                            onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), keywords: e.target.value}})}
+                          />
+                        </div>
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">OG Share Image URL</label>
+                          <input 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            value={localContent.seo?.ogImage || ""}
+                            onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), ogImage: e.target.value}})}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -948,6 +1058,131 @@ export default function Admin() {
                 </div>
               )}
 
+              {/* Testimonials Tab */}
+              {activeTab === 'testimonials' && (
+                <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                  <div className="border-b pb-4 mb-8 flex justify-between items-end">
+                    <div>
+                      <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Social Proof Architecture</h2>
+                      <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage verified Google reviews and testimonials</p>
+                    </div>
+                    <button 
+                      onClick={() => setLocalContent({
+                        ...localContent, 
+                        testimonials: [
+                          ...localContent.testimonials, 
+                          { author: "New Reviewer", role: "Client", content: "Great experience...", rating: 5, date: "Just now" }
+                        ]
+                      })}
+                      className="bg-brand-black text-white px-4 py-2 text-[10px] uppercase font-black tracking-widest hover:bg-brand-gold transition-colors flex items-center"
+                    >
+                      <Plus size={14} className="mr-2" /> Add Review
+                    </button>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 gap-8">
+                    {localContent.testimonials.map((review, idx) => (
+                      <div key={idx} className="bg-gray-50 p-8 relative group border border-gray-100">
+                        <button 
+                          onClick={() => {
+                            const newTestimonials = [...localContent.testimonials];
+                            newTestimonials.splice(idx, 1);
+                            setLocalContent({...localContent, testimonials: newTestimonials});
+                          }}
+                          className="absolute top-4 right-4 text-gray-300 hover:text-red-500 transition-colors p-2"
+                        >
+                          <Trash size={16} />
+                        </button>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                          <div className="space-y-4">
+                            <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Client Name</label>
+                            <input 
+                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-gold outline-none font-bold text-sm" 
+                              value={review.author}
+                              onChange={(e) => {
+                                const newTestimonials = [...localContent.testimonials];
+                                newTestimonials[idx].author = e.target.value;
+                                setLocalContent({...localContent, testimonials: newTestimonials});
+                              }}
+                            />
+                          </div>
+                          <div className="space-y-4">
+                            <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Role / Company</label>
+                            <input 
+                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-sm" 
+                              value={review.role}
+                              onChange={(e) => {
+                                const newTestimonials = [...localContent.testimonials];
+                                newTestimonials[idx].role = e.target.value;
+                                setLocalContent({...localContent, testimonials: newTestimonials});
+                              }}
+                            />
+                          </div>
+                          <div className="md:col-span-2 space-y-4">
+                            <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Testimonial Content</label>
+                            <textarea 
+                              rows={4}
+                              className="w-full bg-white border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-sm leading-relaxed" 
+                              value={review.content}
+                              onChange={(e) => {
+                                const newTestimonials = [...localContent.testimonials];
+                                newTestimonials[idx].content = e.target.value;
+                                setLocalContent({...localContent, testimonials: newTestimonials});
+                              }}
+                            />
+                          </div>
+                          <div className="space-y-4">
+                            <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Rating (1-5)</label>
+                            <div className="flex space-x-2">
+                              {[1, 2, 3, 4, 5].map(star => (
+                                <button 
+                                  key={star}
+                                  onClick={() => {
+                                    const newTestimonials = [...localContent.testimonials];
+                                    newTestimonials[idx].rating = star;
+                                    setLocalContent({...localContent, testimonials: newTestimonials});
+                                  }}
+                                  className={`${review.rating >= star ? 'text-brand-gold' : 'text-gray-200'} transition-colors`}
+                                >
+                                  <Star size={20} fill={review.rating >= star ? "currentColor" : "none"} />
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="space-y-4">
+                            <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Display Date</label>
+                            <input 
+                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-sm" 
+                              value={review.date}
+                              onChange={(e) => {
+                                const newTestimonials = [...localContent.testimonials];
+                                newTestimonials[idx].date = e.target.value;
+                                setLocalContent({...localContent, testimonials: newTestimonials});
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="bg-brand-gold/5 p-8 border border-brand-gold/20 rounded-sm">
+                    <div className="flex items-start space-x-4">
+                      <div className="bg-brand-gold p-2 text-white">
+                        <Info size={16} />
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-bold uppercase tracking-widest text-brand-gold mb-2">Live Sync Protocol</h4>
+                        <p className="text-xs text-gray-600 font-medium leading-relaxed">
+                          Currently, reviews are manually curated for maximum visual impact. To pull live data directly from Google, specialized API keys are required. Use this interface to keep your highest-converting social proof current.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Inquiries Tab */}
               {activeTab === 'inquiries' && (
                 <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -1012,6 +1247,223 @@ export default function Admin() {
                       ))}
                     </div>
                   )}
+                </div>
+              )}
+
+              {/* Code Injection Tab */}
+              {activeTab === 'code' && (
+                <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                  <div className="border-b pb-4 mb-8">
+                    <h2 className="text-2xl font-display font-bold uppercase tracking-tight">System Core Injection</h2>
+                    <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Inject custom logic scripts and structural style overrides</p>
+                  </div>
+                  
+                  <div className="space-y-8">
+                    <div className="bg-amber-50 border border-amber-100 p-6 rounded-sm flex items-start space-x-4">
+                      <div className="bg-amber-500 text-white p-2 text-white">
+                        <Info size={16} />
+                      </div>
+                      <div>
+                        <h4 className="text-[10px] font-black uppercase tracking-widest text-amber-700 mb-1">Developer Notice</h4>
+                        <p className="text-[11px] text-amber-800 font-medium leading-relaxed">
+                          Exercise extreme caution. Scripts injected here execute with root authority on the client session. Use this for Google Tag Manager, Meta Pixels, or advanced CSS overrides.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-6">
+                      <div className="space-y-4">
+                        <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Head Snippet (META / GTM / FONTS)</label>
+                        <textarea 
+                          rows={4}
+                          className="w-full bg-zinc-900 text-brand-gold p-4 outline-none font-mono text-[10px] leading-relaxed shadow-inner" 
+                          placeholder="<script>... analytics ...</script>"
+                          value={localContent.customCode?.head || ""}
+                          onChange={(e) => setLocalContent({...localContent, customCode: {...(localContent.customCode || {}), head: e.target.value}})}
+                        />
+                      </div>
+                      <div className="space-y-4">
+                        <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Custom CSS Overrides</label>
+                        <textarea 
+                          rows={8}
+                          className="w-full bg-zinc-900 text-green-400 p-4 outline-none font-mono text-[11px] leading-relaxed shadow-inner" 
+                          placeholder=":root { --brand-gold: #ff0000; }"
+                          value={localContent.customCode?.css || ""}
+                          onChange={(e) => setLocalContent({...localContent, customCode: {...(localContent.customCode || {}), css: e.target.value}})}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Visual Studio Tab */}
+              {activeTab === 'theme' && (
+                <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                  <div className="border-b pb-4 mb-8">
+                    <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Visual Design Studio</h2>
+                    <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Modify global brand aesthetic parameters</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div className="space-y-8">
+                      <h3 className="text-[10px] font-black uppercase tracking-widest text-brand-gold border-b pb-2">Chromatic Authority</h3>
+                      <div className="space-y-6">
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Primary Brand Color (Surface)</label>
+                          <div className="flex items-center space-x-4">
+                            <input 
+                              type="color" 
+                              className="w-12 h-12 rounded-sm cursor-pointer border-0"
+                              value={localContent.theme?.primaryColor || "#000000"}
+                              onChange={(e) => setLocalContent({...localContent, theme: {...(localContent.theme || {}), primaryColor: e.target.value}})}
+                            />
+                            <input 
+                              className="flex-1 bg-gray-50 border-0 p-4 font-mono text-xs uppercase" 
+                              value={localContent.theme?.primaryColor || "#000000"}
+                              onChange={(e) => setLocalContent({...localContent, theme: {...(localContent.theme || {}), primaryColor: e.target.value}})}
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Accent Brand Color (Interaction)</label>
+                          <div className="flex items-center space-x-4">
+                            <input 
+                              type="color" 
+                              className="w-12 h-12 rounded-sm cursor-pointer border-0"
+                              value={localContent.theme?.accentColor || "#D4AF37"}
+                              onChange={(e) => setLocalContent({...localContent, theme: {...(localContent.theme || {}), accentColor: e.target.value}})}
+                            />
+                            <input 
+                              className="flex-1 bg-gray-50 border-0 p-4 font-mono text-xs uppercase text-brand-gold font-bold" 
+                              value={localContent.theme?.accentColor || "#D4AF37"}
+                              onChange={(e) => setLocalContent({...localContent, theme: {...(localContent.theme || {}), accentColor: e.target.value}})}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-8">
+                      <h3 className="text-[10px] font-black uppercase tracking-widest text-brand-gold border-b pb-2">Typography Engine</h3>
+                      <div className="space-y-6">
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Display Typeface (Headings)</label>
+                          <select 
+                             className="w-full bg-gray-50 border-0 p-4 outline-none font-bold text-sm"
+                             value={localContent.theme?.fontDisplay || "Outfit"}
+                             onChange={(e) => setLocalContent({...localContent, theme: {...(localContent.theme || {}), fontDisplay: e.target.value}})}
+                          >
+                            <option value="Outfit">Outfit (Modern)</option>
+                            <option value="Inter">Inter (Classic)</option>
+                            <option value="Space Grotesk">Space Grotesk (Tech)</option>
+                            <option value="Playfair Display">Playfair Display (Serif)</option>
+                             <option value="JetBrains Mono">JetBrains Mono (Technical)</option>
+                          </select>
+                        </div>
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Sans-Serif Typeface (Body)</label>
+                           <select 
+                             className="w-full bg-gray-50 border-0 p-4 outline-none font-medium text-sm"
+                             value={localContent.theme?.fontSans || "Inter"}
+                             onChange={(e) => setLocalContent({...localContent, theme: {...(localContent.theme || {}), fontSans: e.target.value}})}
+                          >
+                            <option value="Inter">Inter</option>
+                            <option value="Outfit">Outfit</option>
+                             <option value="Geist">Geist</option>
+                            <option value="Roboto">Roboto</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* AI Assistant Tab */}
+              {activeTab === 'ai' && (
+                <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                  <div className="border-b pb-4 mb-8 flex justify-between items-end">
+                    <div>
+                      <h2 className="text-2xl font-display font-bold uppercase tracking-tight">AI Content Intelligence</h2>
+                      <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Leverage Gemini cognitive models for high-impact copy</p>
+                    </div>
+                    <Sparkles className="text-brand-gold animate-pulse" size={24} />
+                  </div>
+                  
+                  <div className="space-y-8">
+                    <div className="bg-zinc-900 p-8 rounded-sm shadow-2xl relative overflow-hidden border border-zinc-800">
+                      <div className="absolute top-0 right-0 p-4 opacity-10">
+                        <Wand2 size={64} className="text-brand-gold" />
+                      </div>
+                      
+                      <div className="relative z-10 space-y-6">
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-brand-gold tracking-widest">Cognitive Prompt</label>
+                          <textarea 
+                            rows={3}
+                            className="w-full bg-zinc-800 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none text-white font-medium text-sm leading-relaxed placeholder:text-gray-600" 
+                            placeholder="e.g. Suggest 5 high-impact tags for my home hero section based on 'cinematic agency' vibe..."
+                            value={aiPrompt}
+                            onChange={(e) => setAiPrompt(e.target.value)}
+                          />
+                        </div>
+                        
+                        <button 
+                          onClick={handleAiAssistant}
+                          disabled={isAiLoading || !aiPrompt}
+                          className="w-full bg-brand-gold text-white py-4 px-8 font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center hover:scale-[1.02] transition-all disabled:opacity-50 disabled:scale-100"
+                        >
+                          {isAiLoading ? (
+                            <>
+                              <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin mr-3" />
+                              Cognitive Processing...
+                            </>
+                          ) : (
+                            <>
+                              <Sparkles size={16} className="mr-3" /> Execute Generation
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                    {aiResponse && (
+                      <div className="space-y-4 animate-in fade-in slide-in-from-top-4 duration-500">
+                        <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">AI Suggestion Result</label>
+                        <div className="bg-white border-l-4 border-brand-gold p-8 shadow-sm font-light text-gray-700 whitespace-pre-wrap leading-relaxed">
+                          {aiResponse}
+                          <div className="mt-8 pt-8 border-t flex justify-end">
+                            <button 
+                              onClick={() => {
+                                navigator.clipboard.writeText(aiResponse);
+                                alert("Response copied to terminal.");
+                              }}
+                              className="text-[10px] font-black uppercase tracking-widest text-brand-gold hover:text-black transition-colors"
+                            >
+                              Copy to Buffer
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                       {[
+                         { label: "Refine Bio", prompt: "Polish my bio to sound more authoritative yet approachable." },
+                         { label: "Tagline Evolution", prompt: "Give me 10 cinematic taglines for a media agency specializing in Bradenton/Sarasota area." },
+                         { label: "SEO Meta", prompt: "Generate SEO metadata for my photography services focusing on 'brand stories'." }
+                       ].map((hint, i) => (
+                         <button 
+                           key={i}
+                           onClick={() => setAiPrompt(hint.prompt)}
+                           className="p-4 bg-gray-50 border border-gray-100 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:border-brand-gold hover:text-brand-gold transition-all text-left"
+                         >
+                           {hint.label}
+                         </button>
+                       ))}
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

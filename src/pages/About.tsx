@@ -85,7 +85,7 @@ export default function About() {
               "{about.quote}"
             </blockquote>
 
-            <p className="text-gray-600 leading-relaxed text-xl mb-20 font-light">
+            <p className="text-gray-600 leading-relaxed text-xl mb-20 font-light mt-16">
               {about.storyText3}
             </p>
 

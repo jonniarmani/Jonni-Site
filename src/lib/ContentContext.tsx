@@ -42,6 +42,32 @@ interface SiteContent {
     message: string;
     code: string;
   };
+  testimonials: {
+    author: string;
+    role: string;
+    content: string;
+    rating: number;
+    date: string;
+    avatar?: string;
+  }[];
+  customCode?: {
+    head?: string;
+    bodyStart?: string;
+    bodyEnd?: string;
+    css?: string;
+  };
+  theme?: {
+    primaryColor?: string;
+    accentColor?: string;
+    fontDisplay?: string;
+    fontSans?: string;
+  };
+  seo?: {
+    title?: string;
+    description?: string;
+    keywords?: string;
+    ogImage?: string;
+  };
 }
 
 interface ContentContextType {
@@ -111,6 +137,47 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       title: "EXCLUSIVE OFFER",
       message: "Book your brand story session today and receive 20% off your first production.",
       code: "STORY20"
+    },
+    testimonials: [
+      {
+        author: "Jordan Thompson",
+        role: "Healthcare Director",
+        content: "Jonni is an absolute professional. The cinematic quality of the video he produced for our regional practice was beyond our expectations. He understands the nuances of professional brand storytelling.",
+        rating: 5,
+        date: "3 months ago"
+      },
+      {
+        author: "Sarah Mitchell",
+        role: "Commercial Marketing Lead",
+        content: "High-impact visuals and a strategic eye. He captured our brand story perfectly. The ROI on the media assets we received has already proven itself across our social platforms.",
+        rating: 5,
+        date: "1 month ago"
+      },
+      {
+        author: "Marcus Rivera",
+        role: "Professional Athletics Coach",
+        content: "The sports media Jonni produces is next level. Fast turnaround and broadcast quality gear used with actual intent. If you need to stand out from the noise, this is who you call.",
+        rating: 5,
+        date: "2 weeks ago"
+      }
+    ],
+    customCode: {
+      head: "",
+      bodyStart: "",
+      bodyEnd: "",
+      css: ""
+    },
+    theme: {
+      primaryColor: "#000000",
+      accentColor: "#06B6D4",
+      fontDisplay: "Outfit",
+      fontSans: "Inter"
+    },
+    seo: {
+      title: "Jonni Armani Media | Cinematic Video & Photography Florida",
+      description: "High-end cinematic video production and commercial photography for brands, athletes, and industry leaders across Bradenton, Sarasota, and Tampa.",
+      keywords: "video production, commercial photography, brand storyteller, cinematic visuals, Florida media agency",
+      ogImage: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000"
     }
   });
   const [loading, setLoading] = useState(true);
@@ -123,7 +190,23 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     const unsubContent = onSnapshot(doc(db, 'settings', 'content'), (snapshot) => {
       if (snapshot.exists()) {
-        setContent(snapshot.data() as SiteContent);
+        const data = snapshot.data() as any;
+        setContent(prev => ({
+          ...prev,
+          ...data,
+          brand: {
+            ...prev.brand,
+            ...(data.brand || {}),
+            socials: {
+              ...prev.brand.socials,
+              ...(data.brand?.socials || {})
+            },
+            contact: {
+              ...prev.brand.contact,
+              ...(data.brand?.contact || {})
+            }
+          }
+        }) as SiteContent);
       }
       setLoading(false);
     }, (error) => {

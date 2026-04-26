@@ -21,6 +21,8 @@ import Terms from "./pages/Terms";
 
 import { ContentProvider, useContent } from "./lib/ContentContext";
 import Admin from "./pages/Admin";
+import CodeInjection from "./components/CodeInjection";
+import SEO from "./components/SEO";
 
 // Helper to scroll to top on navigation
 function ScrollToTop() {
@@ -34,6 +36,8 @@ function ScrollToTop() {
 export default function App() {
   return (
     <ContentProvider>
+      <CodeInjection />
+      <SEO />
       <Router>
         <ScrollToTop />
         <div className="flex flex-col min-h-screen selection:bg-brand-gold selection:text-white relative">

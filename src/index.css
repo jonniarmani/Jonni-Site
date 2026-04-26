@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap');
 
 @import "tw-animate-css";
 
@@ -12,11 +12,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
+  --font-sans: var(--font-sans-override, "Inter"), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-override, "Space Grotesk"), sans-serif;
 
-  --color-brand-gold: #06B6D4; /* Updated to Electric Cyan */
-  --color-brand-black: #0A0A0A;
+  --color-brand-gold: var(--brand-gold, #06B6D4);
+  --color-brand-black: var(--brand-black, #0A0A0A);
   --color-brand-gray: #FAFAFA;
 }
 

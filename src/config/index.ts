@@ -16,7 +16,9 @@ export const BRAND = {
     calendar: "https://calendar.google.com/calendar/u/1?cid=am9ubmlhcm1hbmlAZ21haWwuY29t",
   },
   socials: {
-    instagram: "https://instagram.com/jonniarmani",
+    instagram: "https://instagram.com/jonniarmanimedia",
+    facebook: "https://facebook.com/jonniarmanimedia",
+    youtube: "https://youtube.com/jonniarmani",
     vimeo: "https://vimeo.com/jonniarmani",
   }
 };
