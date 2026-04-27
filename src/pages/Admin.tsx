@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useContent } from '../lib/ContentContext';
 import { auth, googleProvider, signInWithPopup, signOut, db, doc, setDoc, handleFirestoreError, OperationType, collection, deleteDoc, onSnapshot } from '../lib/firebase';
-import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Sparkles, Wand2, Upload } from 'lucide-react';
+import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Sparkles, Wand2, Upload, RefreshCw } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 import FileUploader from '../components/FileUploader';
 
@@ -78,6 +78,29 @@ export default function Admin() {
   const [aiPrompt, setAiPrompt] = useState("");
   const [aiResponse, setAiResponse] = useState("");
   const [isAiLoading, setIsAiLoading] = useState(false);
+
+  const fetchVideoThumbnail = async (videoUrl: string, index: number) => {
+    let thumbnail = "";
+    if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+      const videoId = videoUrl.includes('v=') ? videoUrl.split('v=')[1].split('&')[0] : videoUrl.split('/').pop();
+      thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+    } else if (videoUrl.includes('vimeo.com')) {
+      try {
+        const videoId = videoUrl.split('/').pop();
+        const response = await fetch(`https://vimeo.com/api/v2/video/${videoId}.json`);
+        const data = await response.json();
+        thumbnail = data[0].thumbnail_large;
+      } catch (e) {
+        console.error("Vimeo thumb fetch failed", e);
+      }
+    }
+    
+    if (thumbnail) {
+      const newPortfolio = [...localContent.portfolio];
+      newPortfolio[index] = { ...newPortfolio[index], placeholder: thumbnail };
+      setLocalContent({ ...localContent, portfolio: newPortfolio });
+    }
+  };
 
   const handleAiAssistant = async () => {
     if (!aiPrompt) return;
@@ -962,19 +985,28 @@ export default function Admin() {
                                 }}
                               />
                             </div>
-                            <div className="space-y-2">
-                              <label className="text-[10px] uppercase font-black text-gray-400">Video Source Link (or Upload)</label>
-                              <input 
-                                className="w-full p-3 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-[10px] font-mono text-brand-gold" 
-                                value={item.videoUrl || ""}
-                                onChange={(e) => {
-                                  const newPortfolio = [...localContent.portfolio];
-                                  newPortfolio[realIdx] = {...newPortfolio[realIdx], videoUrl: e.target.value};
-                                  setLocalContent({...localContent, portfolio: newPortfolio});
-                                }}
-                              />
-                              <FileUploader 
-                                label="Upload Video Source"
+                              <div className="space-y-2">
+                                <label className="text-[10px] uppercase font-black text-gray-400">Video Source Link (or Upload)</label>
+                                <div className="flex gap-2">
+                                  <input 
+                                    className="flex-1 p-3 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-[10px] font-mono text-brand-gold" 
+                                    value={item.videoUrl || ""}
+                                    onChange={(e) => {
+                                      const newPortfolio = [...localContent.portfolio];
+                                      newPortfolio[realIdx] = {...newPortfolio[realIdx], videoUrl: e.target.value};
+                                      setLocalContent({...localContent, portfolio: newPortfolio});
+                                    }}
+                                  />
+                                  <button 
+                                    onClick={() => fetchVideoThumbnail(item.videoUrl || "", realIdx)}
+                                    className="p-3 bg-white border-0 text-brand-gold hover:bg-gray-100 transition-colors"
+                                    title="Fetch Thumbnail from URL"
+                                  >
+                                    <RefreshCw size={14} />
+                                  </button>
+                                </div>
+                                <FileUploader 
+                                  label="Upload Video Source"
                                 accept="video/*"
                                 folder="portfolio"
                                 onUploadComplete={(url) => {
