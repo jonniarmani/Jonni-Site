@@ -71,7 +71,7 @@ const ImagePreview = ({ url, className = "mt-2 w-32 h-20" }: { url?: string, cla
   );
 };
 
-type Tab = 'identity' | 'home' | 'about' | 'services' | 'video-work' | 'photo-work' | 'promo' | 'testimonials' | 'inquiries' | 'code' | 'theme';
+type Tab = 'identity' | 'home' | 'about' | 'services' | 'video-work' | 'photo-work' | 'promo' | 'testimonials' | 'inquiries' | 'code' | 'theme' | 'industries';
 
 export default function Admin() {
   const { content, user, isAdmin, loading } = useContent();
@@ -224,6 +224,7 @@ export default function Admin() {
     { id: 'photo-work', label: 'Stills', icon: ImageIcon, color: 'text-cyan-500' },
     { id: 'promo', label: 'Campaigns', icon: Megaphone, color: 'text-pink-500' },
     { id: 'testimonials', label: 'Authority', icon: Star, color: 'text-yellow-500' },
+    { id: 'industries', label: 'Industries', icon: Globe, color: 'text-brand-gold' },
     { id: 'inquiries', label: 'Leads', icon: MessageSquare, color: 'text-indigo-500' },
     { id: 'code', label: 'System', icon: Code, color: 'text-gray-500' },
     { id: 'theme', label: 'Studio Design', icon: Palette, color: 'text-brand-gold' },
@@ -1777,6 +1778,96 @@ export default function Admin() {
                           Currently, reviews are manually curated for maximum visual impact. To pull live data directly from Google, specialized API keys are required. Use this interface to keep your highest-converting social proof current.
                         </p>
                       </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Industries Tab */}
+              {activeTab === 'industries' && (
+                <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                  <div className="border-b pb-4 mb-8 flex justify-between items-end">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                      <div>
+                        <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Industrial Verticals</h2>
+                        <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Targeting the top 15 professions in Bradenton, Sarasota & Tampa</p>
+                      </div>
+                      <button 
+                        onClick={() => setLocalContent({
+                          ...localContent, 
+                          industries: [
+                            ...(localContent.industries || []), 
+                            { id: Date.now().toString(), name: "New Industry", description: "Targeted sector description for AI-search optimization." }
+                          ]
+                        })}
+                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-xl active:scale-90"
+                        title="Add Target Vertical"
+                      >
+                        <Plus size={24} />
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {(localContent.industries || []).map((industry, idx) => (
+                      <div key={idx} className="bg-gray-50 p-6 relative group border border-gray-100 rounded-lg">
+                        <button 
+                          onClick={() => {
+                            if (window.confirm("Authorize disposal of this targeted vertical?")) {
+                              const newIndustries = [...(localContent.industries || [])];
+                              newIndustries.splice(idx, 1);
+                              setLocalContent({...localContent, industries: newIndustries});
+                            }
+                          }}
+                          className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-white border border-gray-100 shadow-lg flex items-center justify-center text-gray-300 hover:text-red-500 hover:border-red-500 transition-all z-10"
+                        >
+                          <Trash size={14} />
+                        </button>
+                        
+                        <div className="space-y-4">
+                          <div className="space-y-2">
+                            <label className="text-[9px] uppercase font-black text-gray-400 tracking-widest">Industry Name</label>
+                            <input 
+                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-gold outline-none font-bold text-sm" 
+                              value={industry.name}
+                              onChange={(e) => {
+                                const newIndustries = [...(localContent.industries || [])];
+                                newIndustries[idx].name = e.target.value;
+                                setLocalContent({...localContent, industries: newIndustries});
+                              }}
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-[9px] uppercase font-black text-gray-400 tracking-widest">SEO Optimization Bio</label>
+                            <textarea 
+                              rows={3}
+                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-xs leading-relaxed" 
+                              value={industry.description}
+                              onChange={(e) => {
+                                const newIndustries = [...(localContent.industries || [])];
+                                newIndustries[idx].description = e.target.value;
+                                setLocalContent({...localContent, industries: newIndustries});
+                              }}
+                              placeholder="Describe how your photography/videography serves this specific industry in the Gulf Coast area..."
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="bg-brand-black p-8 rounded-sm text-white relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-4 opacity-10">
+                      <Sparkles size={120} className="text-brand-gold" />
+                    </div>
+                    <div className="relative z-10">
+                      <div className="flex items-center space-x-3 mb-4">
+                        <Sparkles size={20} className="text-brand-gold" />
+                        <h4 className="text-sm font-black uppercase tracking-[0.2em] text-brand-gold">AI Search Engine Authority</h4>
+                      </div>
+                      <p className="text-xs text-gray-400 font-medium leading-relaxed max-w-2xl">
+                        By specifically naming high-value professions like <span className="text-white italic">Yacht Brokers, Surgeons, and IMG Athletes</span>, you create "contextual anchors" for AI search engines (like Gemini, Perplexity, and ChatGPT). This section infuses these keywords into your site architecture, ensuring you rank when clients search for specialized cinematic services in the Gulf Coast.
+                      </p>
                     </div>
                   </div>
                 </div>

@@ -7,6 +7,33 @@ export default function HeroMontage() {
   const visuals = content.home.heroVisuals;
   const [index, setIndex] = useState(0);
 
+  const [keywordIndex, setKeywordIndex] = useState(0);
+
+  const keywords = [
+    "Professional Sports",
+    "Medical Marketing",
+    "Luxury Healthcare",
+    "Brand Storytelling",
+    "Dental Practice",
+    "Real Estate Cinema",
+    "Yachting Media",
+    "IMG Athletics",
+    "Plastic Surgery",
+    "Hospitality Reels",
+    "Corporate Tech",
+    "Legal Videography",
+    "Boutique Fashion",
+    "Fine Dining",
+    "Equestrian Estates"
+  ];
+
+  useEffect(() => {
+    const keywordTimer = setInterval(() => {
+      setKeywordIndex((prev) => (prev + 1) % keywords.length);
+    }, 3000);
+    return () => clearInterval(keywordTimer);
+  }, []);
+
   useEffect(() => {
     if (visuals.length <= 1) return;
     const timer = setInterval(() => {
@@ -57,19 +84,20 @@ export default function HeroMontage() {
       <div className="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/20 to-brand-gold/10 mix-blend-overlay" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-brand-black/80" />
       
-      {/* Category Flash */}
-      <div className="absolute bottom-10 right-10 z-20 overflow-hidden">
+      {/* Category Flash - SEO Optimized Verticals */}
+      <div className="absolute bottom-10 right-10 z-20 overflow-hidden text-right">
         <AnimatePresence mode="wait">
           <motion.span
-            key={visuals[index].category + index}
+            key={keywords[keywordIndex]}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -20, opacity: 0 }}
-            className="text-brand-gold text-[10px] uppercase tracking-[0.5em] font-black"
+            className="text-brand-gold text-[10px] uppercase tracking-[0.5em] font-black block"
           >
-            {visuals[index].category}
+            {keywords[keywordIndex]}
           </motion.span>
         </AnimatePresence>
+        <span className="text-white/20 text-[7px] uppercase tracking-[0.2em] font-bold block mt-1">Authority Index</span>
       </div>
     </div>
   );

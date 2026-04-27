@@ -4,16 +4,17 @@ import SEOComp from "../components/SEO";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import HeroMontage from "../components/HeroMontage";
+import IndustriesGrid from "../components/IndustriesGrid";
 
 import { useContent } from "../lib/ContentContext";
 
 export default function Home() {
   const { content } = useContent();
-  const { brand } = content;
+  const { brand, industries } = content;
 
   return (
-    <div className="pt-20">
-      <SEOComp title={SEO.home.title} description={SEO.home.description} />
+    <div className="pt-20 text-brand-black">
+      <SEOComp title={content.seo?.title || SEO.home.title} description={content.seo?.description || SEO.home.description} />
       
       {/* Hero Section */}
       <section className="relative h-[95vh] w-full flex items-center overflow-hidden bg-brand-black">
@@ -109,6 +110,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <IndustriesGrid industries={industries} />
 
       {/* Portfolio Quick Access */}
       <section className="py-24 bg-white">

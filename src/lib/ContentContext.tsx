@@ -55,6 +55,12 @@ interface SiteContent {
     date: string;
     avatar?: string;
   }[];
+  industries?: {
+    id: string;
+    name: string;
+    description: string;
+    icon?: string;
+  }[];
   customCode?: {
     head?: string;
     bodyStart?: string;
@@ -199,6 +205,23 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         date: "2 weeks ago"
       }
     ],
+    industries: [
+      { id: "real-estate", name: "Luxury Real Estate", description: "Cinematic walkthroughs for Sarasota waterfront estates and architectural showcases." },
+      { id: "weddings", name: "Wedding Planning", description: "High-end event coverage for Siesta Key beach weddings and luxury venues." },
+      { id: "architecture", name: "Architecture & Design", description: "Strategic photography for interior designers and architectural firms in Florida." },
+      { id: "hospitality", name: "Resort & Hospitality", description: "Promotional media for Longboat Key resorts and luxury hospitality brands." },
+      { id: "culinary", name: "Fine Dining", description: "Culinary storytelling for Sarasota and Bradenton's high-end dining scene." },
+      { id: "marine", name: "Marine & Yachting", description: "Cinematic drone and walkthroughs for Tampa Bay yacht brokers." },
+      { id: "automotive", name: "High-End Automotive", description: "Marketing visuals for luxury automotive dealerships and private collections." },
+      { id: "medical", name: "Medical & Wellness", description: "Patient-centric stories for plastic surgeons and wellness centers in Tampa." },
+      { id: "construction", name: "Property Development", description: "Time-lapse and drone progress for major construction projects in Gulf Coast." },
+      { id: "retail", name: "Fashion & Retail", description: "High-impact lookbook and campaign visuals for local boutiques." },
+      { id: "athletics", name: "Professional Athletics", description: "Elite performance reels for athletes training at IMG Academy and beyond." },
+      { id: "corporate", name: "Tech & Corporate", description: "Corporate mission profiles for Tampa tech startups and headquarters." },
+      { id: "nonprofit", name: "Cultural Foundations", description: "Impact-driven storytelling for non-profits and cultural institutions." },
+      { id: "legal", name: "Legal Discovery", description: "Professional legal videography and settlement documentaries for law firms." },
+      { id: "equestrian", name: "Equestrian Estates", description: "Boutique media for Lakewood Ranch equestrian estates and agricultural assets." }
+    ],
     customCode: {
       head: "",
       bodyStart: "",
@@ -212,14 +235,17 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       fontSans: "Inter"
     },
     seo: {
-      title: "Jonni Armani Media | Cinematic Video Production & Commercial Photography Bradenton Sarasota Tampa",
-      description: "Professional high-end cinematic video production and commercial photography in Bradenton (34221), Sarasota, and Tampa. Specialized brand storytelling for healthcare, athletics, and corporate leaders across the Florida Gulf Coast.",
-      keywords: "video production Bradenton FL, Sarasota photographer, commercial videography 34221, Palmetto video services, Gulf Coast media production, brand storyteller Sarasota, professional headshots Bradenton, commercial photography Tampa, Jonni Armani",
+      title: "Jonni Armani Media | Cinematic Video & Commercial Photo Bradenton Sarasota Tampa",
+      description: "Elite cinematic video production & commercial photography in Bradenton, Sarasota, and Tampa. Expert media for luxury real estate, surgeons, architectural firms, yacht brokers, and IMG professional athletes. The Gulf Coast authority in high-impact brand storytelling.",
+      keywords: "video production Bradenton FL, Sarasota luxury real estate photographer, commercial videography Tampa, yacht walkthroughs Florida, medical practice video Sarasota, IMG academy sports media, architectural photography Bradenton, corporate mission video Tampa, legal videography FL, wedding cinema Siesta Key",
       ogImage: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000",
       h1Override: "CINEMATIC VIDEO PRODUCTION & COMMERCIAL PHOTOGRAPHY <br /> <span class='text-brand-gold'>BRADENTON | SARASOTA | TAMPA</span>",
       altTags: {
-        "home-lens": "Jonni Armani Professional Video Production Bradenton Florida Gulf Coast",
-        "about-profile": "Jonni Armani Cinematic Photographer Sarasota Bradenton Tampa"
+        "home-lens": "Jonni Armani Professional Video Production Bradenton Florida Gulf Coast Luxury Real Estate & Commercial",
+        "about-profile": "Jonni Armani Cinematic Photographer Sarasota Bradenton Tampa Surgeon & Athlete Brand Stories",
+        "service-healthcare": "Healthcare Video Production Sarasota - Medical Marketing & Patient Stories",
+        "service-corporate": "Corporate Video Tampa - Headquarters Mission Profiles & Brand Strategy",
+        "service-sports": "Professional Athlete Media IMG Academy Bradenton - Elite Performance Reels"
       },
       canonicalUrl: "https://jonniarmani.com",
       author: "Jonni Armani",
