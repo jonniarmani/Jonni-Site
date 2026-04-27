@@ -888,15 +888,54 @@ export default function Admin() {
                       const realIdx = localContent.portfolio.findIndex(p => p === item);
                       return (
                         <div key={realIdx} className="p-6 bg-gray-50 border border-gray-100 rounded-lg space-y-4 relative">
-                          <button 
-                            onClick={() => {
-                              const newWork = localContent.portfolio.filter((_, i) => i !== realIdx);
-                              setLocalContent({...localContent, portfolio: newWork});
-                            }}
-                            className="absolute top-4 right-4 text-gray-300 hover:text-red-500 transition-colors"
-                          >
-                            <Trash size={16} />
-                          </button>
+                          <div className="flex justify-between items-center pb-2 border-b border-gray-200 mb-2">
+                             <span className="text-[10px] font-black text-brand-gold uppercase tracking-widest">
+                               Position {idx + 1}
+                             </span>
+                             <div className="flex gap-2">
+                               <button 
+                                 disabled={idx === 0}
+                                 onClick={() => {
+                                   if (idx === 0) return;
+                                   const newPortfolio = [...localContent.portfolio];
+                                   const filtered = localContent.portfolio.filter(p => p.type === 'video');
+                                   const prevItem = filtered[idx - 1];
+                                   const prevRealIdx = localContent.portfolio.findIndex(p => p === prevItem);
+                                   [newPortfolio[realIdx], newPortfolio[prevRealIdx]] = [newPortfolio[prevRealIdx], newPortfolio[realIdx]];
+                                   setLocalContent({...localContent, portfolio: newPortfolio});
+                                 }}
+                                 className="p-1 text-gray-400 hover:text-brand-gold disabled:opacity-20 transition-all font-bold text-xs"
+                                 title="Move Up"
+                               >
+                                 ↑
+                               </button>
+                               <button 
+                                 disabled={idx === localContent.portfolio.filter(p => p.type === 'video').length - 1}
+                                 onClick={() => {
+                                   const filtered = localContent.portfolio.filter(p => p.type === 'video');
+                                   if (idx === filtered.length - 1) return;
+                                   const newPortfolio = [...localContent.portfolio];
+                                   const nextItem = filtered[idx + 1];
+                                   const nextRealIdx = localContent.portfolio.findIndex(p => p === nextItem);
+                                   [newPortfolio[realIdx], newPortfolio[nextRealIdx]] = [newPortfolio[nextRealIdx], newPortfolio[realIdx]];
+                                   setLocalContent({...localContent, portfolio: newPortfolio});
+                                 }}
+                                 className="p-1 text-gray-400 hover:text-brand-gold disabled:opacity-20 transition-all font-bold text-xs"
+                                 title="Move Down"
+                               >
+                                 ↓
+                               </button>
+                               <button 
+                                 onClick={() => {
+                                   const newWork = localContent.portfolio.filter((_, i) => i !== realIdx);
+                                   setLocalContent({...localContent, portfolio: newWork});
+                                 }}
+                                 className="p-1 text-gray-300 hover:text-red-500 transition-colors"
+                               >
+                                 <Trash size={16} />
+                               </button>
+                             </div>
+                          </div>
                           
                           <div className="aspect-video bg-zinc-900 overflow-hidden relative group flex items-center justify-center">
                              {item.placeholder ? (
@@ -1086,15 +1125,54 @@ export default function Admin() {
                       const realIdx = localContent.portfolio.findIndex(p => p === item);
                       return (
                         <div key={realIdx} className="p-4 bg-gray-50 border border-gray-100 rounded-lg space-y-4 relative group">
-                          <button 
-                            onClick={() => {
-                              const newWork = localContent.portfolio.filter((_, i) => i !== realIdx);
-                              setLocalContent({...localContent, portfolio: newWork});
-                            }}
-                            className="absolute top-2 right-2 text-gray-300 hover:text-red-500 transition-colors z-10"
-                          >
-                            <Trash size={14} />
-                          </button>
+                          <div className="flex justify-between items-center pb-2 border-b border-gray-200 mb-2">
+                             <span className="text-[10px] font-black text-brand-gold uppercase tracking-widest">
+                               Position {idx + 1}
+                             </span>
+                             <div className="flex gap-2">
+                               <button 
+                                 disabled={idx === 0}
+                                 onClick={() => {
+                                   if (idx === 0) return;
+                                   const newPortfolio = [...localContent.portfolio];
+                                   const filtered = localContent.portfolio.filter(p => p.type === 'photo');
+                                   const prevItem = filtered[idx - 1];
+                                   const prevRealIdx = localContent.portfolio.findIndex(p => p === prevItem);
+                                   [newPortfolio[realIdx], newPortfolio[prevRealIdx]] = [newPortfolio[prevRealIdx], newPortfolio[realIdx]];
+                                   setLocalContent({...localContent, portfolio: newPortfolio});
+                                 }}
+                                 className="p-1 text-gray-400 hover:text-brand-gold disabled:opacity-20 transition-all font-bold text-xs"
+                                 title="Move Up"
+                               >
+                                 ↑
+                               </button>
+                               <button 
+                                 disabled={idx === localContent.portfolio.filter(p => p.type === 'photo').length - 1}
+                                 onClick={() => {
+                                   const filtered = localContent.portfolio.filter(p => p.type === 'photo');
+                                   if (idx === filtered.length - 1) return;
+                                   const newPortfolio = [...localContent.portfolio];
+                                   const nextItem = filtered[idx + 1];
+                                   const nextRealIdx = localContent.portfolio.findIndex(p => p === nextItem);
+                                   [newPortfolio[realIdx], newPortfolio[nextRealIdx]] = [newPortfolio[nextRealIdx], newPortfolio[realIdx]];
+                                   setLocalContent({...localContent, portfolio: newPortfolio});
+                                 }}
+                                 className="p-1 text-gray-400 hover:text-brand-gold disabled:opacity-20 transition-all font-bold text-xs"
+                                 title="Move Down"
+                               >
+                                 ↓
+                               </button>
+                               <button 
+                                 onClick={() => {
+                                   const newWork = localContent.portfolio.filter((_, i) => i !== realIdx);
+                                   setLocalContent({...localContent, portfolio: newWork});
+                                 }}
+                                 className="p-1 text-gray-300 hover:text-red-500 transition-colors"
+                               >
+                                 <Trash size={14} />
+                               </button>
+                             </div>
+                          </div>
                           
                           <div className="aspect-[4/5] bg-gray-200 overflow-hidden relative">
                              {item.placeholder ? (

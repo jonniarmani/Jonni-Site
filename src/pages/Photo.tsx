@@ -19,67 +19,31 @@ interface PhotoItem {
 function PhotoProject({ item }: { item: PhotoItem }) {
   const allImages = [item.placeholder, ...(item.images || []).slice(0, 4)];
   const [activeIdx, setActiveIdx] = useState(0);
-  const [hoverIdx, setHoverIdx] = useState<number | null>(null);
-
-  const displayIdx = hoverIdx !== null ? hoverIdx : activeIdx;
 
   const next = () => setActiveIdx((prev) => (prev + 1) % allImages.length);
   const prev = () => setActiveIdx((prev) => (prev - 1 + allImages.length) % allImages.length);
 
   return (
     <div className="group grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      {/* Left Column: Grid Thumbnails */}
-      <div className="lg:col-span-5 space-y-6">
-        <div className="space-y-1 mb-8">
-          <div className="flex justify-between items-baseline">
+      {/* Left Column: Context Info Only */}
+      <div className="lg:col-span-4 space-y-8">
+        <div className="space-y-4">
+          <div className="flex justify-between items-baseline border-b border-gray-100 pb-2">
             <span className="text-brand-gold uppercase tracking-[0.3em] text-[10px] font-black">{item.category}</span>
             <span className="text-gray-400 text-[9px] uppercase font-medium">
               {item.client} {item.year && `• ${item.year}`}
             </span>
           </div>
-          <h3 className="text-3xl font-display font-bold tracking-tight uppercase group-hover:text-brand-gold transition-colors">{item.title}</h3>
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tighter uppercase group-hover:text-brand-gold transition-colors leading-[0.9]">
+            {item.title}
+          </h3>
         </div>
 
-        {/* Main Thumbnail (Large) */}
-        <div 
-          className="aspect-[4/3] bg-zinc-100 overflow-hidden relative cursor-pointer group/main"
-          onMouseEnter={() => setHoverIdx(0)}
-          onMouseLeave={() => setHoverIdx(null)}
-          onClick={() => setActiveIdx(0)}
-        >
-          <img 
-            src={allImages[0]} 
-            alt={item.title} 
-            className={`w-full h-full object-cover transition-all duration-700 ${activeIdx === 0 ? 'grayscale-0' : 'grayscale group-hover/main:grayscale-0'}`}
-            style={{ objectPosition: (item as any).objectPosition || 'center center' }}
-          />
-          {activeIdx === 0 && (
-            <div className="absolute inset-x-0 bottom-0 p-4 bg-brand-gold/90">
-              <p className="text-black text-[10px] uppercase tracking-widest font-black">Main Portfolio Shot</p>
-            </div>
-          )}
-        </div>
+        <p className="text-gray-500 text-sm font-light leading-relaxed max-w-xs">
+          {item.alt || "Capturing high-performance visual legacy with technical precision and cinematic intent."}
+        </p>
 
-        {/* 4 Thumbnails Underneath */}
-        <div className="grid grid-cols-4 gap-3">
-          {allImages.slice(1).map((img, i) => (
-            <div 
-              key={i} 
-              className={`aspect-square bg-zinc-100 overflow-hidden relative cursor-pointer transition-all duration-300 border-2 ${activeIdx === i + 1 ? 'border-brand-gold' : 'border-transparent'}`}
-              onMouseEnter={() => setHoverIdx(i + 1)}
-              onMouseLeave={() => setHoverIdx(null)}
-              onClick={() => setActiveIdx(i + 1)}
-            >
-              <img 
-                src={img} 
-                alt={`${item.title} ${i + 1}`} 
-                className={`w-full h-full object-cover grayscale hover:grayscale-0 transition-all ${activeIdx === i + 1 ? 'grayscale-0' : ''}`}
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* Controls */}
+        {/* Controls moved here for better ergonomics */}
         <div className="flex items-center space-x-6 pt-4">
           <button onClick={prev} className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-brand-black hover:text-white transition-all">
             <ChevronLeft size={20} />
@@ -93,37 +57,53 @@ function PhotoProject({ item }: { item: PhotoItem }) {
         </div>
       </div>
 
-      {/* Right Column: Pop-over Preview Area */}
-      <div className="lg:col-span-7 h-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] relative overflow-hidden bg-zinc-900 shadow-2xl">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={displayIdx}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.4 }}
-            className="absolute inset-0"
-          >
-            <img 
-              src={allImages[displayIdx]} 
-              alt="Active View" 
-              className="w-full h-full object-cover"
-              style={{ objectPosition: (item as any).objectPosition || 'center center' }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent pointer-events-none" />
-            
-            {hoverIdx !== null && (
-              <div className="absolute top-8 right-8 bg-white/10 backdrop-blur-md px-4 py-2 border border-white/20">
-                <p className="text-white text-[8px] uppercase tracking-[0.3em] font-black">Hovering Detail View</p>
+      {/* Right Column: Main Image & Thumbnail Navigation */}
+      <div className="lg:col-span-8 flex flex-col gap-4">
+        {/* Main Display Area */}
+        <div className="aspect-video sm:aspect-square md:aspect-video lg:aspect-[16/10] relative overflow-hidden bg-zinc-900 shadow-2xl">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIdx}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="absolute inset-0"
+            >
+              <img 
+                src={allImages[activeIdx]} 
+                alt={`${item.title} - Active View`} 
+                className="w-full h-full object-cover"
+                style={{ objectPosition: (item as any).objectPosition || 'center center' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              
+              <div className="absolute bottom-6 left-6">
+                 <p className="text-white/40 text-[9px] uppercase tracking-[0.5em] font-black">Frame {activeIdx + 1}</p>
+                 <div className="w-12 h-[1px] bg-brand-gold mt-2" />
               </div>
-            )}
-          </motion.div>
-        </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
-        {/* Decorative elements */}
-        <div className="absolute bottom-8 left-8">
-           <div className="w-24 h-[1px] bg-brand-gold/50 mb-4" />
-           <p className="text-white/40 text-[9px] uppercase tracking-[0.5em] font-black">Interactive Identity Grid</p>
+        {/* Thumbnail Navigation Row - "The Scroll" */}
+        <div className="flex overflow-x-auto gap-3 pb-4 scrollbar-hide scroll-smooth">
+          {allImages.map((img, i) => (
+            <button 
+              key={i} 
+              onClick={() => setActiveIdx(i)}
+              className={`flex-shrink-0 w-24 sm:w-32 aspect-[4/5] bg-zinc-100 overflow-hidden relative cursor-pointer transition-all duration-300 border-2 ${activeIdx === i ? 'border-brand-gold ring-4 ring-brand-gold/10' : 'border-transparent opacity-60 hover:opacity-100'}`}
+            >
+              <img 
+                src={img} 
+                alt={`${item.title} Thumbnail ${i + 1}`} 
+                className={`w-full h-full object-cover transition-all duration-500 ${activeIdx === i ? 'scale-110' : 'grayscale group-hover:grayscale-0'}`}
+              />
+              {activeIdx === i && (
+                <div className="absolute inset-0 bg-brand-gold/20" />
+              )}
+            </button>
+          ))}
         </div>
       </div>
     </div>
