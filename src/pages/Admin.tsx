@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useContent } from '../lib/ContentContext';
 import { auth, googleProvider, signInWithPopup, signOut, db, doc, setDoc, handleFirestoreError, OperationType, collection, deleteDoc, onSnapshot } from '../lib/firebase';
-import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Sparkles, Wand2 } from 'lucide-react';
+import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Sparkles, Wand2, Upload } from 'lucide-react';
+import { GoogleGenAI } from "@google/genai";
+import FileUploader from '../components/FileUploader';
 
 type Tab = 'identity' | 'home' | 'about' | 'services' | 'video-work' | 'photo-work' | 'promo' | 'testimonials' | 'inquiries' | 'code' | 'theme' | 'ai';
 
@@ -23,18 +25,17 @@ export default function Admin() {
     if (!aiPrompt) return;
     setIsAiLoading(true);
     try {
-      const { GoogleGenerativeAI } = await import("@google/genai");
-      // Note: In AI Studio environment, GEMINI_API_KEY is available in process.env
-      const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || (process.env.GEMINI_API_KEY as string));
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
       
-      const result = await model.generateContent(`You are an expert copywriter for high-end boutique creative agencies.
-      Current context: ${localContent.brand.name} - ${localContent.brand.tagline}
-      Task: ${aiPrompt}
-      Respond with polished, high-impact copy suggestions.`);
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: `You are an expert copywriter for high-end boutique creative agencies.
+        Current context: ${localContent.brand.name} - ${localContent.brand.tagline}
+        Task: ${aiPrompt}
+        Respond with polished, high-impact copy suggestions.`,
+      });
       
-      const response = await result.response;
-      setAiResponse(response.text());
+      setAiResponse(response.text || "No response generated.");
     } catch (error) {
       console.error("AI Assistant Error:", error);
       setAiResponse("Visual cognition failed. Ensure API authority is active.");
@@ -297,11 +298,16 @@ export default function Admin() {
                           />
                         </div>
                         <div className="space-y-4">
-                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">OG Share Image URL</label>
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">OG Share Image URL (or Upload)</label>
                           <input 
                             className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
                             value={localContent.seo?.ogImage || ""}
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), ogImage: e.target.value}})}
+                          />
+                          <FileUploader 
+                            label="Upload OG Image"
+                            folder="seo"
+                            onUploadComplete={(url) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), ogImage: url}})}
                           />
                         </div>
                       </div>
@@ -387,13 +393,23 @@ export default function Admin() {
                             </div>
                           </div>
                           <div className="space-y-2">
-                            <label className="text-[10px] uppercase font-black text-gray-400">Source URL</label>
+                            <label className="text-[10px] uppercase font-black text-gray-400">Source URL (or Upload Below)</label>
                             <input 
                               className="w-full text-[10px] p-2 bg-white border-0 outline-none focus:ring-1 focus:ring-brand-gold" 
                               value={visual.url}
                               onChange={(e) => {
                                 const newHero = [...localContent.home.heroVisuals];
                                 newHero[idx] = {...newHero[idx], url: e.target.value};
+                                setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
+                              }}
+                            />
+                            <FileUploader 
+                              label={`Upload ${visual.type}`}
+                              accept={visual.type === 'video' ? 'video/*' : 'image/*'}
+                              folder="hero"
+                              onUploadComplete={(url) => {
+                                const newHero = [...localContent.home.heroVisuals];
+                                newHero[idx] = {...newHero[idx], url};
                                 setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
                               }}
                             />
@@ -422,19 +438,29 @@ export default function Admin() {
                       />
                     </div>
                     <div className="space-y-4">
-                      <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Authority Secondary Visual (Direct URL)</label>
+                      <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Authority Secondary Visual (Direct URL or Upload)</label>
                       <input 
                         className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
                         value={localContent.home.lensImage}
                         onChange={(e) => setLocalContent({...localContent, home: {...localContent.home, lensImage: e.target.value}})}
                       />
+                      <FileUploader 
+                        label="Upload Secondary Visual"
+                        folder="home"
+                        onUploadComplete={(url) => setLocalContent({...localContent, home: {...localContent.home, lensImage: url}})}
+                      />
                     </div>
                     <div className="space-y-4">
-                      <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">CTA Section Background (Direct URL)</label>
+                      <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">CTA Section Background (Direct URL or Upload)</label>
                       <input 
                         className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
                         value={localContent.home.ctaBackground}
                         onChange={(e) => setLocalContent({...localContent, home: {...localContent.home, ctaBackground: e.target.value}})}
+                      />
+                      <FileUploader 
+                        label="Upload CTA Background"
+                        folder="home"
+                        onUploadComplete={(url) => setLocalContent({...localContent, home: {...localContent.home, ctaBackground: url}})}
                       />
                     </div>
                   </div>
@@ -450,15 +476,22 @@ export default function Admin() {
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="md:col-span-2 space-y-4">
-                      <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Profile Image (Direct URL)</label>
-                      <div className="flex space-x-4">
-                        <div className="w-20 h-20 bg-gray-100 overflow-hidden">
-                          <img src={localContent.about.profileImage} alt="" className="w-full h-full object-cover" />
+                      <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Profile Image (URL or Upload)</label>
+                      <div className="flex flex-col space-y-4">
+                        <div className="flex space-x-4">
+                          <div className="w-20 h-20 bg-gray-100 overflow-hidden shrink-0">
+                            <img src={localContent.about.profileImage} alt="" className="w-full h-full object-cover" />
+                          </div>
+                          <input 
+                            className="flex-1 bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-xs" 
+                            value={localContent.about.profileImage}
+                            onChange={(e) => setLocalContent({...localContent, about: {...localContent.about, profileImage: e.target.value}})}
+                          />
                         </div>
-                        <input 
-                          className="flex-1 bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
-                          value={localContent.about.profileImage}
-                          onChange={(e) => setLocalContent({...localContent, about: {...localContent.about, profileImage: e.target.value}})}
+                        <FileUploader 
+                          label="Upload Profile Image"
+                          folder="about"
+                          onUploadComplete={(url) => setLocalContent({...localContent, about: {...localContent.about, profileImage: url}})}
                         />
                       </div>
                     </div>
@@ -613,13 +646,23 @@ export default function Admin() {
                                </div>
                             </div>
                             <div className="space-y-2">
-                              <label className="text-[10px] uppercase font-black text-gray-400">Visual URL</label>
+                              <label className="text-[10px] uppercase font-black text-gray-400">Visual URL (or Upload)</label>
                               <input 
                                 className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-xs" 
                                 value={service.visualUrl || ""}
                                 onChange={(e) => {
                                   const newServices = [...localContent.services];
                                   newServices[idx] = {...newServices[idx], visualUrl: e.target.value};
+                                  setLocalContent({...localContent, services: newServices});
+                                }}
+                              />
+                              <FileUploader 
+                                label={`Upload Service ${service.visualType}`}
+                                accept={service.visualType === 'video' ? 'video/*' : 'image/*'}
+                                folder="services"
+                                onUploadComplete={(url) => {
+                                  const newServices = [...localContent.services];
+                                  newServices[idx] = {...newServices[idx], visualUrl: url};
                                   setLocalContent({...localContent, services: newServices});
                                 }}
                               />
@@ -801,7 +844,7 @@ export default function Admin() {
                               <label htmlFor={`featured-v-${realIdx}`} className="text-[10px] uppercase font-black text-gray-700">Display on Homepage (Featured)</label>
                             </div>
                             <div className="space-y-2">
-                              <label className="text-[10px] uppercase font-black text-gray-400">Poster / Placeholder Image URL</label>
+                              <label className="text-[10px] uppercase font-black text-gray-400">Poster / Placeholder URL (or Upload)</label>
                               <input 
                                 className="w-full p-3 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-[10px]" 
                                 value={item.placeholder}
@@ -811,15 +854,34 @@ export default function Admin() {
                                   setLocalContent({...localContent, portfolio: newPortfolio});
                                 }}
                               />
+                              <FileUploader 
+                                label="Upload Poster Image"
+                                folder="portfolio"
+                                onUploadComplete={(url) => {
+                                  const newPortfolio = [...localContent.portfolio];
+                                  newPortfolio[realIdx] = {...newPortfolio[realIdx], placeholder: url};
+                                  setLocalContent({...localContent, portfolio: newPortfolio});
+                                }}
+                              />
                             </div>
                             <div className="space-y-2">
-                              <label className="text-[10px] uppercase font-black text-gray-400">Video Source Link (Vimeo/Direct)</label>
+                              <label className="text-[10px] uppercase font-black text-gray-400">Video Source Link (or Upload)</label>
                               <input 
                                 className="w-full p-3 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-[10px] font-mono text-brand-gold" 
                                 value={item.videoUrl || ""}
                                 onChange={(e) => {
                                   const newPortfolio = [...localContent.portfolio];
                                   newPortfolio[realIdx] = {...newPortfolio[realIdx], videoUrl: e.target.value};
+                                  setLocalContent({...localContent, portfolio: newPortfolio});
+                                }}
+                              />
+                              <FileUploader 
+                                label="Upload Video Source"
+                                accept="video/*"
+                                folder="portfolio"
+                                onUploadComplete={(url) => {
+                                  const newPortfolio = [...localContent.portfolio];
+                                  newPortfolio[realIdx] = {...newPortfolio[realIdx], videoUrl: url};
                                   setLocalContent({...localContent, portfolio: newPortfolio});
                                 }}
                               />
@@ -953,10 +1015,31 @@ export default function Admin() {
                               />
                               <label htmlFor={`featured-p-${realIdx}`} className="text-[8px] uppercase font-black text-gray-600">Featured on Home</label>
                             </div>
+                            <div className="space-y-1">
+                              <label className="text-[8px] uppercase font-black text-gray-400">Main Thumbnail URL (or Upload)</label>
+                              <input 
+                                className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-[8px]" 
+                                value={item.placeholder}
+                                onChange={(e) => {
+                                  const newPortfolio = [...localContent.portfolio];
+                                  newPortfolio[realIdx] = {...newPortfolio[realIdx], placeholder: e.target.value};
+                                  setLocalContent({...localContent, portfolio: newPortfolio});
+                                }}
+                              />
+                              <FileUploader 
+                                label="Upload Thumbnail"
+                                folder="portfolio"
+                                onUploadComplete={(url) => {
+                                  const newPortfolio = [...localContent.portfolio];
+                                  newPortfolio[realIdx] = {...newPortfolio[realIdx], placeholder: url};
+                                  setLocalContent({...localContent, portfolio: newPortfolio});
+                                }}
+                              />
+                            </div>
                             <div className="space-y-3 pt-4 border-t border-gray-100">
-                              <label className="text-[8px] uppercase font-black text-gray-400">Gallery Images (Up to 4)</label>
+                              <label className="text-[8px] uppercase font-black text-gray-400">Gallery Images (URL or Upload)</label>
                               {[0, 1, 2, 3].map((imgIdx) => (
-                                <div key={imgIdx} className="space-y-1">
+                                <div key={imgIdx} className="space-y-1 p-2 bg-zinc-50 rounded">
                                   <label className="text-[7px] uppercase font-bold text-gray-300">Image {imgIdx + 1}</label>
                                   <input 
                                     className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-[8px]" 
@@ -970,20 +1053,19 @@ export default function Admin() {
                                       setLocalContent({...localContent, portfolio: newPortfolio});
                                     }}
                                   />
+                                  <FileUploader 
+                                    label={`Upload Image ${imgIdx + 1}`}
+                                    folder="portfolio/gallery"
+                                    onUploadComplete={(url) => {
+                                      const newPortfolio = [...localContent.portfolio];
+                                      const currentImages = [...(newPortfolio[realIdx].images || [])];
+                                      currentImages[imgIdx] = url;
+                                      newPortfolio[realIdx] = {...newPortfolio[realIdx], images: currentImages};
+                                      setLocalContent({...localContent, portfolio: newPortfolio});
+                                    }}
+                                  />
                                 </div>
                               ))}
-                            </div>
-                            <div className="space-y-1">
-                              <label className="text-[8px] uppercase font-black text-gray-400">Main Thumbnail URL</label>
-                              <input 
-                                className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-[8px]" 
-                                value={item.placeholder}
-                                onChange={(e) => {
-                                  const newPortfolio = [...localContent.portfolio];
-                                  newPortfolio[realIdx] = {...newPortfolio[realIdx], placeholder: e.target.value};
-                                  setLocalContent({...localContent, portfolio: newPortfolio});
-                                }}
-                              />
                             </div>
                           </div>
                         </div>

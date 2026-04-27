@@ -47,10 +47,17 @@ export default function Header() {
       } flex justify-between items-center`}>
         <Link 
           to="/" 
-          className="font-display text-lg sm:text-2xl font-bold tracking-tighter uppercase group flex items-center"
+          className="font-display text-lg sm:text-2xl font-bold tracking-tighter uppercase group flex items-center overflow-hidden"
           id="nav-logo"
         >
-          <span className="group-hover:opacity-70 transition-opacity">Jonni Armani Media</span>
+          <motion.span 
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ type: "spring", damping: 20, stiffness: 100, delay: 0.1 }}
+            className="group-hover:opacity-70 transition-opacity"
+          >
+            Jonni Armani <span className="text-brand-gold">Media</span>
+          </motion.span>
         </Link>
 
         {/* Desktop Nav */}
