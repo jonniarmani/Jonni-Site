@@ -36,12 +36,14 @@ export default function HeroMontage() {
               loop
               playsInline
               className="w-full h-full object-cover"
+              style={{ objectPosition: visuals[index].objectPosition || 'center center' }}
             />
           ) : (
             <img
               src={visuals[index].url}
               alt={visuals[index].category}
               className="w-full h-full object-cover"
+              style={{ objectPosition: visuals[index].objectPosition || 'center center' }}
             />
           )}
         </motion.div>

@@ -62,6 +62,7 @@ export default function Services() {
                       <video 
                         src={service.visualUrl} 
                         className="w-full h-full object-cover"
+                        style={{ objectPosition: service.objectPosition || 'center center' }}
                         autoPlay muted loop playsInline
                       />
                     ) : (
@@ -69,6 +70,7 @@ export default function Services() {
                         src={service.visualUrl} 
                         alt={`${service.title} - Professional Video Production Bradenton ${service.short}`} 
                         className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                        style={{ objectPosition: service.objectPosition || 'center center' }}
                       />
                     )}
                     <div className="absolute inset-x-0 bottom-0 p-12 bg-gradient-to-t from-brand-black/80 to-transparent">

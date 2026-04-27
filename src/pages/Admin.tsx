@@ -5,6 +5,64 @@ import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image a
 import { GoogleGenAI } from "@google/genai";
 import FileUploader from '../components/FileUploader';
 
+const FocalPointSelector = ({ value, onChange, label = "Focal Point Precision" }: { value?: string, onChange: (val: string) => void, label?: string }) => {
+  const currentVal = value || '50% 50%';
+  
+  // Parse H and V from "X% Y%" or handle legacy keywords
+  let h = 50;
+  let v = 50;
+
+  if (currentVal.includes('%')) {
+    const parts = currentVal.split(' ');
+    h = parseInt(parts[0]) || 50;
+    v = (parts.length > 1) ? parseInt(parts[1]) || 50 : 50;
+  } else {
+    if (currentVal.includes('top')) v = 0;
+    if (currentVal.includes('bottom')) v = 100;
+    if (currentVal.includes('left')) h = 0;
+    if (currentVal.includes('right')) h = 100;
+  }
+
+  return (
+    <div className="space-y-3 p-3 bg-zinc-50 border border-gray-200 rounded-sm mt-2">
+      <label className="text-[9px] uppercase font-bold text-gray-400 tracking-tighter block">{label}</label>
+      
+      <div className="space-y-4">
+        <div className="space-y-1">
+          <div className="flex justify-between items-center text-[7px] font-black uppercase text-gray-500">
+            <span>Horizontal Alignment: {h}%</span>
+            <button type="button" onClick={() => onChange(`50% ${v}%`)} className="text-brand-gold hover:underline">Reset</button>
+          </div>
+          <input 
+            type="range" min="0" max="100" value={h}
+            onChange={(e) => onChange(`${e.target.value}% ${v}%`)}
+            className="w-full h-1 bg-gray-200 accent-brand-gold appearance-none cursor-pointer rounded-full"
+          />
+        </div>
+
+        <div className="space-y-1">
+          <div className="flex justify-between items-center text-[7px] font-black uppercase text-gray-500">
+            <span>Vertical Alignment: {v}%</span>
+            <button type="button" onClick={() => onChange(`${h}% 50%`)} className="text-brand-gold hover:underline">Reset</button>
+          </div>
+          <input 
+            type="range" min="0" max="100" value={v}
+            onChange={(e) => onChange(`${h}% ${e.target.value}%`)}
+            className="w-full h-1 bg-gray-200 accent-brand-gold appearance-none cursor-pointer rounded-full"
+          />
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-1 pt-1">
+        <button type="button" onClick={() => onChange('50% 50%')} className="text-[7px] px-2 py-0.5 bg-white border border-gray-200 text-gray-400 hover:border-brand-gold hover:text-brand-gold font-bold uppercase transition-all">Center</button>
+        <button type="button" onClick={() => onChange('0% 0%')} className="text-[7px] px-2 py-0.5 bg-white border border-gray-200 text-gray-400 hover:border-brand-gold hover:text-brand-gold font-bold uppercase transition-all">T-L</button>
+        <button type="button" onClick={() => onChange('100% 0%')} className="text-[7px] px-2 py-0.5 bg-white border border-gray-200 text-gray-400 hover:border-brand-gold hover:text-brand-gold font-bold uppercase transition-all">T-R</button>
+        <button type="button" onClick={() => onChange('50% 100%')} className="text-[7px] px-2 py-0.5 bg-white border border-gray-200 text-gray-400 hover:border-brand-gold hover:text-brand-gold font-bold uppercase transition-all">Bottom</button>
+      </div>
+    </div>
+  );
+};
+
 type Tab = 'identity' | 'home' | 'about' | 'services' | 'video-work' | 'photo-work' | 'promo' | 'testimonials' | 'inquiries' | 'code' | 'theme' | 'ai';
 
 export default function Admin() {
@@ -413,6 +471,16 @@ export default function Admin() {
                                 setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
                               }}
                             />
+                            {visual.type === 'image' && (
+                              <FocalPointSelector 
+                                value={visual.objectPosition}
+                                onChange={(val) => {
+                                  const newHero = [...localContent.home.heroVisuals];
+                                  newHero[idx] = {...newHero[idx], objectPosition: val};
+                                  setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
+                                }}
+                              />
+                            )}
                           </div>
                         </div>
                       ))}
@@ -449,6 +517,10 @@ export default function Admin() {
                         folder="home"
                         onUploadComplete={(url) => setLocalContent({...localContent, home: {...localContent.home, lensImage: url}})}
                       />
+                      <FocalPointSelector 
+                        value={localContent.home.lensImagePosition}
+                        onChange={(val) => setLocalContent({...localContent, home: {...localContent.home, lensImagePosition: val}})}
+                      />
                     </div>
                     <div className="space-y-4">
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">CTA Section Background (Direct URL or Upload)</label>
@@ -461,6 +533,10 @@ export default function Admin() {
                         label="Upload CTA Background"
                         folder="home"
                         onUploadComplete={(url) => setLocalContent({...localContent, home: {...localContent.home, ctaBackground: url}})}
+                      />
+                      <FocalPointSelector 
+                        value={localContent.home.ctaBackgroundPosition}
+                        onChange={(val) => setLocalContent({...localContent, home: {...localContent.home, ctaBackgroundPosition: val}})}
                       />
                     </div>
                   </div>
@@ -492,6 +568,10 @@ export default function Admin() {
                           label="Upload Profile Image"
                           folder="about"
                           onUploadComplete={(url) => setLocalContent({...localContent, about: {...localContent.about, profileImage: url}})}
+                        />
+                        <FocalPointSelector 
+                          value={localContent.about.profileImagePosition}
+                          onChange={(val) => setLocalContent({...localContent, about: {...localContent.about, profileImagePosition: val}})}
                         />
                       </div>
                     </div>
@@ -666,6 +746,16 @@ export default function Admin() {
                                   setLocalContent({...localContent, services: newServices});
                                 }}
                               />
+                              {service.visualType !== 'video' && (
+                                <FocalPointSelector 
+                                  value={service.objectPosition}
+                                  onChange={(val) => {
+                                    const newServices = [...localContent.services];
+                                    newServices[idx] = {...newServices[idx], objectPosition: val};
+                                    setLocalContent({...localContent, services: newServices});
+                                  }}
+                                />
+                              )}
                             </div>
                              <div className="grid grid-cols-2 gap-4">
                                <div className="space-y-2">
@@ -863,6 +953,14 @@ export default function Admin() {
                                   setLocalContent({...localContent, portfolio: newPortfolio});
                                 }}
                               />
+                              <FocalPointSelector 
+                                value={item.objectPosition}
+                                onChange={(val) => {
+                                  const newPortfolio = [...localContent.portfolio];
+                                  newPortfolio[realIdx] = {...newPortfolio[realIdx], objectPosition: val};
+                                  setLocalContent({...localContent, portfolio: newPortfolio});
+                                }}
+                              />
                             </div>
                             <div className="space-y-2">
                               <label className="text-[10px] uppercase font-black text-gray-400">Video Source Link (or Upload)</label>
@@ -1032,6 +1130,14 @@ export default function Admin() {
                                 onUploadComplete={(url) => {
                                   const newPortfolio = [...localContent.portfolio];
                                   newPortfolio[realIdx] = {...newPortfolio[realIdx], placeholder: url};
+                                  setLocalContent({...localContent, portfolio: newPortfolio});
+                                }}
+                              />
+                              <FocalPointSelector 
+                                value={item.objectPosition}
+                                onChange={(val) => {
+                                  const newPortfolio = [...localContent.portfolio];
+                                  newPortfolio[realIdx] = {...newPortfolio[realIdx], objectPosition: val};
                                   setLocalContent({...localContent, portfolio: newPortfolio});
                                 }}
                               />

@@ -39,6 +39,7 @@ export default function About() {
                 src={about.profileImage} 
                 alt={`${brand.name} - Professional Cinematographer & Photographer Bradenton Florida`} 
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                style={{ objectPosition: about.profileImagePosition || 'center center' }}
               />
             </div>
             <div className="flex flex-col space-y-6">

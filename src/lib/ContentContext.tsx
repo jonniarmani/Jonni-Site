@@ -9,6 +9,7 @@ interface SiteContent {
     visualUrl?: string; 
     visualType?: 'image' | 'video';
     photoCategory?: string;
+    objectPosition?: string;
   })[];
   portfolio: (typeof PORTFOLIO[0] & { 
     videoUrl?: string; 
@@ -18,6 +19,7 @@ interface SiteContent {
     year?: string;
     isFeatured?: boolean;
     images?: string[];
+    objectPosition?: string;
   })[];
   about: {
     heroTitle: string;
@@ -28,13 +30,16 @@ interface SiteContent {
     storyText3: string;
     quote: string;
     profileImage: string;
+    profileImagePosition?: string;
   };
   home: {
     lensTitle: string;
     lensText: string;
     lensImage: string;
+    lensImagePosition?: string;
     ctaBackground: string;
-    heroVisuals: { url: string; type: 'image' | 'video'; category: string }[];
+    ctaBackgroundPosition?: string;
+    heroVisuals: { url: string; type: 'image' | 'video'; category: string; objectPosition?: string }[];
   };
   promo: {
     enabled: boolean;

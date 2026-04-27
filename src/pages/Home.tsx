@@ -75,6 +75,7 @@ export default function Home() {
                   src={content.home.lensImage} 
                   alt={`${brand.name} - Professional Video Production and Brand Storytelling Bradenton, Sarasota`} 
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  style={{ objectPosition: content.home.lensImagePosition || 'center center' }}
                 />
               </div>
               <div className="absolute -bottom-10 -right-10 bg-brand-black p-12 hidden lg:block">
@@ -126,6 +127,7 @@ export default function Home() {
               src={content.home.ctaBackground} 
               alt="Florida Gulf Coast Landscape - Serving Bradenton and Sarasota area"
               className="w-full h-full object-cover"
+              style={{ objectPosition: content.home.ctaBackgroundPosition || 'center center' }}
            />
         </div>
         <div className="container mx-auto px-6 text-center relative z-10">

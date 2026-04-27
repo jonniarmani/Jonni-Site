@@ -51,6 +51,7 @@ function PhotoProject({ item }: { item: PhotoItem }) {
             src={allImages[0]} 
             alt={item.title} 
             className={`w-full h-full object-cover transition-all duration-700 ${activeIdx === 0 ? 'grayscale-0' : 'grayscale group-hover/main:grayscale-0'}`}
+            style={{ objectPosition: (item as any).objectPosition || 'center center' }}
           />
           {activeIdx === 0 && (
             <div className="absolute inset-x-0 bottom-0 p-4 bg-brand-gold/90">
@@ -107,6 +108,7 @@ function PhotoProject({ item }: { item: PhotoItem }) {
               src={allImages[displayIdx]} 
               alt="Active View" 
               className="w-full h-full object-cover"
+              style={{ objectPosition: (item as any).objectPosition || 'center center' }}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent pointer-events-none" />
             
