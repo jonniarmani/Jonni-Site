@@ -90,16 +90,66 @@ export default function Admin() {
   const fetchVideoThumbnail = async (videoUrl: string, index: number) => {
     let thumbnail = "";
     if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
-      const videoId = videoUrl.includes('v=') ? videoUrl.split('v=')[1].split('&')[0] : videoUrl.split('/').pop();
+      const videoId = videoUrl.includes('v=') ? videoUrl.split('v=')[1].split('&')[0] : videoUrl.split('/').pop()?.split('?')[0];
       thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
     } else if (videoUrl.includes('vimeo.com')) {
       try {
-        const videoId = videoUrl.split('/').pop();
+        const videoId = videoUrl.split('/').pop()?.split('?')[0];
         const response = await fetch(`https://vimeo.com/api/v2/video/${videoId}.json`);
         const data = await response.json();
         thumbnail = data[0].thumbnail_large;
       } catch (e) {
         console.error("Vimeo thumb fetch failed", e);
+      }
+    } else if (videoUrl.startsWith('http')) {
+      // Direct video file handling
+      try {
+        thumbnail = await new Promise((resolve, reject) => {
+          const video = document.createElement('video');
+          video.src = videoUrl;
+          // Important for cross-origin assets like Firebase Storage
+          video.crossOrigin = 'anonymous';
+          video.muted = true;
+          video.playsInline = true;
+          
+          // Setup timeout
+          const timeout = setTimeout(() => {
+             video.src = ""; // Stop loading
+             reject("Timeout fetching thumbnail");
+          }, 15000);
+
+          video.onloadeddata = () => {
+            // Seek to 0.5s or 1s to get a good frame
+            video.currentTime = 0.5;
+          };
+
+          video.onseeked = () => {
+            try {
+              const canvas = document.createElement('canvas');
+              canvas.width = video.videoWidth;
+              canvas.height = video.videoHeight;
+              const ctx = canvas.getContext('2d');
+              ctx?.drawImage(video, 0, 0, canvas.width, canvas.height);
+              const dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+              clearTimeout(timeout);
+              video.pause();
+              video.src = ""; // Clean up
+              resolve(dataUrl);
+            } catch (err) {
+              reject(err);
+            }
+          };
+
+          video.onerror = (e) => {
+            clearTimeout(timeout);
+            reject("Failed to load video: " + (e as any).message);
+          };
+          
+          video.load(); // Force load
+        });
+      } catch (e) {
+        console.error("Direct video thumb fetch failed", e);
+        // We don't alert here to avoid annoying the user if it's a common CORS issue
       }
     }
     
@@ -1132,6 +1182,8 @@ export default function Admin() {
                                   const newPortfolio = [...localContent.portfolio];
                                   newPortfolio[realIdx] = {...newPortfolio[realIdx], videoUrl: url};
                                   setLocalContent({...localContent, portfolio: newPortfolio});
+                                  // Automatically attempt to fetch thumbnail for direct video upload
+                                  fetchVideoThumbnail(url, realIdx);
                                 }}
                               />
                             </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { storage, ref, uploadBytesResumable, getDownloadURL } from '../lib/firebase';
+import { auth, storage, ref, uploadBytesResumable, getDownloadURL } from '../lib/firebase';
 import { Upload, X, Check, Loader2 } from 'lucide-react';
 
 interface FileUploaderProps {
@@ -83,7 +83,9 @@ export default function FileUploader({ onUploadComplete, folder = 'uploads', acc
 
     const processedFile = await processImage(file);
     
-    const fileName = `${Date.now()}-${file.name.split('.')[0]}.jpg`;
+    const extension = file.name.split('.').pop() || 'jpg';
+    const baseName = file.name.split('.')[0];
+    const fileName = `${Date.now()}-${baseName}.${file.type.startsWith('image/') && file.type !== 'image/gif' ? 'jpg' : extension}`;
     const storageRef = ref(storage, `${folder}/${fileName}`);
     console.log('Initiating upload to:', `${folder}/${fileName}`);
     const uploadTask = uploadBytesResumable(storageRef, processedFile);
@@ -97,7 +99,11 @@ export default function FileUploader({ onUploadComplete, folder = 'uploads', acc
       },
       (err) => {
         console.error('Upload task error logic:', err);
-        setError(`Upload failed: ${err.message || 'Unknown error'}`);
+        if (err.code === 'storage/unauthorized') {
+          setError(`Upload failed: Unauthorized. Please ensure your Firebase Storage rules allow writes to '${folder}/'. Current User: ${auth.currentUser?.email || 'Not logged in'}`);
+        } else {
+          setError(`Upload failed: ${err.message || 'Unknown error'}`);
+        }
         setUploading(false);
       },
       () => {
