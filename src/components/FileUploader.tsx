@@ -24,6 +24,7 @@ export default function FileUploader({ onUploadComplete, folder = 'uploads', acc
 
     const fileName = `${Date.now()}-${file.name}`;
     const storageRef = ref(storage, `${folder}/${fileName}`);
+    console.log('Initiating upload to:', `${folder}/${fileName}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
@@ -31,17 +32,24 @@ export default function FileUploader({ onUploadComplete, folder = 'uploads', acc
       (snapshot) => {
         const p = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setProgress(p);
+        console.log('Upload progress:', p);
       },
       (err) => {
-        console.error('Upload error:', err);
-        setError('Upload failed. Please check permissions.');
+        console.error('Upload task error logic:', err);
+        setError(`Upload failed: ${err.message || 'Unknown error'}`);
         setUploading(false);
       },
       () => {
+        console.log('Upload successful, getting URL...');
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log('Download URL:', downloadURL);
           onUploadComplete(downloadURL);
           setUploading(false);
           setProgress(0);
+        }).catch(err => {
+          console.error('Error getting download URL:', err);
+          setError('Failed to retrieve file URL.');
+          setUploading(false);
         });
       }
     );
