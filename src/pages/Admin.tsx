@@ -423,17 +423,50 @@ export default function Admin() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {localContent.home.heroVisuals.map((visual, idx) => (
                         <div key={idx} className="bg-gray-50 p-6 border border-gray-100 space-y-4 relative group">
-                          <button 
-                            onClick={() => {
-                              const newHero = localContent.home.heroVisuals.filter((_, i) => i !== idx);
-                              setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
-                            }}
-                            className="absolute top-2 right-2 text-gray-300 hover:text-red-500 transition-colors"
-                          >
-                            <Trash size={14} />
-                          </button>
+                          <div className="flex justify-between items-center pb-2 border-b border-gray-200 mb-2">
+                             <span className="text-[10px] font-black text-brand-gold uppercase tracking-widest">
+                               Position {idx + 1}
+                             </span>
+                             <div className="flex gap-2">
+                               <button 
+                                 disabled={idx === 0}
+                                 onClick={() => {
+                                   if (idx === 0) return;
+                                   const newHero = [...localContent.home.heroVisuals];
+                                   [newHero[idx], newHero[idx-1]] = [newHero[idx-1], newHero[idx]];
+                                   setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
+                                 }}
+                                 className="p-1 text-gray-400 hover:text-brand-gold disabled:opacity-20 transition-all font-bold text-xs"
+                                 title="Move Up"
+                               >
+                                 ↑
+                               </button>
+                               <button 
+                                 disabled={idx === localContent.home.heroVisuals.length - 1}
+                                 onClick={() => {
+                                   if (idx === localContent.home.heroVisuals.length - 1) return;
+                                   const newHero = [...localContent.home.heroVisuals];
+                                   [newHero[idx], newHero[idx+1]] = [newHero[idx+1], newHero[idx]];
+                                   setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
+                                 }}
+                                 className="p-1 text-gray-400 hover:text-brand-gold disabled:opacity-20 transition-all font-bold text-xs"
+                                 title="Move Down"
+                               >
+                                 ↓
+                               </button>
+                               <button 
+                                onClick={() => {
+                                  const newHero = localContent.home.heroVisuals.filter((_, i) => i !== idx);
+                                  setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
+                                }}
+                                className="p-1 text-gray-300 hover:text-red-500 transition-colors"
+                              >
+                                <Trash size={14} />
+                              </button>
+                             </div>
+                          </div>
                           
-                          <div className="aspect-video bg-black overflow-hidden mb-4">
+                          <div className="aspect-video bg-black overflow-hidden mb-4 relative">
                             {visual.type === 'video' ? (
                               <div className="w-full h-full flex items-center justify-center text-white bg-zinc-900 border border-zinc-800">
                                 <video src={visual.url} className="w-full h-full object-cover opacity-50" />
