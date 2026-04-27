@@ -137,7 +137,7 @@ export default function Video() {
                           <img 
                             src={item.placeholder} 
                             alt={item.alt || item.title} 
-                            className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center bg-zinc-900 border border-zinc-800">
@@ -145,7 +145,7 @@ export default function Video() {
                               <video 
                                 src={`${item.videoUrl}#t=0.1`} 
                                 preload="metadata" 
-                                className="w-full h-full object-cover opacity-60"
+                                className="w-full h-full object-cover"
                                 muted
                                 playsInline
                               />
