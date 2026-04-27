@@ -363,6 +363,16 @@ export default function Admin() {
                           />
                         </div>
                         <div className="md:col-span-2 space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">H1 Tag Override (Home Page)</label>
+                          <input 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-bold" 
+                            value={localContent.seo?.h1Override || ""}
+                            placeholder="CINEMATIC VIDEO PRODUCTION & COMMERCIAL PHOTOGRAPHY"
+                            onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), h1Override: e.target.value}})}
+                          />
+                          <p className="text-[8px] text-gray-400 italic">Supports &lt;br /&gt; and &lt;span class='text-brand-gold'&gt;...&lt;/span&gt;</p>
+                        </div>
+                        <div className="md:col-span-2 space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Meta Description (Search Results)</label>
                           <textarea 
                             rows={2}
@@ -392,6 +402,37 @@ export default function Admin() {
                             label="Upload OG Image"
                             folder="seo"
                             onUploadComplete={(url) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), ogImage: url}})}
+                          />
+                        </div>
+                        <div className="md:col-span-2 space-y-4 pt-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Alt Tags Management (ID: Description)</label>
+                          <div className="space-y-2">
+                             {Object.entries(localContent.seo?.altTags || {}).map(([key, val]) => (
+                               <div key={key} className="flex gap-2">
+                                 <input readOnly value={key} className="w-1/3 bg-gray-100 p-2 text-[10px] font-bold" />
+                                 <input 
+                                   className="flex-1 bg-gray-50 border-0 p-2 text-[10px] focus:ring-1 focus:ring-brand-gold outline-none" 
+                                   value={val}
+                                   onChange={(e) => setLocalContent({
+                                     ...localContent, 
+                                     seo: {
+                                       ...(localContent.seo || {}), 
+                                       altTags: { ...(localContent.seo?.altTags || {}), [key]: e.target.value } 
+                                     }
+                                   })}
+                                 />
+                               </div>
+                             ))}
+                          </div>
+                        </div>
+                        <div className="md:col-span-2 space-y-4 pt-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Advanced JSON-LD Schema (LocalBusiness, etc)</label>
+                          <textarea 
+                            rows={6}
+                            className="w-full bg-gray-900 text-green-400 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-mono text-[10px]" 
+                            value={localContent.seo?.schemaMarkup || ""}
+                            placeholder='{"@context": "https://schema.org", "@type": "LocalBusiness", ...}'
+                            onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), schemaMarkup: e.target.value}})}
                           />
                         </div>
                       </div>

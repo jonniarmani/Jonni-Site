@@ -35,12 +35,14 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           <div className="lg:col-span-5 lg:sticky lg:top-40 space-y-8 lg:space-y-12">
             <div className="aspect-[3/4] bg-brand-gray overflow-hidden shadow-2xl">
-               <img 
-                src={about.profileImage} 
-                alt={`${brand.name} - Professional Cinematographer & Photographer Bradenton Florida`} 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                style={{ objectPosition: about.profileImagePosition || 'center center' }}
-              />
+               {about.profileImage && (
+                 <img 
+                  src={about.profileImage} 
+                  alt={`${brand.name} - Professional Cinematographer & Photographer Bradenton Florida`} 
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  style={{ objectPosition: about.profileImagePosition || 'center center' }}
+                />
+               )}
             </div>
             <div className="flex flex-col space-y-6">
               <div className="space-y-1">

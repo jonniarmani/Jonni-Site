@@ -85,7 +85,7 @@ export default function Header() {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`relative overflow-hidden text-[10px] uppercase tracking-[0.2em] font-black px-6 py-2.5 rounded-full border-2 transition-all duration-300 flex items-center group active:scale-95 ${
+                  className={`relative overflow-hidden text-[10px] uppercase tracking-[0.2em] font-bold px-6 py-2.5 rounded-full border-2 transition-all duration-300 flex items-center group active:scale-95 ${
                     location.pathname === item.href 
                     ? "bg-brand-gold text-white border-brand-gold shadow-lg shadow-brand-gold/20" 
                     : "border-brand-gold text-brand-black hover:bg-brand-gold hover:text-white"

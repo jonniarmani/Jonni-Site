@@ -70,12 +70,14 @@ function PhotoProject({ item }: { item: PhotoItem }) {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="absolute inset-0"
             >
-              <img 
-                src={allImages[activeIdx]} 
-                alt={`${item.title} - Active View`} 
-                className="w-full h-full object-cover"
-                style={{ objectPosition: (item as any).objectPosition || 'center center' }}
-              />
+              {allImages[activeIdx] && (
+                <img 
+                  src={allImages[activeIdx]} 
+                  alt={`${item.title} - Active View`} 
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: (item as any).objectPosition || 'center center' }}
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
               
               <div className="absolute bottom-6 left-6">
@@ -94,11 +96,13 @@ function PhotoProject({ item }: { item: PhotoItem }) {
               onClick={() => setActiveIdx(i)}
               className={`flex-shrink-0 w-24 sm:w-32 aspect-[4/5] bg-zinc-100 overflow-hidden relative cursor-pointer transition-all duration-300 border-2 ${activeIdx === i ? 'border-brand-gold ring-4 ring-brand-gold/10' : 'border-transparent opacity-60 hover:opacity-100'}`}
             >
-              <img 
-                src={img} 
-                alt={`${item.title} Thumbnail ${i + 1}`} 
-                className={`w-full h-full object-cover transition-all duration-500 ${activeIdx === i ? 'scale-110' : 'grayscale group-hover:grayscale-0'}`}
-              />
+              {img && (
+                <img 
+                  src={img} 
+                  alt={`${item.title} Thumbnail ${i + 1}`} 
+                  className={`w-full h-full object-cover transition-all duration-500 ${activeIdx === i ? 'scale-110' : 'grayscale group-hover:grayscale-0'}`}
+                />
+              )}
               {activeIdx === i && (
                 <div className="absolute inset-0 bg-brand-gold/20" />
               )}

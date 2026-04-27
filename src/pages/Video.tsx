@@ -79,13 +79,14 @@ export default function Video() {
                 className={`group block ${!item.videoUrl ? 'opacity-60 cursor-default' : 'cursor-pointer'}`}
               >
                 <div className="aspect-video bg-brand-gray overflow-hidden relative mb-8">
-                  {item.placeholder ? (
+                  {item.placeholder && (
                     <img 
                       src={item.placeholder} 
                       alt={item.alt || item.title} 
                       className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                     />
-                  ) : (
+                  )}
+                  {!item.placeholder && (
                     <div className="w-full h-full flex items-center justify-center bg-zinc-900 border border-zinc-800">
                       <VideoIcon size={40} className="text-zinc-700" />
                     </div>

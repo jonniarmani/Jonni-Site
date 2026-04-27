@@ -40,6 +40,18 @@ export default function SEO() {
     const ogImage = document.querySelector('meta[property="og:image"]');
     if (ogImage) ogImage.setAttribute('content', seo.ogImage || '');
 
+    // Schema Markup
+    const existingSchema = document.getElementById('seo-schema');
+    if (existingSchema) existingSchema.remove();
+    
+    if (seo.schemaMarkup) {
+      const script = document.createElement('script');
+      script.id = 'seo-schema';
+      script.type = 'application/ld+json';
+      script.text = seo.schemaMarkup;
+      document.head.appendChild(script);
+    }
+
   }, [seo]);
 
   return null;

@@ -29,10 +29,12 @@ export default function Home() {
             <span className="text-white/40 uppercase tracking-[0.5em] text-[10px] font-black mb-8 block">
               EST. 2018 | {brand.location}
             </span>
-            <h1 className="text-4xl sm:text-7xl md:text-9xl font-display font-bold text-white leading-[0.9] mb-10 tracking-tighter uppercase italic">
-              {brand.tagline.includes('.') ? brand.tagline.split('.')[0] : brand.tagline} <br /> 
-              <span className="text-brand-gold not-italic">{brand.tagline.includes('.') ? brand.tagline.split('.')[1] : ""}</span>
-            </h1>
+            <h1 
+              className="text-4xl sm:text-7xl md:text-9xl font-display font-bold text-white leading-[0.9] mb-10 tracking-tighter uppercase italic"
+              dangerouslySetInnerHTML={{ 
+                __html: content.seo?.h1Override || `${brand.tagline.includes('.') ? brand.tagline.split('.')[0] : brand.tagline} <br /> <span class="text-brand-gold not-italic">${brand.tagline.includes('.') ? brand.tagline.split('.')[1] : ""}</span>`
+              }}
+            />
             <p className="text-lg md:text-2xl font-light mb-12 max-w-2xl leading-relaxed text-gray-300">
               {brand.taglineExtended}
             </p>
@@ -71,12 +73,14 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="relative">
               <div className="aspect-[4/5] bg-brand-gray overflow-hidden">
-                <img 
-                  src={content.home.lensImage} 
-                  alt={`${brand.name} - Professional Video Production and Brand Storytelling Bradenton, Sarasota`} 
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                  style={{ objectPosition: content.home.lensImagePosition || 'center center' }}
-                />
+          {content.home.lensImage && (
+            <img 
+              src={content.home.lensImage} 
+              alt={content.seo?.altTags?.['home-lens'] || `${brand.name} - Professional Video Production and Brand Storytelling Bradenton, Sarasota`} 
+              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              style={{ objectPosition: content.home.lensImagePosition || 'center center' }}
+            />
+          )}
               </div>
               <div className="absolute -bottom-10 -right-10 bg-brand-black p-12 hidden lg:block">
                 <p className="text-brand-gold text-5xl font-display font-bold">100+</p>
@@ -123,12 +127,14 @@ export default function Home() {
       {/* CTA Section - Blended with Start Your Project Intent */}
       <section className="bg-brand-black py-24 md:py-40 text-white overflow-hidden relative">
         <div className="absolute inset-0 z-0 opacity-20">
-           <img 
-              src={content.home.ctaBackground} 
-              alt="Florida Gulf Coast Landscape - Serving Bradenton and Sarasota area"
-              className="w-full h-full object-cover"
-              style={{ objectPosition: content.home.ctaBackgroundPosition || 'center center' }}
-           />
+           {content.home.ctaBackground && (
+             <img 
+                src={content.home.ctaBackground} 
+                alt="Florida Gulf Coast Landscape - Serving Bradenton and Sarasota area"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: content.home.ctaBackgroundPosition || 'center center' }}
+             />
+           )}
         </div>
         <div className="container mx-auto px-6 text-center relative z-10">
           <span className="text-brand-gold uppercase tracking-[0.4em] text-xs font-bold mb-8 block">

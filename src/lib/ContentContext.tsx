@@ -72,6 +72,9 @@ interface SiteContent {
     description?: string;
     keywords?: string;
     ogImage?: string;
+    h1Override?: string;
+    schemaMarkup?: string;
+    altTags?: { [key: string]: string };
   };
 }
 
@@ -98,12 +101,34 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         email: "jonniarmani@gmail.com"
       }
     },
-    services: SERVICES.filter(s => !s.title.toLowerCase().includes('wedding')).map(s => ({
-      ...s,
-      visualUrl: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=1000",
-      visualType: 'image',
-      photoCategory: s.photoCategory
-    })),
+    services: SERVICES.filter(s => !s.title.toLowerCase().includes('wedding')).map(s => {
+      let visualUrl = "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=1000";
+      let visualType: 'image' | 'video' = 'image';
+
+      if (s.id === 'healthcare') {
+        visualUrl = "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200";
+        visualType = 'image';
+      } else if (s.id === 'corporate') {
+        visualUrl = "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=1200";
+        visualType = 'image';
+      } else if (s.id === 'family') {
+        visualUrl = "https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?auto=format&fit=crop&q=80&w=1200";
+        visualType = 'image';
+      } else if (s.id === 'sports') {
+        visualUrl = "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=1200";
+        visualType = 'image';
+      } else if (s.id === 'commercial') {
+        visualUrl = "https://images.unsplash.com/photo-1520116467321-f1463a863260?auto=format&fit=crop&q=80&w=1200";
+        visualType = 'image';
+      }
+
+      return {
+        ...s,
+        visualUrl,
+        visualType,
+        photoCategory: s.photoCategory
+      };
+    }),
     portfolio: PORTFOLIO.map((p, index) => ({
       ...p,
       videoUrl: "",
@@ -179,10 +204,55 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       fontSans: "Inter"
     },
     seo: {
-      title: "Jonni Armani Media | Cinematic Video & Photography Florida",
-      description: "High-end cinematic video production and commercial photography for brands, athletes, and industry leaders across Bradenton, Sarasota, and Tampa.",
-      keywords: "video production, commercial photography, brand storyteller, cinematic visuals, Florida media agency",
-      ogImage: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000"
+      title: "Jonni Armani Media | Cinematic Video Production & Commercial Photography Bradenton Sarasota Tampa",
+      description: "Professional high-end cinematic video production and commercial photography in Bradenton (34221), Sarasota, and Tampa. Specialized brand storytelling for healthcare, athletics, and corporate leaders across the Florida Gulf Coast.",
+      keywords: "video production Bradenton FL, Sarasota photographer, commercial videography 34221, Palmetto video services, Gulf Coast media production, brand storyteller Sarasota, professional headshots Bradenton, commercial photography Tampa, Jonni Armani",
+      ogImage: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000",
+      h1Override: "CINEMATIC VIDEO PRODUCTION & COMMERCIAL PHOTOGRAPHY <br /> <span class='text-brand-gold'>BRADENTON | SARASOTA | TAMPA</span>",
+      altTags: {
+        "home-lens": "Jonni Armani Professional Video Production Bradenton Florida Gulf Coast",
+        "about-profile": "Jonni Armani Cinematic Photographer Sarasota Bradenton Tampa"
+      },
+      schemaMarkup: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Jonni Armani Media",
+        "image": "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000",
+        "@id": "https://jonniarmani.com",
+        "url": "https://jonniarmani.com",
+        "telephone": "208.549.9544",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "",
+          "addressLocality": "Bradenton",
+          "addressRegion": "FL",
+          "postalCode": "34221",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 27.4989,
+          "longitude": -82.5748
+        },
+        "hasMap": "https://maps.app.goo.gl/Nd7TRimptM7MAJjF8",
+        "sameAs": [
+          "https://www.instagram.com/jonniarmani/",
+          "https://vimeo.com/jonniarmani",
+          "https://maps.app.goo.gl/Nd7TRimptM7MAJjF8"
+        ],
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      }, null, 2)
     }
   });
   const [loading, setLoading] = useState(true);

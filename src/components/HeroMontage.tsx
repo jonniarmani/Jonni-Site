@@ -29,22 +29,26 @@ export default function HeroMontage() {
           className="absolute inset-0"
         >
           {visuals[index].type === 'video' ? (
-            <video
-              src={visuals[index].url}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-              style={{ objectPosition: visuals[index].objectPosition || 'center center' }}
-            />
+            visuals[index].url && (
+              <video
+                src={visuals[index].url}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+                style={{ objectPosition: visuals[index].objectPosition || 'center center' }}
+              />
+            )
           ) : (
-            <img
-              src={visuals[index].url}
-              alt={visuals[index].category}
-              className="w-full h-full object-cover"
-              style={{ objectPosition: visuals[index].objectPosition || 'center center' }}
-            />
+            visuals[index].url && (
+              <img
+                src={visuals[index].url}
+                alt={visuals[index].category}
+                className="w-full h-full object-cover"
+                style={{ objectPosition: visuals[index].objectPosition || 'center center' }}
+              />
+            )
           )}
         </motion.div>
       </AnimatePresence>

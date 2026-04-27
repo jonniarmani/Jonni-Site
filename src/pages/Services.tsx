@@ -73,11 +73,13 @@ export default function Services() {
                         style={{ objectPosition: service.objectPosition || 'center center' }}
                       />
                     )}
-                    <div className="absolute inset-x-0 bottom-0 p-12 bg-gradient-to-t from-brand-black/80 to-transparent">
-                      <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
-                         <Play size={24} className="text-white fill-white ml-1" />
+                    {service.visualType === 'video' && (
+                      <div className="absolute inset-x-0 bottom-0 p-12 bg-gradient-to-t from-brand-black/80 to-transparent">
+                        <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+                           <Play size={24} className="text-white fill-white ml-1" />
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </motion.div>
                 </div>
                 
@@ -151,4 +153,3 @@ export default function Services() {
     </div>
   );
 }
-
