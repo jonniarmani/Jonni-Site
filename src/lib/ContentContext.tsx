@@ -115,7 +115,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         email: "jonniarmani@gmail.com"
       }
     },
-    services: SERVICES.filter(s => !s.title.toLowerCase().includes('wedding')).map(s => {
+    services: SERVICES.map(s => {
       let visualUrl = "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=1000";
       let visualType: 'image' | 'video' = 'image';
 
@@ -207,7 +207,6 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     ],
     industries: [
       { id: "real-estate", name: "Luxury Real Estate", description: "Cinematic walkthroughs for Sarasota waterfront estates and architectural showcases." },
-      { id: "weddings", name: "Wedding Planning", description: "High-end event coverage for Siesta Key beach weddings and luxury venues." },
       { id: "architecture", name: "Architecture & Design", description: "Strategic photography for interior designers and architectural firms in Florida." },
       { id: "hospitality", name: "Resort & Hospitality", description: "Promotional media for Longboat Key resorts and luxury hospitality brands." },
       { id: "culinary", name: "Fine Dining", description: "Culinary storytelling for Sarasota and Bradenton's high-end dining scene." },
@@ -237,7 +236,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     seo: {
       title: "Jonni Armani Media | Cinematic Video & Commercial Photo Bradenton Sarasota Tampa",
       description: "Elite cinematic video production & commercial photography in Bradenton, Sarasota, and Tampa. Expert media for luxury real estate, surgeons, architectural firms, yacht brokers, and IMG professional athletes. The Gulf Coast authority in high-impact brand storytelling.",
-      keywords: "video production Bradenton FL, Sarasota luxury real estate photographer, commercial videography Tampa, yacht walkthroughs Florida, medical practice video Sarasota, IMG academy sports media, architectural photography Bradenton, corporate mission video Tampa, legal videography FL, wedding cinema Siesta Key",
+      keywords: "video production Bradenton FL, Sarasota luxury real estate photographer, commercial videography Tampa, yacht walkthroughs Florida, medical practice video Sarasota, IMG academy sports media, architectural photography Bradenton, corporate mission video Tampa, legal videography FL",
       ogImage: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000",
       h1Override: "CINEMATIC VIDEO PRODUCTION & COMMERCIAL PHOTOGRAPHY <br /> <span class='text-brand-gold'>BRADENTON | SARASOTA | TAMPA</span>",
       altTags: {

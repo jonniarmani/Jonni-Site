@@ -1,6 +1,5 @@
 /**
  * Brand constants and content for Jonni Armani Media
- * Redesigned for premium positioning, removing all wedding references.
  */
 
 export const BRAND = {
