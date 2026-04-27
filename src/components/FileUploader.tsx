@@ -14,7 +14,66 @@ export default function FileUploader({ onUploadComplete, folder = 'uploads', acc
   const [uploading, setUploading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const processImage = (file: File): Promise<Blob | File> => {
+    return new Promise((resolve) => {
+      if (!file.type.startsWith('image/') || file.type === 'image/gif') {
+        resolve(file);
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        const img = new Image();
+        img.src = event.target?.result as string;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+
+          // Max dimensions for optimization
+          const MAX_WIDTH = 2560;
+          const MAX_HEIGHT = 2560;
+
+          if (width > MAX_WIDTH || height > MAX_HEIGHT) {
+            if (width > height) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            } else {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx?.drawImage(img, 0, 0, width, height);
+
+          canvas.toBlob(
+            (blob) => {
+              if (blob) {
+                // If original file is smaller than processed (rare but possible with high compression), keep original
+                if (blob.size > file.size) {
+                  resolve(file);
+                } else {
+                  resolve(blob);
+                }
+              } else {
+                resolve(file);
+              }
+            },
+            'image/jpeg',
+            0.85 // High quality, low file size
+          );
+        };
+        img.onerror = () => resolve(file);
+      };
+      reader.onerror = () => resolve(file);
+    });
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -22,10 +81,12 @@ export default function FileUploader({ onUploadComplete, folder = 'uploads', acc
     setError(null);
     setProgress(0);
 
-    const fileName = `${Date.now()}-${file.name}`;
+    const processedFile = await processImage(file);
+    
+    const fileName = `${Date.now()}-${file.name.split('.')[0]}.jpg`;
     const storageRef = ref(storage, `${folder}/${fileName}`);
     console.log('Initiating upload to:', `${folder}/${fileName}`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
+    const uploadTask = uploadBytesResumable(storageRef, processedFile);
 
     uploadTask.on(
       'state_changed',
