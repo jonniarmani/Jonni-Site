@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PageTransition from "./components/PageTransition";
 import PromoPopup from "./components/PromoPopup";
+import BackgroundMusic from "./components/BackgroundMusic";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -50,6 +51,7 @@ export default function App() {
           />
 
           <Header />
+          <BackgroundMusic />
           <PromoPopup />
           <main className="flex-grow">
             <PageTransition>
