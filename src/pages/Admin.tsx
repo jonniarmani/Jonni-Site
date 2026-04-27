@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useContent } from '../lib/ContentContext';
 import { auth, googleProvider, signInWithPopup, signOut, db, doc, setDoc, handleFirestoreError, OperationType, collection, deleteDoc, onSnapshot } from '../lib/firebase';
-import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Sparkles, Wand2, Upload, RefreshCw } from 'lucide-react';
-import { GoogleGenAI } from "@google/genai";
+import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Upload, RefreshCw, Globe, Twitter, ShieldCheck, Check, Sparkles, Filter, Settings, Activity } from 'lucide-react';
 import FileUploader from '../components/FileUploader';
 
 const FocalPointSelector = ({ value, onChange, label = "Focal Point Precision" }: { value?: string, onChange: (val: string) => void, label?: string }) => {
@@ -72,20 +71,16 @@ const ImagePreview = ({ url, className = "mt-2 w-32 h-20" }: { url?: string, cla
   );
 };
 
-type Tab = 'identity' | 'home' | 'about' | 'services' | 'video-work' | 'photo-work' | 'promo' | 'testimonials' | 'inquiries' | 'code' | 'theme' | 'ai';
+type Tab = 'identity' | 'home' | 'about' | 'services' | 'video-work' | 'photo-work' | 'promo' | 'testimonials' | 'inquiries' | 'code' | 'theme';
 
 export default function Admin() {
   const { content, user, isAdmin, loading } = useContent();
   const [localContent, setLocalContent] = useState(content);
   const [isSaving, setIsSaving] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>('identity');
+  // Leads state
   const [leads, setLeads] = useState<any[]>([]);
   const [leadsLoading, setLeadsLoading] = useState(false);
-  
-  // AI Assistant State
-  const [aiPrompt, setAiPrompt] = useState("");
-  const [aiResponse, setAiResponse] = useState("");
-  const [isAiLoading, setIsAiLoading] = useState(false);
 
   const fetchVideoThumbnail = async (videoUrl: string, index: number) => {
     let thumbnail = "";
@@ -160,28 +155,6 @@ export default function Admin() {
     }
   };
 
-  const handleAiAssistant = async () => {
-    if (!aiPrompt) return;
-    setIsAiLoading(true);
-    try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: `You are an expert copywriter for high-end boutique creative agencies.
-        Current context: ${localContent.brand.name} - ${localContent.brand.tagline}
-        Task: ${aiPrompt}
-        Respond with polished, high-impact copy suggestions.`,
-      });
-      
-      setAiResponse(response.text || "No response generated.");
-    } catch (error) {
-      console.error("AI Assistant Error:", error);
-      setAiResponse("Visual cognition failed. Ensure API authority is active.");
-    }
-    setIsAiLoading(false);
-  };
-
   React.useEffect(() => {
     if (content) setLocalContent(content);
   }, [content]);
@@ -243,75 +216,113 @@ export default function Admin() {
   };
 
   const tabs = [
-    { id: 'identity', label: 'Identity', icon: Info },
-    { id: 'home', label: 'Home', icon: Home },
-    { id: 'about', label: 'About', icon: User },
-    { id: 'services', label: 'Services', icon: Briefcase },
-    { id: 'video-work', label: 'Video Work', icon: VideoIcon },
-    { id: 'photo-work', label: 'Photo Work', icon: ImageIcon },
-    { id: 'promo', label: 'Promotions', icon: Megaphone },
-    { id: 'testimonials', label: 'Testimonials', icon: MessageSquare },
-    { id: 'inquiries', label: 'Inquiries', icon: MessageSquare },
-    { id: 'code', label: 'Code Injection', icon: Code },
-    { id: 'theme', label: 'Visual Studio', icon: Palette },
-    { id: 'ai', label: 'AI Assistant', icon: Sparkles },
+    { id: 'identity', label: 'Identity', icon: Info, color: 'text-blue-500' },
+    { id: 'home', label: 'Home Page', icon: Home, color: 'text-emerald-500' },
+    { id: 'about', label: 'The Artist', icon: User, color: 'text-purple-500' },
+    { id: 'services', label: 'Architecture', icon: Briefcase, color: 'text-orange-500' },
+    { id: 'video-work', label: 'Cine Reel', icon: VideoIcon, color: 'text-red-500' },
+    { id: 'photo-work', label: 'Stills', icon: ImageIcon, color: 'text-cyan-500' },
+    { id: 'promo', label: 'Campaigns', icon: Megaphone, color: 'text-pink-500' },
+    { id: 'testimonials', label: 'Authority', icon: Star, color: 'text-yellow-500' },
+    { id: 'inquiries', label: 'Leads', icon: MessageSquare, color: 'text-indigo-500' },
+    { id: 'code', label: 'System', icon: Code, color: 'text-gray-500' },
+    { id: 'theme', label: 'Studio Design', icon: Palette, color: 'text-brand-gold' },
   ];
 
+  const StatCircle = ({ label, value, icon: Icon }: any) => (
+    <div className="flex flex-col items-center space-y-2 p-4 bg-white border border-gray-100 rounded-sm shadow-sm group hover:border-brand-gold transition-all">
+      <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-brand-gold group-hover:text-white transition-all">
+        <Icon size={18} />
+      </div>
+      <span className="text-[8px] font-black uppercase tracking-widest text-gray-400">{label}</span>
+      <span className="text-sm font-display font-bold text-zinc-900">{value}</span>
+    </div>
+  );
+
   return (
-    <div className="pt-32 pb-40 bg-zinc-50 min-h-screen">
+    <div className="pt-24 pb-40 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-zinc-50 min-h-screen">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-          <div>
-            <span className="text-brand-gold font-bold uppercase tracking-[0.2em] text-xs mb-4 block">Visual Command Center</span>
-            <h1 className="text-5xl font-display font-bold tracking-tighter uppercase">Studio <span className="italic font-light text-gray-400">Admin.</span></h1>
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8 border-b-2 border-brand-black/5 pb-12">
+          <div className="space-y-4">
+            <div className="flex items-center space-x-3">
+              <div className="w-12 h-12 rounded-full bg-brand-black flex items-center justify-center text-brand-gold shadow-xl">
+                <Settings size={24} className="animate-[spin_10s_linear_infinite]" />
+              </div>
+              <div>
+                <span className="text-brand-gold font-bold uppercase tracking-[0.3em] text-[10px] block">Global Control Console</span>
+                <h1 className="text-4xl md:text-6xl font-display font-bold tracking-tight uppercase leading-none">Command <span className="italic font-light text-gray-400 underline decoration-brand-gold/30">Center.</span></h1>
+              </div>
+            </div>
           </div>
           <div className="flex gap-4 w-full md:w-auto">
             <button 
               onClick={handleSave}
               disabled={isSaving}
-              className="flex-grow md:flex-grow-0 bg-brand-gold text-white px-8 py-3 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:scale-105 transition-all shadow-lg"
+              className="flex-1 md:flex-none group relative overflow-hidden bg-brand-black text-white px-10 py-4 font-black uppercase tracking-[0.2em] text-[11px] hover:scale-[1.02] transition-all shadow-2xl active:scale-95 disabled:opacity-50"
             >
-              <Save size={16} className="mr-2" /> {isSaving ? "Syncing..." : "Save Changes"}
+              <div className="absolute inset-0 bg-brand-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo -z-10" />
+              <div className="flex items-center justify-center">
+                <Save size={14} className="mr-3" /> 
+                {isSaving ? "Synchronizing..." : "Publish Changes"}
+              </div>
             </button>
             <button 
               onClick={() => signOut(auth)}
-              className="flex-grow md:flex-grow-0 bg-white border border-gray-200 px-8 py-3 font-bold uppercase tracking-widest text-xs flex items-center justify-center hover:bg-red-50 hover:text-red-600 transition-all font-black"
+              className="px-6 py-4 rounded-full border-2 border-gray-200 text-gray-400 hover:text-red-500 hover:border-red-500 transition-all group"
+              title="Exit Console"
             >
-              <LogOut size={16} className="mr-2" /> Exit
+              <LogOut size={18} className="group-hover:rotate-12 transition-transform" />
             </button>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Navigation Sidebar */}
+          {/* Enhanced Navigation Sidebar */}
           <div className="lg:col-span-3 space-y-2">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id as Tab)}
-                className={`w-full flex items-center space-x-4 px-6 py-4 font-black uppercase tracking-widest text-[11px] transition-all rounded-sm border-b-2 border-transparent ${
-                  activeTab === tab.id 
-                    ? 'bg-brand-black text-white shadow-xl translate-x-1' 
-                    : 'bg-white text-gray-500 hover:bg-gray-100 hover:text-brand-gold'
-                }`}
-              >
-                <tab.icon size={16} />
-                <span>{tab.label}</span>
-              </button>
-            ))}
+            <div className="bg-white border border-gray-100 p-2 rounded-sm shadow-sm mb-6">
+              <div className="p-4 border-b border-gray-50 mb-2">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 rounded-full overflow-hidden bg-brand-gold/10 flex items-center justify-center">
+                    {user?.photoURL ? <img src={user.photoURL} alt="" /> : <User size={20} className="text-brand-gold" />}
+                  </div>
+                  <div>
+                    <span className="block text-[10px] font-black uppercase tracking-widest text-zinc-900 truncate max-w-[140px]">{user?.displayName || 'Admin'}</span>
+                    <span className="block text-[8px] font-bold text-gray-400 uppercase tracking-tighter">Verified Authority</span>
+                  </div>
+                </div>
+              </div>
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id as Tab)}
+                  className={`w-full flex items-center justify-between px-5 py-4 font-black uppercase tracking-widest text-[10px] transition-all group group relative ${
+                    activeTab === tab.id 
+                      ? 'text-brand-black' 
+                      : 'text-gray-400 hover:text-brand-gold'
+                  }`}
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${activeTab === tab.id ? 'bg-brand-black text-brand-gold shadow-lg ring-2 ring-brand-gold/20' : 'bg-gray-50 text-gray-400 group-hover:bg-brand-gold/10 group-hover:text-brand-gold'}`}>
+                      <tab.icon size={14} />
+                    </div>
+                    <span>{tab.label}</span>
+                  </div>
+                  {activeTab === tab.id && <ChevronRight size={14} className="text-brand-gold animate-bounce-x" />}
+                  {activeTab === tab.id && <div className="absolute left-0 w-1 h-8 bg-brand-gold rounded-full" />}
+                </button>
+              ))}
+            </div>
             
-            <div className="mt-12 bg-white border border-gray-100 p-6 rounded-sm">
-              <h3 className="text-brand-gold font-bold uppercase tracking-widest text-[9px] mb-4">System Data</h3>
-              <ul className="space-y-3 text-[9px] font-bold text-gray-400 uppercase tracking-wider">
-                 <li className="flex justify-between"><span>Status</span> <span className="text-green-500">Live</span></li>
-                 <li className="flex justify-between"><span>Auth</span> <span className="text-zinc-900 italic">Owner</span></li>
-              </ul>
+            <div className="grid grid-cols-2 gap-2 mt-8">
+               <StatCircle label="Status" value="Live" icon={Activity} />
+               <StatCircle label="Leads" value={leads.length} icon={Filter} />
             </div>
           </div>
 
-          {/* Editor Area */}
+          {/* Enhanced Editor Area */}
           <div className="lg:col-span-9">
-            <div className="bg-white p-10 shadow-sm border border-gray-100 min-h-[600px] rounded-sm">
+            <div className="bg-white p-8 md:p-12 shadow-2xl border border-gray-100 min-h-[700px] rounded-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full -mr-32 -mt-32 blur-3xl pointer-events-none" />
               
               {/* Identity Tab */}
               {activeTab === 'identity' && (
@@ -399,13 +410,14 @@ export default function Admin() {
                     
                     <div className="md:col-span-2 pt-12 border-t space-y-8 mt-4">
                       <div className="flex items-center space-x-2">
-                        <Wand2 size={16} className="text-brand-gold" />
                         <h3 className="text-xs font-black uppercase tracking-widest text-brand-black">Advanced SEO & Discovery</h3>
                       </div>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="md:col-span-2 space-y-4">
-                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Meta Title (Browser Tab)</label>
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest flex items-center">
+                            <Globe size={12} className="mr-2 text-brand-gold" /> Meta Title (Browser Tab)
+                          </label>
                           <input 
                             className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-bold" 
                             value={localContent.seo?.title || ""}
@@ -441,7 +453,23 @@ export default function Admin() {
                           />
                         </div>
                         <div className="space-y-4">
-                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">OG Share Image URL (or Upload)</label>
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Canonical URL</label>
+                          <input 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            placeholder="https://yourdomain.com"
+                            value={localContent.seo?.canonicalUrl || ""}
+                            onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), canonicalUrl: e.target.value}})}
+                          />
+                        </div>
+
+                        <div className="md:col-span-2 pt-6 border-t mt-4 mb-2">
+                           <h4 className="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] mb-6 flex items-center">
+                             <Twitter size={12} className="mr-2 text-cyan-500" /> Social Graph & Connectivity
+                           </h4>
+                        </div>
+
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">OG Share Image (URL or Upload)</label>
                           <input 
                             className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
                             value={localContent.seo?.ogImage || ""}
@@ -454,7 +482,123 @@ export default function Admin() {
                             onUploadComplete={(url) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), ogImage: url}})}
                           />
                         </div>
-                        <div className="md:col-span-2 space-y-4 pt-4">
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Twitter Handle</label>
+                          <input 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            placeholder="@yourhandle"
+                            value={localContent.seo?.twitterHandle || ""}
+                            onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), twitterHandle: e.target.value}})}
+                          />
+                        </div>
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Twitter Card Type</label>
+                          <select 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium appearance-none" 
+                            value={localContent.seo?.twitterCard || "summary_large_image"}
+                            onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), twitterCard: e.target.value as any}})}
+                          >
+                            <option value="summary">Summary</option>
+                            <option value="summary_large_image">Summary with Large Image</option>
+                            <option value="app">App</option>
+                            <option value="player">Player (Video)</option>
+                          </select>
+                        </div>
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Facebook App ID</label>
+                          <input 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            value={localContent.seo?.facebookAppId || ""}
+                            onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), facebookAppId: e.target.value}})}
+                          />
+                        </div>
+
+                        <div className="md:col-span-2 pt-6 border-t mt-4 mb-2">
+                           <h4 className="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] mb-6 flex items-center">
+                             <ShieldCheck size={12} className="mr-2 text-indigo-500" /> Infrastructure & Robots
+                           </h4>
+                        </div>
+
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Robots Meta</label>
+                          <input 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            placeholder="index, follow"
+                            value={localContent.seo?.robots || ""}
+                            onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), robots: e.target.value}})}
+                          />
+                        </div>
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Site Language</label>
+                          <input 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            placeholder="en-US"
+                            value={localContent.seo?.language || ""}
+                            onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), language: e.target.value}})}
+                          />
+                        </div>
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Sitemap URL</label>
+                          <input 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-xs" 
+                            placeholder="https://yourdomain.com/sitemap.xml"
+                            value={localContent.seo?.sitemapUrl || ""}
+                            onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), sitemapUrl: e.target.value}})}
+                          />
+                        </div>
+                        <div className="space-y-4">
+                          <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Content Author</label>
+                          <input 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            value={localContent.seo?.author || ""}
+                            onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), author: e.target.value}})}
+                          />
+                        </div>
+                        <div className="md:col-span-2 pt-12 border-t mt-12 bg-zinc-900 p-8 rounded-lg text-white">
+                           <div className="flex justify-between items-center mb-8">
+                             <div>
+                               <h4 className="text-xs font-black uppercase text-brand-gold tracking-[0.3em] mb-1">Cine-SEO Optimizer</h4>
+                               <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Authority & Discovery Index</p>
+                             </div>
+                             <div className="flex gap-2">
+                               <div className="px-3 py-1 bg-green-500/10 border border-green-500/20 text-green-500 text-[8px] font-black uppercase rounded-full">Optimized</div>
+                               <div className="px-3 py-1 bg-brand-gold/10 border border-brand-gold/20 text-brand-gold text-[8px] font-black uppercase rounded-full">Pro Tier</div>
+                             </div>
+                           </div>
+                           
+                           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                             <div className="space-y-1">
+                               <span className="text-[8px] text-gray-500 uppercase font-black block">Indexing</span>
+                               <div className="flex items-center space-x-2">
+                                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                                 <span className="text-xs font-bold font-mono uppercase leading-none">Global Index / Active</span>
+                               </div>
+                             </div>
+                             <div className="space-y-1">
+                               <span className="text-[8px] text-gray-500 uppercase font-black block">Social Graph</span>
+                               <div className="flex items-center space-x-2">
+                                 <Check size={10} className="text-brand-gold" />
+                                 <span className="text-xs font-bold font-mono uppercase leading-none">Graph Connected</span>
+                               </div>
+                             </div>
+                             <div className="space-y-1">
+                               <span className="text-[8px] text-gray-500 uppercase font-black block">Sitemap</span>
+                               <div className="flex items-center space-x-2">
+                                 <Check size={10} className="text-brand-gold" />
+                                 <span className="text-xs font-bold font-mono uppercase leading-none">XML Validated</span>
+                               </div>
+                             </div>
+                             <div className="space-y-1">
+                               <span className="text-[8px] text-gray-500 uppercase font-black block">Authority</span>
+                               <div className="flex items-center space-x-2">
+                                 <Check size={10} className="text-brand-gold" />
+                                 <span className="text-xs font-bold font-mono uppercase leading-none">Agency Tier</span>
+                               </div>
+                             </div>
+                           </div>
+                        </div>
+
+                        <div className="md:col-span-2 space-y-4 pt-12 border-t mt-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Alt Tags Management (ID: Description)</label>
                           <div className="space-y-2">
                              {Object.entries(localContent.seo?.altTags || {}).map(([key, val]) => (
@@ -509,9 +653,10 @@ export default function Admin() {
                           const newHero = [...localContent.home.heroVisuals, { url: "", type: 'image' as const, category: "New" }];
                           setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
                         }}
-                        className="text-[10px] bg-brand-black text-white px-4 py-2 font-bold uppercase tracking-widest hover:bg-brand-gold transition-colors"
+                        className="w-10 h-10 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-lg active:scale-95"
+                        title="Add Hero Visual"
                       >
-                        + Add Visual
+                        <Plus size={18} />
                       </button>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -785,29 +930,35 @@ export default function Admin() {
               {activeTab === 'services' && (
                 <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
                   <div className="border-b pb-4 mb-8 flex justify-between items-end">
-                    <div>
-                      <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Services Offerings</h2>
-                      <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage cinematic service architecture</p>
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                      <div>
+                        <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Services Offerings</h2>
+                        <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage cinematic service architecture</p>
+                      </div>
+                      <button 
+                        onClick={() => {
+                          const newServices = [...localContent.services, { id: Date.now().toString(), title: "New Service", short: "", description: "", whoItsFor: "", outcome: "", icon: "Video", visualUrl: "", visualType: 'image' as const }];
+                          setLocalContent({...localContent, services: newServices});
+                        }}
+                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-xl active:scale-90"
+                        title="Add Strategic Service"
+                      >
+                        <Plus size={24} />
+                      </button>
                     </div>
-                    <button 
-                      onClick={() => {
-                        const newServices = [...localContent.services, { id: Date.now().toString(), title: "New Service", short: "", description: "", whoItsFor: "", outcome: "", icon: "Video", visualUrl: "", visualType: 'image' as const }];
-                        setLocalContent({...localContent, services: newServices});
-                      }}
-                      className="text-[10px] bg-brand-black text-white px-4 py-2 font-bold uppercase tracking-widest hover:bg-brand-gold transition-colors"
-                    >
-                      + Add Service
-                    </button>
                   </div>
                   <div className="space-y-8">
                     {localContent.services.map((service, idx) => (
                       <div key={idx} className="p-8 bg-gray-50 border border-gray-100 rounded-lg group hover:bg-zinc-100 transition-colors relative">
                         <button 
                           onClick={() => {
-                            const newServices = localContent.services.filter((_, i) => i !== idx);
-                            setLocalContent({...localContent, services: newServices});
+                            if (window.confirm("Authorize permanent disposal of this strategic service architecture?")) {
+                              const newServices = localContent.services.filter((_, i) => i !== idx);
+                              setLocalContent({...localContent, services: newServices});
+                            }
                           }}
-                          className="absolute top-4 right-4 text-gray-300 hover:text-red-500 transition-colors"
+                          className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center text-gray-300 hover:text-red-500 hover:border-red-500 transition-all z-10"
+                          title="Dispose Service"
                         >
                           <Trash size={16} />
                         </button>
@@ -960,19 +1111,22 @@ export default function Admin() {
               {activeTab === 'video-work' && (
                 <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
                   <div className="border-b pb-4 mb-8 flex justify-between items-end">
-                    <div>
-                      <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Video Portfolio</h2>
-                      <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage cinematic motion projects</p>
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                      <div>
+                        <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Cine Portfolio</h2>
+                        <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage cinematic motion projects</p>
+                      </div>
+                      <button 
+                        onClick={() => {
+                          const newWork = [...localContent.portfolio, { category: "Brand Story", title: "New Video Project", placeholder: "", url: "#", videoUrl: "", type: 'video' }];
+                          setLocalContent({...localContent, portfolio: newWork});
+                        }}
+                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-xl active:scale-90"
+                        title="Add Video Asset"
+                      >
+                        <Plus size={24} />
+                      </button>
                     </div>
-                    <button 
-                      onClick={() => {
-                        const newWork = [...localContent.portfolio, { category: "Brand Story", title: "New Video Project", placeholder: "", url: "#", videoUrl: "", type: 'video' }];
-                        setLocalContent({...localContent, portfolio: newWork});
-                      }}
-                      className="text-[10px] bg-brand-black text-white px-4 py-2 font-bold uppercase tracking-widest hover:bg-brand-gold transition-colors"
-                    >
-                      + Add Video Project
-                    </button>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {localContent.portfolio.filter(item => item.type === 'video').map((item, idx) => {
@@ -995,7 +1149,7 @@ export default function Admin() {
                                    [newPortfolio[realIdx], newPortfolio[prevRealIdx]] = [newPortfolio[prevRealIdx], newPortfolio[realIdx]];
                                    setLocalContent({...localContent, portfolio: newPortfolio});
                                  }}
-                                 className="p-1 text-gray-400 hover:text-brand-gold disabled:opacity-20 transition-all font-bold text-xs"
+                                 className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-gold hover:border-brand-gold disabled:opacity-20 transition-all font-bold text-xs shadow-sm"
                                  title="Move Up"
                                >
                                  ↑
@@ -1011,19 +1165,21 @@ export default function Admin() {
                                    [newPortfolio[realIdx], newPortfolio[nextRealIdx]] = [newPortfolio[nextRealIdx], newPortfolio[realIdx]];
                                    setLocalContent({...localContent, portfolio: newPortfolio});
                                  }}
-                                 className="p-1 text-gray-400 hover:text-brand-gold disabled:opacity-20 transition-all font-bold text-xs"
+                                 className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-gold hover:border-brand-gold disabled:opacity-20 transition-all font-bold text-xs shadow-sm"
                                  title="Move Down"
                                >
                                  ↓
                                </button>
                                <button 
                                  onClick={() => {
-                                   const newWork = localContent.portfolio.filter((_, i) => i !== realIdx);
-                                   setLocalContent({...localContent, portfolio: newWork});
+                                   if (window.confirm("Authorize permanent disposal of this media asset?")) {
+                                     const newWork = localContent.portfolio.filter((_, i) => i !== realIdx);
+                                     setLocalContent({...localContent, portfolio: newWork});
+                                   }
                                  }}
-                                 className="p-1 text-gray-300 hover:text-red-500 transition-colors"
+                                 className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-300 hover:text-red-500 hover:border-red-500 transition-all shadow-sm"
                                >
-                                 <Trash size={16} />
+                                 <Trash size={14} />
                                </button>
                              </div>
                           </div>
@@ -1199,19 +1355,22 @@ export default function Admin() {
               {activeTab === 'photo-work' && (
                 <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
                   <div className="border-b pb-4 mb-8 flex justify-between items-end">
-                    <div>
-                      <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Photo Gallery</h2>
-                      <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage high-end stills and brand photography</p>
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                      <div>
+                        <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Photo Gallery</h2>
+                        <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage high-end stills and brand photography</p>
+                      </div>
+                      <button 
+                        onClick={() => {
+                          const newWork = [...localContent.portfolio, { category: "Branding", title: "New Photo Project", placeholder: "", url: "#", videoUrl: "", type: 'photo' }];
+                          setLocalContent({...localContent, portfolio: newWork});
+                        }}
+                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-xl active:scale-90"
+                        title="Add Still Asset"
+                      >
+                        <Plus size={24} />
+                      </button>
                     </div>
-                    <button 
-                      onClick={() => {
-                        const newWork = [...localContent.portfolio, { category: "Branding", title: "New Photo Project", placeholder: "", url: "#", videoUrl: "", type: 'photo' }];
-                        setLocalContent({...localContent, portfolio: newWork});
-                      }}
-                      className="text-[10px] bg-brand-black text-white px-4 py-2 font-bold uppercase tracking-widest hover:bg-brand-gold transition-colors"
-                    >
-                      + Add Photo Project
-                    </button>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {localContent.portfolio.filter(item => item.type === 'photo').map((item, idx) => {
@@ -1234,7 +1393,7 @@ export default function Admin() {
                                    [newPortfolio[realIdx], newPortfolio[prevRealIdx]] = [newPortfolio[prevRealIdx], newPortfolio[realIdx]];
                                    setLocalContent({...localContent, portfolio: newPortfolio});
                                  }}
-                                 className="p-1 text-gray-400 hover:text-brand-gold disabled:opacity-20 transition-all font-bold text-xs"
+                                 className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-gold shadow-sm transition-all shadow-sm"
                                  title="Move Up"
                                >
                                  ↑
@@ -1250,17 +1409,19 @@ export default function Admin() {
                                    [newPortfolio[realIdx], newPortfolio[nextRealIdx]] = [newPortfolio[nextRealIdx], newPortfolio[realIdx]];
                                    setLocalContent({...localContent, portfolio: newPortfolio});
                                  }}
-                                 className="p-1 text-gray-400 hover:text-brand-gold disabled:opacity-20 transition-all font-bold text-xs"
+                                 className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-gold shadow-sm transition-all shadow-sm"
                                  title="Move Down"
                                >
                                  ↓
                                </button>
                                <button 
                                  onClick={() => {
-                                   const newWork = localContent.portfolio.filter((_, i) => i !== realIdx);
-                                   setLocalContent({...localContent, portfolio: newWork});
+                                   if (window.confirm("Authorize permanent disposal of this still asset?")) {
+                                     const newWork = localContent.portfolio.filter((_, i) => i !== realIdx);
+                                     setLocalContent({...localContent, portfolio: newWork});
+                                   }
                                  }}
-                                 className="p-1 text-gray-300 hover:text-red-500 transition-colors"
+                                 className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-300 hover:text-red-500 shadow-sm transition-all shadow-sm"
                                >
                                  <Trash size={14} />
                                </button>
@@ -1494,34 +1655,40 @@ export default function Admin() {
               {activeTab === 'testimonials' && (
                 <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
                   <div className="border-b pb-4 mb-8 flex justify-between items-end">
-                    <div>
-                      <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Social Proof Architecture</h2>
-                      <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage verified Google reviews and testimonials</p>
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                      <div>
+                        <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Social Proof Architecture</h2>
+                        <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage verified Google reviews and testimonials</p>
+                      </div>
+                      <button 
+                        onClick={() => setLocalContent({
+                          ...localContent, 
+                          testimonials: [
+                            ...localContent.testimonials, 
+                            { author: "New Reviewer", role: "Client", content: "Great experience...", rating: 5, date: "Just now" }
+                          ]
+                        })}
+                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-xl active:scale-90"
+                        title="Add Strategy Endorsement"
+                      >
+                        <Plus size={24} />
+                      </button>
                     </div>
-                    <button 
-                      onClick={() => setLocalContent({
-                        ...localContent, 
-                        testimonials: [
-                          ...localContent.testimonials, 
-                          { author: "New Reviewer", role: "Client", content: "Great experience...", rating: 5, date: "Just now" }
-                        ]
-                      })}
-                      className="bg-brand-black text-white px-4 py-2 text-[10px] uppercase font-black tracking-widest hover:bg-brand-gold transition-colors flex items-center"
-                    >
-                      <Plus size={14} className="mr-2" /> Add Review
-                    </button>
                   </div>
                   
                   <div className="grid grid-cols-1 gap-8">
                     {localContent.testimonials.map((review, idx) => (
-                      <div key={idx} className="bg-gray-50 p-8 relative group border border-gray-100">
+                      <div key={idx} className="bg-gray-50 p-8 relative group border border-gray-100 rounded-xl">
                         <button 
                           onClick={() => {
-                            const newTestimonials = [...localContent.testimonials];
-                            newTestimonials.splice(idx, 1);
-                            setLocalContent({...localContent, testimonials: newTestimonials});
+                            if (window.confirm("Authorize disposal of this endorsement?")) {
+                              const newTestimonials = [...localContent.testimonials];
+                              newTestimonials.splice(idx, 1);
+                              setLocalContent({...localContent, testimonials: newTestimonials});
+                            }
                           }}
-                          className="absolute top-4 right-4 text-gray-300 hover:text-red-500 transition-colors p-2"
+                          className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center text-gray-300 hover:text-red-500 hover:border-red-500 transition-all z-10"
+                          title="Dispose Endorsement"
                         >
                           <Trash size={16} />
                         </button>
@@ -1807,93 +1974,6 @@ export default function Admin() {
                           </select>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* AI Assistant Tab */}
-              {activeTab === 'ai' && (
-                <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <div className="border-b pb-4 mb-8 flex justify-between items-end">
-                    <div>
-                      <h2 className="text-2xl font-display font-bold uppercase tracking-tight">AI Content Intelligence</h2>
-                      <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Leverage Gemini cognitive models for high-impact copy</p>
-                    </div>
-                    <Sparkles className="text-brand-gold animate-pulse" size={24} />
-                  </div>
-                  
-                  <div className="space-y-8">
-                    <div className="bg-zinc-900 p-8 rounded-sm shadow-2xl relative overflow-hidden border border-zinc-800">
-                      <div className="absolute top-0 right-0 p-4 opacity-10">
-                        <Wand2 size={64} className="text-brand-gold" />
-                      </div>
-                      
-                      <div className="relative z-10 space-y-6">
-                        <div className="space-y-4">
-                          <label className="text-[10px] uppercase font-black text-brand-gold tracking-widest">Cognitive Prompt</label>
-                          <textarea 
-                            rows={3}
-                            className="w-full bg-zinc-800 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none text-white font-medium text-sm leading-relaxed placeholder:text-gray-600" 
-                            placeholder="e.g. Suggest 5 high-impact tags for my home hero section based on 'cinematic agency' vibe..."
-                            value={aiPrompt}
-                            onChange={(e) => setAiPrompt(e.target.value)}
-                          />
-                        </div>
-                        
-                        <button 
-                          onClick={handleAiAssistant}
-                          disabled={isAiLoading || !aiPrompt}
-                          className="w-full bg-brand-gold text-white py-4 px-8 font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center hover:scale-[1.02] transition-all disabled:opacity-50 disabled:scale-100"
-                        >
-                          {isAiLoading ? (
-                            <>
-                              <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin mr-3" />
-                              Cognitive Processing...
-                            </>
-                          ) : (
-                            <>
-                              <Sparkles size={16} className="mr-3" /> Execute Generation
-                            </>
-                          )}
-                        </button>
-                      </div>
-                    </div>
-
-                    {aiResponse && (
-                      <div className="space-y-4 animate-in fade-in slide-in-from-top-4 duration-500">
-                        <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">AI Suggestion Result</label>
-                        <div className="bg-white border-l-4 border-brand-gold p-8 shadow-sm font-light text-gray-700 whitespace-pre-wrap leading-relaxed">
-                          {aiResponse}
-                          <div className="mt-8 pt-8 border-t flex justify-end">
-                            <button 
-                              onClick={() => {
-                                navigator.clipboard.writeText(aiResponse);
-                                alert("Response copied to terminal.");
-                              }}
-                              className="text-[10px] font-black uppercase tracking-widest text-brand-gold hover:text-black transition-colors"
-                            >
-                              Copy to Buffer
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                       {[
-                         { label: "Refine Bio", prompt: "Polish my bio to sound more authoritative yet approachable." },
-                         { label: "Tagline Evolution", prompt: "Give me 10 cinematic taglines for a media agency specializing in Bradenton/Sarasota area." },
-                         { label: "SEO Meta", prompt: "Generate SEO metadata for my photography services focusing on 'brand stories'." }
-                       ].map((hint, i) => (
-                         <button 
-                           key={i}
-                           onClick={() => setAiPrompt(hint.prompt)}
-                           className="p-4 bg-gray-50 border border-gray-100 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:border-brand-gold hover:text-brand-gold transition-all text-left"
-                         >
-                           {hint.label}
-                         </button>
-                       ))}
                     </div>
                   </div>
                 </div>

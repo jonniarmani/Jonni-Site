@@ -40,6 +40,36 @@ export default function SEO() {
     const ogImage = document.querySelector('meta[property="og:image"]');
     if (ogImage) ogImage.setAttribute('content', seo.ogImage || '');
 
+    // Twitter Tags
+    const twitterCard = document.querySelector('meta[name="twitter:card"]');
+    if (twitterCard) twitterCard.setAttribute('content', seo.twitterCard || 'summary_large_image');
+
+    const twitterSite = document.querySelector('meta[name="twitter:site"]');
+    if (twitterSite) twitterSite.setAttribute('content', seo.twitterHandle || '');
+
+    const twitterCreator = document.querySelector('meta[name="twitter:creator"]');
+    if (twitterCreator) twitterCreator.setAttribute('content', seo.twitterHandle || '');
+
+    // Robots
+    const robots = document.querySelector('meta[name="robots"]');
+    if (robots) robots.setAttribute('content', seo.robots || 'index, follow');
+
+    // Canonical
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (seo.canonicalUrl) {
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonical);
+      }
+      canonical.setAttribute('href', seo.canonicalUrl);
+    }
+
+    // Language
+    if (seo.language) {
+      document.documentElement.lang = seo.language;
+    }
+
     // Schema Markup
     const existingSchema = document.getElementById('seo-schema');
     if (existingSchema) existingSchema.remove();

@@ -75,6 +75,14 @@ interface SiteContent {
     h1Override?: string;
     schemaMarkup?: string;
     altTags?: { [key: string]: string };
+    canonicalUrl?: string;
+    author?: string;
+    robots?: string;
+    twitterHandle?: string;
+    twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player';
+    facebookAppId?: string;
+    language?: string;
+    sitemapUrl?: string;
   };
 }
 
@@ -213,6 +221,13 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         "home-lens": "Jonni Armani Professional Video Production Bradenton Florida Gulf Coast",
         "about-profile": "Jonni Armani Cinematic Photographer Sarasota Bradenton Tampa"
       },
+      canonicalUrl: "https://jonniarmani.com",
+      author: "Jonni Armani",
+      robots: "index, follow",
+      twitterHandle: "@jonniarmani",
+      twitterCard: "summary_large_image",
+      language: "en-US",
+      sitemapUrl: "https://jonniarmani.com/sitemap.xml",
       schemaMarkup: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
