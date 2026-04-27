@@ -108,7 +108,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       name: "Jonni Armani Media",
       tagline: "Cinematic Video. Commercial Photography. Strategic Results.",
       taglineExtended: "High-end video production and photography for brands, athletes, and industry leaders across the Florida Gulf Coast.",
-      location: "Bradenton, Sarasota, Palmetto, Tampa, Siesta Key",
+      location: "Bradenton, Sarasota, Palmetto, Tampa, Siesta Key, Lakewood Ranch, Ellenton, Parrish, FL, Bradenton Beach",
       contact: {
         ...BRAND.contact,
         phone: "208.549.9544",
@@ -217,9 +217,10 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       { id: "retail", name: "Fashion & Retail", description: "High-impact lookbook and campaign visuals for local boutiques." },
       { id: "athletics", name: "Professional Athletics", description: "Elite performance reels for athletes training at IMG Academy and beyond." },
       { id: "corporate", name: "Tech & Corporate", description: "Corporate mission profiles for Tampa tech startups and headquarters." },
-      { id: "nonprofit", name: "Cultural Foundations", description: "Impact-driven storytelling for non-profits and cultural institutions." },
+      { id: "dentistry", name: "Dentistry & Oral Surgery", description: "Specialized clinical media showcasing patient transformations and technical oral surgery." },
       { id: "legal", name: "Legal Discovery", description: "Professional legal videography and settlement documentaries for law firms." },
-      { id: "equestrian", name: "Equestrian Estates", description: "Boutique media for Lakewood Ranch equestrian estates and agricultural assets." }
+      { id: "modeling", name: "Modeling & Talent", description: "Portfolio development and cinematic reels for professional models and agencies." },
+      { id: "home-design", name: "Interior & Home Design", description: "Editorial-style photography for home designers and luxury residential transitions." }
     ],
     customCode: {
       head: "",
@@ -236,7 +237,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     seo: {
       title: "Jonni Armani Media | Cinematic Video & Commercial Photo Bradenton Sarasota Tampa",
       description: "Elite cinematic video production & commercial photography in Bradenton, Sarasota, and Tampa. Expert media for luxury real estate, surgeons, architectural firms, yacht brokers, and IMG professional athletes. The Gulf Coast authority in high-impact brand storytelling.",
-      keywords: "video production Bradenton FL, Sarasota luxury real estate photographer, commercial videography Tampa, yacht walkthroughs Florida, medical practice video Sarasota, IMG academy sports media, architectural photography Bradenton, corporate mission video Tampa, legal videography FL",
+      keywords: "video production Bradenton FL, Sarasota luxury real estate photographer, commercial videography Tampa, yacht walkthroughs Florida, medical practice video Sarasota, IMG academy sports media, architectural photography Bradenton, corporate mission video Tampa, legal videography FL, modeling portfolios Sarasota, interior design photography Bradenton",
       ogImage: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000",
       h1Override: "CINEMATIC VIDEO PRODUCTION & COMMERCIAL PHOTOGRAPHY <br /> <span class='text-brand-gold'>BRADENTON | SARASOTA | TAMPA</span>",
       altTags: {

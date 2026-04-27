@@ -104,7 +104,7 @@ export default function Contact() {
             <div className="bg-brand-black text-white p-12 space-y-8">
                <h3 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-500">Location Focus</h3>
                <p className="text-lg font-light leading-relaxed">
-                  Headquartered in <span className="text-brand-gold font-bold">Bradenton, FL</span>. Serving Sarasota, Tampa, St. Pete, and the wider Gulf Coast. Available for travel for global cinematic assignments.
+                  Headquartered in <span className="text-brand-gold font-bold">Bradenton, FL</span>. Serving {BRAND.location} and the wider Gulf Coast. Available for travel for global cinematic assignments.
                </p>
                <div className="text-[10px] uppercase tracking-widest font-medium text-gray-500 border-t border-white/10 pt-8">
                   Commercial • Sports • Healthcare • Brand Stories

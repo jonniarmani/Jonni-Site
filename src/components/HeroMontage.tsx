@@ -14,7 +14,7 @@ export default function HeroMontage() {
     "Medical Marketing",
     "Luxury Healthcare",
     "Brand Storytelling",
-    "Dental Practice",
+    "Cosmetic Dentistry",
     "Real Estate Cinema",
     "Yachting Media",
     "IMG Athletics",
@@ -22,9 +22,10 @@ export default function HeroMontage() {
     "Hospitality Reels",
     "Corporate Tech",
     "Legal Videography",
-    "Boutique Fashion",
+    "Modeling Portfolios",
+    "Interior & Home",
     "Fine Dining",
-    "Equestrian Estates"
+    "Dentistry & Oral Surgery"
   ];
 
   useEffect(() => {

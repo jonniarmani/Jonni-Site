@@ -7,8 +7,8 @@ export const BRAND = {
   title: "Premium Creative Professional",
   tagline: "Cinematic Video. Commercial Photography. Strategic Results.",
   taglineExtended: "High-end video production and photography for brands, athletes, and industry leaders across the Florida Gulf Coast.",
-  location: "Bradenton, Sarasota, Palmetto, Tampa, Siesta Key",
-  locationsDetail: "Bradenton, Palmetto, Sarasota, St. Pete, Anna Maria Island, Siesta Key, Tampa, Apollo Beach, Lakewood Ranch, Parrish, Venice, Ellenton, IMG Academy, LECOM Park",
+  location: "Bradenton, Sarasota, Palmetto, Tampa, Siesta Key, Lakewood Ranch, Ellenton, Parrish, FL, Bradenton Beach",
+  locationsDetail: "Bradenton, Palmetto, Sarasota, St. Pete, Anna Maria Island, Siesta Key, Tampa, Apollo Beach, Lakewood Ranch, Parrish, Venice, Ellenton, Bradenton Beach, Florida, IMG Academy, LECOM Park",
   contact: {
     email: "jonniarmani@gmail.com",
     phone: "208.549.9544",
