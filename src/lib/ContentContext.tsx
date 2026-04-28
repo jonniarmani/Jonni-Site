@@ -60,6 +60,22 @@ interface SiteContent {
     language?: string;
     sitemapUrl?: string;
   };
+  aiIntelligence?: {
+    enabled: boolean;
+    autoApply: boolean;
+    competitors: string[];
+    profession: string;
+    lastScan?: string;
+    insights: {
+      id: string;
+      type: 'seo' | 'content' | 'competitor';
+      title: string;
+      description: string;
+      impact: 'high' | 'medium' | 'low';
+      status: 'pending' | 'applied';
+      date: string;
+    }[];
+  };
 }
 
 interface ContentContextType {
@@ -155,6 +171,33 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       language: "en-US",
       sitemapUrl: "https://jonniarmani.com/sitemap.xml",
       schemaMarkup: JSON.stringify(SCHEMA_JSON_LD, null, 2)
+    },
+    aiIntelligence: {
+      enabled: true,
+      autoApply: false,
+      profession: "Cinematographer & Photographer",
+      competitors: ["https://competitor1.com", "https://competitor2.com"],
+      lastScan: new Date().toISOString(),
+      insights: [
+        {
+          id: "1",
+          type: "seo",
+          title: "Keyword Shift Detected",
+          description: "Top regional competitors are increasing focus on 'Aerial Yacht Cinematography'. Suggest adding this to your service keywords.",
+          impact: "high",
+          status: "pending",
+          date: new Date().toISOString()
+        },
+        {
+          id: "2",
+          type: "competitor",
+          title: "Pricing Strategy Update",
+          description: "Major competitor updated 'Day Rate' transparency. Recommendation: Highlight your 'Production Transparency' in the About section.",
+          impact: "medium",
+          status: "pending",
+          date: new Date().toISOString()
+        }
+      ]
     }
   });
   const [loading, setLoading] = useState(true);
