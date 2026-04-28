@@ -89,10 +89,16 @@ export default function Home() {
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold leading-tight">
                 {content.home.lensTitle}
               </h2>
+              <h3 className="text-brand-gold text-lg font-bold uppercase tracking-widest">
+                High-Quality Visual Narrative for Local Brands
+              </h3>
               <p className="text-gray-600 text-lg leading-relaxed">
                 {content.home.lensText}
               </p>
-              <ul className="space-y-4">
+              <p className="text-gray-500 leading-relaxed font-light">
+                Our approach combines professional technical skill with local insight. We understand the specific needs of Florida businesses, from the luxury real estate market on Siesta Key to the high-energy sports culture at IMG Academy. By focusing on your core goals, we deliver media that doesn't just look good but actually works for your brand.
+              </p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {["Cinematic Clarity", "Strategic Brand Alignment", "End-to-End Production", "High-Energy Delivery"].map((item) => (
                   <li key={item} className="flex items-center space-x-3 text-brand-black font-medium">
                     <CheckCircle2 size={20} className="text-brand-gold" />
@@ -100,9 +106,11 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <Link to="/about" className="inline-flex items-center text-brand-black font-bold uppercase tracking-widest text-sm border-b-2 border-brand-gold pb-1 hover:border-brand-black transition-colors">
-                The {brand.name} Story
-              </Link>
+              <div className="pt-4">
+                <Link to="/about" className="inline-flex items-center text-brand-black font-bold uppercase tracking-widest text-sm border-b-2 border-brand-gold pb-1 hover:border-brand-black transition-colors">
+                  The {brand.name} Story
+                </Link>
+              </div>
             </div>
           </div>
         </div>

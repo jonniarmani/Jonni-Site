@@ -27,9 +27,9 @@ export const SERVICES = [
     id: "commercial",
     title: "Commercial & Promotional Video",
     short: "Cinematic Brand Storytelling & Marketing Media.",
-    description: "We specialize in high-end commercial video production and promotional media across Bradenton, Sarasota, and the Tampa Bay area. From luxury brand narratives to high-impact marketing assets, we deliver cinematic storytelling that commands attention and drives premium brand authority for businesses scaling on the Florida Gulf Coast. This strategy is ideal for established brands, creative agencies, and luxury businesses requiring professional visual authority. The core outcome is a suite of high-impact cinematic assets that elevate brand perception and increase market engagement.",
-    whoItsFor: "Established Florida brands, creative agencies, and luxury businesses requiring professional visual authority to scale their market presence.",
-    outcome: "A suite of high-impact cinematic assets that elevate brand perception, drive engagement, and command premium authority.",
+    description: "We create expert commercial films and marketing media for brands in Bradenton, the local Gulf Coast, and the Tampa region. From luxury narratives to high-energy ads, we create visual stories that grab attention. Our goal is to build strong brand presence for businesses growing in Southwest Florida. This path is perfect for established companies, creative teams, and luxury groups that need professional visual power. We deliver quality assets that improve how people see your brand and help you connect with more customers.",
+    whoItsFor: "Established local brands, agencies, and luxury businesses that need professional visual power to grow.",
+    outcome: "High-quality films and images that improve brand image, drive more interest, and show professional authority.",
     icon: "Video",
     photoCategory: "Commercial"
   },
@@ -37,9 +37,9 @@ export const SERVICES = [
     id: "sports",
     title: "Elite Athletic & Performance Media",
     short: "Professional Athletics & High-Energy Sports Media.",
-    description: "Capturing the raw energy of elite athletic performance across Florida's premier venues. We document the intensity and precision of high-level sports through dynamic video and still photography designed for recruiting, promotion, and legacy. This specialized media is ideal for professional athletes, sports agencies, collegiate prospects at IMG Academy, and athletic lifestyle brands. The core outcome is dynamic, high-energy media optimized for scouting, social impact, and brand sponsorship.",
-    whoItsFor: "Collegiate prospects at IMG Academy, professional athletes, sports agencies, and high-performance athletic lifestyle brands.",
-    outcome: "Dynamic, high-energy visual assets engineered for scouting recruitment, high-impact social presence, and brand sponsorships.",
+    description: "We document the intense energy of elite sports at top Florida locations. Our team records the power and skill of high-level athletes through motion and still shots made for recruiting and promotion. This specialized media helps professional players, sports groups, and students at IMG Academy tell their story. We provide fast-paced, high-energy visuals that work great for scouting, social media growth, and getting brand deals.",
+    whoItsFor: "IMG Academy students, pro athletes, and sports groups that need strong visuals to get noticed.",
+    outcome: "Exciting visual content built for college recruiting, growing a social following, and securing sponsorships.",
     icon: "Zap",
     photoCategory: "Sports"
   },
@@ -47,9 +47,9 @@ export const SERVICES = [
     id: "healthcare",
     title: "Medical & Wellness Narrative",
     short: "Precision Visual Solutions for Medical Professionals.",
-    description: "Expert visual communication for healthcare systems and private practices throughout Sarasota and Bradenton. We specialize in patient-centric stories, surgical procedure highlights, and medical brand documentaries for practitioners, surgical centers, and wellness providers. This precision media is ideal for medical practices, dental specialists, and healthcare marketing teams. The core outcome is trust-building clinical media that effectively communicates expertise and humanizes high-level patient care.",
-    whoItsFor: "Sarasota medical practices, dental specialists, Bradenton surgical centers, and specialized healthcare marketing teams.",
-    outcome: "Trust-building clinical media that effectively communicates technical expertise while humanizing the patient care experience.",
+    description: "We provide clear visual stories for healthcare groups and private clinics in the Sarasota region and Bradenton. We focus on patient-centered stories, showing surgical skill, and creating brand clips for doctors and wellness centers. These precise images and videos help medical teams and dental experts build trust. We create clinical media that shows your expertise while making high-level patient care feel more personal and welcoming.",
+    whoItsFor: "Local medical groups, dental experts, and health marketing teams that want to build deeper trust with patients.",
+    outcome: "Trust-building media that shows off your technical skills while making your practice feel human and caring.",
     icon: "Stethoscope",
     photoCategory: "Medical"
   },
@@ -57,9 +57,9 @@ export const SERVICES = [
     id: "corporate",
     title: "Corporate & Identity Portraiture",
     short: "Premium Executive Headshots & Personal Branding.",
-    description: "Your professional visual identity is your digital handshake and strongest asset in the Florida market. We create high-end executive headshots and professional branding portraiture in Sarasota and Bradenton that reflects your status, builds immediate credibility, and maintains a premium aesthetic across all digital and print platforms. This service is ideal for Sarasota executives, Bradenton entrepreneurs, law firms, and medical practitioners seeking sharp, authoritative visual branding. The core outcome is a premium, cohesive professional identity that commands respect in boardrooms and establishes immediate digital authority.",
-    whoItsFor: "Sarasota executives, Bradenton entrepreneurs, law firms, and medical practitioners seeking sharp, authoritative visual branding.",
-    outcome: "A premium, cohesive professional identity that commands respect in boardrooms and establishes immediate digital authority.",
+    description: "Your professional look is your first impression in the Florida business world. We take high-end headshots and branding portraits in Bradenton and the surrounding area. Our work shows your status and helps you look credible on all your websites and profiles. This service works well for local leaders, business owners, and law firms who want a sharp, professional look. We create a solid visual identity that helps you earn respect and show your authority in your field.",
+    whoItsFor: "Local executives, business owners, and law firms that need a sharp, professional look to stand out.",
+    outcome: "A professional set of photos that look great in any setting and help you build immediate authority online.",
     icon: "User",
     photoCategory: "Headshots"
   },
@@ -67,9 +67,9 @@ export const SERVICES = [
     id: "family",
     title: "Family Legacy Collective",
     short: "Cinematic Family Archives & Coastal Portraiture.",
-    description: "Preserving your family legacy through high-end portraiture and cinematic storytelling on Florida's most iconic coastlines. We specialize in sunset sessions from Siesta Key to Anna Maria Island, capturing authentic narratives that become timeless heirlooms for generations to come. This legacy documentation is ideal for discerning families visiting Siesta Key and Anna Maria Island seeking premium, unscripted documentation of their most valued relationships. The core outcome is timeless visual archives and museum-quality portraiture that preserve your family's history as a cinematic heirloom for future generations.",
-    whoItsFor: "Discerning families visiting Siesta Key and Anna Maria Island seeking premium, unscripted documentation of their most valued relationships.",
-    outcome: "Timeless visual archives and museum-quality portraiture that preserve your family's history as a cinematic heirloom for future generations.",
+    description: "We help you save your family history through beautiful photos and films on some of Florida's best beaches. We love sunset shoots on Siesta Key and Anna Maria Island, where we capture real family moments that you can keep forever. This is perfect for families visiting our local shores who want high-quality, natural documentation of their time together. We provide a visual history and museum-quality prints that your family will value for years to come.",
+    whoItsFor: "Families visiting the Gulf Coast who want natural, high-quality photos of their most important moments.",
+    outcome: "Timeless photos and films that save your family's history as a special heirloom for future generations.",
     icon: "Heart",
     photoCategory: "Family"
   }
@@ -171,35 +171,35 @@ export const PORTFOLIO = [
 
 export const SEO = {
   home: {
-    title: "Jonni Armani Media | Premium Video Production Bradenton & Sarasota FL",
-    description: "High-end cinematic video production and commercial photography in Bradenton, Sarasota, and the Tampa Bay area. Specializing in high-impact brand stories, professional sports cinematography at IMG Academy & LECOM Park, and specialized medical visuals.",
+    title: "Jonni Armani Media | Florida Gulf Coast Video & Photography",
+    description: "Premium visual storytelling for brands and athletes in Bradenton and Sarasota. Specialized commercial film and high-end photography that drives real growth.",
   },
   about: {
-    title: "About | Premium Bradenton Cinematographer & Sarasota Photographer",
-    description: "Jonni Armani is a premium creative professional capturing the intersection of movement and emotion across the Florida Gulf Coast. Expert in high-impact commercial and professional athletic media.",
+    title: "About | Professional Photographer & Videographer Bradenton FL",
+    description: "Meet Jonni Armani, a dedicated creative professional in Florida. We offer cinematic brand stories and sports media for elite performers and local businesses.",
   },
   services: {
-    title: "Services | Sports, Commercial & Healthcare Video Production FL",
-    description: "Premium media solutions for elite athletes, luxury brands, and healthcare systems. Serving Bradenton, Sarasota, Tampa, and Anna Maria Island with cinematic clarity.",
+    title: "Services | High-End Film & Brand Photography Florida",
+    description: "Expert media services for luxury brands, sports agencies, and medical groups. Serving the Gulf Coast with clear, professional, and impactful visuals.",
   },
   work: {
-    title: "Portfolio | Commercial & Sports Media Bradenton Sarasota",
-    description: "Explore cinematic brand stories and high-energy sports media from IMG Academy, LECOM Park, and Sarasota. Specialized visuals for athletes and luxury brands.",
+    title: "Portfolio | Commercial Film & Sports Photography Sarasota",
+    description: "View our recent work with IMG Academy, LECOM Park, and Florida brands. High-quality visuals for athletes, luxury real estate, and healthcare clients.",
   },
   contact: {
-    title: "Start Your Project | Video & Photo Inquiry Bradenton FL",
-    description: "Book premium media services in Bradenton, St. Pete, Sarasota, and Tampa. Cinematic video production and commercial photography projects.",
+    title: "Start Your Project | Media Inquiries Bradenton & Sarasota",
+    description: "Ready to elevate your brand? Contact us for professional video and photo projects in Bradenton, Tampa, and the surrounding Florida Gulf Coast areas.",
   }
 };
 
 export const ABOUT_CONTENT = {
   heroTitle: "The Vision Behind The Craft",
   heroSubtitle: "Jonni Armani Media",
-  storyTitle: "Pragmatic Strategy. High-Impact Results.",
-  storyText1: "I am a multidisciplinary visual storyteller based in Bradenton, Florida. With over 14 years of professional reportage, my work is built on the belief that every frame should carry the weight of a narrative.",
-  storyText2: "Whether documenting high-stakes commercial productions, breakthroughs in the healthcare field, or elite athletic performances, my approach remains constant: remain unobtrusive, observe with intent, and deliver with technical precision.",
-  storyText3: "I value integrity and authenticity above all else. My goal is not just to capture how a moment looks, but to preserve exactly how it felt. I find beauty in the raw, the unscripted, and the honest – translating complex missions into cinematic authority.",
-  quote: "My goal is not just to capture how a moment looks, but to preserve exactly how it felt.",
+  storyTitle: "Simple Strategy. Great Results.",
+  storyText1: "I am a professional photographer and videographer based in Bradenton, Florida. With over 14 years of experience, I believe every project should tell a clear story that connects with people.",
+  storyText2: "Whether I'm working on a commercial shoot, a medical documentary, or capture sports action, my goal is to stay out of the way while getting the best shots possible.",
+  storyText3: "I value honesty and hard work. My aim is to show not just how a moment looks, but how it feels. We help businesses and individuals stand out with high-quality media that builds trust and shows authority.",
+  quote: "I want to preserve exactly how a moment felt, not just what it looked like.",
   profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1000"
 };
 

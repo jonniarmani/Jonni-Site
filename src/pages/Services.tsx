@@ -102,12 +102,15 @@ export default function Services() {
                        <Icon size={32} />
                     </div>
                     <h2 className="text-4xl font-display font-bold tracking-tight uppercase">{service.title}</h2>
-                    <p className="text-brand-gold uppercase tracking-[0.2em] text-xs font-bold">{service.short}</p>
+                    <h3 className="text-brand-gold uppercase tracking-[0.2em] text-xs font-bold">{service.short}</h3>
                   </div>
                   
                   <div className="space-y-6">
                     <p className="text-gray-600 text-lg leading-relaxed font-light">
                       {service.description}
+                    </p>
+                    <p className="text-gray-500 text-sm leading-relaxed">
+                      We take a detailed approach to every project, ensuring that the final result aligns with your specific vision. Our team uses professional equipment and refined techniques to capture the essence of your business or athletic performance. Whether you are in Bradenton, Sarasota, or elsewhere on the Gulf Coast, we are committed to delivering excellence.
                     </p>
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">

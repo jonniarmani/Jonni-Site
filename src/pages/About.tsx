@@ -69,6 +69,10 @@ export default function About() {
               {about.storyText1}
             </p>
 
+            <p className="text-gray-500 text-sm leading-relaxed mb-12">
+              Over the years, I've worked across many fields. My focus is always on quality. Whether it's a small local project or a large commercial production, I bring the same level of care and attention to detail. I understand that my clients are looking for more than just images; they are looking for a way to communicate their value to the world. That's why I take the time to learn about your goals before we ever start shooting.
+            </p>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
               <div className="bg-brand-gray p-8">
                 <h3 className="text-brand-gold text-lg mb-4 uppercase tracking-widest font-bold">The Approach</h3>

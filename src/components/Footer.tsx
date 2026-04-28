@@ -59,7 +59,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-6">
-            <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-gray-500">Navigation</h4>
+            <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-gray-500">Navigation</h3>
             <ul className="space-y-4 text-sm font-medium">
               <li><Link to="/video" className="hover:text-brand-gold transition-colors">Video Production</Link></li>
               <li><Link to="/photo" className="hover:text-brand-gold transition-colors">Photography</Link></li>
@@ -70,7 +70,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-6">
-            <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-gray-500">Service Areas</h4>
+            <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-gray-500">Service Areas</h3>
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs font-medium text-gray-500">
               <li className="hover:text-brand-gold transition-colors">Bradenton</li>
               <li className="hover:text-brand-gold transition-colors">Sarasota</li>
@@ -84,7 +84,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-6">
-            <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-gray-500">Contact</h4>
+            <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-gray-500">Contact</h3>
             <ul className="space-y-4 text-sm">
               <li className="flex items-center space-x-3">
                 <Mail size={16} className="text-brand-gold" />
