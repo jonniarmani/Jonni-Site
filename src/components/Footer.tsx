@@ -124,7 +124,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center space-x-3">
                 <Calendar size={16} className="text-brand-gold" />
-                <a href={brand.contact.calendar} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">Studio Calendar</a>
+                <Link to="/booking" className="hover:text-brand-gold transition-colors">Book a Session</Link>
               </li>
             </ul>
           </div>

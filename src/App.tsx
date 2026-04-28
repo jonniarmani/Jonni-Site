@@ -16,13 +16,13 @@ import Services from "./pages/Services";
 import Video from "./pages/Video";
 import Photo from "./pages/Photo";
 import Contact from "./pages/Contact";
+import Booking from "./pages/Booking";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
-
-import { ContentProvider, useContent } from "./lib/ContentContext";
 import Admin from "./pages/Admin";
 import CodeInjection from "./components/CodeInjection";
 import SEO from "./components/SEO";
+import { ContentProvider } from "./lib/ContentContext";
 
 // Helper to scroll to top on navigation
 function ScrollToTop() {
@@ -63,6 +63,7 @@ export default function App() {
                 <Route path="/video" element={<Video />} />
                 <Route path="/photo" element={<Photo />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/booking" element={<Booking />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/admin" element={<Admin />} />

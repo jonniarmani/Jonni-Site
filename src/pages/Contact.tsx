@@ -94,9 +94,9 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-widest font-black text-gray-400 mb-2">Live Availability</p>
-                    <a href={BRAND.contact.calendar} target="_blank" rel="noopener noreferrer" className="text-2xl font-display font-bold hover:text-brand-gold transition-colors inline-flex items-center group">
-                      Studio Calendar <ArrowRight size={20} className="ml-3 group-hover:translate-x-1 transition-transform" />
-                    </a>
+                    <Link to="/booking" className="text-2xl font-display font-bold hover:text-brand-gold transition-colors inline-flex items-center group">
+                      Book a Session <ArrowRight size={20} className="ml-3 group-hover:translate-x-1 transition-transform" />
+                    </Link>
                   </div>
                </div>
             </div>

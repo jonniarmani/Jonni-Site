@@ -10,7 +10,7 @@ const NAV_ITEMS = [
   { label: "Photo", href: "/photo" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Calendar", href: BRAND.contact.calendar, isExternal: true },
+  { label: "Booking", href: "/booking" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -65,20 +65,6 @@ export default function Header() {
           {NAV_ITEMS.map((item) => {
             const isSpecial = item.label === "Video" || item.label === "Photo";
             
-            if (item.isExternal) {
-              return (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm uppercase tracking-widest font-medium hover:text-green-600 transition-colors text-brand-black"
-                >
-                  {item.label}
-                </a>
-              );
-            }
-
             if (isSpecial) {
               const isVideo = item.label === "Video";
               return (
@@ -186,25 +172,14 @@ export default function Header() {
                     closed: { y: 20, opacity: 0 }
                   }}
                 >
-                  {item.isExternal ? (
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-4xl font-display font-bold tracking-tighter uppercase text-brand-black hover:text-brand-gold transition-colors"
-                    >
-                      {item.label}
-                    </a>
-                  ) : (
-                    <Link
-                      to={item.href}
-                      className={`text-4xl font-display font-bold tracking-tighter uppercase hover:text-brand-gold transition-colors ${
-                        location.pathname === item.href ? "text-brand-gold" : "text-brand-black"
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  )}
+                  <Link
+                    to={item.href}
+                    className={`text-4xl font-display font-bold tracking-tighter uppercase hover:text-brand-gold transition-colors ${
+                      location.pathname === item.href ? "text-brand-gold" : "text-brand-black"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
                 </motion.div>
               ))}
             </motion.nav>

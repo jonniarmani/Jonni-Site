@@ -12,7 +12,7 @@ export const BRAND = {
   contact: {
     email: "jonniarmani@gmail.com",
     phone: "208.549.9544",
-    calendar: "https://calendar.google.com/calendar/u/1?cid=am9ubmlhcm1hbmlAZ21haWwuY29t",
+    calendar: "/booking",
   },
   socials: {
     instagram: "https://instagram.com/jonniarmanimedia",
