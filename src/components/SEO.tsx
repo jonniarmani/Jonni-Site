@@ -31,24 +31,40 @@ export default function SEO() {
     }
 
     // OG Tags
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute('content', seo.title || '');
-    
-    const ogDescription = document.querySelector('meta[property="og:description"]');
-    if (ogDescription) ogDescription.setAttribute('content', seo.description || '');
+    const setOgTag = (property: string, content: string) => {
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (!tag && content) {
+        tag = document.createElement('meta');
+        tag.setAttribute('property', property);
+        document.head.appendChild(tag);
+      }
+      if (tag) tag.setAttribute('content', content);
+    };
 
-    const ogImage = document.querySelector('meta[property="og:image"]');
-    if (ogImage) ogImage.setAttribute('content', seo.ogImage || '');
+    setOgTag('og:title', seo.title || '');
+    setOgTag('og:description', seo.description || '');
+    setOgTag('og:image', seo.ogImage || '');
+    setOgTag('og:url', seo.canonicalUrl || window.location.href);
+    setOgTag('og:type', 'website');
+    setOgTag('og:site_name', 'Jonni Armani Media');
 
     // Twitter Tags
-    const twitterCard = document.querySelector('meta[name="twitter:card"]');
-    if (twitterCard) twitterCard.setAttribute('content', seo.twitterCard || 'summary_large_image');
+    const setTwitterTag = (name: string, content: string) => {
+      let tag = document.querySelector(`meta[name="${name}"]`);
+      if (!tag && content) {
+        tag = document.createElement('meta');
+        tag.setAttribute('name', name);
+        document.head.appendChild(tag);
+      }
+      if (tag) tag.setAttribute('content', content);
+    };
 
-    const twitterSite = document.querySelector('meta[name="twitter:site"]');
-    if (twitterSite) twitterSite.setAttribute('content', seo.twitterHandle || '');
-
-    const twitterCreator = document.querySelector('meta[name="twitter:creator"]');
-    if (twitterCreator) twitterCreator.setAttribute('content', seo.twitterHandle || '');
+    setTwitterTag('twitter:card', seo.twitterCard || 'summary_large_image');
+    setTwitterTag('twitter:site', seo.twitterHandle || '');
+    setTwitterTag('twitter:creator', seo.twitterHandle || '');
+    setTwitterTag('twitter:title', seo.title || '');
+    setTwitterTag('twitter:description', seo.description || '');
+    setTwitterTag('twitter:image', seo.ogImage || '');
 
     // Robots
     const robots = document.querySelector('meta[name="robots"]');
