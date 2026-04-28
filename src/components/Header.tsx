@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { BRAND } from "../config";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Video, Camera } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -85,71 +85,18 @@ export default function Header() {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`relative overflow-hidden text-[10px] uppercase tracking-[0.2em] font-bold px-6 py-2.5 rounded-full border-2 transition-all duration-300 flex items-center group active:scale-95 ${
+                  className={`text-[10px] uppercase tracking-[0.2em] font-bold px-6 py-2.5 rounded-full border-2 transition-all duration-300 flex items-center group active:scale-95 ${
                     location.pathname === item.href 
                     ? "bg-brand-gold text-white border-brand-gold shadow-lg shadow-brand-gold/20" 
                     : "border-brand-gold text-brand-black hover:bg-brand-gold hover:text-white"
                   }`}
                 >
-                  <span className="relative z-10">{item.label}</span>
-                  
-                  {/* Video: Traditional Movie Scroll Film Strip */}
-                  {isVideo && (
-                    <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-30 flex items-center overflow-hidden">
-                      <motion.div 
-                        className="flex whitespace-nowrap py-1"
-                        animate={{ x: [0, -100] }}
-                        transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
-                      >
-                        {[...Array(15)].map((_, i) => (
-                          <div key={i} className="flex-shrink-0 w-8 h-5 mx-1 border-x border-white relative flex flex-col justify-between py-0.5 bg-black">
-                            <div className="flex justify-between px-0.5">
-                              <div className="w-1 h-1 bg-white" />
-                              <div className="w-1 h-1 bg-white" />
-                            </div>
-                            <div className="flex justify-between px-0.5 mt-auto">
-                              <div className="w-1 h-1 bg-white" />
-                              <div className="w-1 h-1 bg-white" />
-                            </div>
-                          </div>
-                        ))}
-                      </motion.div>
-                    </div>
+                  {isVideo ? (
+                    <Video size={14} className="mr-2 transition-transform group-hover:scale-110" />
+                  ) : (
+                    <Camera size={14} className="mr-2 transition-transform group-hover:scale-110" />
                   )}
-
-                  {/* Photo: Camera Shutter Blink/Flash Animation */}
-                  {!isVideo && (
-                    <motion.div 
-                      className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden"
-                    >
-                      <motion.div 
-                        className="w-full h-full bg-white opacity-0"
-                        variants={{
-                          initial: { opacity: 0 },
-                          hover: { 
-                            opacity: [0, 1, 0, 1, 0],
-                            transition: { 
-                              duration: 0.4, 
-                              times: [0, 0.2, 0.4, 0.6, 0.8],
-                              ease: "easeInOut"
-                            }
-                          }
-                        }}
-                        initial="initial"
-                        whileHover="hover"
-                      />
-                      <motion.div 
-                        className="absolute inset-0 border-4 border-white/50 scale-110 opacity-0"
-                        variants={{
-                          hover: { 
-                            scale: [1.2, 1],
-                            opacity: [0.5, 0],
-                            transition: { duration: 0.3 }
-                          }
-                        }}
-                      />
-                    </motion.div>
-                  )}
+                  <span>{item.label}</span>
                 </Link>
               );
             }
