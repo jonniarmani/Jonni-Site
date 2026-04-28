@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useContent } from "../lib/ContentContext";
+import ResponsiveImage from "./ResponsiveImage";
 
 export default function HeroMontage() {
   const { content } = useContent();
@@ -70,12 +71,11 @@ export default function HeroMontage() {
             )
           ) : (
             visuals[index].url && (
-              <img
+              <ResponsiveImage
                 src={visuals[index].url}
                 alt={visuals[index].category}
                 fetchPriority={index === 0 ? "high" : undefined}
-                width="2000"
-                height="1333"
+                sizes="100vw"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: visuals[index].objectPosition || 'center center' }}
               />

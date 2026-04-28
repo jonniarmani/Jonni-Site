@@ -4,6 +4,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { ArrowRight, Image as ImageIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useContent } from "../lib/ContentContext";
+import ResponsiveImage from "../components/ResponsiveImage";
 
 interface PhotoItem {
   category: string;
@@ -71,10 +72,11 @@ function PhotoProject({ item }: { item: PhotoItem }) {
               className="absolute inset-0"
             >
               {allImages[activeIdx] && (
-                <img 
+                <ResponsiveImage 
                   src={allImages[activeIdx]} 
                   alt={`${item.title} - Active View`} 
                   className="w-full h-full object-cover"
+                  sizes="(max-width: 1024px) 100vw, 60vw"
                   style={{ objectPosition: (item as any).objectPosition || 'center center' }}
                 />
               )}
@@ -97,10 +99,11 @@ function PhotoProject({ item }: { item: PhotoItem }) {
               className={`flex-shrink-0 w-24 sm:w-32 aspect-[4/5] bg-zinc-100 overflow-hidden relative cursor-pointer transition-all duration-300 border-2 ${activeIdx === i ? 'border-brand-gold ring-4 ring-brand-gold/10' : 'border-transparent opacity-60 hover:opacity-100'}`}
             >
               {img && (
-                <img 
+                <ResponsiveImage 
                   src={img} 
                   alt={`${item.title} Thumbnail ${i + 1}`} 
                   className={`w-full h-full object-cover transition-all duration-500 ${activeIdx === i ? 'scale-110' : ''}`}
+                  sizes="150px"
                 />
               )}
               {activeIdx === i && (

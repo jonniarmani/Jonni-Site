@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Play, ArrowRight, Video as VideoIcon, X } from "lucide-react";
 import { useState } from "react";
 import { useContent } from "../lib/ContentContext";
+import ResponsiveImage from "../components/ResponsiveImage";
 
 export default function Video() {
   const { content } = useContent();
@@ -134,10 +135,11 @@ export default function Video() {
                     ) : (
                       <>
                         {item.placeholder ? (
-                          <img 
+                          <ResponsiveImage 
                             src={item.placeholder} 
                             alt={item.alt || item.title} 
                             className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
+                            sizes="(max-width: 768px) 100vw, 50vw"
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center bg-zinc-900 border border-zinc-800">
