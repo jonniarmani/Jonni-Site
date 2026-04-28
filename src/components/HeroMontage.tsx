@@ -74,6 +74,8 @@ export default function HeroMontage() {
                 src={visuals[index].url}
                 alt={visuals[index].category}
                 fetchPriority={index === 0 ? "high" : undefined}
+                width="2000"
+                height="1333"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: visuals[index].objectPosition || 'center center' }}
               />

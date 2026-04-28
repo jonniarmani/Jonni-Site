@@ -180,7 +180,7 @@ export default function Video() {
                           </span>
                         )}
                       </div>
-                      <h3 className="text-3xl font-display font-bold tracking-tight uppercase group-hover:text-brand-gold transition-colors">{item.title}</h3>
+                      <h2 className="text-3xl font-display font-bold tracking-tight uppercase group-hover:text-brand-gold transition-colors">{item.title}</h2>
                     </div>
                     <div className="w-12 h-12 flex items-center justify-end text-brand-black group-hover:translate-x-2 transition-transform">
                       <ArrowRight size={24} />

@@ -75,6 +75,8 @@ export default function Home() {
             <img 
               src={content.home.lensImage} 
               alt={content.seo?.altTags?.['home-lens'] || `${brand.name} - Professional Video Production and Brand Storytelling Bradenton, Sarasota`} 
+              width="1200"
+              height="1500"
               className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
               style={{ objectPosition: content.home.lensImagePosition || 'center center' }}
             />
@@ -139,6 +141,8 @@ export default function Home() {
              <img 
                 src={content.home.ctaBackground} 
                 alt="Florida Gulf Coast Landscape - Serving Bradenton and Sarasota area"
+                width="2000"
+                height="1333"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: content.home.ctaBackgroundPosition || 'center center' }}
              />

@@ -40,6 +40,9 @@ export default function App() {
       <SEO />
       <Router>
         <ScrollToTop />
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-brand-gold focus:text-white focus:font-bold focus:uppercase focus:tracking-widest focus:rounded-full">
+          Skip to content
+        </a>
         <div className="flex flex-col min-h-screen selection:bg-brand-gold selection:text-white relative">
           <div className="grain-overlay" />
           
@@ -51,7 +54,7 @@ export default function App() {
 
           <Header />
           <PromoPopup />
-          <main className="flex-grow">
+          <main id="main-content" className="flex-grow">
             <PageTransition>
               <Routes>
                 <Route path="/" element={<Home />} />

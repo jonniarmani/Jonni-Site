@@ -50,11 +50,11 @@ export default function About() {
                 <p className="text-xl font-display font-bold">{brand.name}</p>
               </div>
               <div className="flex space-x-6">
-                 <a href={brand.socials.instagram} target="_blank" rel="noreferrer" className="text-brand-black hover:text-brand-gold transition-colors flex items-center space-x-2 font-bold uppercase tracking-widest text-xs">
+                 <a href={brand.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-brand-black hover:text-brand-gold transition-colors flex items-center space-x-2 font-bold uppercase tracking-widest text-xs">
                     <Instagram size={18} />
                     <span>Follow Journey</span>
                  </a>
-                 <a href={brand.socials.vimeo} target="_blank" rel="noreferrer" className="text-brand-black hover:text-brand-gold transition-colors flex items-center space-x-2 font-bold uppercase tracking-widest text-xs">
+                 <a href={brand.socials.vimeo} target="_blank" rel="noopener noreferrer" className="text-brand-black hover:text-brand-gold transition-colors flex items-center space-x-2 font-bold uppercase tracking-widest text-xs">
                     <Video size={18} />
                     <span>Watch Work</span>
                  </a>
@@ -97,7 +97,7 @@ export default function About() {
             </p>
 
             <div className="pt-10 border-t border-gray-100">
-               <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-400 mb-8">Selected Collaborations</h4>
+               <h3 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-400 mb-8">Selected Collaborations</h3>
                <div className="flex flex-wrap gap-x-12 gap-y-8 grayscale opacity-50 mb-20">
                   {["Brand Stories", "Healthcare", "Athletics", "Commercial", "Identity"].map(item => (
                     <span key={item} className="text-2xl font-display font-bold tracking-tighter">{item}</span>

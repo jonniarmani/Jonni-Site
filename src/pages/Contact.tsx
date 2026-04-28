@@ -94,7 +94,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-widest font-black text-gray-400 mb-2">Live Availability</p>
-                    <a href={BRAND.contact.calendar} target="_blank" rel="noreferrer" className="text-2xl font-display font-bold hover:text-brand-gold transition-colors inline-flex items-center group">
+                    <a href={BRAND.contact.calendar} target="_blank" rel="noopener noreferrer" className="text-2xl font-display font-bold hover:text-brand-gold transition-colors inline-flex items-center group">
                       Studio Calendar <ArrowRight size={20} className="ml-3 group-hover:translate-x-1 transition-transform" />
                     </a>
                   </div>
@@ -102,7 +102,7 @@ export default function Contact() {
             </div>
 
             <div className="bg-brand-black text-white p-12 space-y-8">
-               <h3 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-500">Location Focus</h3>
+               <h2 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-500">Location Focus</h2>
                <p className="text-lg font-light leading-relaxed">
                   Headquartered in <span className="text-brand-gold font-bold">Bradenton, FL</span>. Serving {BRAND.location} and the wider Gulf Coast. Available for travel for global cinematic assignments.
                </p>
@@ -123,7 +123,7 @@ export default function Contact() {
                 <div className="w-20 h-20 bg-brand-black text-brand-gold flex items-center justify-center mx-auto rounded-full">
                   <CheckCircle size={40} />
                 </div>
-                <h3 className="text-3xl font-display font-bold uppercase tracking-tight">Transmission Received</h3>
+                <h2 className="text-3xl font-display font-bold uppercase tracking-tight">Transmission Received</h2>
                 <p className="text-gray-500 max-w-sm mx-auto leading-relaxed">
                   Thank you for starting the conversation. I will review your project details and respond within 24–48 hours.
                 </p>

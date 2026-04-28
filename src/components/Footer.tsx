@@ -46,7 +46,7 @@ export default function Footer() {
               <a 
                 href={brand.socials.instagram} 
                 target="_blank" 
-                rel="noreferrer" 
+                rel="noopener noreferrer" 
                 className="hover:scale-110 transition-transform text-[#E4405F]"
                 aria-label="Visit our Instagram profile"
               >
@@ -56,7 +56,7 @@ export default function Footer() {
               <a 
                 href={brand.socials.facebook} 
                 target="_blank" 
-                rel="noreferrer" 
+                rel="noopener noreferrer" 
                 className="hover:scale-110 transition-transform text-[#1877F2]"
                 aria-label="Visit our Facebook page"
               >
@@ -66,7 +66,7 @@ export default function Footer() {
               <a 
                 href={brand.socials.youtube} 
                 target="_blank" 
-                rel="noreferrer" 
+                rel="noopener noreferrer" 
                 className="hover:scale-110 transition-transform text-[#FF0000]"
                 aria-label="Visit our YouTube channel"
               >
@@ -76,7 +76,7 @@ export default function Footer() {
               <a 
                 href={brand.socials.vimeo} 
                 target="_blank" 
-                rel="noreferrer" 
+                rel="noopener noreferrer" 
                 className="hover:scale-110 transition-transform text-[#1AB7EA]"
                 aria-label="Visit our Vimeo portfolio"
               >
@@ -124,7 +124,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center space-x-3">
                 <Calendar size={16} className="text-brand-gold" />
-                <a href={brand.contact.calendar} target="_blank" rel="noreferrer" className="hover:text-brand-gold transition-colors">Studio Calendar</a>
+                <a href={brand.contact.calendar} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">Studio Calendar</a>
               </li>
             </ul>
           </div>

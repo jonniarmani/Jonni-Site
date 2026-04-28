@@ -34,9 +34,9 @@ function PhotoProject({ item }: { item: PhotoItem }) {
               {item.client} {item.year && `• ${item.year}`}
             </span>
           </div>
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tighter uppercase group-hover:text-brand-gold transition-colors leading-[0.9]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tighter uppercase group-hover:text-brand-gold transition-colors leading-[0.9]">
             {item.title}
-          </h3>
+          </h2>
         </div>
 
         <p className="text-gray-500 text-sm font-light leading-relaxed max-w-xs">
