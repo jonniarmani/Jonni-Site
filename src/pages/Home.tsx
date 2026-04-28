@@ -30,7 +30,7 @@ export default function Home() {
             <h1 
               className="text-4xl sm:text-7xl md:text-9xl font-display font-bold text-white leading-[0.9] mb-10 tracking-tighter uppercase italic"
               dangerouslySetInnerHTML={{ 
-                __html: content.seo?.h1Override || `${brand.tagline.includes('.') ? brand.tagline.split('.')[0] : brand.tagline} <br /> <span class="text-brand-gold not-italic">COMMERCIAL PHOTOGRAPHY</span>`
+                __html: content.seo?.h1Override || `Cinematic Video <br /> <span class="text-brand-gold not-italic">Commercial Photography</span>`
               }}
             />
             <p className="text-lg md:text-2xl font-light mb-12 max-w-2xl leading-relaxed text-gray-300">

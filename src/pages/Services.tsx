@@ -37,7 +37,7 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] mb-12 uppercase italic"
           >
-            Commercial Video <br /> <span className="text-brand-gold not-italic">& Photo Production.</span>
+            Professional Media <br /> <span className="text-brand-gold not-italic">& Identity Production.</span>
           </motion.h1>
           <p className="text-gray-500 text-lg sm:text-2xl font-light max-w-2xl leading-relaxed">
             High-end visual products engineered for high-stakes industries. We don't just deliver media; we deliver measurable brand elevation.
@@ -59,12 +59,25 @@ export default function Services() {
                     className="aspect-video bg-brand-gray relative group overflow-hidden"
                   >
                     {service.visualType === 'video' ? (
-                      <video 
-                        src={service.visualUrl} 
-                        className="w-full h-full object-cover"
-                        style={{ objectPosition: service.objectPosition || 'center center' }}
-                        autoPlay muted loop playsInline
-                      />
+                      <div className="w-full h-full">
+                        {service.visualUrl?.includes('youtube.com') || service.visualUrl?.includes('youtu.be') || service.visualUrl?.includes('vimeo.com') ? (
+                          <iframe 
+                            src={service.visualUrl.includes('youtube.com') || service.visualUrl.includes('youtu.be') 
+                              ? `https://www.youtube.com/embed/${service.visualUrl.split('v=')[1] || service.visualUrl.split('/').pop()?.split('?')[0]}` 
+                              : `https://player.vimeo.com/video/${service.visualUrl.split('/').pop()?.split('?')[0]}`}
+                            className="w-full h-full border-0"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowFullScreen
+                          />
+                        ) : (
+                          <video 
+                            src={service.visualUrl} 
+                            className="w-full h-full object-cover"
+                            style={{ objectPosition: service.objectPosition || 'center center' }}
+                            autoPlay muted loop playsInline
+                          />
+                        )}
+                      </div>
                     ) : (
                       <img 
                         src={service.visualUrl} 
@@ -97,22 +110,22 @@ export default function Services() {
                       {service.description}
                     </p>
                     
-                    <div className="grid grid-cols-2 gap-8 pt-8 border-t border-gray-100">
-                      <div>
-                        <p className="text-[10px] uppercase tracking-widest font-black text-gray-400 mb-3">Ideal For</p>
-                        <p className="text-sm font-bold text-gray-800">{service.whoItsFor}</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                      <div className="bg-gray-50 p-6 border-l-2 border-brand-gold">
+                        <p className="text-[10px] uppercase tracking-widest font-black text-gray-400 mb-2">Ideal For</p>
+                        <p className="text-sm font-bold text-gray-900 leading-tight">{service.whoItsFor}</p>
                       </div>
-                      <div>
-                        <p className="text-[10px] uppercase tracking-widest font-black text-gray-400 mb-3">Core Outcome</p>
-                        <p className="text-sm font-bold text-gray-800">{service.outcome}</p>
+                      <div className="bg-gray-50 p-6 border-l-2 border-brand-gold">
+                        <p className="text-[10px] uppercase tracking-widest font-black text-gray-400 mb-2">Core Outcome</p>
+                        <p className="text-sm font-bold text-gray-900 leading-tight">{service.outcome}</p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 pt-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 pt-6">
                     <Link 
                       to="/contact" 
-                      className="inline-flex items-center text-brand-black font-bold uppercase tracking-widest text-xs border-b-2 border-brand-gold pb-2 hover:border-brand-black transition-colors"
+                      className="inline-flex items-center text-brand-black font-bold uppercase tracking-widest text-xs border-b-2 border-brand-gold pb-1 hover:border-brand-black transition-colors"
                     >
                       Inquire About This Service <ArrowRight size={16} className="ml-3" />
                     </Link>
@@ -120,9 +133,9 @@ export default function Services() {
                     {service.photoCategory && (
                       <Link 
                         to={`/photo?category=${service.photoCategory}`} 
-                        className="inline-flex items-center text-gray-400 font-bold uppercase tracking-widest text-[10px] hover:text-brand-gold transition-colors"
+                        className="inline-flex items-center text-gray-400 font-bold uppercase tracking-widest text-[10px] hover:text-brand-gold transition-colors group"
                       >
-                        <Camera size={14} className="mr-2" /> View {service.photoCategory} Gallery
+                        <Camera size={14} className="mr-2 group-hover:scale-110 transition-transform" /> View the {service.photoCategory} Gallery
                       </Link>
                     )}
                   </div>

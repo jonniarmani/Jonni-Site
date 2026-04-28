@@ -5,8 +5,8 @@
 export const BRAND = {
   name: "Jonni Armani Media",
   title: "Premium Creative Professional",
-  tagline: "Cinematic Video. Commercial Photography. Strategic Results.",
-  taglineExtended: "High-end video production and photography for brands, athletes, and industry leaders across the Florida Gulf Coast.",
+  tagline: "Cinematic Video Commercial Photography",
+  taglineExtended: "High-end cinematic video production and commercial photography for brands, athletes, and industry leaders across the Florida Gulf Coast.",
   location: "Bradenton, Sarasota, Palmetto, Tampa, Siesta Key, Lakewood Ranch, Ellenton, Parrish, FL, Bradenton Beach",
   locationsDetail: "Bradenton, Palmetto, Sarasota, St. Pete, Anna Maria Island, Siesta Key, Tampa, Apollo Beach, Lakewood Ranch, Parrish, Venice, Ellenton, Bradenton Beach, Florida, IMG Academy, LECOM Park",
   contact: {
@@ -25,51 +25,51 @@ export const BRAND = {
 export const SERVICES = [
   {
     id: "commercial",
-    title: "Commercial & Promotional",
-    short: "High-end brand storytelling and promotional content.",
-    description: "I help brands connect with their audience through cinematic storytelling and commercial photography. From product launches to promotional media, I deliver visuals that command attention.",
-    whoItsFor: "Established brands, agencies, and luxury businesses.",
-    outcome: "High-impact visual assets that elevate brand perception.",
+    title: "Commercial & Promotional Video",
+    short: "Cinematic Brand Storytelling & Marketing Media.",
+    description: "We specialize in high-end commercial video production and promotional media across Bradenton, Sarasota, and the Tampa Bay area. From luxury brand narratives to high-impact marketing assets, we deliver cinematic storytelling that commands attention and drives premium brand authority for businesses scaling on the Florida Gulf Coast. This strategy is ideal for established brands, creative agencies, and luxury businesses requiring professional visual authority. The core outcome is a suite of high-impact cinematic assets that elevate brand perception and increase market engagement.",
+    whoItsFor: "Established Florida brands, creative agencies, and luxury businesses requiring professional visual authority to scale their market presence.",
+    outcome: "A suite of high-impact cinematic assets that elevate brand perception, drive engagement, and command premium authority.",
     icon: "Video",
     photoCategory: "Commercial"
   },
   {
     id: "sports",
-    title: "Sports & Event",
-    short: "Dynamic visuals for athletes, teams, and high-energy events.",
-    description: "Capturing the raw energy of elite performance. From the historic diamonds of LECOM Park to the world-class fields of IMG Academy, I deliver broadcast-quality cinematography and photography for athletes who demand the best.",
-    whoItsFor: "Professional athletes, sports agencies, and athletic brands.",
-    outcome: "High-energy media optimized for social impact and scouting.",
+    title: "Elite Athletic & Performance Media",
+    short: "Professional Athletics & High-Energy Sports Media.",
+    description: "Capturing the raw energy of elite athletic performance across Florida's premier venues. We document the intensity and precision of high-level sports through dynamic video and still photography designed for recruiting, promotion, and legacy. This specialized media is ideal for professional athletes, sports agencies, collegiate prospects at IMG Academy, and athletic lifestyle brands. The core outcome is dynamic, high-energy media optimized for scouting, social impact, and brand sponsorship.",
+    whoItsFor: "Collegiate prospects at IMG Academy, professional athletes, sports agencies, and high-performance athletic lifestyle brands.",
+    outcome: "Dynamic, high-energy visual assets engineered for scouting recruitment, high-impact social presence, and brand sponsorships.",
     icon: "Zap",
     photoCategory: "Sports"
   },
   {
     id: "healthcare",
-    title: "Healthcare Production",
-    short: "Precision visual solutions for healthcare and clinics.",
-    description: "Expert visual communication for healthcare systems. I specialize in dental video, clinical procedure highlights, and healthcare brand documentaries.",
-    whoItsFor: "Medical practices, dental clinics, and surgical centers.",
-    outcome: "Trust-building media that humanizes high-stakes expertise.",
+    title: "Medical & Wellness Narrative",
+    short: "Precision Visual Solutions for Medical Professionals.",
+    description: "Expert visual communication for healthcare systems and private practices throughout Sarasota and Bradenton. We specialize in patient-centric stories, surgical procedure highlights, and medical brand documentaries for practitioners, surgical centers, and wellness providers. This precision media is ideal for medical practices, dental specialists, and healthcare marketing teams. The core outcome is trust-building clinical media that effectively communicates expertise and humanizes high-level patient care.",
+    whoItsFor: "Sarasota medical practices, dental specialists, Bradenton surgical centers, and specialized healthcare marketing teams.",
+    outcome: "Trust-building clinical media that effectively communicates technical expertise while humanizing the patient care experience.",
     icon: "Stethoscope",
-    photoCategory: "Healthcare"
+    photoCategory: "Medical"
   },
   {
     id: "corporate",
-    title: "Brand Stories & Headshots",
-    short: "Professional identity and executive presence.",
-    description: "Your visual identity is your first impression. I create high-end headshots and corporate branding content that reflects your professional status and aesthetic.",
-    whoItsFor: "Executives, entrepreneurs, and professional service firms.",
-    outcome: "A cohesive, premium visual identity for multi-platform use.",
+    title: "Corporate & Identity Portraiture",
+    short: "Premium Executive Headshots & Personal Branding.",
+    description: "Your professional visual identity is your digital handshake and strongest asset. We create high-end executive headshots and professional branding portraiture in Sarasota and Bradenton that reflects your status, builds immediate credibility, and maintains a premium aesthetic across all platforms. This service is ideal for executives, entrepreneurs, law firms, and medical professionals throughout Manatee and Sarasota counties. The core outcome is a cohesive, high-end professional identity that commands respect and establishes immediate authority.",
+    whoItsFor: "Sarasota executives, Bradenton entrepreneurs, law firms, and medical practitioners seeking sharp, authoritative visual branding.",
+    outcome: "A premium, cohesive professional identity that commands respect in boardrooms and establishes immediate digital authority.",
     icon: "User",
     photoCategory: "Headshots"
   },
   {
     id: "family",
     title: "Family Legacy Collective",
-    short: "Timeless portraiture and cinematic family archives.",
-    description: "Preserving your legacy through high-end portraiture and cinematic storytelling. I specialize in sunset sessions on Siesta Key and Anna Maria Island, capturing your family's most authentic moments.",
-    whoItsFor: "Discerning families looking for premium legacy documentation.",
-    outcome: "Timeless heirlooms that preserve your family narrative.",
+    short: "Cinematic Family Archives & Coastal Portraiture.",
+    description: "Preserving your family legacy through high-end portraiture and cinematic storytelling on Florida's most iconic coastlines. We specialize in sunset sessions from Siesta Key to Anna Maria Island, capturing authentic narratives that become timeless heirlooms for generations to come. This legacy documentation is ideal for discerning families seeking premium, unscripted documentation of their most valued relationships. The core outcome is a timeless visual archive and museum-quality portraiture that preserves your family's history for future generations.",
+    whoItsFor: "Discerning families visiting Siesta Key and Anna Maria Island seeking premium, unscripted documentation of their most valued relationships.",
+    outcome: "Timeless visual archives and museum-quality portraiture that preserve your family's history as a cinematic heirloom for future generations.",
     icon: "Heart",
     photoCategory: "Family"
   }
