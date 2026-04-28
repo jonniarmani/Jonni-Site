@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useContent } from '../lib/ContentContext';
 import { auth, googleProvider, signInWithPopup, signOut, db, doc, setDoc, handleFirestoreError, OperationType, collection, deleteDoc, onSnapshot } from '../lib/firebase';
-import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Upload, RefreshCw, Globe, Twitter, ShieldCheck, Check, Sparkles, Filter, Settings, Activity, Zap, Search, BrainCircuit, ExternalLink, AlertCircle, Target } from 'lucide-react';
+import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Upload, Download, RefreshCw, Globe, Twitter, ShieldCheck, Check, Sparkles, Filter, Settings, Activity, Zap, Search, BrainCircuit, ExternalLink, AlertCircle, Target } from 'lucide-react';
 import FileUploader from '../components/FileUploader';
 
 const FocalPointSelector = ({ value, onChange, label = "Focal Point Precision" }: { value?: string, onChange: (val: string) => void, label?: string }) => {
@@ -122,6 +122,40 @@ export default function Admin() {
     });
     
     setIsScanning(false);
+  };
+
+  const downloadBackup = () => {
+    const dataStr = JSON.stringify(localContent, null, 2);
+    const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+    const exportFileDefaultName = `site-backup-${new Date().toISOString().split('T')[0]}.json`;
+
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+  };
+
+  const handleBackupUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const json = JSON.parse(e.target?.result as string);
+        if (json && typeof json === 'object') {
+          setLocalContent(json);
+          alert("Backup uploaded successfully. Review the changes and click 'Publish Changes' to synchronize with live site.");
+        } else {
+          throw new Error("Invalid backup format");
+        }
+      } catch (err) {
+        alert("Failed to parse backup file. Please ensure it's a valid JSON export.");
+      }
+    };
+    reader.readAsText(file);
+    // Reset input
+    event.target.value = '';
   };
 
   const fetchVideoThumbnail = async (videoUrl: string, index: number) => {
@@ -2025,6 +2059,33 @@ export default function Admin() {
                           onChange={(e) => setLocalContent({...localContent, customCode: {...(localContent.customCode || {}), css: e.target.value}})}
                         />
                       </div>
+                    </div>
+
+                    <div className="pt-12 border-t mt-12 bg-gray-50 p-8 rounded-lg">
+                       <div className="flex items-center space-x-3 mb-6">
+                         <ShieldCheck size={20} className="text-brand-black" />
+                         <h3 className="text-sm font-black uppercase tracking-widest">System Backup & Portability</h3>
+                       </div>
+                       <p className="text-xs text-gray-500 mb-8 font-medium max-w-xl">
+                         Export your entire site configuration as a JSON backup. This includes all branding, SEO, portfolio references, and AI intelligence data. You can re-upload this file to restore your settings.
+                       </p>
+                       <div className="flex flex-wrap gap-4">
+                         <button 
+                            onClick={downloadBackup}
+                            className="bg-brand-black text-white px-6 py-3 text-[10px] font-black uppercase tracking-widest flex items-center hover:bg-brand-gold transition-all shadow-lg active:scale-95"
+                         >
+                            <Download size={14} className="mr-2" /> Download Site Backup
+                         </button>
+                         <label className="bg-white border-2 border-brand-black text-brand-black px-6 py-3 text-[10px] font-black uppercase tracking-widest flex items-center hover:bg-brand-black hover:text-white transition-all shadow-lg active:scale-95 cursor-pointer">
+                            <Upload size={14} className="mr-2" /> Upload Restore File
+                            <input 
+                              type="file" 
+                              accept=".json" 
+                              className="hidden" 
+                              onChange={handleBackupUpload}
+                            />
+                         </label>
+                       </div>
                     </div>
                   </div>
                 </div>
