@@ -50,10 +50,10 @@ export default function HeroMontage() {
       <AnimatePresence mode="wait">
         <motion.div
           key={index}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 0.6, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
           className="absolute inset-0"
         >
           {visuals[index].type === 'video' ? (
@@ -81,25 +81,9 @@ export default function HeroMontage() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Cyan/Blue Coastal Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/20 to-brand-gold/10 mix-blend-overlay" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-brand-black/80" />
-      
-      {/* Category Flash - SEO Optimized Verticals */}
-      <div className="absolute bottom-10 right-10 z-20 overflow-hidden text-right">
-        <AnimatePresence mode="wait">
-          <motion.span
-            key={keywords[keywordIndex]}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -20, opacity: 0 }}
-            className="text-brand-gold text-[10px] uppercase tracking-[0.5em] font-black block"
-          >
-            {keywords[keywordIndex]}
-          </motion.span>
-        </AnimatePresence>
-        <span className="text-white/20 text-[7px] uppercase tracking-[0.2em] font-bold block mt-1">Authority Index</span>
-      </div>
+      {/* Simplified Overlays */}
+      <div className="absolute inset-0 bg-brand-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-black/80" />
     </div>
   );
 }

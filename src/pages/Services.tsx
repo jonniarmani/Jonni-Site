@@ -30,14 +30,14 @@ export default function Services() {
             animate={{ opacity: 1 }}
             className="text-brand-gold uppercase tracking-[0.4em] text-xs font-bold mb-8 block font-sans"
           >
-            Core Offerings
+            Florida Gulf Coast Media Solutions
           </motion.span>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] mb-12 uppercase italic"
           >
-            Professional <br /> <span className="text-brand-gold not-italic">Solutions.</span>
+            Commercial Video <br /> <span className="text-brand-gold not-italic">& Photo Production.</span>
           </motion.h1>
           <p className="text-gray-500 text-lg sm:text-2xl font-light max-w-2xl leading-relaxed">
             High-end visual products engineered for high-stakes industries. We don't just deliver media; we deliver measurable brand elevation.
@@ -69,7 +69,7 @@ export default function Services() {
                       <img 
                         src={service.visualUrl} 
                         alt={`${service.title} - Professional Video Production Bradenton ${service.short}`} 
-                        className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                         style={{ objectPosition: service.objectPosition || 'center center' }}
                       />
                     )}

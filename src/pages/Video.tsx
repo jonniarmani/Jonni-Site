@@ -53,14 +53,14 @@ export default function Video() {
               animate={{ opacity: 1 }}
               className="text-brand-gold uppercase tracking-[0.4em] text-xs font-bold mb-8 block"
             >
-              Motion & High-Performance
+              Florida Commercial & Sports Video
             </motion.span>
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] mb-8 uppercase"
             >
-              Cine<span className="italic font-light text-gray-400">matic</span> Sport.
+              Commercial <br /><span className="italic font-light text-gray-400">Cinematography.</span>
             </motion.h1>
             <p className="text-gray-500 text-lg sm:text-xl font-light leading-relaxed max-w-xl">
               Capturing the intensity of elite competition—from the diamonds of LECOM Park to the world-renowned fields of IMG Academy.

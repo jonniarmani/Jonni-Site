@@ -27,13 +27,10 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="max-w-4xl"
           >
-            <span className="text-white/40 uppercase tracking-[0.2em] md:tracking-[0.5em] text-[9px] md:text-[10px] font-black mb-8 block leading-loose md:leading-normal">
-              EST. 2018 | {brand.location}
-            </span>
             <h1 
               className="text-4xl sm:text-7xl md:text-9xl font-display font-bold text-white leading-[0.9] mb-10 tracking-tighter uppercase italic"
               dangerouslySetInnerHTML={{ 
-                __html: content.seo?.h1Override || `${brand.tagline.includes('.') ? brand.tagline.split('.')[0] : brand.tagline} <br /> <span class="text-brand-gold not-italic">${brand.tagline.includes('.') ? brand.tagline.split('.')[1] : ""}</span>`
+                __html: content.seo?.h1Override || `${brand.tagline.includes('.') ? brand.tagline.split('.')[0] : brand.tagline} <br /> <span class="text-brand-gold not-italic">COMMERCIAL PHOTOGRAPHY</span>`
               }}
             />
             <p className="text-lg md:text-2xl font-light mb-12 max-w-2xl leading-relaxed text-gray-300">

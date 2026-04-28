@@ -100,7 +100,7 @@ function PhotoProject({ item }: { item: PhotoItem }) {
                 <img 
                   src={img} 
                   alt={`${item.title} Thumbnail ${i + 1}`} 
-                  className={`w-full h-full object-cover transition-all duration-500 ${activeIdx === i ? 'scale-110' : 'grayscale group-hover:grayscale-0'}`}
+                  className={`w-full h-full object-cover transition-all duration-500 ${activeIdx === i ? 'scale-110' : ''}`}
                 />
               )}
               {activeIdx === i && (
@@ -141,8 +141,8 @@ export default function Photo() {
   return (
     <div className="pt-24 sm:pt-32 pb-24 sm:pb-40">
       <SEOComp 
-        title="Sports & Professional Photography | Jonni Armani Media" 
-        description="Premium brand identity and high-performance sports photography. Capturing the spirit of LECOM Park baseball and IMG Academy athletic excellence." 
+        title="Premium Professional & Event Photography | Jonni Armani Media" 
+        description="High-end professional identity and event photography across the Florida Gulf Coast. Specializing in medical, sports, corporate headshots, family, and event media." 
       />
       
       <div className="container mx-auto px-6">
@@ -153,14 +153,14 @@ export default function Photo() {
               animate={{ opacity: 1 }}
               className="text-brand-gold uppercase tracking-[0.4em] text-xs font-bold mb-8 block"
             >
-              High-End Visual Identity
+              Bradenton & Sarasota Photography
             </motion.span>
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl sm:text-6xl md:text-9xl font-display font-bold tracking-tighter leading-[0.8] mb-8 uppercase"
+              className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.8] mb-8 uppercase"
             >
-              Elite <br /><span className="italic font-light text-gray-400">Sports & Identity.</span>
+              Professional <br /><span className="italic font-light text-gray-400">Brand & Event Media.</span>
             </motion.h1>
             <p className="text-gray-500 text-lg sm:text-xl font-light leading-relaxed max-w-xl">
               From the historic baseline at LECOM Park to the high-stakes performance at IMG Academy—every frame is a legacy in the making.
