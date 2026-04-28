@@ -73,6 +73,7 @@ export default function HeroMontage() {
               <img
                 src={visuals[index].url}
                 alt={visuals[index].category}
+                fetchPriority={index === 0 ? "high" : undefined}
                 className="w-full h-full object-cover"
                 style={{ objectPosition: visuals[index].objectPosition || 'center center' }}
               />

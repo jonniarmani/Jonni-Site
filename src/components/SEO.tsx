@@ -98,7 +98,21 @@ export default function SEO() {
       document.head.appendChild(script);
     }
 
-  }, [seo]);
+    // Image Preloading (LCP Optimization)
+    const existingPreload = document.getElementById('lcp-preload');
+    if (existingPreload) existingPreload.remove();
+
+    if (window.location.pathname === '/' && content.home.heroVisuals?.[0]?.url) {
+      const link = document.createElement('link');
+      link.id = 'lcp-preload';
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = content.home.heroVisuals[0].url;
+      link.setAttribute('fetchpriority', 'high');
+      document.head.appendChild(link);
+    }
+
+  }, [seo, content.home.heroVisuals]);
 
   return null;
 }
