@@ -57,7 +57,7 @@ export const SERVICES = [
     id: "corporate",
     title: "Corporate & Identity Portraiture",
     short: "Premium Executive Headshots & Personal Branding.",
-    description: "Your professional visual identity is your digital handshake and strongest asset. We create high-end executive headshots and professional branding portraiture in Sarasota and Bradenton that reflects your status, builds immediate credibility, and maintains a premium aesthetic across all platforms. This service is ideal for executives, entrepreneurs, law firms, and medical professionals throughout Manatee and Sarasota counties. The core outcome is a cohesive, high-end professional identity that commands respect and establishes immediate authority.",
+    description: "Your professional visual identity is your digital handshake and strongest asset in the Florida market. We create high-end executive headshots and professional branding portraiture in Sarasota and Bradenton that reflects your status, builds immediate credibility, and maintains a premium aesthetic across all digital and print platforms. This service is ideal for Sarasota executives, Bradenton entrepreneurs, law firms, and medical practitioners seeking sharp, authoritative visual branding. The core outcome is a premium, cohesive professional identity that commands respect in boardrooms and establishes immediate digital authority.",
     whoItsFor: "Sarasota executives, Bradenton entrepreneurs, law firms, and medical practitioners seeking sharp, authoritative visual branding.",
     outcome: "A premium, cohesive professional identity that commands respect in boardrooms and establishes immediate digital authority.",
     icon: "User",
@@ -67,7 +67,7 @@ export const SERVICES = [
     id: "family",
     title: "Family Legacy Collective",
     short: "Cinematic Family Archives & Coastal Portraiture.",
-    description: "Preserving your family legacy through high-end portraiture and cinematic storytelling on Florida's most iconic coastlines. We specialize in sunset sessions from Siesta Key to Anna Maria Island, capturing authentic narratives that become timeless heirlooms for generations to come. This legacy documentation is ideal for discerning families seeking premium, unscripted documentation of their most valued relationships. The core outcome is a timeless visual archive and museum-quality portraiture that preserves your family's history for future generations.",
+    description: "Preserving your family legacy through high-end portraiture and cinematic storytelling on Florida's most iconic coastlines. We specialize in sunset sessions from Siesta Key to Anna Maria Island, capturing authentic narratives that become timeless heirlooms for generations to come. This legacy documentation is ideal for discerning families visiting Siesta Key and Anna Maria Island seeking premium, unscripted documentation of their most valued relationships. The core outcome is timeless visual archives and museum-quality portraiture that preserve your family's history as a cinematic heirloom for future generations.",
     whoItsFor: "Discerning families visiting Siesta Key and Anna Maria Island seeking premium, unscripted documentation of their most valued relationships.",
     outcome: "Timeless visual archives and museum-quality portraiture that preserve your family's history as a cinematic heirloom for future generations.",
     icon: "Heart",
@@ -191,6 +191,73 @@ export const SEO = {
     description: "Book premium media services in Bradenton, St. Pete, Sarasota, and Tampa. Cinematic video production and commercial photography projects.",
   }
 };
+
+export const ABOUT_CONTENT = {
+  heroTitle: "The Vision Behind The Craft",
+  heroSubtitle: "Jonni Armani Media",
+  storyTitle: "Pragmatic Strategy. High-Impact Results.",
+  storyText1: "I am a multidisciplinary visual storyteller based in Bradenton, Florida. With over 14 years of professional reportage, my work is built on the belief that every frame should carry the weight of a narrative.",
+  storyText2: "Whether documenting high-stakes commercial productions, breakthroughs in the healthcare field, or elite athletic performances, my approach remains constant: remain unobtrusive, observe with intent, and deliver with technical precision.",
+  storyText3: "I value integrity and authenticity above all else. My goal is not just to capture how a moment looks, but to preserve exactly how it felt. I find beauty in the raw, the unscripted, and the honest – translating complex missions into cinematic authority.",
+  quote: "My goal is not just to capture how a moment looks, but to preserve exactly how it felt.",
+  profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1000"
+};
+
+export const HOME_CONTENT = {
+  lensTitle: "Precision Visuals. Strategic Growth.",
+  lensText: "In a competitive landscape, cinematic quality is a business requirement. I specialize in high-impact narratives that drive brand authority and professional results.",
+  lensImage: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1200",
+  ctaBackground: "https://images.unsplash.com/photo-1520116467321-f1463a863260?auto=format&fit=crop&q=80&w=2000",
+  heroVisuals: [
+    { url: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Sports' },
+    { url: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Healthcare' },
+    { url: "https://images.unsplash.com/photo-1544698310-74ae2696c1e3?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Performance' },
+    { url: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Brand Stories' },
+    { url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Coastal' }
+  ]
+};
+
+export const TESTIMONIALS = [
+  {
+    author: "Jordan Thompson",
+    role: "Healthcare Director",
+    content: "Jonni is an absolute professional. The cinematic quality of the video he produced for our regional practice was beyond our expectations. He understands the nuances of professional brand storytelling.",
+    rating: 5,
+    date: "3 months ago"
+  },
+  {
+    author: "Sarah Mitchell",
+    role: "Commercial Marketing Lead",
+    content: "High-impact visuals and a strategic eye. He captured our brand story perfectly. The ROI on the media assets we received has already proven itself across our social platforms.",
+    rating: 5,
+    date: "1 month ago"
+  },
+  {
+    author: "Marcus Rivera",
+    role: "Professional Athletics Coach",
+    content: "The sports media Jonni produces is next level. Fast turnaround and broadcast quality gear used with actual intent. If you need to stand out from the noise, this is who you call.",
+    rating: 5,
+    date: "2 weeks ago"
+  }
+];
+
+export const INDUSTRIES = [
+  { id: "real-estate", name: "Luxury Real Estate", description: "Cinematic walkthroughs for Sarasota waterfront estates and architectural showcases." },
+  { id: "architecture", name: "Architecture & Design", description: "Strategic photography for interior designers and architectural firms in Florida." },
+  { id: "hospitality", name: "Resort & Hospitality", description: "Promotional media for Longboat Key resorts and luxury hospitality brands." },
+  { id: "culinary", name: "Fine Dining", description: "Culinary storytelling for Sarasota and Bradenton's high-end dining scene." },
+  { id: "marine", name: "Marine & Yachting", description: "Cinematic drone and walkthroughs for Tampa Bay yacht brokers." },
+  { id: "automotive", name: "High-End Automotive", description: "Marketing visuals for luxury automotive dealerships and private collections." },
+  { id: "medical", name: "Medical & Wellness", description: "Patient-centric stories for plastic surgeons and wellness centers in Tampa." },
+  { id: "construction", name: "Property Development", description: "Time-lapse and drone progress for major construction projects in Gulf Coast." },
+  { id: "retail", name: "Fashion & Retail", description: "High-impact lookbook and campaign visuals for local boutiques." },
+  { id: "athletics", name: "Professional Athletics", description: "Elite performance reels for athletes training at IMG Academy and beyond." },
+  { id: "corporate", name: "Tech & Corporate", description: "Corporate mission profiles for Tampa tech startups and headquarters." },
+  { id: "dentistry", name: "Dentistry & Oral Surgery", description: "Specialized clinical media showcasing patient transformations and technical oral surgery." },
+  { id: "legal", name: "Legal Discovery", description: "Professional legal videography and settlement documentaries for law firms." },
+  { id: "modeling", name: "Modeling & Talent", description: "Portfolio development and cinematic reels for professional models and agencies." },
+  { id: "home-design", name: "Interior & Home Design", description: "Editorial-style photography for home designers and luxury residential transitions." }
+];
 
 export const SCHEMA_JSON_LD = {
   "@context": "https://schema.org",

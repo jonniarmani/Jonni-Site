@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { auth, db, onSnapshot, doc, handleFirestoreError, OperationType } from './firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
-import { BRAND, SERVICES, PORTFOLIO } from '../config';
+import { BRAND, SERVICES, PORTFOLIO, ABOUT_CONTENT, HOME_CONTENT, TESTIMONIALS, INDUSTRIES, SCHEMA_JSON_LD, SEO } from '../config';
 
 interface SiteContent {
   brand: typeof BRAND;
@@ -21,46 +21,16 @@ interface SiteContent {
     images?: string[];
     objectPosition?: string;
   })[];
-  about: {
-    heroTitle: string;
-    heroSubtitle: string;
-    storyTitle: string;
-    storyText1: string;
-    storyText2: string;
-    storyText3: string;
-    quote: string;
-    profileImage: string;
-    profileImagePosition?: string;
-  };
-  home: {
-    lensTitle: string;
-    lensText: string;
-    lensImage: string;
-    lensImagePosition?: string;
-    ctaBackground: string;
-    ctaBackgroundPosition?: string;
-    heroVisuals: { url: string; type: 'image' | 'video'; category: string; objectPosition?: string }[];
-  };
+  about: typeof ABOUT_CONTENT;
+  home: typeof HOME_CONTENT;
   promo: {
     enabled: boolean;
     title: string;
     message: string;
     code: string;
   };
-  testimonials: {
-    author: string;
-    role: string;
-    content: string;
-    rating: number;
-    date: string;
-    avatar?: string;
-  }[];
-  industries?: {
-    id: string;
-    name: string;
-    description: string;
-    icon?: string;
-  }[];
+  testimonials: typeof TESTIMONIALS;
+  industries?: typeof INDUSTRIES;
   customCode?: {
     head?: string;
     bodyStart?: string;
@@ -103,18 +73,7 @@ const ContentContext = createContext<ContentContextType | undefined>(undefined);
 
 export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [content, setContent] = useState<SiteContent>({
-    brand: {
-      ...BRAND,
-      name: "Jonni Armani Media",
-      tagline: "Cinematic Video. Commercial Photography. Strategic Results.",
-      taglineExtended: "High-end video production and photography for brands, athletes, and industry leaders across the Florida Gulf Coast.",
-      location: "Bradenton, Sarasota, Palmetto, Tampa, Siesta Key, Lakewood Ranch, Ellenton, Parrish, FL, Bradenton Beach",
-      contact: {
-        ...BRAND.contact,
-        phone: "208.549.9544",
-        email: "jonniarmani@gmail.com"
-      }
-    },
+    brand: BRAND,
     services: SERVICES.map(s => {
       let visualUrl = "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=1000";
       let visualType: 'image' | 'video' = 'image';
@@ -153,75 +112,16 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       isFeatured: true,
       images: [p.placeholder, p.placeholder, p.placeholder, p.placeholder] 
     })),
-    about: {
-      heroTitle: "The Vision Behind The Craft",
-      heroSubtitle: "Jonni Armani Media",
-      storyTitle: "Pragmatic Strategy. High-Impact Results.",
-      storyText1: "I am a multidisciplinary visual storyteller based in Bradenton, Florida. With over 14 years of professional reportage, my work is built on the belief that every frame should carry the weight of a narrative.",
-      storyText2: "Whether documenting high-stakes commercial productions, breakthroughs in the healthcare field, or elite athletic performances, my approach remains constant: remain unobtrusive, observe with intent, and deliver with technical precision.",
-      storyText3: "I value integrity and authenticity above all else. My goal is not just to capture how a moment looks, but to preserve exactly how it felt. I find beauty in the raw, the unscripted, and the honest – translating complex missions into cinematic authority.",
-      quote: "My goal is not just to capture how a moment looks, but to preserve exactly how it felt.",
-      profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1000"
-    },
-    home: {
-      lensTitle: "Precision Visuals. Strategic Growth.",
-      lensText: "In a competitive landscape, cinematic quality is a business requirement. I specialize in high-impact narratives that drive brand authority and professional results.",
-      lensImage: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1200",
-      ctaBackground: "https://images.unsplash.com/photo-1520116467321-f1463a863260?auto=format&fit=crop&q=80&w=2000",
-      heroVisuals: [
-        { url: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Sports' },
-        { url: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Healthcare' },
-        { url: "https://images.unsplash.com/photo-1544698310-74ae2696c1e3?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Performance' },
-        { url: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Brand Stories' },
-        { url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Coastal' }
-      ]
-    },
+    about: ABOUT_CONTENT,
+    home: HOME_CONTENT,
     promo: {
       enabled: false,
       title: "EXCLUSIVE OFFER",
       message: "Book your brand story session today and receive 20% off your first production.",
       code: "STORY20"
     },
-    testimonials: [
-      {
-        author: "Jordan Thompson",
-        role: "Healthcare Director",
-        content: "Jonni is an absolute professional. The cinematic quality of the video he produced for our regional practice was beyond our expectations. He understands the nuances of professional brand storytelling.",
-        rating: 5,
-        date: "3 months ago"
-      },
-      {
-        author: "Sarah Mitchell",
-        role: "Commercial Marketing Lead",
-        content: "High-impact visuals and a strategic eye. He captured our brand story perfectly. The ROI on the media assets we received has already proven itself across our social platforms.",
-        rating: 5,
-        date: "1 month ago"
-      },
-      {
-        author: "Marcus Rivera",
-        role: "Professional Athletics Coach",
-        content: "The sports media Jonni produces is next level. Fast turnaround and broadcast quality gear used with actual intent. If you need to stand out from the noise, this is who you call.",
-        rating: 5,
-        date: "2 weeks ago"
-      }
-    ],
-    industries: [
-      { id: "real-estate", name: "Luxury Real Estate", description: "Cinematic walkthroughs for Sarasota waterfront estates and architectural showcases." },
-      { id: "architecture", name: "Architecture & Design", description: "Strategic photography for interior designers and architectural firms in Florida." },
-      { id: "hospitality", name: "Resort & Hospitality", description: "Promotional media for Longboat Key resorts and luxury hospitality brands." },
-      { id: "culinary", name: "Fine Dining", description: "Culinary storytelling for Sarasota and Bradenton's high-end dining scene." },
-      { id: "marine", name: "Marine & Yachting", description: "Cinematic drone and walkthroughs for Tampa Bay yacht brokers." },
-      { id: "automotive", name: "High-End Automotive", description: "Marketing visuals for luxury automotive dealerships and private collections." },
-      { id: "medical", name: "Medical & Wellness", description: "Patient-centric stories for plastic surgeons and wellness centers in Tampa." },
-      { id: "construction", name: "Property Development", description: "Time-lapse and drone progress for major construction projects in Gulf Coast." },
-      { id: "retail", name: "Fashion & Retail", description: "High-impact lookbook and campaign visuals for local boutiques." },
-      { id: "athletics", name: "Professional Athletics", description: "Elite performance reels for athletes training at IMG Academy and beyond." },
-      { id: "corporate", name: "Tech & Corporate", description: "Corporate mission profiles for Tampa tech startups and headquarters." },
-      { id: "dentistry", name: "Dentistry & Oral Surgery", description: "Specialized clinical media showcasing patient transformations and technical oral surgery." },
-      { id: "legal", name: "Legal Discovery", description: "Professional legal videography and settlement documentaries for law firms." },
-      { id: "modeling", name: "Modeling & Talent", description: "Portfolio development and cinematic reels for professional models and agencies." },
-      { id: "home-design", name: "Interior & Home Design", description: "Editorial-style photography for home designers and luxury residential transitions." }
-    ],
+    testimonials: TESTIMONIALS,
+    industries: INDUSTRIES,
     customCode: {
       head: "",
       bodyStart: "",
@@ -235,8 +135,8 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       fontSans: "Inter"
     },
     seo: {
-      title: "Jonni Armani Media | Cinematic Video & Commercial Photo Bradenton Sarasota Tampa",
-      description: "Elite cinematic video production & commercial photography in Bradenton, Sarasota, and Tampa. Expert media for luxury real estate, surgeons, architectural firms, yacht brokers, and professional athletes. The Gulf Coast authority in high-impact brand storytelling.",
+      title: SEO.home.title,
+      description: SEO.home.description,
       keywords: "video production Bradenton, Sarasota commercial photographer, Tampa brand storytelling, luxury real estate video Florida, healthcare marketing media, sports performance reels, architectural photography, yacht cinematography Gulf Coast",
       ogImage: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000",
       h1Override: "Cinematic Video <br /> <span class='text-brand-gold'>Commercial Photography</span>",
@@ -254,59 +154,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       twitterCard: "summary_large_image",
       language: "en-US",
       sitemapUrl: "https://jonniarmani.com/sitemap.xml",
-      schemaMarkup: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Jonni Armani Media",
-        "image": "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000",
-        "@id": "https://jonniarmani.com",
-        "url": "https://jonniarmani.com",
-        "telephone": "208.549.9544",
-        "priceRange": "$$$",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "",
-          "addressLocality": "Bradenton",
-          "addressRegion": "FL",
-          "postalCode": "34205",
-          "addressCountry": "US"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 27.4989,
-          "longitude": -82.5748
-        },
-        "hasMap": "https://share.google/HT4TAtwwAeGY4mlVQ",
-        "sameAs": [
-          "https://www.instagram.com/jonniarmani/",
-          "https://facebook.com/jonniarmanimedia",
-          "https://vimeo.com/jonniarmani",
-          "https://youtube.com/jonniarmani",
-          "https://share.google/HT4TAtwwAeGY4mlVQ"
-        ],
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
-          ],
-          "opens": "09:00",
-          "closes": "18:00"
-        },
-        "areaServed": [
-          "Bradenton",
-          "Sarasota",
-          "Tampa",
-          "Lakewood Ranch",
-          "Siesta Key",
-          "Anna Maria Island",
-          "Palmetto"
-        ],
-        "description": "Premium cinematic video production and commercial photography across the Florida Gulf Coast."
-      }, null, 2)
+      schemaMarkup: JSON.stringify(SCHEMA_JSON_LD, null, 2)
     }
   });
   const [loading, setLoading] = useState(true);
