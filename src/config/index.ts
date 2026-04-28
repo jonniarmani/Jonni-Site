@@ -194,9 +194,9 @@ export const SEO = {
 
 export const SCHEMA_JSON_LD = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "ProfessionalService",
   "name": "Jonni Armani Media",
-  "image": "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=1200",
+  "image": "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000",
   "@id": "https://jonniarmani.com",
   "url": "https://jonniarmani.com",
   "telephone": "208.549.9544",
@@ -214,7 +214,7 @@ export const SCHEMA_JSON_LD = {
     "latitude": 27.4989,
     "longitude": -82.5748
   },
-  "hasMap": "https://maps.app.goo.gl/w1bzJpUP4rexqiDS8",
+  "hasMap": "https://share.google/HT4TAtwwAeGY4mlVQ",
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": [
@@ -229,8 +229,10 @@ export const SCHEMA_JSON_LD = {
   },
   "sameAs": [
     BRAND.socials.instagram,
+    BRAND.socials.facebook,
     BRAND.socials.vimeo,
-    "https://maps.app.goo.gl/w1bzJpUP4rexqiDS8"
+    BRAND.socials.youtube,
+    "https://share.google/HT4TAtwwAeGY4mlVQ"
   ],
   "areaServed": [
     "Bradenton",
@@ -239,6 +241,8 @@ export const SCHEMA_JSON_LD = {
     "St. Petersburg",
     "Siesta Key",
     "Anna Maria Island",
-    "Lakewood Ranch"
-  ]
+    "Lakewood Ranch",
+    "Palmetto"
+  ],
+  "description": "Premium cinematic video production and commercial photography across the Florida Gulf Coast."
 };

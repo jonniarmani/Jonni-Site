@@ -262,12 +262,13 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         "@id": "https://jonniarmani.com",
         "url": "https://jonniarmani.com",
         "telephone": "208.549.9544",
+        "priceRange": "$$$",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "",
           "addressLocality": "Bradenton",
           "addressRegion": "FL",
-          "postalCode": "34221",
+          "postalCode": "34205",
           "addressCountry": "US"
         },
         "geo": {
@@ -275,11 +276,13 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
           "latitude": 27.4989,
           "longitude": -82.5748
         },
-        "hasMap": "https://maps.app.goo.gl/Nd7TRimptM7MAJjF8",
+        "hasMap": "https://share.google/HT4TAtwwAeGY4mlVQ",
         "sameAs": [
           "https://www.instagram.com/jonniarmani/",
+          "https://facebook.com/jonniarmanimedia",
           "https://vimeo.com/jonniarmani",
-          "https://maps.app.goo.gl/Nd7TRimptM7MAJjF8"
+          "https://youtube.com/jonniarmani",
+          "https://share.google/HT4TAtwwAeGY4mlVQ"
         ],
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
@@ -292,7 +295,17 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
           ],
           "opens": "09:00",
           "closes": "18:00"
-        }
+        },
+        "areaServed": [
+          "Bradenton",
+          "Sarasota",
+          "Tampa",
+          "Lakewood Ranch",
+          "Siesta Key",
+          "Anna Maria Island",
+          "Palmetto"
+        ],
+        "description": "Premium cinematic video production and commercial photography across the Florida Gulf Coast."
       }, null, 2)
     }
   });
