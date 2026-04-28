@@ -43,17 +43,45 @@ export default function Footer() {
               {brand.location}
             </p>
             <div className="flex space-x-6">
-              <a href={brand.socials.instagram} target="_blank" rel="noreferrer" className="hover:scale-110 transition-transform text-[#E4405F]">
+              <a 
+                href={brand.socials.instagram} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="hover:scale-110 transition-transform text-[#E4405F]"
+                aria-label="Visit our Instagram profile"
+              >
                 <Instagram size={24} />
+                <span className="sr-only">Instagram</span>
               </a>
-              <a href={brand.socials.facebook} target="_blank" rel="noreferrer" className="hover:scale-110 transition-transform text-[#1877F2]">
+              <a 
+                href={brand.socials.facebook} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="hover:scale-110 transition-transform text-[#1877F2]"
+                aria-label="Visit our Facebook page"
+              >
                 <Facebook size={24} />
+                <span className="sr-only">Facebook</span>
               </a>
-              <a href={brand.socials.youtube} target="_blank" rel="noreferrer" className="hover:scale-110 transition-transform text-[#FF0000]">
+              <a 
+                href={brand.socials.youtube} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="hover:scale-110 transition-transform text-[#FF0000]"
+                aria-label="Visit our YouTube channel"
+              >
                 <Youtube size={24} />
+                <span className="sr-only">YouTube</span>
               </a>
-              <a href={brand.socials.vimeo} target="_blank" rel="noreferrer" className="hover:scale-110 transition-transform text-[#1AB7EA]">
+              <a 
+                href={brand.socials.vimeo} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="hover:scale-110 transition-transform text-[#1AB7EA]"
+                aria-label="Visit our Vimeo portfolio"
+              >
                 <Video size={24} />
+                <span className="sr-only">Vimeo</span>
               </a>
             </div>
           </div>
