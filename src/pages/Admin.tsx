@@ -2463,26 +2463,6 @@ export default function Admin() {
                         <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Photo Gallery</h2>
                         <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage high-end stills and brand photography</p>
                       </div>
-                      <div className="flex gap-4">
-                        <button 
-                          onClick={() => setShowAIGenerator(true)}
-                          className="px-6 py-4 bg-brand-gold text-brand-black flex items-center space-x-3 hover:bg-yellow-500 transition-all shadow-xl active:scale-95 group"
-                          title="Generate Still with AI"
-                        >
-                          <Sparkles size={18} className="group-hover:rotate-12 transition-transform" />
-                          <span className="text-[10px] font-black uppercase tracking-widest">Generate with AI</span>
-                        </button>
-                        <button 
-                          onClick={() => {
-                            const newWork = [...localContent.portfolio, { category: "Branding", title: "New Photo Project", placeholder: "", url: "#", videoUrl: "", type: 'photo' }];
-                            setLocalContent({...localContent, portfolio: newWork});
-                          }}
-                          className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-xl active:scale-90"
-                          title="Add Still Asset"
-                        >
-                          <Plus size={24} />
-                        </button>
-                      </div>
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -2495,38 +2475,72 @@ export default function Admin() {
                                Position {idx + 1}
                              </span>
                              <div className="flex gap-2">
-                               <button 
-                                 disabled={idx === 0}
-                                 onClick={() => {
-                                   if (idx === 0) return;
-                                   const newPortfolio = [...localContent.portfolio];
-                                   const filtered = localContent.portfolio.filter(p => p.type === 'photo');
-                                   const prevItem = filtered[idx - 1];
-                                   const prevRealIdx = localContent.portfolio.findIndex(p => p === prevItem);
-                                   [newPortfolio[realIdx], newPortfolio[prevRealIdx]] = [newPortfolio[prevRealIdx], newPortfolio[realIdx]];
-                                   setLocalContent({...localContent, portfolio: newPortfolio});
-                                 }}
-                                 className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-cyan-500 shadow-sm transition-all hover:border-cyan-500"
-                                 title="Move Left"
-                               >
-                                 <ChevronRight size={18} className="rotate-180" />
-                               </button>
-                               <button 
-                                 disabled={idx === localContent.portfolio.filter(p => p.type === 'photo').length - 1}
-                                 onClick={() => {
-                                   const filtered = localContent.portfolio.filter(p => p.type === 'photo');
-                                   if (idx === filtered.length - 1) return;
-                                   const newPortfolio = [...localContent.portfolio];
-                                   const nextItem = filtered[idx + 1];
-                                   const nextRealIdx = localContent.portfolio.findIndex(p => p === nextItem);
-                                   [newPortfolio[realIdx], newPortfolio[nextRealIdx]] = [newPortfolio[nextRealIdx], newPortfolio[realIdx]];
-                                   setLocalContent({...localContent, portfolio: newPortfolio});
-                                 }}
-                                 className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-cyan-500 shadow-sm transition-all hover:border-cyan-500"
-                                 title="Move Right"
-                               >
-                                 <ChevronRight size={18} />
-                               </button>
+                               <div className="grid grid-cols-2 gap-1">
+                                 <button 
+                                   disabled={idx < 3}
+                                   onClick={() => {
+                                     if (idx < 3) return;
+                                     const newPortfolio = [...localContent.portfolio];
+                                     const filtered = localContent.portfolio.filter(p => p.type === 'photo');
+                                     const targetItem = filtered[idx - 3];
+                                     const targetRealIdx = localContent.portfolio.findIndex(p => p === targetItem);
+                                     [newPortfolio[realIdx], newPortfolio[targetRealIdx]] = [newPortfolio[targetRealIdx], newPortfolio[realIdx]];
+                                     setLocalContent({...localContent, portfolio: newPortfolio});
+                                   }}
+                                   className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-gold shadow-sm transition-all disabled:opacity-30"
+                                   title="Move Up"
+                                 >
+                                   <ChevronRight size={14} className="-rotate-90" />
+                                 </button>
+                                 <button 
+                                   disabled={idx >= localContent.portfolio.filter(p => p.type === 'photo').length - 3}
+                                   onClick={() => {
+                                     const filtered = localContent.portfolio.filter(p => p.type === 'photo');
+                                     if (idx >= filtered.length - 3) return;
+                                     const newPortfolio = [...localContent.portfolio];
+                                     const targetItem = filtered[idx + 3];
+                                     const targetRealIdx = localContent.portfolio.findIndex(p => p === targetItem);
+                                     [newPortfolio[realIdx], newPortfolio[targetRealIdx]] = [newPortfolio[targetRealIdx], newPortfolio[realIdx]];
+                                     setLocalContent({...localContent, portfolio: newPortfolio});
+                                   }}
+                                   className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-gold shadow-sm transition-all disabled:opacity-30"
+                                   title="Move Down"
+                                 >
+                                   <ChevronRight size={14} className="rotate-90" />
+                                 </button>
+                                 <button 
+                                   disabled={idx === 0}
+                                   onClick={() => {
+                                     if (idx === 0) return;
+                                     const newPortfolio = [...localContent.portfolio];
+                                     const filtered = localContent.portfolio.filter(p => p.type === 'photo');
+                                     const prevItem = filtered[idx - 1];
+                                     const prevRealIdx = localContent.portfolio.findIndex(p => p === prevItem);
+                                     [newPortfolio[realIdx], newPortfolio[prevRealIdx]] = [newPortfolio[prevRealIdx], newPortfolio[realIdx]];
+                                     setLocalContent({...localContent, portfolio: newPortfolio});
+                                   }}
+                                   className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-gold shadow-sm transition-all disabled:opacity-30"
+                                   title="Move Left"
+                                 >
+                                   <ChevronRight size={14} className="rotate-180" />
+                                 </button>
+                                 <button 
+                                   disabled={idx === localContent.portfolio.filter(p => p.type === 'photo').length - 1}
+                                   onClick={() => {
+                                     const filtered = localContent.portfolio.filter(p => p.type === 'photo');
+                                     if (idx === filtered.length - 1) return;
+                                     const newPortfolio = [...localContent.portfolio];
+                                     const nextItem = filtered[idx + 1];
+                                     const nextRealIdx = localContent.portfolio.findIndex(p => p === nextItem);
+                                     [newPortfolio[realIdx], newPortfolio[nextRealIdx]] = [newPortfolio[nextRealIdx], newPortfolio[realIdx]];
+                                     setLocalContent({...localContent, portfolio: newPortfolio});
+                                   }}
+                                   className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-gold shadow-sm transition-all disabled:opacity-30"
+                                   title="Move Right"
+                                 >
+                                   <ChevronRight size={14} />
+                                 </button>
+                               </div>
                                <button 
                                  onClick={() => {
                                    if (window.confirm("Authorize permanent disposal of this still asset?")) {
@@ -2726,6 +2740,37 @@ export default function Admin() {
                         </div>
                       );
                     })}
+
+                    {/* Manual Add Card */}
+                    <button 
+                      onClick={() => {
+                        const newWork = [...localContent.portfolio, { category: "Branding", title: "New Photo Project", placeholder: "", url: "#", videoUrl: "", type: 'photo' }];
+                        setLocalContent({...localContent, portfolio: newWork});
+                      }}
+                      className="aspect-[4/5] p-8 rounded-lg border-2 border-dashed border-gray-200 flex flex-col items-center justify-center space-y-4 hover:border-brand-gold hover:bg-zinc-50 transition-all group min-h-[400px]"
+                    >
+                      <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 group-hover:bg-brand-gold group-hover:text-brand-black transition-all">
+                        <Plus size={32} />
+                      </div>
+                      <div className="text-center">
+                        <span className="block text-xs font-black uppercase tracking-widest text-gray-400 group-hover:text-brand-black">Add Manual Slot</span>
+                        <p className="text-[9px] text-gray-300 font-bold uppercase mt-1">Insert a new blank asset</p>
+                      </div>
+                    </button>
+
+                    {/* AI Generation Card */}
+                    <button 
+                      onClick={() => setShowAIGenerator(true)}
+                      className="aspect-[4/5] p-8 rounded-lg border-2 border-dashed border-brand-gold/30 bg-brand-gold/5 flex flex-col items-center justify-center space-y-4 hover:border-brand-gold hover:bg-brand-gold/10 transition-all group min-h-[400px]"
+                    >
+                      <div className="w-16 h-16 rounded-full bg-brand-gold flex items-center justify-center text-brand-black shadow-lg group-hover:scale-110 transition-all">
+                        <Sparkles size={32} />
+                      </div>
+                      <div className="text-center">
+                        <span className="block text-xs font-black uppercase tracking-widest text-brand-black">Generate with AI</span>
+                        <p className="text-[9px] text-brand-gold font-bold uppercase mt-1">Synthesize new visuals</p>
+                      </div>
+                    </button>
                   </div>
                 </div>
               )}
