@@ -65,6 +65,8 @@ export default function HeroMontage() {
                 muted
                 loop
                 playsInline
+                preload="auto"
+                {...(index === 0 ? { fetchPriority: "high" } : {})}
                 className="w-full h-full object-cover"
                 style={{ 
                   objectPosition: visuals[index].objectPosition || 'center center',
@@ -77,7 +79,8 @@ export default function HeroMontage() {
               <ResponsiveImage
                 src={visuals[index].url}
                 alt={visuals[index].category}
-                fetchPriority={index === 0 ? "high" : undefined}
+                fetchPriority={index === 0 ? "high" : "auto"}
+                loading={index === 0 ? "eager" : "lazy"}
                 sizes="100vw"
                 className="w-full h-full object-cover"
                 style={{ 

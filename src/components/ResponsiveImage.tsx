@@ -27,7 +27,8 @@ export const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
         src={src} 
         alt={alt} 
         className={className} 
-        loading="lazy" 
+        loading={props.loading || "lazy"} 
+        decoding={props.decoding || (props.loading === "eager" ? "sync" : "async")}
         {...props} 
       />
     );
@@ -62,7 +63,7 @@ export const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
       alt={alt}
       className={className}
       loading={props.loading || "lazy"}
-      decoding="async"
+      decoding={props.decoding || (props.loading === "eager" ? "sync" : "async")}
       {...props}
     />
   );
