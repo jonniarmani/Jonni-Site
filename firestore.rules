@@ -48,11 +48,16 @@ service cloud.firestore {
     }
 
     function isValidLead(data) {
-      return data.name is string && data.email is string;
+      return data.name is string && data.name.size() < 500
+        && data.email is string && data.email.size() < 500
+        && (!data.keys().hasAny(['bookingDate']) || (data.bookingDate is string && data.bookingDate.size() < 100))
+        && (!data.keys().hasAny(['bookingStatus']) || data.bookingStatus in ['none', 'requested', 'confirmed']);
     }
 
     function isValidProject(data) {
-      return data.title is string && data.clientEmail is string;
+      return data.title is string && data.title.size() < 500
+        && data.clientEmail is string && data.clientEmail.size() < 500
+        && (!data.keys().hasAny(['bookingDate']) || (data.bookingDate is string && data.bookingDate.size() < 100));
     }
 
     function isValidCommunication(data) {

@@ -16,6 +16,8 @@ export default function Portal() {
   const [newMessage, setNewMessage] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState("");
+  const [startTime] = useState(Date.now());
 
   useEffect(() => {
     if (!id) return;
@@ -91,6 +93,15 @@ export default function Portal() {
 
   const handleBooking = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Anti-Spam
+    const timeToFill = Date.now() - startTime;
+    if (honeypot || timeToFill < 2000) {
+      console.warn("Spam detected in booking system.");
+      alert("Consultation protocol initiated. Awaiting agency confirmation."); // Fake success
+      return;
+    }
+
     const dateInput = (e.target as HTMLFormElement).elements.namedItem('bookingDate') as HTMLInputElement;
     const date = dateInput.value;
     if (!date || sending || !id || !relatedType) return;
@@ -216,6 +227,18 @@ export default function Portal() {
                          </div>
                       ) : (
                          <form onSubmit={handleBooking} className="space-y-4">
+                            {/* Honeypot Security Layer */}
+                            <div className="hidden" aria-hidden="true">
+                              <input 
+                                type="text" 
+                                name="booking_verification" 
+                                tabIndex={-1} 
+                                autoComplete="off"
+                                value={honeypot}
+                                onChange={(e) => setHoneypot(e.target.value)}
+                              />
+                            </div>
+
                             <div className="relative">
                                <input 
                                  type="datetime-local" 

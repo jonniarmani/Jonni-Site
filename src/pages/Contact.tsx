@@ -17,6 +17,8 @@ export default function Contact() {
     email: "",
     message: ""
   });
+  const [honeypot, setHoneypot] = useState("");
+  const [startTime] = useState(Date.now());
 
   useEffect(() => {
     const type = searchParams.get("type");
@@ -26,6 +28,15 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Anti-Spam Measures
+    const timeToFill = Date.now() - startTime;
+    if (honeypot || timeToFill < 3000) {
+      console.warn("Spam detected or suspicious activity. Rejection protocol active.");
+      setFormState("success"); // Mock success to fool bots
+      return;
+    }
+
     setFormState("submitting");
     
     try {
@@ -145,6 +156,18 @@ export default function Contact() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
+                {/* Honeypot Security Layer */}
+                <div className="hidden" aria-hidden="true">
+                  <input 
+                    type="text" 
+                    name="website_verification" 
+                    tabIndex={-1} 
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
+                
                 <div className="mb-6">
                   <h2 className="text-2xl font-display font-bold uppercase tracking-tight">{content.contact.formTitle}</h2>
                   <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-1">{content.contact.formSubtitle}</p>
