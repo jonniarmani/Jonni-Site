@@ -1806,16 +1806,41 @@ export default function Admin() {
                                 setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
                               }}
                             />
-                            {visual.type === 'image' && (
-                              <FocalPointSelector 
-                                value={visual.objectPosition}
-                                onChange={(val) => {
-                                  const newHero = [...localContent.home.heroVisuals];
-                                  newHero[idx] = {...newHero[idx], objectPosition: val};
-                                  setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
-                                }}
-                              />
-                            )}
+                            <div className="space-y-4">
+                              {visual.type === 'image' && (
+                                <FocalPointSelector 
+                                  value={visual.objectPosition}
+                                  onChange={(val) => {
+                                    const newHero = [...localContent.home.heroVisuals];
+                                    newHero[idx] = {...newHero[idx], objectPosition: val};
+                                    setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
+                                  }}
+                                />
+                              )}
+                              <div className="space-y-3 p-3 bg-zinc-50 border border-gray-200 rounded-sm">
+                                <div className="flex justify-between items-center">
+                                  <label className="text-[9px] uppercase font-bold text-gray-400 tracking-tighter">Brightness Intensity: {visual.brightness ?? 100}%</label>
+                                  <button 
+                                    onClick={() => {
+                                      const newHero = [...localContent.home.heroVisuals];
+                                      newHero[idx] = {...newHero[idx], brightness: 100};
+                                      setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
+                                    }}
+                                    className="text-[7px] font-black uppercase text-brand-gold"
+                                  >Reset</button>
+                                </div>
+                                <input 
+                                  type="range" min="50" max="200" step="5"
+                                  value={visual.brightness ?? 100}
+                                  onChange={(e) => {
+                                    const newHero = [...localContent.home.heroVisuals];
+                                    newHero[idx] = {...newHero[idx], brightness: parseInt(e.target.value)};
+                                    setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
+                                  }}
+                                  className="w-full h-1 bg-gray-200 accent-brand-gold appearance-none cursor-pointer rounded-full"
+                                />
+                              </div>
+                            </div>
                           </div>
                         </div>
                       ))}

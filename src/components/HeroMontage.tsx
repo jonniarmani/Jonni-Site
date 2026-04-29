@@ -66,7 +66,10 @@ export default function HeroMontage() {
                 loop
                 playsInline
                 className="w-full h-full object-cover"
-                style={{ objectPosition: visuals[index].objectPosition || 'center center' }}
+                style={{ 
+                  objectPosition: visuals[index].objectPosition || 'center center',
+                  filter: `brightness(${visuals[index].brightness ?? 100}%)`
+                }}
               />
             )
           ) : (
@@ -77,16 +80,19 @@ export default function HeroMontage() {
                 fetchPriority={index === 0 ? "high" : undefined}
                 sizes="100vw"
                 className="w-full h-full object-cover"
-                style={{ objectPosition: visuals[index].objectPosition || 'center center' }}
+                style={{ 
+                  objectPosition: visuals[index].objectPosition || 'center center',
+                  filter: `brightness(${visuals[index].brightness ?? 100}%)`
+                }}
               />
             )
           )}
         </motion.div>
       </AnimatePresence>
 
-      {/* Simplified Overlays */}
-      <div className="absolute inset-0 bg-brand-black/40" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-black/80" />
+      {/* Simplified Overlays - Lightened slightly for visibility */}
+      <div className="absolute inset-0 bg-brand-black/25" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-black/70" />
     </div>
   );
 }
