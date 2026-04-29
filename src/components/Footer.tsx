@@ -21,12 +21,28 @@ export default function Footer() {
           }}
           className="flex whitespace-nowrap"
         >
-          <span className="text-[45vw] font-display font-bold tracking-tighter uppercase leading-none mr-[20%]">
-            JAM JAM JAM
-          </span>
-          <span className="text-[45vw] font-display font-bold tracking-tighter uppercase leading-none">
-            JAM JAM JAM
-          </span>
+          <div className="flex whitespace-nowrap">
+            {[...Array(6)].map((_, i) => (
+              <span key={i} className="text-[45vw] font-display font-bold tracking-tighter uppercase leading-none mr-[10%]">
+                {"JAM".split("").map((letter, j) => (
+                  <motion.span
+                    key={j}
+                    animate={{ 
+                      color: ["#ffffff", "#3b82f6", "#ffffff"] 
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: j * 1,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    {letter}
+                  </motion.span>
+                ))}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </div>
       
