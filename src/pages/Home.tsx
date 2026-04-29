@@ -120,6 +120,35 @@ export default function Home() {
 
       <IndustriesGrid industries={industries} />
 
+      {/* FAQ Section */}
+      <section className="py-24 bg-zinc-50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-display font-bold uppercase tracking-tighter italic mb-4">
+                {content.home.faqTitle}
+              </h2>
+              <p className="text-gray-500 uppercase tracking-widest text-xs font-bold">
+                {content.home.faqSubtitle}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {content.home.faqs?.map((faq: any, idx: number) => (
+                <div key={idx} className="space-y-4">
+                  <h3 className="text-lg font-bold uppercase tracking-tight text-brand-black flex items-start">
+                    <span className="text-brand-gold mr-3">Q.</span>
+                    {faq.question}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed font-light text-sm pl-7">
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Portfolio Quick Access */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6">

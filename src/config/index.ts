@@ -27,9 +27,9 @@ export const SERVICES = [
     id: "commercial",
     title: "Commercial & Promotional Video",
     short: "Cinematic Brand Storytelling & Marketing Media.",
-    description: "We create expert commercial films and marketing media for brands in Bradenton, the local Gulf Coast, and the Tampa region. From luxury narratives to high-energy ads, we create visual stories that grab attention. Our goal is to build strong brand presence for businesses growing in Southwest Florida. This path is perfect for established companies, creative teams, and luxury groups that need professional visual power. We deliver quality assets that improve how people see your brand and help you connect with more customers.",
-    whoItsFor: "Established local brands, agencies, and luxury businesses that need professional visual power to grow.",
-    outcome: "High-quality films and images that improve brand image, drive more interest, and show professional authority.",
+    description: "We make professional videos for businesses in Bradenton and Tampa. We tell your brand story with high-quality film. Our videos help you get noticed and grow your team. We work with local shops and large companies to create ads that people remember. Our goal is to make your business look its best. We provide clear, high-end visuals that help you reach more customers. Use our films to show what makes your company special.",
+    whoItsFor: "Local businesses and brands that want to grow with professional video.",
+    outcome: "Strong videos that help you earn trust and get more clients.",
     icon: "Video",
     photoCategory: "Commercial"
   },
@@ -37,9 +37,9 @@ export const SERVICES = [
     id: "sports",
     title: "Elite Athletic & Performance Media",
     short: "Professional Athletics & High-Energy Sports Media.",
-    description: "We document the intense energy of elite sports at top Florida locations. Our team records the power and skill of high-level athletes through motion and still shots made for recruiting and promotion. This specialized media helps professional players, sports groups, and students at IMG Academy tell their story. We provide fast-paced, high-energy visuals that work great for scouting, social media growth, and getting brand deals.",
-    whoItsFor: "IMG Academy students, pro athletes, and sports groups that need strong visuals to get noticed.",
-    outcome: "Exciting visual content built for college recruiting, growing a social following, and securing sponsorships.",
+    description: "We record sports action for top athletes in Florida. Our team captures high-speed motion and great still shots. These are perfect for recruiting and social media. We help players at IMG Academy and other local schools tell their athletic story. We make high-energy reels that help scouts see your talent. Our videos help you build a fan base and get brand deals. Get professional media that shows off your hard work and skill.",
+    whoItsFor: "IMG Academy students and pro athletes who want to get noticed.",
+    outcome: "Exciting media for college recruiting and building your social brand.",
     icon: "Zap",
     photoCategory: "Sports"
   },
@@ -47,9 +47,9 @@ export const SERVICES = [
     id: "healthcare",
     title: "Medical & Wellness Narrative",
     short: "Precision Visual Solutions for Medical Professionals.",
-    description: "We provide clear visual stories for healthcare groups and private clinics in the Sarasota region and Bradenton. We focus on patient-centered stories, showing surgical skill, and creating brand clips for doctors and wellness centers. These precise images and videos help medical teams and dental experts build trust. We create clinical media that shows your expertise while making high-level patient care feel more personal and welcoming.",
-    whoItsFor: "Local medical groups, dental experts, and health marketing teams that want to build deeper trust with patients.",
-    outcome: "Trust-building media that shows off your technical skills while making your practice feel human and caring.",
+    description: "We create clear films for doctors and health groups in Sarasota. We focus on patient care and clinical skill. Our videos help medical teams build trust with new patients. We show your surgical work and your office in a professional way. These films help people feel safe and welcome at your practice. We make high-level medical media that is easy to understand. Showcase your expertise with high-quality clinical storytelling.",
+    whoItsFor: "Doctors and health clinics that want to build trust with patients.",
+    outcome: "Trust-building media that shows your skill and care for patients.",
     icon: "Stethoscope",
     photoCategory: "Medical"
   },
@@ -57,9 +57,9 @@ export const SERVICES = [
     id: "corporate",
     title: "Corporate & Identity Portraiture",
     short: "Premium Executive Headshots & Personal Branding.",
-    description: "Your professional look is your first impression in the Florida business world. We take high-end headshots and branding portraits in Bradenton and the surrounding area. Our work shows your status and helps you look credible on all your websites and profiles. This service works well for local leaders, business owners, and law firms who want a sharp, professional look. We create a solid visual identity that helps you earn respect and show your authority in your field.",
-    whoItsFor: "Local executives, business owners, and law firms that need a sharp, professional look to stand out.",
-    outcome: "A polished and consistent visual identity that commands professional respect and converts profile viewers into high-value business relationships.",
+    description: "Your photo is often the first thing people see. We take clean, professional headshots for business leaders in Bradenton. Our portraits help you look credible on LinkedIn and your website. We work with law firms and business owners to create a sharp look. A great photo shows that you can be trusted in your field. We help you stand out with a solid visual identity. Get portraits that command respect and show your professional power.",
+    whoItsFor: "Business owners and leaders who need a professional look.",
+    outcome: "Polished photos that help you look professional and earn respect.",
     icon: "User",
     photoCategory: "Headshots"
   },
@@ -67,9 +67,9 @@ export const SERVICES = [
     id: "family",
     title: "Family Legacy Collective",
     short: "Cinematic Family Archives & Coastal Portraiture.",
-    description: "We help you save your family history through beautiful photos and films on some of Florida's best beaches. We love sunset shoots on Siesta Key and Anna Maria Island, where we capture real family moments that you can keep forever. This is perfect for families visiting our local shores who want high-quality, natural documentation of their time together. We provide a visual history and museum-quality prints that your family will value for years to come.",
-    whoItsFor: "Families visiting the Gulf Coast who want natural, high-quality photos of their most important moments.",
-    outcome: "Timeless photos and films that save your family's history as a special heirloom for future generations.",
+    description: "We help you save family memories with beautiful photos on Florida beaches. We love doing sunset shoots on Siesta Key and Anna Maria Island. We capture real moments of your family together. This is a great choice for families visiting the local area. We provide high-quality prints and films that you can keep for a long time. Our goal is to record your family story in a natural way. Preserve your most important moments with cinematic coastal art.",
+    whoItsFor: "Families on vacation who want great photos of their time together.",
+    outcome: "Timeless family photos and films that you will treasure forever.",
     icon: "Heart",
     photoCategory: "Family"
   },
@@ -77,9 +77,9 @@ export const SERVICES = [
     id: "hospitality",
     title: "Brand Stories in Hospitality",
     short: "Cinematic Narrative for Resorts & Luxury Retreats.",
-    description: "We capture the essence of luxury hospitality across the Florida Gulf Coast. From the refined tranquility of Longboat Key resorts to the vibrant energy of downtown Sarasota dining, we create visual stories that invite engagement. Our work focuses on the guest experience, architectural beauty, and the unique atmosphere that defines your brand. This specialized service is engineered for premium resorts, boutique hotels, and high-end hospitality groups looking to elevate their digital Presence and drive bookings through polished, cinematic media.",
-    whoItsFor: "Resort managers, boutique hotel owners, and luxury hospitality groups seeking elite visual storytelling.",
-    outcome: "An immersive visual library that elevates guest perception, increases booking desire, and defines your brand as a premier destination.",
+    description: "We film luxury resorts and hotels on the Florida Gulf Coast. From Longboat Key to Sarasota, we show what makes your location special. We focus on the guest experience and the beauty of your property. Our films invite people to book a stay at your hotel. This service is made for premium resorts and boutique hotels. We create visuals that improve how guests see your brand. Drive more bookings with polished, cinematic hospitality media.",
+    whoItsFor: "Hotels and resorts that want to show off their luxury experience.",
+    outcome: "Beautiful films that help you get more bookings and happy guests.",
     icon: "Briefcase",
     photoCategory: "Hospitality"
   }
@@ -236,9 +236,29 @@ export const ABOUT_CONTENT = {
 
 export const HOME_CONTENT = {
   lensTitle: "Precision Visuals. Strategic Growth.",
-  lensText: "In a competitive landscape, cinematic quality is a business requirement. I specialize in high-impact narratives that drive brand authority and professional results.",
+  lensText: "In a competitive business world, good video and photo are required. I focus on creating high-impact stories that help your brand grow. We provide professional results for businesses along the Florida Gulf Coast. Our work helps you build trust and stand out in your market. We use the best gear to make sure your project looks great. From commercial film to elite sports media, we help you succeed with visual power. Let us tell your story and help your brand reach its full potential.",
   lensImage: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1200",
   ctaBackground: "https://images.unsplash.com/photo-1520116467321-f1463a863260?auto=format&fit=crop&q=80&w=2000",
+  faqTitle: "Frequently Asked Questions",
+  faqSubtitle: "Information about our creative process and services.",
+  faqs: [
+    {
+      question: "What areas do you serve in Florida?",
+      answer: "We offer video and photo services in Bradenton, Sarasota, Tampa, and St. Petersburg. We also work in Siesta Key, Anna Maria Island, and Lakewood Ranch. If you are on the Florida Gulf Coast, we can help with your project."
+    },
+    {
+      question: "How long does a video project take?",
+      answer: "Most commercial video projects take between two to four weeks to finish. This includes planning, filming, and editing. We work fast to provide high-quality results for your business needs."
+    },
+    {
+      question: "Do you offer sports photography at IMG Academy?",
+      answer: "Yes, we often work with athletes at IMG Academy. We create performance reels and recruiting media that help students stand out. We also cover local sports events across Southwest Florida."
+    },
+    {
+      question: "Can you help with branding for law firms and medical offices?",
+      answer: "We focus on professional branding for doctors, law firms, and business leaders. We provide clean headshots and office films that build trust with your clients. Our goal is to make your practice look credible and welcoming."
+    }
+  ],
   heroVisuals: [
     { url: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Sports' },
     { url: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Healthcare' },
