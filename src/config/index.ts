@@ -59,7 +59,7 @@ export const SERVICES = [
     short: "Premium Executive Headshots & Personal Branding.",
     description: "Your professional look is your first impression in the Florida business world. We take high-end headshots and branding portraits in Bradenton and the surrounding area. Our work shows your status and helps you look credible on all your websites and profiles. This service works well for local leaders, business owners, and law firms who want a sharp, professional look. We create a solid visual identity that helps you earn respect and show your authority in your field.",
     whoItsFor: "Local executives, business owners, and law firms that need a sharp, professional look to stand out.",
-    outcome: "A professional set of photos that look great in any setting and help you build immediate authority online.",
+    outcome: "A polished and consistent visual identity that commands professional respect and converts profile viewers into high-value business relationships.",
     icon: "User",
     photoCategory: "Headshots"
   },
@@ -72,10 +72,41 @@ export const SERVICES = [
     outcome: "Timeless photos and films that save your family's history as a special heirloom for future generations.",
     icon: "Heart",
     photoCategory: "Family"
+  },
+  {
+    id: "hospitality",
+    title: "Brand Stories in Hospitality",
+    short: "Cinematic Narrative for Resorts & Luxury Retreats.",
+    description: "We capture the essence of luxury hospitality across the Florida Gulf Coast. From the refined tranquility of Longboat Key resorts to the vibrant energy of downtown Sarasota dining, we create visual stories that invite engagement. Our work focuses on the guest experience, architectural beauty, and the unique atmosphere that defines your brand. This specialized service is engineered for premium resorts, boutique hotels, and high-end hospitality groups looking to elevate their digital Presence and drive bookings through polished, cinematic media.",
+    whoItsFor: "Resort managers, boutique hotel owners, and luxury hospitality groups seeking elite visual storytelling.",
+    outcome: "An immersive visual library that elevates guest perception, increases booking desire, and defines your brand as a premier destination.",
+    icon: "Briefcase",
+    photoCategory: "Hospitality"
   }
 ];
 
 export const PORTFOLIO = [
+  {
+    category: "Hospitality",
+    title: "Longboat Key Resort Feature",
+    placeholder: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1200",
+    url: "#",
+    type: "photo"
+  },
+  {
+    category: "Hospitality",
+    title: "Sarasota Luxury Suite Series",
+    placeholder: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1200",
+    url: "#",
+    type: "photo"
+  },
+  {
+    category: "Hospitality",
+    title: "The Guest Experience",
+    placeholder: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80&w=1200",
+    url: "#",
+    type: "photo"
+  },
   {
     category: "Commercial",
     title: "Gulf Coast Brand Story",

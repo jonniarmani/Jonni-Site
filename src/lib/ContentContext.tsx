@@ -31,6 +31,18 @@ interface SiteContent {
   };
   testimonials: typeof TESTIMONIALS;
   industries?: typeof INDUSTRIES;
+  contact: {
+    title: string;
+    subtitle: string;
+    description: string;
+    image: string;
+    email: string;
+    phone: string;
+    address: string;
+    availability: string;
+    formTitle: string;
+    formSubtitle: string;
+  };
   customCode?: {
     head?: string;
     bodyStart?: string;
@@ -109,6 +121,9 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       } else if (s.id === 'commercial') {
         visualUrl = "https://images.unsplash.com/photo-1520116467321-f1463a863260?auto=format&fit=crop&q=80&w=1200";
         visualType = 'image';
+      } else if (s.id === 'hospitality') {
+        visualUrl = "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1200";
+        visualType = 'image';
       }
 
       return {
@@ -138,6 +153,18 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     },
     testimonials: TESTIMONIALS,
     industries: INDUSTRIES,
+    contact: {
+      title: "Start Your Brand Genesis.",
+      subtitle: "Inquire for Production Space.",
+      description: "Every legacy begins with a single frame. Whether you're planning a multi-million dollar resort campaign or a focused executive identity series, our technical team is ready to deploy. Serving Bradenton, Sarasota, and the Florida Gulf Coast.",
+      image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=2000",
+      email: "jonniarmani@gmail.com",
+      phone: "208.549.9544",
+      address: "Bradenton/Sarasota, Florida",
+      availability: "Available for global commissions.",
+      formTitle: "Project Inquiry",
+      formSubtitle: "Tell us about your visual objectives."
+    },
     customCode: {
       head: "",
       bodyStart: "",

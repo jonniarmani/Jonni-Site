@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { BRAND, SEO } from "../config";
+import { useContent } from "../lib/ContentContext";
 import SEOComp from "../components/SEO";
 import { Link, useSearchParams } from "react-router-dom";
 import { Mail, Phone, Calendar, ArrowRight, CheckCircle } from "lucide-react";
@@ -8,6 +8,7 @@ import { db, handleFirestoreError, OperationType } from "../lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export default function Contact() {
+  const { content } = useContent();
   const [searchParams] = useSearchParams();
   const [formState, setFormState] = useState<"idle" | "submitting" | "success">("idle");
   const [selectedService, setSelectedService] = useState("");
@@ -28,11 +29,14 @@ export default function Contact() {
     setFormState("submitting");
     
     try {
+      // 1. Capture the lead
       await addDoc(collection(db, 'leads'), {
         ...formData,
-        service: selectedService,
-        createdAt: serverTimestamp()
+        service: selectedService || "General Strategy",
+        createdAt: serverTimestamp(),
+        status: 'new'
       });
+
       setFormState("success");
     } catch (err) {
       console.error("Submission Error:", err);
@@ -43,7 +47,7 @@ export default function Contact() {
 
   return (
     <div className="pt-24 sm:pt-32 pb-24 sm:pb-40">
-      <SEOComp title={SEO.contact.title} description={SEO.contact.description} />
+      <SEOComp title={content.seo?.title || "Contact"} description={content.seo?.description || "Get in touch"} />
       
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mb-16 sm:mb-32">
@@ -52,17 +56,22 @@ export default function Contact() {
             animate={{ opacity: 1 }}
             className="text-brand-gold uppercase tracking-[0.4em] text-xs font-bold mb-8 block"
           >
-            Start The Conversation
+            {content.contact.subtitle}
           </motion.span>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] mb-8 uppercase"
           >
-            Secure Your <span className="italic font-light">Presence.</span>
+            {content.contact.title.split('.').map((part, i, arr) => (
+              <React.Fragment key={i}>
+                {part}{i < arr.length - 1 && '.'}
+                {i === 0 && <br className="hidden sm:block" />}
+              </React.Fragment>
+            ))}
           </motion.h1>
           <p className="text-gray-500 text-lg sm:text-xl font-light max-w-xl">
-            Currently booking cinematic productions for late year. Reach out to discuss strategy and availability.
+            {content.contact.description}
           </p>
         </div>
 
@@ -76,7 +85,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-widest font-black text-gray-400 mb-2">Direct Channel</p>
-                    <a href={`mailto:${BRAND.contact.email}`} className="text-2xl font-display font-bold hover:text-brand-gold transition-colors">{BRAND.contact.email}</a>
+                    <a href={`mailto:${content.contact.email}`} className="text-2xl font-display font-bold hover:text-brand-gold transition-colors">{content.contact.email}</a>
                   </div>
                </div>
                <div className="flex items-start space-x-6">
@@ -85,7 +94,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-widest font-black text-gray-400 mb-2">Voice & Message</p>
-                    <a href={`tel:${BRAND.contact.phone.replace(/\./g, '')}`} className="text-2xl font-display font-bold hover:text-brand-gold transition-colors">{BRAND.contact.phone}</a>
+                    <a href={`tel:${content.contact.phone.replace(/\./g, '')}`} className="text-2xl font-display font-bold hover:text-brand-gold transition-colors">{content.contact.phone}</a>
                   </div>
                </div>
                <div className="flex items-start space-x-6">
@@ -104,7 +113,7 @@ export default function Contact() {
             <div className="bg-brand-black text-white p-12 space-y-8">
                <h2 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-500">Location Focus</h2>
                <p className="text-lg font-light leading-relaxed">
-                  Headquartered in <span className="text-brand-gold font-bold">Bradenton, FL</span>. Serving {BRAND.location} and the wider Gulf Coast. Available for travel for global cinematic assignments.
+                  Headquartered in <span className="text-brand-gold font-bold">{content.contact.address}</span>. {content.contact.availability}
                </p>
                <div className="text-[10px] uppercase tracking-widest font-medium text-gray-500 border-t border-white/10 pt-8">
                   Commercial • Sports • Healthcare • Brand Stories
@@ -136,6 +145,10 @@ export default function Contact() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="mb-6">
+                  <h2 className="text-2xl font-display font-bold uppercase tracking-tight">{content.contact.formTitle}</h2>
+                  <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-1">{content.contact.formSubtitle}</p>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-[10px] uppercase tracking-widest font-black text-gray-400">Full Name</label>
@@ -223,12 +236,12 @@ export default function Contact() {
         <div className="mt-24 sm:mt-40 pt-24 sm:pt-40 border-t border-gray-100">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <div className="order-2 lg:order-1">
-                 <h2 className="text-3xl sm:text-4xl font-display font-medium mb-10 tracking-tight leading-tight uppercase italic">The name behind the <br/><span className="text-brand-gold not-italic font-bold">Standard.</span></h2>
+                 <h2 className="text-3xl sm:text-4xl font-display font-medium mb-10 tracking-tight leading-tight uppercase italic">{content.about.storyTitle.split(' ').slice(0, -1).join(' ')} <br/><span className="text-brand-gold not-italic font-bold">{content.about.storyTitle.split(' ').slice(-1)}</span></h2>
                  <p className="text-gray-500 text-lg font-light leading-relaxed mb-8">
-                    Based on the Florida Gulf Coast, Jonni Armani Media has spent the better part of a decade capturing the intersection of movement, emotion, and strategy. 
+                    {content.about.storyText1}
                  </p>
                  <p className="text-gray-600 font-medium mb-12">
-                    "I don't just film. I architect visual assets. Every shot is calculated to reinforce your brand's authority."
+                    "{content.about.quote}"
                  </p>
                  <Link to="/about" className="inline-flex items-center text-brand-black font-bold uppercase tracking-widest text-xs border-b-2 border-brand-gold pb-1 hover:border-brand-black transition-colors">
                     Read the full story <ArrowRight size={14} className="ml-2" />
@@ -236,8 +249,8 @@ export default function Contact() {
               </div>
               <div className="order-1 lg:order-2 aspect-[4/3] bg-brand-gray overflow-hidden">
                  <img 
-                    src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=1000" 
-                    alt="Jonni Armani Media at work" 
+                    src={content.contact.image} 
+                    alt="Creative Direction & Strategic Production" 
                     className="w-full h-full object-cover grayscale opacity-80"
                  />
               </div>

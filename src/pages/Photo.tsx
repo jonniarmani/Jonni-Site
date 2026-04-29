@@ -44,6 +44,15 @@ function PhotoProject({ item }: { item: PhotoItem }) {
           {item.alt || "Capturing high-performance visual legacy with technical precision and cinematic intent."}
         </p>
 
+        {item.url && item.url !== "#" && (
+          <Link 
+            to={item.url} 
+            className="inline-flex items-center gap-2 text-cyan-600 uppercase font-black text-[10px] tracking-widest bg-cyan-50 px-4 py-2 rounded-sm border border-cyan-100 hover:bg-cyan-100 transition-all mt-4"
+          >
+            Visit Detailed Gallery <ArrowRight size={14} />
+          </Link>
+        )}
+
         {/* Controls moved here for better ergonomics */}
         <div className="flex items-center space-x-6 pt-4">
           <button onClick={prev} className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-brand-black hover:text-white transition-all">

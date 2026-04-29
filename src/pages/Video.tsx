@@ -184,8 +184,19 @@ export default function Video() {
                       </div>
                       <h2 className="text-3xl font-display font-bold tracking-tight uppercase group-hover:text-brand-gold transition-colors">{item.title}</h2>
                     </div>
-                    <div className="w-12 h-12 flex items-center justify-end text-brand-black group-hover:translate-x-2 transition-transform">
-                      <ArrowRight size={24} />
+                    <div className="flex flex-col items-end gap-2">
+                      <div className="w-12 h-12 flex items-center justify-end text-brand-black group-hover:translate-x-2 transition-transform">
+                        <ArrowRight size={24} />
+                      </div>
+                      {item.url && item.url !== "#" && (
+                        <Link 
+                          to={item.url} 
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-[9px] uppercase font-black text-cyan-600 bg-cyan-50 px-2 py-1 rounded hover:bg-cyan-100 transition-colors flex items-center gap-1"
+                        >
+                          Project Details <Play size={10} className="fill-cyan-600" />
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>

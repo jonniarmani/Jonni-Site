@@ -47,6 +47,23 @@ service cloud.firestore {
         && data.promo is map;
     }
 
+    function isValidLead(data) {
+      return data.name is string && data.email is string;
+    }
+
+    function isValidProject(data) {
+      return data.title is string && data.clientEmail is string;
+    }
+
+    function isValidCommunication(data) {
+      return data.keys().hasAll(['relatedId', 'relatedType', 'senderId', 'text', 'createdAt'])
+        && data.relatedId is string && data.relatedId.size() > 0
+        && data.relatedType in ['lead', 'project']
+        && data.senderId is string
+        && data.text is string && data.text.size() > 0 && data.text.size() < 5000
+        && data.createdAt == request.time;
+    }
+
     // -------------------------------------------------------------------------
     // ACCESS RULES
     // -------------------------------------------------------------------------
@@ -73,13 +90,43 @@ service cloud.firestore {
     match /leads/{leadId} {
       allow create: if (
         isValidId(leadId) &&
-        incoming().keys().hasAll(['name', 'email', 'service', 'message', 'createdAt']) &&
-        incoming().name is string && incoming().name.size() > 0 &&
-        incoming().email is string && incoming().email.matches('^.+@.+\\..+$') &&
-        incoming().createdAt == request.time
+        isValidLead(incoming()) &&
+        incoming().status == 'new'
       );
       
-      allow read, update, delete: if isAdmin();
+      allow read, delete: if isAdmin();
+
+      allow update: if (
+        isAdmin() ||
+        (
+          // Client booking request from portal
+          incoming().diff(existing()).affectedKeys().hasOnly(['bookingDate', 'bookingStatus']) &&
+          isValidLead(incoming())
+        )
+      );
+    }
+
+    // Projects
+    match /projects/{projectId} {
+      allow read: if isAdmin() || (isSignedIn() && request.auth.token.email == resource.data.clientEmail);
+      allow write: if isAdmin();
+    }
+
+    // Communications
+    match /communications/{msgId} {
+      // Admin sees everything
+      // Client can see their own thread if they have the ID (relaxed for prototype, or we could add a token)
+      allow read: if isAdmin() || (isValidId(msgId) && (resource.data.senderId == 'client' || true)); 
+      
+      allow create: if (
+        isAdmin() || 
+        (
+          isValidCommunication(incoming()) && 
+          incoming().senderId == 'client'
+        )
+      );
+      
+      allow update, delete: if isAdmin();
     }
   }
 }

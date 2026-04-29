@@ -20,6 +20,7 @@ import Booking from "./pages/Booking";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Admin from "./pages/Admin";
+import Portal from "./pages/Portal";
 import CodeInjection from "./components/CodeInjection";
 import SEO from "./components/SEO";
 import { ContentProvider } from "./lib/ContentContext";
@@ -67,6 +68,7 @@ export default function App() {
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/portal/:id" element={<Portal />} />
               </Routes>
             </PageTransition>
           </main>
