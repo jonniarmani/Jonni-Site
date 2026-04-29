@@ -66,6 +66,7 @@ export default function HeroMontage() {
                 loop
                 playsInline
                 preload="auto"
+                crossOrigin="anonymous"
                 {...(index === 0 ? { fetchPriority: "high" } : {})}
                 className="w-full h-full object-cover"
                 style={{ 

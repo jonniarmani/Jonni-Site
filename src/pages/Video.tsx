@@ -29,12 +29,19 @@ export default function Video() {
 
   const getEmbedUrl = (url: string, type: string) => {
     if (type === 'youtube') {
-      const id = url.split('v=')[1] || url.split('/').pop()?.split('?')[0];
-      return `https://www.youtube.com/embed/${id}?autoplay=1`;
+      let id = "";
+      if (url.includes('v=')) {
+        id = url.split('v=')[1].split('&')[0];
+      } else if (url.includes('youtu.be/')) {
+        id = url.split('youtu.be/')[1].split('?')[0];
+      } else {
+        id = url.split('/').pop()?.split('?')[0] || "";
+      }
+      return `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&rel=0`;
     }
     if (type === 'vimeo') {
       const id = url.split('/').pop()?.split('?')[0];
-      return `https://player.vimeo.com/video/${id}?autoplay=1`;
+      return `https://player.vimeo.com/video/${id}?autoplay=1&muted=1`;
     }
     return url;
   };
@@ -111,6 +118,7 @@ export default function Video() {
                             autoPlay 
                             controls 
                             playsInline
+                            crossOrigin="anonymous"
                             className="w-full h-full object-contain bg-black"
                             poster={item.placeholder}
                           />
