@@ -28,7 +28,7 @@ export default function Footer() {
                   <motion.span
                     key={j}
                     animate={{ 
-                      color: ["#ffffff", "#3b82f6", "#ffffff"] 
+                      color: ["#ffffff", "#06b6d4", "#ffffff"] 
                     }}
                     transition={{
                       duration: 3,
