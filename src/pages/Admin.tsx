@@ -4,7 +4,9 @@ import { useContent } from '../lib/ContentContext';
 import { auth, googleProvider, signInWithPopup, signOut, db, doc, setDoc, handleFirestoreError, OperationType, collection, deleteDoc, onSnapshot } from '../lib/firebase';
 import { addDoc, query, where, orderBy, getDocs, updateDoc, Timestamp, serverTimestamp } from 'firebase/firestore';
 import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Upload, Download, RefreshCw, Globe, Twitter, ShieldCheck, Check, Sparkles, Filter, Settings, Activity, Zap, Search, BrainCircuit, ExternalLink, AlertCircle, Target, BarChart as ChartIcon, PieChart as PieIcon, LineChart as LineIcon, MousePointer2, Mail, Send, History, Briefcase as ProjectIcon, Layers, Loader2, Gauge } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import FileUploader from '../components/FileUploader';
+import AIImageGenerator from '../components/AIImageGenerator';
 
 const CommunicationThread = ({ relatedId, relatedType, senderName }: { relatedId: string, relatedType: 'lead' | 'project', senderName: string }) => {
   const [messages, setMessages] = useState<any[]>([]);
@@ -195,6 +197,7 @@ export default function Admin() {
   const [isScanning, setIsScanning] = useState(false);
   const [isOptimizing, setIsOptimizing] = useState(false);
   const [liveVisitors, setLiveVisitors] = useState(Math.floor(Math.random() * 5) + 1);
+  const [showAIGenerator, setShowAIGenerator] = useState(false);
 
   // Simulated live updates for visuals
   React.useEffect(() => {
@@ -2460,16 +2463,26 @@ export default function Admin() {
                         <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Photo Gallery</h2>
                         <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage high-end stills and brand photography</p>
                       </div>
-                      <button 
-                        onClick={() => {
-                          const newWork = [...localContent.portfolio, { category: "Branding", title: "New Photo Project", placeholder: "", url: "#", videoUrl: "", type: 'photo' }];
-                          setLocalContent({...localContent, portfolio: newWork});
-                        }}
-                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-xl active:scale-90"
-                        title="Add Still Asset"
-                      >
-                        <Plus size={24} />
-                      </button>
+                      <div className="flex gap-4">
+                        <button 
+                          onClick={() => setShowAIGenerator(true)}
+                          className="px-6 py-4 bg-brand-gold text-brand-black flex items-center space-x-3 hover:bg-yellow-500 transition-all shadow-xl active:scale-95 group"
+                          title="Generate Still with AI"
+                        >
+                          <Sparkles size={18} className="group-hover:rotate-12 transition-transform" />
+                          <span className="text-[10px] font-black uppercase tracking-widest">Generate with AI</span>
+                        </button>
+                        <button 
+                          onClick={() => {
+                            const newWork = [...localContent.portfolio, { category: "Branding", title: "New Photo Project", placeholder: "", url: "#", videoUrl: "", type: 'photo' }];
+                            setLocalContent({...localContent, portfolio: newWork});
+                          }}
+                          className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-xl active:scale-90"
+                          title="Add Still Asset"
+                        >
+                          <Plus size={24} />
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -2716,6 +2729,30 @@ export default function Admin() {
                   </div>
                 </div>
               )}
+
+              <AnimatePresence>
+                {showAIGenerator && (
+                  <AIImageGenerator 
+                    onClose={() => setShowAIGenerator(false)}
+                    onGenerated={(imageUrl, prompt) => {
+                      const newWork = [
+                        ...localContent.portfolio, 
+                        { 
+                          category: "AI Generated", 
+                          title: prompt.slice(0, 30) + (prompt.length > 30 ? "..." : ""), 
+                          placeholder: imageUrl, 
+                          url: "#", 
+                          videoUrl: "", 
+                          type: 'photo',
+                          alt: prompt,
+                          isFeatured: false
+                        }
+                      ];
+                      setLocalContent({...localContent, portfolio: newWork});
+                    }}
+                  />
+                )}
+              </AnimatePresence>
 
                {/* Promo Tab */}
               {activeTab === 'promo' && (
