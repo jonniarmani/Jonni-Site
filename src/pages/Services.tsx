@@ -4,6 +4,7 @@ import SEOComp from "../components/SEO";
 import { Link } from "react-router-dom";
 import { ArrowRight, Video, Zap, Stethoscope, User, Play, Heart, Camera, Briefcase } from "lucide-react";
 import { useContent } from "../lib/ContentContext";
+import ResponsiveImage from "../components/ResponsiveImage";
 
 const ICON_MAP = {
   Video: Video,
@@ -68,6 +69,7 @@ export default function Services() {
                             className="w-full h-full border-0"
                             allow="autoplay; fullscreen; picture-in-picture"
                             allowFullScreen
+                            loading="lazy"
                           />
                         ) : (
                           <video 
@@ -75,15 +77,17 @@ export default function Services() {
                             className="w-full h-full object-cover"
                             style={{ objectPosition: service.objectPosition || 'center center' }}
                             autoPlay muted loop playsInline
+                            crossOrigin="anonymous"
                           />
                         )}
                       </div>
                     ) : (
-                      <img 
-                        src={service.visualUrl} 
+                      <ResponsiveImage 
+                        src={service.visualUrl || ""} 
                         alt={`${service.title} - Professional Video Production Bradenton ${service.short}`} 
                         className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                         style={{ objectPosition: service.objectPosition || 'center center' }}
+                        sizes="(max-width: 1024px) 100vw, 50vw"
                       />
                     )}
                     {service.visualType === 'video' && (

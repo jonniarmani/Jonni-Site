@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 import { useContent } from '../lib/ContentContext';
 import { auth, googleProvider, signInWithPopup, signOut, db, doc, setDoc, handleFirestoreError, OperationType, collection, deleteDoc, onSnapshot } from '../lib/firebase';
 import { addDoc, query, where, orderBy, getDocs, updateDoc, Timestamp, serverTimestamp } from 'firebase/firestore';
-import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Upload, Download, RefreshCw, Globe, Twitter, ShieldCheck, Check, Sparkles, Filter, Settings, Activity, Zap, Search, BrainCircuit, ExternalLink, AlertCircle, Target, BarChart as ChartIcon, PieChart as PieIcon, LineChart as LineIcon, MousePointer2, Mail, Send, History, Briefcase as ProjectIcon, Layers, Loader2, Gauge } from 'lucide-react';
+import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Upload, Download, RefreshCw, Globe, Twitter, ShieldCheck, Check, Filter, Settings, Activity, Zap, Search, ExternalLink, AlertCircle, Target, BarChart as ChartIcon, PieChart as PieIcon, LineChart as LineIcon, MousePointer2, Mail, Send, History, Briefcase as ProjectIcon, Layers, Loader2, Gauge } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import FileUploader from '../components/FileUploader';
-import AIImageGenerator from '../components/AIImageGenerator';
 
 const CommunicationThread = ({ relatedId, relatedType, senderName }: { relatedId: string, relatedType: 'lead' | 'project', senderName: string }) => {
   const [messages, setMessages] = useState<any[]>([]);
@@ -181,7 +180,7 @@ const ImagePreview = ({ url, className = "mt-2 w-32 h-20" }: { url?: string, cla
   );
 };
 
-type Tab = 'identity' | 'home' | 'about' | 'services' | 'video-work' | 'photo-work' | 'promo' | 'testimonials' | 'inquiries' | 'code' | 'theme' | 'industries' | 'ai-insights' | 'optimizer' | 'analytics' | 'contact';
+type Tab = 'identity' | 'home' | 'about' | 'services' | 'video-work' | 'photo-work' | 'promo' | 'testimonials' | 'inquiries' | 'code' | 'theme' | 'industries' | 'optimizer' | 'analytics' | 'contact';
 
 export default function Admin() {
   const { content, user, isAdmin, loading } = useContent();
@@ -230,47 +229,6 @@ export default function Admin() {
       { name: 'Desktop', value: 28 },
       { name: 'Tablet', value: 4 },
     ]
-  };
-
-  const runAIScan = async () => {
-    setIsScanning(true);
-    // In a real app, this would call a backend function that uses Gemini to scrape/analyze
-    // Here we simulate the intelligence gathering process
-    await new Promise(r => setTimeout(r, 4000));
-    
-    const possibleInsights = [
-      {
-        id: Date.now().toString() + '-1',
-        type: 'content' as const,
-        title: "Emerging Visual Trend: Brutalist Color Grading",
-        description: "Competitors in the luxury sector are moving towards high-contrast, desaturated 'brutalist' aesthetics. Consider updating your portfolio filters.",
-        impact: 'high' as const,
-        status: 'pending' as const,
-        date: new Date().toISOString()
-      },
-      {
-        id: Date.now().toString() + '-2',
-        type: 'seo' as const,
-        title: "Search Volume Spike detected for 'Drone Cinematography Sarasota'",
-        description: "Local search demand has increased 45%. Recommendation: Optimize the 'Services' page metadata for this specific phrase.",
-        impact: 'high' as const,
-        status: 'pending' as const,
-        date: new Date().toISOString()
-      }
-    ];
-
-    const randomInsight = possibleInsights[Math.floor(Math.random() * possibleInsights.length)];
-    
-    setLocalContent({
-      ...localContent,
-      aiIntelligence: {
-        ...localContent.aiIntelligence!,
-        lastScan: new Date().toISOString(),
-        insights: [randomInsight, ...(localContent.aiIntelligence?.insights || [])].slice(0, 10)
-      }
-    });
-    
-    setIsScanning(false);
   };
 
   const runMasterOptimization = async () => {
@@ -652,7 +610,6 @@ export default function Admin() {
     { id: 'contact', label: 'Contact Page', icon: Mail, color: 'text-rose-500' },
     { id: 'analytics', label: 'Analytics', icon: Activity, color: 'text-red-500' },
     { id: 'optimizer', label: 'SEO & Speed', icon: Zap, color: 'text-cyan-500' },
-    { id: 'ai-insights', label: 'AI Insights', icon: BrainCircuit, color: 'text-brand-gold' },
     { id: 'code', label: 'System', icon: Code, color: 'text-gray-500' },
     { id: 'theme', label: 'Studio Design', icon: Palette, color: 'text-brand-gold' },
   ];
@@ -908,7 +865,7 @@ export default function Admin() {
                     </div>
                     <div className="bg-white border border-gray-100 p-6 shadow-sm rounded-sm">
                       <div className="flex items-center justify-between mb-4">
-                        <Sparkles size={16} className="text-brand-gold" />
+                        <Activity size={16} className="text-brand-gold" />
                         <span className="text-[8px] font-black text-red-500 uppercase tracking-widest">-1.1%</span>
                       </div>
                       <div className="text-2xl font-display font-bold">62</div>
@@ -1111,17 +1068,17 @@ export default function Admin() {
                     </div>
                   </div>
 
-                  {/* AI Prediction Box */}
-                  <div className="bg-brand-gold/10 border-2 border-brand-gold/20 p-8 rounded-lg relative overflow-hidden group">
+                  {/* Market Insights Box */}
+                  <div className="bg-zinc-50 border-2 border-gray-100 p-8 rounded-lg relative overflow-hidden group">
                     <div className="absolute top-0 right-0 p-4">
-                      <BrainCircuit size={40} className="text-brand-gold/20 group-hover:scale-125 transition-transform duration-1000" />
+                      <Target size={40} className="text-gray-200 group-hover:scale-125 transition-transform duration-1000" />
                     </div>
                     <div className="relative z-10">
-                      <h4 className="text-[10px] font-black uppercase tracking-widest text-brand-gold mb-2 flex items-center">
-                        <Target size={12} className="mr-2" /> AI Traffic Prediction
+                      <h4 className="text-[10px] font-black uppercase tracking-widest text-brand-black mb-2 flex items-center">
+                        <Activity size={12} className="mr-2" /> Market Forecast
                       </h4>
                       <p className="text-sm font-medium text-zinc-900 leading-relaxed max-w-2xl">
-                        Based on current high-season patterns in the Sarasota hospitality sector, we predict a <span className="font-bold text-brand-black">25% increase in mobile inquiries</span> over the next 14 days. Recommendation: Ensure "Hospitality Narratives" is featured in your top reel.
+                        Based on current high-season patterns in the Sarasota hospitality sector, we observe a <span className="font-bold text-brand-black">25% increase in mobile web consumption</span>. Recommendation: Ensure high-performance mobile accessibility for your project galleries.
                       </p>
                     </div>
                   </div>
@@ -3032,15 +2989,15 @@ export default function Admin() {
 
                   <div className="bg-brand-black p-8 rounded-sm text-white relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-4 opacity-10">
-                      <Sparkles size={120} className="text-brand-gold" />
+                      <Activity size={120} className="text-brand-gold" />
                     </div>
                     <div className="relative z-10">
                       <div className="flex items-center space-x-3 mb-4">
-                        <Sparkles size={20} className="text-brand-gold" />
-                        <h4 className="text-sm font-black uppercase tracking-[0.2em] text-brand-gold">AI Search Engine Authority</h4>
+                        <Activity size={20} className="text-brand-gold" />
+                        <h4 className="text-sm font-black uppercase tracking-[0.2em] text-brand-gold">Search Engine Authority</h4>
                       </div>
                       <p className="text-xs text-gray-400 font-medium leading-relaxed max-w-2xl">
-                        By specifically naming high-value professions like <span className="text-white italic">Yacht Brokers, Surgeons, and IMG Athletes</span>, you create "contextual anchors" for AI search engines (like Gemini, Perplexity, and ChatGPT). This section infuses these keywords into your site architecture, ensuring you rank when clients search for specialized cinematic services in the Gulf Coast.
+                        By specifically naming high-value professions like <span className="text-white italic">Yacht Brokers, Surgeons, and IMG Athletes</span>, you create "contextual anchors" for search engines. This section infuses these keywords into your site architecture, ensuring you rank when clients search for specialized cinematic services in the Gulf Coast.
                       </p>
                     </div>
                   </div>
@@ -3340,237 +3297,8 @@ export default function Admin() {
                 </div>
               )}
 
-              {/* AI Insights Tab */}
-              {activeTab === 'ai-insights' && (
-                <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <div className="border-b pb-4 mb-4 flex justify-between items-end">
-                    <div>
-                      <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Competitive Intelligence</h2>
-                      <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Real-time market analysis & auto-optimization protocol</p>
-                    </div>
-                    <button 
-                      onClick={runAIScan}
-                      disabled={isScanning}
-                      type="button"
-                      className={`px-6 py-3 bg-brand-black text-brand-gold font-black uppercase tracking-widest text-[10px] flex items-center space-x-3 hover:bg-brand-gold hover:text-white transition-all shadow-xl active:scale-95 disabled:opacity-50 ${isScanning ? 'animate-pulse' : ''}`}
-                    >
-                      {isScanning ? (
-                        <>
-                          <RefreshCw size={14} className="animate-spin" />
-                          <span>Analyzing Market...</span>
-                        </>
-                      ) : (
-                        <>
-                          <BrainCircuit size={14} />
-                          <span>Run Intelligence Scan</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div className="md:col-span-2 space-y-8">
-                       <div className="bg-zinc-900 p-8 text-white relative overflow-hidden">
-                          <div className="absolute top-0 right-0 p-4 opacity-5">
-                            <BrainCircuit size={150} />
-                          </div>
-                          <div className="relative z-10">
-                            <div className="flex items-center space-x-3 mb-6">
-                               <div className="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center">
-                                  <Zap size={20} className="text-brand-gold" />
-                               </div>
-                               <div>
-                                  <h3 className="text-sm font-black uppercase tracking-[0.2em] text-brand-gold">Optimization Engine</h3>
-                                  <div className="flex items-center space-x-2 mt-1">
-                                     <div className={`w-2 h-2 rounded-full ${localContent.aiIntelligence?.enabled ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`} />
-                                     <span className="text-[9px] uppercase font-bold text-gray-400 tracking-widest">
-                                        System Protocol: {localContent.aiIntelligence?.enabled ? 'Active' : 'Offline'}
-                                     </span>
-                                  </div>
-                               </div>
-                            </div>
-
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                               <div className="space-y-4">
-                                  <div className="flex justify-between items-center bg-zinc-800 p-4 border border-zinc-700">
-                                     <div>
-                                        <h4 className="text-[10px] font-black uppercase tracking-widest text-white">Market Monitoring</h4>
-                                        <p className="text-[8px] text-gray-400 uppercase mt-1">Continuous competition scraping</p>
-                                     </div>
-                                     <button 
-                                        type="button"
-                                        onClick={() => setLocalContent({...localContent, aiIntelligence: {...localContent.aiIntelligence!, enabled: !localContent.aiIntelligence?.enabled}})}
-                                        className={`w-12 h-6 rounded-full transition-all relative ${localContent.aiIntelligence?.enabled ? 'bg-brand-gold' : 'bg-zinc-700'}`}
-                                     >
-                                        <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${localContent.aiIntelligence?.enabled ? 'right-1' : 'left-1'}`} />
-                                     </button>
-                                  </div>
-                               </div>
-                               <div className="space-y-4">
-                                  <div className="flex justify-between items-center bg-zinc-800 p-4 border border-zinc-700">
-                                     <div>
-                                        <h4 className="text-[10px] font-black uppercase tracking-widest text-white">Autonomous Update</h4>
-                                        <p className="text-[8px] text-gray-400 uppercase mt-1">Real-time meta & copy adjustments</p>
-                                     </div>
-                                     <button 
-                                        type="button"
-                                        onClick={() => setLocalContent({...localContent, aiIntelligence: {...localContent.aiIntelligence!, autoApply: !localContent.aiIntelligence?.autoApply}})}
-                                        className={`w-12 h-6 rounded-full transition-all relative ${localContent.aiIntelligence?.autoApply ? 'bg-brand-gold' : 'bg-zinc-700'}`}
-                                     >
-                                        <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${localContent.aiIntelligence?.autoApply ? 'right-1' : 'left-1'}`} />
-                                     </button>
-                                  </div>
-                               </div>
-                            </div>
-                          </div>
-                       </div>
-
-                       <div className="space-y-6">
-                         <div className="flex items-center justify-between border-b pb-4">
-                            <h3 className="text-xs font-black uppercase tracking-widest text-brand-black flex items-center">
-                              <Activity size={14} className="mr-2 text-brand-gold" /> Intelligence Feed
-                            </h3>
-                            <span className="text-[9px] text-gray-400 font-bold uppercase">Showing last 10 discoveries</span>
-                         </div>
-
-                         <div className="space-y-4">
-                            {localContent.aiIntelligence?.insights.length === 0 ? (
-                              <div className="py-20 text-center border-2 border-dashed border-gray-100 rounded-xl">
-                                <p className="text-xs uppercase tracking-widest font-bold text-gray-300">No active intelligence leads.</p>
-                              </div>
-                            ) : (
-                              localContent.aiIntelligence?.insights.map((insight) => (
-                                <div key={insight.id} className="bg-white border border-gray-100 p-6 flex items-start gap-4 hover:shadow-lg transition-all group">
-                                   <div className={`w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center ${
-                                      insight.type === 'seo' ? 'bg-blue-50 text-blue-500' :
-                                      insight.type === 'competitor' ? 'bg-red-50 text-red-500' :
-                                      'bg-emerald-50 text-emerald-500'
-                                   }`}>
-                                      {insight.type === 'seo' ? <Search size={18} /> : 
-                                       insight.type === 'competitor' ? <AlertCircle size={18} /> : 
-                                       <Sparkles size={18} />}
-                                   </div>
-                                   <div className="flex-1 space-y-2">
-                                      <div className="flex justify-between items-start">
-                                         <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded-full ${
-                                            insight.impact === 'high' ? 'bg-red-100 text-red-600' : 
-                                            insight.impact === 'medium' ? 'bg-amber-100 text-amber-600' : 
-                                            'bg-blue-100 text-blue-600'
-                                         }`}>
-                                            {insight.impact} Impact
-                                         </span>
-                                         <span className="text-[8px] font-bold text-gray-400 font-mono">
-                                            {insight.date ? new Date(insight.date).toLocaleDateString() : ''}
-                                         </span>
-                                      </div>
-                                      <h4 className="text-sm font-bold uppercase tracking-tight group-hover:text-brand-gold transition-colors">{insight.title}</h4>
-                                      <p className="text-xs text-gray-500 leading-relaxed font-medium">{insight.description}</p>
-                                      
-                                      <div className="flex gap-3 pt-2">
-                                         <button 
-                                            type="button"
-                                            className="text-[10px] font-black uppercase text-brand-gold flex items-center space-x-1 hover:underline decoration-2"
-                                            onClick={() => {
-                                              const newInsights = localContent.aiIntelligence?.insights.map(i => i.id === insight.id ? {...i, status: 'applied' as const} : i);
-                                              setLocalContent({...localContent, aiIntelligence: {...localContent.aiIntelligence!, insights: newInsights || []}});
-                                              alert("Strategy protocol applied successfully.");
-                                            }}
-                                         >
-                                            <Check size={12} />
-                                            <span>Deploy Strategy</span>
-                                         </button>
-                                         <button type="button" className="text-[10px] font-black uppercase text-gray-400 flex items-center space-x-1 hover:text-brand-black transition-colors">
-                                            <Trash size={12} />
-                                            <span>Discard</span>
-                                         </button>
-                                      </div>
-                                   </div>
-                                </div>
-                              ))
-                            )}
-                         </div>
-                       </div>
-                    </div>
-
-                    <div className="space-y-8">
-                       <div className="bg-gray-50 p-6 border border-gray-200 rounded-sm space-y-6">
-                          <h3 className="text-[10px] font-black uppercase tracking-widest text-brand-black border-b border-gray-200 pb-3">Scanning Parameters</h3>
-                          
-                          <div className="space-y-4">
-                             <label className="text-[9px] uppercase font-black text-gray-400 flex items-center">
-                                <Briefcase size={12} className="mr-2" /> Your Industry Focus
-                             </label>
-                             <input 
-                                className="w-full bg-white border-0 p-3 outline-none focus:ring-1 focus:ring-brand-gold font-bold text-xs"
-                                value={localContent.aiIntelligence?.profession || ""}
-                                onChange={(e) => setLocalContent({...localContent, aiIntelligence: {...localContent.aiIntelligence!, profession: e.target.value}})}
-                             />
-                          </div>
-
-                          <div className="space-y-4">
-                             <div className="flex justify-between items-center mb-1">
-                                <label className="text-[9px] uppercase font-black text-gray-400 flex items-center text-red-500">
-                                   <Target size={12} className="mr-2" /> High-Priority Targets
-                                </label>
-                                <button 
-                                   type="button"
-                                   onClick={() => setLocalContent({...localContent, aiIntelligence: {...localContent.aiIntelligence!, competitors: [...(localContent.aiIntelligence!.competitors || []), "https://"]}})}
-                                   className="text-brand-gold hover:text-brand-black transition-colors"
-                                >
-                                   <Plus size={14} />
-                                </button>
-                             </div>
-                             <div className="space-y-2">
-                                {localContent.aiIntelligence?.competitors?.map((url, idx) => (
-                                  <div key={idx} className="flex gap-2 group">
-                                     <input 
-                                        className="flex-1 bg-white border-0 p-3 outline-none focus:ring-1 focus:ring-brand-gold font-mono text-[9px] text-gray-500"
-                                        value={url}
-                                        onChange={(e) => {
-                                           const newComp = [...localContent.aiIntelligence!.competitors];
-                                           newComp[idx] = e.target.value;
-                                           setLocalContent({...localContent, aiIntelligence: {...localContent.aiIntelligence!, competitors: newComp}});
-                                        }}
-                                     />
-                                     <button 
-                                        type="button"
-                                        onClick={() => {
-                                           const newComp = localContent.aiIntelligence?.competitors.filter((_, i) => i !== idx);
-                                           setLocalContent({...localContent, aiIntelligence: {...localContent.aiIntelligence!, competitors: newComp || []}});
-                                        }}
-                                        className="text-gray-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all"
-                                     >
-                                        <Trash size={12} />
-                                     </button>
-                                  </div>
-                                ))}
-                             </div>
-                          </div>
-                          
-                          <div className="pt-6 border-t border-gray-200">
-                             <div className="flex items-center space-x-2 text-gray-400">
-                                <Activity size={12} />
-                                <span className="text-[9px] font-bold uppercase tracking-widest leading-none">Last Deep Scan</span>
-                             </div>
-                             <p className="text-[10px] font-mono mt-1 text-zinc-900">{localContent.aiIntelligence?.lastScan ? new Date(localContent.aiIntelligence.lastScan).toLocaleString() : 'Never'}</p>
-                          </div>
-                       </div>
-
-                       <div className="bg-brand-gold/10 p-6 border border-brand-gold/20 rounded-sm">
-                          <h4 className="text-[10px] font-black uppercase tracking-widest text-brand-gold mb-3 flex items-center">
-                             <Zap size={12} className="mr-2" /> Live Adaptive Mode
-                          </h4>
-                          <p className="text-[10px] text-brand-black font-medium leading-relaxed">
-                             When <span className="font-black italic">"Autonomous Update"</span> is enabled, the system automatically adjusts site keywords and H1 tags twice weekly to maintain dominance for high-volume local search queries.
-                          </p>
-                       </div>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
-
         </div>
       </div>
     </div>

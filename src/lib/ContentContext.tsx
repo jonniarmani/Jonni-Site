@@ -238,6 +238,15 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const unsubContent = onSnapshot(doc(db, 'settings', 'content'), (snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.data() as any;
+        
+        // Final Purge: Ensure no AI Generated assets leak into the UI
+        if (data.portfolio) {
+          data.portfolio = data.portfolio.filter((p: any) => 
+            p.category !== "AI Generated" && 
+            !(p.title && p.title.toLowerCase().includes("ai generated"))
+          );
+        }
+
         setContent(prev => ({
           ...prev,
           ...data,

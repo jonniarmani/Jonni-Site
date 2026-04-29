@@ -5,25 +5,27 @@
 
 import { motion, useScroll } from "motion/react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, Suspense, lazy } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PageTransition from "./components/PageTransition";
 import PromoPopup from "./components/PromoPopup";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Video from "./pages/Video";
-import Photo from "./pages/Photo";
-import Contact from "./pages/Contact";
-import Booking from "./pages/Booking";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-import Admin from "./pages/Admin";
-import Portal from "./pages/Portal";
 import CodeInjection from "./components/CodeInjection";
 import SEO from "./components/SEO";
 import { ContentProvider } from "./lib/ContentContext";
+
+// Lazy load pages for performance
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const Services = lazy(() => import("./pages/Services"));
+const Video = lazy(() => import("./pages/Video"));
+const Photo = lazy(() => import("./pages/Photo"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Booking = lazy(() => import("./pages/Booking"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Admin = lazy(() => import("./pages/Admin"));
+const Portal = lazy(() => import("./pages/Portal"));
 
 // Helper to scroll to top on navigation
 function ScrollToTop() {
@@ -45,7 +47,6 @@ export default function App() {
           Skip to content
         </a>
         <div className="flex flex-col min-h-screen selection:bg-brand-gold selection:text-white relative">
-          <div className="grain-overlay" />
           
           {/* Scroll Progress HUD */}
           <motion.div
@@ -57,19 +58,21 @@ export default function App() {
           <PromoPopup />
           <main id="main-content" className="flex-grow">
             <PageTransition>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/video" element={<Video />} />
-                <Route path="/photo" element={<Photo />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/booking" element={<Booking />} />
-                <Route path="/privacy" element={<Privacy />} />
-                <Route path="/terms" element={<Terms />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/portal/:id" element={<Portal />} />
-              </Routes>
+              <Suspense fallback={<div className="h-screen w-full bg-brand-black flex items-center justify-center"><div className="w-8 h-8 border-2 border-brand-gold border-t-transparent rounded-full animate-spin"></div></div>}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/video" element={<Video />} />
+                  <Route path="/photo" element={<Photo />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/booking" element={<Booking />} />
+                  <Route path="/privacy" element={<Privacy />} />
+                  <Route path="/terms" element={<Terms />} />
+                  <Route path="/admin" element={<Admin />} />
+                  <Route path="/portal/:id" element={<Portal />} />
+                </Routes>
+              </Suspense>
             </PageTransition>
           </main>
           <Footer />

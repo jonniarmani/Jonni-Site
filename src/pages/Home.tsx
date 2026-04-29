@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import HeroMontage from "../components/HeroMontage";
 import IndustriesGrid from "../components/IndustriesGrid";
-
 import { useContent } from "../lib/ContentContext";
+import ResponsiveImage from "../components/ResponsiveImage";
 
 export default function Home() {
   const { content } = useContent();
@@ -72,13 +72,12 @@ export default function Home() {
             <div className="relative">
               <div className="aspect-[4/5] bg-brand-gray overflow-hidden">
           {content.home.lensImage && (
-            <img 
+            <ResponsiveImage 
               src={content.home.lensImage} 
               alt={content.seo?.altTags?.['home-lens'] || `${brand.name} - Professional Video Production and Brand Storytelling Bradenton, Sarasota`} 
-              width="1200"
-              height="1500"
               className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
               style={{ objectPosition: content.home.lensImagePosition || 'center center' }}
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
           )}
               </div>
@@ -167,13 +166,13 @@ export default function Home() {
       <section className="bg-brand-black py-24 md:py-40 text-white overflow-hidden relative">
         <div className="absolute inset-0 z-0 opacity-20">
            {content.home.ctaBackground && (
-             <img 
+             <ResponsiveImage 
                 src={content.home.ctaBackground} 
                 alt="Florida Gulf Coast Landscape - Serving Bradenton and Sarasota area"
-                width="2000"
-                height="1333"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: content.home.ctaBackgroundPosition || 'center center' }}
+                sizes="100vw"
+                loading="lazy"
              />
            )}
         </div>
