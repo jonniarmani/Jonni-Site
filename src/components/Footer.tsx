@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <footer className="bg-brand-black text-white pt-20 pb-10 relative overflow-hidden">
       {/* Subtle Infused Branding - Animated and Lighter */}
-      <div className="absolute bottom-[-10%] left-0 w-[200%] select-none pointer-events-none opacity-[0.12] z-0">
+      <div className="absolute bottom-[-10%] left-0 w-[200%] select-none pointer-events-none opacity-[0.35] z-0">
         <motion.div 
           animate={{ x: ["0%", "-50%"] }}
           transition={{ 
@@ -28,13 +28,21 @@ export default function Footer() {
                   <motion.span
                     key={j}
                     animate={{ 
-                      color: ["#ffffff", "#06b6d4", "#ffffff"] 
+                      color: ["#ffffff", "#00ffff", "#ffffff"],
+                      opacity: [0.2, 1, 1, 0.2],
+                      textShadow: [
+                        "0px 0px 0px rgba(255,255,255,0)",
+                        "0px 0px 30px rgba(255,255,255,0.8)",
+                        "0px 0px 30px rgba(0,255,255,0.8)",
+                        "0px 0px 0px rgba(255,255,255,0)"
+                      ]
                     }}
                     transition={{
                       duration: 3,
                       repeat: Infinity,
-                      delay: j * 1,
-                      ease: "easeInOut"
+                      delay: j * 0.5,
+                      ease: "circOut",
+                      times: [0, 0.3, 0.6, 1]
                     }}
                   >
                     {letter}
