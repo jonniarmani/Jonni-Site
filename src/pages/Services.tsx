@@ -33,13 +33,11 @@ export default function Services() {
           >
             Florida Gulf Coast Media Solutions
           </motion.span>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] mb-12 uppercase italic"
-          >
-            Professional Media <br /> <span className="text-brand-gold not-italic">& Identity Production.</span>
-          </motion.h1>
+          <div className="mb-12">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] uppercase italic">
+              Professional Media <br /> <span className="text-brand-gold not-italic">& Identity Production.</span>
+            </h1>
+          </div>
           <p className="text-gray-500 text-lg sm:text-2xl font-light max-w-2xl leading-relaxed">
             High-end visual products engineered for high-stakes industries. We don't just deliver media; we deliver measurable brand elevation.
           </p>

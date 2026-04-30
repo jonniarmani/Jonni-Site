@@ -72,13 +72,20 @@ export default function SEO() {
 
     // Canonical
     let canonical = document.querySelector('link[rel="canonical"]');
-    if (seo.canonicalUrl) {
+    if (seo.canonicalUrl || window.location.origin.includes('jonniarmani.com')) {
       if (!canonical) {
         canonical = document.createElement('link');
         canonical.setAttribute('rel', 'canonical');
         document.head.appendChild(canonical);
       }
-      canonical.setAttribute('href', seo.canonicalUrl);
+      
+      // If we are on the production domain but no explicit canonical, set current URL
+      // If we have an explicit canonical, use it.
+      const href = seo.canonicalUrl || window.location.href.split('?')[0];
+      canonical.setAttribute('href', href);
+    } else {
+      // In dev/preview, we might want to remove canonical or point to current page to avoid crawler warnings
+      if (canonical) canonical.remove();
     }
 
     // Language

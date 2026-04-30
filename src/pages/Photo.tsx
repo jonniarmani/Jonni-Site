@@ -167,13 +167,11 @@ export default function Photo() {
             >
               Bradenton & Sarasota Photography
             </motion.span>
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.8] mb-8 uppercase"
-            >
+          <div className="mb-8">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.8] uppercase">
               Professional <br /><span className="italic font-light text-gray-400">Brand & Event Media.</span>
-            </motion.h1>
+            </h1>
+          </div>
             <p className="text-gray-500 text-lg sm:text-xl font-light leading-relaxed max-w-xl">
               From the historic baseline at LECOM Park to the high-stakes performance at IMG Academy—every frame is a legacy in the making.
             </p>

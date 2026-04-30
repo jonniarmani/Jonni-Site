@@ -22,13 +22,11 @@ export default function About() {
           >
             {about.heroTitle}
           </motion.span>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] mb-12 uppercase"
-          >
-            {about.heroSubtitle.split(' ')[0]} <span className="italic font-light">{about.heroSubtitle.split(' ').slice(1).join(' ')}</span>
-          </motion.h1>
+          <div className="mb-12 focus-visible:outline-none">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] uppercase">
+              {about.heroSubtitle.split(' ')[0]} <span className="italic font-light">{about.heroSubtitle.split(' ').slice(1).join(' ')}</span>
+            </h1>
+          </div>
           <div className="w-24 h-1 bg-brand-gold mx-auto" />
         </div>
 
