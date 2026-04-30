@@ -2243,6 +2243,11 @@ export default function Admin() {
                              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                                <VideoIcon size={32} className="text-brand-gold opacity-50" />
                              </div>
+                             {item.isFeatured && (
+                               <div className="absolute top-2 left-2 bg-brand-gold text-black text-[7px] font-black uppercase px-2 py-1 shadow-lg z-20 flex items-center">
+                                 <Star size={8} className="mr-1 fill-black" /> Featured on Homepage
+                               </div>
+                             )}
                           </div>
                           
                             <div className="grid grid-cols-2 gap-4">
@@ -2534,6 +2539,11 @@ export default function Admin() {
                                <img src={item.placeholder} alt="" className="w-full h-full object-cover transition-all" />
                              ) : (
                                <div className="w-full h-full flex items-center justify-center font-display text-gray-300 font-bold uppercase text-[10px]">No Image</div>
+                             )}
+                             {item.isFeatured && (
+                               <div className="absolute top-2 left-2 bg-brand-gold text-black text-[7px] font-black uppercase px-2 py-1 shadow-lg z-20 flex items-center">
+                                 <Star size={8} className="mr-1 fill-black" /> Featured
+                               </div>
                              )}
                           </div>
                           
