@@ -28,12 +28,12 @@ export default function Footer() {
                   <motion.span
                     key={j}
                     animate={{ 
-                      color: ["#ffffff", "#00ffff", "#ffffff"],
+                      color: ["#ffffff", "#D4AF37", "#ffffff"],
                       opacity: [0.2, 1, 1, 0.2],
                       textShadow: [
                         "0px 0px 0px rgba(255,255,255,0)",
                         "0px 0px 30px rgba(255,255,255,0.8)",
-                        "0px 0px 30px rgba(0,255,255,0.8)",
+                        "0px 0px 30px rgba(212,175,55,0.8)",
                         "0px 0px 0px rgba(255,255,255,0)"
                       ]
                     }}
@@ -71,7 +71,7 @@ export default function Footer() {
                 href={brand.socials.instagram} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="hover:scale-110 transition-transform text-[#E4405F]"
+                className="hover:scale-110 transition-transform text-white/40 hover:text-brand-gold"
                 aria-label="Visit our Instagram profile"
               >
                 <Instagram size={24} />
@@ -81,7 +81,7 @@ export default function Footer() {
                 href={brand.socials.facebook} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="hover:scale-110 transition-transform text-[#1877F2]"
+                className="hover:scale-110 transition-transform text-white/40 hover:text-brand-gold"
                 aria-label="Visit our Facebook page"
               >
                 <Facebook size={24} />
@@ -91,7 +91,7 @@ export default function Footer() {
                 href={brand.socials.youtube} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="hover:scale-110 transition-transform text-[#FF0000]"
+                className="hover:scale-110 transition-transform text-white/40 hover:text-brand-gold"
                 aria-label="Visit our YouTube channel"
               >
                 <Youtube size={24} />
@@ -101,7 +101,7 @@ export default function Footer() {
                 href={brand.socials.vimeo} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="hover:scale-110 transition-transform text-[#1AB7EA]"
+                className="hover:scale-110 transition-transform text-white/40 hover:text-brand-gold"
                 aria-label="Visit our Vimeo portfolio"
               >
                 <Video size={24} />

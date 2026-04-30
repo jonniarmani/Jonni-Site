@@ -601,7 +601,7 @@ export default function Admin() {
     { id: 'about', label: 'The Artist', icon: User, color: 'text-purple-500' },
     { id: 'services', label: 'Architecture', icon: Briefcase, color: 'text-orange-500' },
     { id: 'video-work', label: 'Cine Reel', icon: VideoIcon, color: 'text-red-500' },
-    { id: 'photo-work', label: 'Stills', icon: ImageIcon, color: 'text-cyan-500' },
+    { id: 'photo-work', label: 'Stills', icon: ImageIcon, color: 'text-brand-gold' },
     { id: 'promo', label: 'Campaigns', icon: Megaphone, color: 'text-pink-500' },
     { id: 'testimonials', label: 'Authority', icon: Star, color: 'text-yellow-500' },
     { id: 'industries', label: 'Industries', icon: Globe, color: 'text-brand-gold' },
@@ -609,7 +609,7 @@ export default function Admin() {
     { id: 'projects', label: 'Production Flow', icon: BarChart, color: 'text-emerald-500' },
     { id: 'contact', label: 'Contact Page', icon: Mail, color: 'text-rose-500' },
     { id: 'analytics', label: 'Analytics', icon: Activity, color: 'text-red-500' },
-    { id: 'optimizer', label: 'SEO & Speed', icon: Zap, color: 'text-cyan-500' },
+    { id: 'optimizer', label: 'SEO & Speed', icon: Zap, color: 'text-brand-gold' },
     { id: 'code', label: 'System', icon: Code, color: 'text-gray-500' },
     { id: 'theme', label: 'Studio Design', icon: Palette, color: 'text-brand-gold' },
   ];
@@ -739,11 +739,11 @@ export default function Admin() {
                   </div>
 
                   <div className="bg-zinc-900 rounded-lg p-12 text-white relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full -mr-48 -mt-48 blur-3xl group-hover:bg-cyan-500/20 transition-all duration-1000" />
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full -mr-48 -mt-48 blur-3xl group-hover:bg-brand-gold/20 transition-all duration-1000" />
                     
                     <div className="relative z-10 space-y-8">
                       <div className="flex items-center space-x-4">
-                        <div className="w-16 h-16 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                        <div className="w-16 h-16 rounded-full bg-brand-gold/20 border border-brand-gold/30 flex items-center justify-center text-brand-gold">
                           <Zap size={32} className={isOptimizing ? "animate-pulse" : ""} />
                         </div>
                         <div>
@@ -755,29 +755,29 @@ export default function Admin() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8 border-y border-white/5">
                         <div className="space-y-3">
                           <div className="flex items-center space-x-2">
-                            <Check size={14} className="text-cyan-400" />
+                            <Check size={14} className="text-brand-gold" />
                             <span className="text-[10px] font-black uppercase tracking-widest">SEO Meta Alignment</span>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <Check size={14} className="text-cyan-400" />
+                            <Check size={14} className="text-brand-gold" />
                             <span className="text-[10px] font-black uppercase tracking-widest">Category Integrity Check</span>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <Check size={14} className="text-cyan-400" />
+                            <Check size={14} className="text-brand-gold" />
                             <span className="text-[10px] font-black uppercase tracking-widest">Alt-Tag Generation</span>
                           </div>
                         </div>
                         <div className="space-y-3">
                           <div className="flex items-center space-x-2">
-                            <Check size={14} className="text-cyan-400" />
+                            <Check size={14} className="text-brand-gold" />
                             <span className="text-[10px] font-black uppercase tracking-widest">Image Delivery Audit</span>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <Check size={14} className="text-cyan-400" />
+                            <Check size={14} className="text-brand-gold" />
                             <span className="text-[10px] font-black uppercase tracking-widest">Mobile Velocity Check</span>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <Check size={14} className="text-cyan-400" />
+                            <Check size={14} className="text-brand-gold" />
                             <span className="text-[10px] font-black uppercase tracking-widest">Sitemap Synchronization</span>
                           </div>
                         </div>
@@ -787,7 +787,7 @@ export default function Admin() {
                         <button 
                           onClick={runMasterOptimization}
                           disabled={isOptimizing}
-                          className="w-full bg-cyan-500 text-white py-6 font-black uppercase tracking-[0.4em] text-xs hover:bg-cyan-400 transition-all shadow-xl shadow-cyan-500/20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed group"
+                          className="w-full bg-brand-gold text-white py-6 font-black uppercase tracking-[0.4em] text-xs hover:bg-brand-black transition-all shadow-xl shadow-brand-gold/20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed group"
                         >
                           <span className="flex items-center justify-center">
                             {isOptimizing ? (
@@ -2928,7 +2928,7 @@ export default function Admin() {
                           ...localContent, 
                           industries: [
                             ...(localContent.industries || []), 
-                            { id: Date.now().toString(), name: "New Industry", description: "Targeted sector description for AI-search optimization." }
+                            { id: Date.now().toString(), name: "New Industry", description: "Targeted sector description for strategic search optimization." }
                           ]
                         })}
                         className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-xl active:scale-90"
@@ -3190,7 +3190,7 @@ export default function Admin() {
                          <h3 className="text-sm font-black uppercase tracking-widest">System Backup & Portability</h3>
                        </div>
                        <p className="text-xs text-gray-500 mb-8 font-medium max-w-xl">
-                         Export your entire site configuration as a JSON backup. This includes all branding, SEO, portfolio references, and AI intelligence data. You can re-upload this file to restore your settings.
+                         Export your entire site configuration as a JSON backup. This includes all branding, SEO, portfolio references, and studio configuration data. You can re-upload this file to restore your settings.
                        </p>
                        <div className="flex flex-wrap gap-4">
                          <button 

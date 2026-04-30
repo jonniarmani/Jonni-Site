@@ -26,10 +26,9 @@ export default function IndustriesGrid({ industries }: { industries?: Industry[]
               Tailored cinematic solutions for high-stakes professions across the Florida Gulf Coast. From Sarasota waterfront estates to Tampa tech headquarters.
             </p>
           </div>
-          <div className="hidden md:flex items-center space-x-4 text-brand-gold opacity-50">
-             <Globe size={40} className="animate-[spin_10s_linear_infinite]" />
-             <span className="text-[10px] font-black uppercase tracking-widest text-right">
-                AI SEARCH <br /> OPTIMIZED
+          <div className="hidden md:flex items-center space-x-4 text-brand-gold opacity-30">
+             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-right">
+                Vertical <br /> Specialist
              </span>
           </div>
         </div>

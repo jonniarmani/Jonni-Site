@@ -173,7 +173,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     },
     theme: {
       primaryColor: "#000000",
-      accentColor: "#06B6D4",
+      accentColor: "#D4AF37",
       fontDisplay: "Outfit",
       fontSans: "Inter"
     },

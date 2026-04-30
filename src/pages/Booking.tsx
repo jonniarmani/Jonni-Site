@@ -86,7 +86,7 @@ Sent via Jonni Armani Media Web Booking`.trim();
           <motion.span 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-cyan-500 uppercase tracking-[0.4em] text-xs font-bold mb-8 block"
+            className="text-brand-gold uppercase tracking-[0.4em] text-xs font-bold mb-8 block"
           >
             Direct Access
           </motion.span>
@@ -108,7 +108,7 @@ Sent via Jonni Armani Media Web Booking`.trim();
             animate={{ opacity: 1, scale: 1 }}
             className="bg-white border border-gray-100 p-16 text-center space-y-8 max-w-2xl mx-auto shadow-xl"
           >
-            <div className="w-20 h-20 bg-brand-black text-cyan-400 flex items-center justify-center mx-auto rounded-full">
+            <div className="w-20 h-20 bg-brand-black text-brand-gold flex items-center justify-center mx-auto rounded-full">
               <CheckCircle size={40} />
             </div>
             <h2 className="text-3xl font-display font-bold uppercase tracking-tight">Email Drafted</h2>
@@ -118,7 +118,7 @@ Sent via Jonni Armani Media Web Booking`.trim();
             <div className="pt-8">
               <button 
                 onClick={() => setIsSubmitted(false)}
-                className="text-brand-black font-bold uppercase tracking-widest text-xs border-b-2 border-cyan-500 pb-1"
+                className="text-brand-black font-bold uppercase tracking-widest text-xs border-b-2 border-brand-gold pb-1"
               >
                 Draft Another Request
               </button>
@@ -131,14 +131,14 @@ Sent via Jonni Armani Media Web Booking`.trim();
               <div className="bg-white text-brand-black p-8 sm:p-12 shadow-2xl border border-gray-100">
                 <div className="flex items-center justify-between mb-12">
                   <h2 className="text-xl font-display font-bold uppercase flex items-center tracking-tight">
-                    <CalendarIcon size={18} className="mr-3 text-cyan-500" />
+                    <CalendarIcon size={18} className="mr-3 text-brand-gold" />
                     {format(currentMonth, "MMMM yyyy")}
                   </h2>
                   <div className="flex space-x-4">
-                    <button onClick={prevMonth} className="hover:text-cyan-500 transition-colors p-2 border border-gray-100">
+                    <button onClick={prevMonth} className="hover:text-brand-gold transition-colors p-2 border border-gray-100">
                       <ChevronLeft size={20} />
                     </button>
-                    <button onClick={nextMonth} className="hover:text-cyan-500 transition-colors p-2 border border-gray-100">
+                    <button onClick={nextMonth} className="hover:text-brand-gold transition-colors p-2 border border-gray-100">
                       <ChevronRight size={20} />
                     </button>
                   </div>
@@ -165,17 +165,17 @@ Sent via Jonni Armani Media Web Booking`.trim();
                         onClick={() => handleDateClick(day)}
                         className={`aspect-square sm:aspect-video flex flex-col items-center justify-center text-sm transition-all relative group
                           ${isOutside ? "opacity-20" : "opacity-100"}
-                          ${isPast ? "cursor-not-allowed text-gray-300 bg-transparent" : "cursor-pointer hover:bg-cyan-50"}
+                          ${isPast ? "cursor-not-allowed text-gray-300 bg-transparent" : "cursor-pointer hover:bg-brand-gold/10"}
                           ${isSelected ? "text-white font-bold border-none" : "border border-gray-50"}
                           ${!isPast && !isSelected ? "text-brand-black" : ""}
                         `}
                       >
                         <span className="relative z-10">{format(day, "d")}</span>
                         {isSelected && (
-                          <motion.div layoutId="activeDate" className="absolute inset-0 bg-cyan-500 z-0 shadow-lg shadow-cyan-500/20" />
+                          <motion.div layoutId="activeDate" className="absolute inset-0 bg-brand-gold z-0 shadow-lg shadow-brand-gold/20" />
                         )}
                         {!isPast && !isSelected && isSameDay(day, new Date()) && (
-                           <div className="absolute top-2 right-2 w-1.5 h-1.5 bg-cyan-500 rounded-full" />
+                           <div className="absolute top-2 right-2 w-1.5 h-1.5 bg-brand-gold rounded-full" />
                         )}
                       </button>
                     );
@@ -190,7 +190,7 @@ Sent via Jonni Armani Media Web Booking`.trim();
                   className="bg-white border border-gray-100 p-8 sm:p-12 space-y-12"
                 >
                   <div className="flex items-center space-x-3 mb-8 border-b border-gray-100 pb-4">
-                    <Clock size={16} className="text-cyan-500" />
+                    <Clock size={16} className="text-brand-gold" />
                     <h3 className="text-xs uppercase tracking-[0.2em] font-bold">Select Preferred Time</h3>
                   </div>
                   
@@ -201,8 +201,8 @@ Sent via Jonni Armani Media Web Booking`.trim();
                         onClick={() => setSelectedTime(time)}
                         className={`py-4 px-6 text-xs font-bold transition-all border-2 ${
                           selectedTime === time 
-                          ? "bg-cyan-500 text-white border-cyan-500 shadow-lg shadow-cyan-500/20" 
-                          : "border-gray-100 text-gray-500 hover:border-cyan-500 hover:text-cyan-500"
+                          ? "bg-brand-gold text-white border-brand-gold shadow-lg shadow-brand-gold/20" 
+                          : "border-gray-100 text-gray-500 hover:border-brand-gold hover:text-brand-gold"
                         }`}
                       >
                         {time}
@@ -216,7 +216,7 @@ Sent via Jonni Armani Media Web Booking`.trim();
             {/* Form Side */}
             <div className="lg:col-span-12 xl:col-span-5">
               <div className="sticky top-32 space-y-12">
-                <div className="bg-white border border-gray-100 p-8 sm:p-12 border-l-4 border-cyan-500 shadow-xl">
+                <div className="bg-white border border-gray-100 p-8 sm:p-12 border-l-4 border-brand-gold shadow-xl">
                   <h3 className="text-lg font-display font-medium uppercase mb-4 tracking-tight">Booking Summary</h3>
                   <div className="space-y-4 text-sm">
                     <div className="flex justify-between border-b border-gray-100 pb-2">
@@ -236,7 +236,7 @@ Sent via Jonni Armani Media Web Booking`.trim();
                     <input 
                       required
                       type="text"
-                      className="w-full bg-white px-6 py-4 outline-none border-2 border-gray-100 focus:border-cyan-500 transition-all font-medium"
+                      className="w-full bg-white px-6 py-4 outline-none border-2 border-gray-100 focus:border-brand-gold transition-all font-medium"
                       placeholder="Jane Doe"
                       value={formData.name}
                       onChange={e => setFormData({...formData, name: e.target.value})}
@@ -247,7 +247,7 @@ Sent via Jonni Armani Media Web Booking`.trim();
                     <input 
                       required
                       type="email"
-                      className="w-full bg-white px-6 py-4 outline-none border-2 border-gray-100 focus:border-cyan-500 transition-all font-medium"
+                      className="w-full bg-white px-6 py-4 outline-none border-2 border-gray-100 focus:border-brand-gold transition-all font-medium"
                       placeholder="jane@example.com"
                       value={formData.email}
                       onChange={e => setFormData({...formData, email: e.target.value})}
@@ -256,7 +256,7 @@ Sent via Jonni Armani Media Web Booking`.trim();
                   <div className="space-y-2">
                     <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Service Required</label>
                     <select 
-                      className="w-full bg-white px-6 py-4 outline-none border-2 border-gray-100 focus:border-cyan-500 transition-all font-medium appearance-none"
+                      className="w-full bg-white px-6 py-4 outline-none border-2 border-gray-100 focus:border-brand-gold transition-all font-medium appearance-none"
                       value={formData.service}
                       onChange={e => setFormData({...formData, service: e.target.value})}
                     >
@@ -272,7 +272,7 @@ Sent via Jonni Armani Media Web Booking`.trim();
                     <textarea 
                       required
                       rows={4}
-                      className="w-full bg-white px-6 py-4 outline-none border-2 border-gray-100 focus:border-cyan-500 transition-all font-medium resize-none"
+                      className="w-full bg-white px-6 py-4 outline-none border-2 border-gray-100 focus:border-brand-gold transition-all font-medium resize-none"
                       placeholder="Objectives and vision..."
                       value={formData.message}
                       onChange={e => setFormData({...formData, message: e.target.value})}
@@ -282,7 +282,7 @@ Sent via Jonni Armani Media Web Booking`.trim();
                   <button 
                     type="submit"
                     disabled={!selectedDate || !selectedTime}
-                    className="w-full bg-brand-black text-white py-6 font-bold uppercase tracking-[0.4em] text-xs hover:bg-cyan-500 transition-all disabled:opacity-30 flex items-center justify-center group"
+                    className="w-full bg-brand-black text-white py-6 font-bold uppercase tracking-[0.4em] text-xs hover:bg-brand-gold transition-all disabled:opacity-30 flex items-center justify-center group"
                   >
                     Draft Booking Request <ArrowRight size={14} className="ml-3 group-hover:translate-x-1 transition-transform" />
                   </button>

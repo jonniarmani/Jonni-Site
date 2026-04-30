@@ -77,6 +77,7 @@ export default function Services() {
                             className="w-full h-full object-cover"
                             style={{ objectPosition: service.objectPosition || 'center center' }}
                             autoPlay muted loop playsInline
+                            preload="metadata"
                             crossOrigin="anonymous"
                           />
                         )}
@@ -90,7 +91,7 @@ export default function Services() {
                         sizes="(max-width: 1024px) 100vw, 50vw"
                       />
                     )}
-                    {service.visualType === 'video' && (
+                    {service.visualType === 'video' && service.id !== 'commercial' && (
                       <div className="absolute inset-x-0 bottom-0 p-12 bg-gradient-to-t from-brand-black/80 to-transparent">
                         <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
                            <Play size={24} className="text-white fill-white ml-1" />

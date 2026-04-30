@@ -200,9 +200,9 @@ export default function Video() {
                         <Link 
                           to={item.url} 
                           onClick={(e) => e.stopPropagation()}
-                          className="text-[9px] uppercase font-black text-cyan-600 bg-cyan-50 px-2 py-1 rounded hover:bg-cyan-100 transition-colors flex items-center gap-1"
+                          className="text-[9px] uppercase font-black text-brand-gold bg-brand-gold/10 px-2 py-1 rounded hover:bg-brand-gold hover:text-white transition-colors flex items-center gap-1"
                         >
-                          Project Details <Play size={10} className="fill-cyan-600" />
+                          Project Details <Play size={10} className="fill-current" />
                         </Link>
                       )}
                     </div>

@@ -119,8 +119,61 @@ export default function Home() {
 
       <IndustriesGrid industries={industries} />
 
+      {/* Featured Reels & Frames - The missing middle section */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-brand-gold font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">
+              Direct Visual Proof
+            </span>
+            <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tighter uppercase italic">
+              Featured <span className="text-gray-300 not-italic">Work.</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {content.portfolio.filter(p => p.isFeatured).slice(0, 4).map((p, idx) => (
+              <motion.div 
+                key={p.title + idx}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="group relative aspect-[4/5] bg-brand-gray overflow-hidden shadow-2xl"
+              >
+                <ResponsiveImage 
+                   src={p.placeholder} 
+                   alt={p.title} 
+                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" 
+                   style={{ objectPosition: p.objectPosition || 'center center' }}
+                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+                  <p className="text-brand-gold text-[10px] font-black uppercase tracking-widest mb-2">{p.category}</p>
+                  <h3 className="text-white text-xl font-display font-bold uppercase tracking-tight leading-none">{p.title}</h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Quick Access */}
+      <section className="pt-16 pb-8 bg-brand-gray border-t border-gray-100">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+            <Link to="/video" className="bg-brand-black text-white px-10 py-6 font-bold uppercase tracking-[0.3em] text-xs hover:bg-brand-gold transition-all w-full sm:w-72 text-center shadow-2xl group flex items-center justify-center">
+              Video Portfolio <ArrowRight size={14} className="ml-4 group-hover:translate-x-2 transition-transform" />
+            </Link>
+            <Link to="/photo" className="bg-white text-brand-black border-2 border-brand-black px-10 py-6 font-bold uppercase tracking-[0.3em] text-xs hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-all w-full sm:w-72 text-center shadow-2xl group flex items-center justify-center">
+              Photo Portfolio <ArrowRight size={14} className="ml-4 group-hover:translate-x-2 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
-      <section className="py-24 bg-zinc-50">
+      <section className="pt-8 pb-8 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
@@ -148,22 +201,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Portfolio Quick Access */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-            <Link to="/video" className="bg-brand-black text-white px-10 py-6 font-bold uppercase tracking-[0.3em] text-xs hover:bg-brand-gold transition-all w-full sm:w-72 text-center shadow-xl">
-              Video Portfolio
-            </Link>
-            <Link to="/photo" className="bg-white text-brand-black border-2 border-brand-black px-10 py-6 font-bold uppercase tracking-[0.3em] text-xs hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-all w-full sm:w-72 text-center shadow-xl">
-              Photo Portfolio
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section - Blended with Start Your Project Intent */}
-      <section className="bg-brand-black py-24 md:py-40 text-white overflow-hidden relative">
+      <section className="bg-brand-black pt-8 pb-24 md:pt-16 md:pb-40 text-white overflow-hidden relative">
         <div className="absolute inset-0 z-0 opacity-20">
            {content.home.ctaBackground && (
              <ResponsiveImage 

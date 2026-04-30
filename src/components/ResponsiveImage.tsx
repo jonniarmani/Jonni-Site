@@ -5,6 +5,7 @@ interface ResponsiveImageProps extends React.ImgHTMLAttributes<HTMLImageElement>
   alt: string;
   className?: string;
   sizes?: string;
+  fetchPriority?: "high" | "low" | "auto";
 }
 
 /**
@@ -16,20 +17,27 @@ export const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
   alt, 
   className, 
   sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 50vw",
+  fetchPriority = "auto",
+  loading = "lazy",
   ...props 
 }) => {
   // Check if it's an Unsplash URL to apply optimization
   const isUnsplash = src.includes('images.unsplash.com');
 
+  const defaultProps = {
+    alt,
+    className,
+    loading,
+    decoding: props.decoding || (loading === "eager" ? "sync" : "async"),
+    fetchPriority,
+    ...props
+  };
+
   if (!isUnsplash) {
     return (
       <img 
         src={src} 
-        alt={alt} 
-        className={className} 
-        loading={props.loading || "lazy"} 
-        decoding={props.decoding || (props.loading === "eager" ? "sync" : "async")}
-        {...props} 
+        {...defaultProps} 
       />
     );
   }
@@ -60,11 +68,7 @@ export const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
       src={generateSrc(1200)} // Default fallback width
       srcSet={srcSet}
       sizes={sizes}
-      alt={alt}
-      className={className}
-      loading={props.loading || "lazy"}
-      decoding={props.decoding || (props.loading === "eager" ? "sync" : "async")}
-      {...props}
+      {...defaultProps}
     />
   );
 };

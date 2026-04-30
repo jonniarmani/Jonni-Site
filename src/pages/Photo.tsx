@@ -47,7 +47,7 @@ function PhotoProject({ item }: { item: PhotoItem }) {
         {item.url && item.url !== "#" && (
           <Link 
             to={item.url} 
-            className="inline-flex items-center gap-2 text-cyan-600 uppercase font-black text-[10px] tracking-widest bg-cyan-50 px-4 py-2 rounded-sm border border-cyan-100 hover:bg-cyan-100 transition-all mt-4"
+            className="inline-flex items-center gap-2 text-brand-gold uppercase font-black text-[10px] tracking-widest bg-brand-gold/10 px-4 py-2 rounded-sm border border-brand-gold/20 hover:bg-brand-gold hover:text-white transition-all mt-4"
           >
             Visit Detailed Gallery <ArrowRight size={14} />
           </Link>
