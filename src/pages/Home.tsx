@@ -125,6 +125,50 @@ export default function Home() {
 
       <IndustriesGrid industries={industries} />
 
+      {/* Philosophy & Process - New section to beef up content */}
+      <section className="py-24 bg-zinc-50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              <div className="space-y-4">
+                <div className="w-12 h-[2px] bg-brand-gold mb-6" />
+                <h3 className="text-2xl font-display font-bold uppercase italic">Discovery <span className="text-gray-300 not-italic">& Insight.</span></h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Every successful media project begins with a deep understanding of your brand's unique DNA. We sit down with you to identify core objectives, target demographics, and the emotional resonance you want to achieve. Whether it's a promotional video for a local Bradenton business or a high-stakes sports recruitment film, our discovery phase ensures every frame serves a purpose.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <div className="w-12 h-[2px] bg-brand-gold mb-6" />
+                <h3 className="text-2xl font-display font-bold uppercase italic">Technical <span className="text-gray-300 not-italic">Execution.</span></h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  We deploy industry-standard cinema cameras and lighting packages to capture your story with unrivaled clarity. Our technical expertise allows us to navigate complex environments—from sterile medical suites in Sarasota to the high-motion sidelines of Florida sporting events. We don't just record; we craft visuals that stand out in a saturated digital landscape.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <div className="w-12 h-[2px] bg-brand-gold mb-6" />
+                <h3 className="text-2xl font-display font-bold uppercase italic">Post-Production <span className="text-gray-300 not-italic">Mastery.</span></h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  The true magic happens in the edit. Our post-production pipeline includes professional color grading, precision sound design, and strategic narrative pacing. We refine the raw footage into a polished visual product that aligns with your brand's voice and professional standards. The result is a high-impact asset ready for broadcast, social media, or corporate distribution.
+                </p>
+              </div>
+            </div>
+            
+            {/* Added more keywords/text for density */}
+            <div className="mt-20 p-10 border border-gray-200 bg-white shadow-sm">
+              <h4 className="text-brand-black font-bold uppercase tracking-widest text-xs mb-6">Strategic Visual Positioning</h4>
+              <div className="columns-1 md:columns-2 gap-12 text-gray-500 text-sm font-light leading-loose">
+                <p className="mb-6">
+                  Jonni Armani Media is more than just a production house; we are a strategic partner for brands, athletes, and industry leaders across the Florida Gulf Coast. Our work is defined by a commitment to cinematic integrity and human connection. We believe that professional video and photography are the most powerful tools available for building trust and establishing market authority in today's visual-first economy.
+                </p>
+                <p>
+                  Based in Bradenton and serving Sarasota, Tampa, and St. Petersburg, we specialize in high-stakes industries where precision matters. From capturing the legacy of athletes at LECOM Park to documenting complex surgical transformations for medical providers, we bring a level of focus and professional maturity that is rare in the creative space. Every project is handled with the same level of care, ensuring your message is delivered clearly and effectively.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Reels & Frames - The missing middle section */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-6">

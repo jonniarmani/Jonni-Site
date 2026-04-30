@@ -94,6 +94,36 @@ export default function About() {
               {about.storyText3}
             </p>
 
+            {/* Behind the Lens Content Expansion */}
+            <div className="my-24 space-y-12">
+              <div className="flex items-center space-x-4 mb-8">
+                <div className="h-[1px] flex-grow bg-gray-200" />
+                <h3 className="text-xs font-black uppercase tracking-[0.5em] text-brand-gold">Behind the Lens</h3>
+                <div className="h-[1px] flex-grow bg-gray-200" />
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-gray-600 leading-relaxed font-light">
+                <div className="space-y-6">
+                  <h4 className="text-xl font-display font-bold text-brand-black">The Florida Connection</h4>
+                  <p className="text-sm">
+                    Operating primarily out of Bradenton and Sarasota, Florida, Jonni Armani Media is deeply rooted in the Gulf Coast community. We understand the unique coastal light, the energy of local athletic powerhouses like IMG Academy, and the high standards of the region's expanding medical and luxury real estate markets. Our local presence isn't just about geography—it's about a shared commitment to seeing our regional economy thrive through better visual storytelling.
+                  </p>
+                  <p className="text-sm">
+                    We've spent over 14 years refining our technical toolkit to match the specific demands of Florida's high-stakes industries. Whether navigating a humid sideline during a midday match or the controlled environment of a surgical suite, we bring the right gear and the right mindset to every location.
+                  </p>
+                </div>
+                <div className="space-y-6">
+                  <h4 className="text-xl font-display font-bold text-brand-black">Commitment to Growth</h4>
+                  <p className="text-sm">
+                    We believe that "good enough" is the enemy of great. In an era where anyone with a smartphone can call themselves a creator, we differentiate through professional maturity and strategic intent. Our clients aren't just buying a video file; they are investing in a strategic asset designed to solve specific business problems—be it lack of trust, poor engagement, or a weak brand identity.
+                  </p>
+                  <p className="text-sm">
+                    Every year, we reinvest in higher-quality cinema optics, faster editing workflows, and advanced color science to ensure our clients always receive a product that feels ahead of the curve. Your growth is our growth, and we take that partnership seriously.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div className="pt-10 border-t border-gray-100">
                <h3 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-400 mb-8">Selected Collaborations</h3>
                <div className="flex flex-wrap gap-x-12 gap-y-8 grayscale opacity-50 mb-20">
