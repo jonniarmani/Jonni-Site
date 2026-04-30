@@ -190,7 +190,6 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         "service-corporate": "Corporate Video Tampa - Headquarters Mission Profiles & Brand Strategy",
         "service-sports": "Professional Athlete Media IMG Academy Bradenton - Elite Performance Reels"
       },
-      canonicalUrl: "https://jonniarmani.com",
       author: "Jonni Armani",
       robots: "index, follow",
       twitterHandle: "@jonniarmani",
