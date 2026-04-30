@@ -158,6 +158,13 @@ export default function Portal() {
     <div className="min-h-screen pt-24 pb-40 bg-zinc-50">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
+          <div className="mb-12">
+            <h1 className="text-3xl sm:text-5xl font-display font-bold uppercase tracking-tight">Client <span className="text-brand-gold italic">Transmission Portal</span></h1>
+            <p className="text-gray-400 text-xs font-bold uppercase tracking-widest mt-2 flex items-center">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse" />
+              Secure Protocol Active • {relatedData?.title || 'System Resource'}
+            </p>
+          </div>
           <div className="flex flex-col lg:flex-row gap-12">
             
             {/* Sidebar: Overview */}

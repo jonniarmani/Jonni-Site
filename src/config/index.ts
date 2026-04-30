@@ -312,55 +312,76 @@ export const INDUSTRIES = [
 
 export const SCHEMA_JSON_LD = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Jonni Armani Media",
-  "image": "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000",
-  "@id": "https://jonniarmani.com",
-  "url": "https://jonniarmani.com",
-  "telephone": "208.549.9544",
-  "priceRange": "$$$",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "",
-    "addressLocality": "Bradenton",
-    "addressRegion": "FL",
-    "postalCode": "34205",
-    "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 27.4989,
-    "longitude": -82.5748
-  },
-  "hasMap": "https://share.google/HT4TAtwwAeGY4mlVQ",
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday"
-    ],
-    "opens": "09:00",
-    "closes": "18:00"
-  },
-  "sameAs": [
-    BRAND.socials.instagram,
-    BRAND.socials.facebook,
-    BRAND.socials.vimeo,
-    BRAND.socials.youtube,
-    "https://share.google/HT4TAtwwAeGY4mlVQ"
-  ],
-  "areaServed": [
-    "Bradenton",
-    "Sarasota",
-    "Tampa",
-    "St. Petersburg",
-    "Siesta Key",
-    "Anna Maria Island",
-    "Lakewood Ranch",
-    "Palmetto"
-  ],
-  "description": "Premium cinematic video production and commercial photography across the Florida Gulf Coast."
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://jonniarmani.com/#organization",
+      "name": "Jonni Armani Media",
+      "url": "https://jonniarmani.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://jonniarmani.com/logo.png"
+      },
+      "image": "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000",
+      "description": "Premium cinematic video production and commercial photography specializing in sports, healthcare, and luxury brands across the Florida Gulf Coast.",
+      "telephone": BRAND.contact.phone,
+      "email": BRAND.contact.email,
+      "priceRange": "$$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "",
+        "addressLocality": "Bradenton",
+        "addressRegion": "FL",
+        "postalCode": "34205",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 27.4989,
+        "longitude": -82.5748
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [
+        BRAND.socials.instagram,
+        BRAND.socials.facebook,
+        BRAND.socials.vimeo,
+        BRAND.socials.youtube,
+        "https://maps.app.goo.gl/Nd7TRimptM7MAJjF8"
+      ],
+      "areaServed": [
+        { "@type": "City", "name": "Bradenton" },
+        { "@type": "City", "name": "Sarasota" },
+        { "@type": "City", "name": "Tampa" },
+        { "@type": "City", "name": "St. Petersburg" },
+        { "@type": "City", "name": "Lakewood Ranch" },
+        { "@type": "City", "name": "Longboat Key" },
+        { "@type": "City", "name": "Siesta Key" },
+        { "@type": "City", "name": "Anna Maria Island" }
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Jonni Armani",
+        "jobTitle": "Cinematographer & Photographer"
+      },
+      "knowsAbout": [
+        "Cinematography",
+        "Commercial Photography",
+        "Sports Media",
+        "Medical Video Production",
+        "Brand Storytelling"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://jonniarmani.com/#website",
+      "url": "https://jonniarmani.com",
+      "name": "Jonni Armani Media",
+      "publisher": { "@id": "https://jonniarmani.com/#organization" }
+    }
+  ]
 };

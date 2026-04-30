@@ -63,7 +63,7 @@ export default function Video() {
             >
               Florida Commercial & Sports Video
             </motion.span>
-          <div className="mb-8">
+          <div className="mb-0">
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] uppercase">
               Commercial <br /><span className="italic font-light text-gray-400">Cinematography.</span>
             </h1>

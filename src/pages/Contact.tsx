@@ -69,18 +69,16 @@ export default function Contact() {
           >
             {content.contact.subtitle}
           </motion.span>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] mb-8 uppercase"
-          >
-            {content.contact.title.split('.').map((part, i, arr) => (
-              <React.Fragment key={i}>
-                {part}{i < arr.length - 1 && '.'}
-                {i === 0 && <br className="hidden sm:block" />}
-              </React.Fragment>
-            ))}
-          </motion.h1>
+          <div className="mb-8">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] uppercase">
+              {content.contact.title.split('.').map((part, i, arr) => (
+                <React.Fragment key={i}>
+                  {part}{i < arr.length - 1 && '.'}
+                  {i === 0 && <br className="hidden sm:block" />}
+                </React.Fragment>
+              ))}
+            </h1>
+          </div>
           <p className="text-gray-500 text-lg sm:text-xl font-light max-w-xl">
             {content.contact.description}
           </p>

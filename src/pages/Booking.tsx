@@ -90,13 +90,11 @@ Sent via Jonni Armani Media Web Booking`.trim();
           >
             Direct Access
           </motion.span>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] mb-8 uppercase"
-          >
-            Request A <span className="italic font-light">Session.</span>
-          </motion.h1>
+          <div className="mb-8">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] mb-8 uppercase">
+              Request A <span className="italic font-light">Session.</span>
+            </h1>
+          </div>
           <p className="text-gray-500 text-lg sm:text-xl font-light max-w-xl">
             Select a preferred date and time to secure your slot. All requests are manually reviewed for compatibility and travel logistics.
           </p>

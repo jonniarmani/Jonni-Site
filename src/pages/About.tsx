@@ -22,7 +22,7 @@ export default function About() {
           >
             {about.heroTitle}
           </motion.span>
-          <div className="mb-12 focus-visible:outline-none">
+          <div className="mb-12">
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] uppercase">
               {about.heroSubtitle.split(' ')[0]} <span className="italic font-light">{about.heroSubtitle.split(' ').slice(1).join(' ')}</span>
             </h1>
