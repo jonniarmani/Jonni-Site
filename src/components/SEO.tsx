@@ -1,32 +1,45 @@
 import React, { useEffect } from 'react';
 import { useContent } from '../lib/ContentContext';
 
-export default function SEO() {
+interface SEOProps {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+}
+
+export default function SEO({ title, description, keywords, ogImage, canonicalUrl }: SEOProps) {
   const { content } = useContent();
-  const { seo } = content;
+  const seo = content.seo;
 
   useEffect(() => {
-    if (!seo) return;
+    // Priority: Props > Context Content > Default Empty
+    const finalTitle = title || seo?.title || '';
+    const finalDescription = description || seo?.description || '';
+    const finalKeywords = keywords || seo?.keywords || '';
+    const finalOgImage = ogImage || seo?.ogImage || '';
+    const finalCanonical = canonicalUrl || seo?.canonicalUrl || '';
 
-    if (seo.title) document.title = seo.title;
+    if (finalTitle) document.title = finalTitle;
 
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', seo.description || '');
-    } else if (seo.description) {
+      metaDescription.setAttribute('content', finalDescription);
+    } else if (finalDescription) {
       const meta = document.createElement('meta');
       meta.name = 'description';
-      meta.content = seo.description;
+      meta.content = finalDescription;
       document.head.appendChild(meta);
     }
 
     const metaKeywords = document.querySelector('meta[name="keywords"]');
     if (metaKeywords) {
-      metaKeywords.setAttribute('content', seo.keywords || '');
-    } else if (seo.keywords) {
+      metaKeywords.setAttribute('content', finalKeywords);
+    } else if (finalKeywords) {
       const meta = document.createElement('meta');
       meta.name = 'keywords';
-      meta.content = seo.keywords;
+      meta.content = finalKeywords;
       document.head.appendChild(meta);
     }
 
@@ -41,10 +54,10 @@ export default function SEO() {
       if (tag) tag.setAttribute('content', content);
     };
 
-    setOgTag('og:title', seo.title || '');
-    setOgTag('og:description', seo.description || '');
-    setOgTag('og:image', seo.ogImage || '');
-    setOgTag('og:url', seo.canonicalUrl || window.location.href);
+    setOgTag('og:title', finalTitle);
+    setOgTag('og:description', finalDescription);
+    setOgTag('og:image', finalOgImage);
+    setOgTag('og:url', finalCanonical || window.location.href);
     setOgTag('og:type', 'website');
     setOgTag('og:site_name', 'Jonni Armani Media');
 
@@ -59,32 +72,29 @@ export default function SEO() {
       if (tag) tag.setAttribute('content', content);
     };
 
-    setTwitterTag('twitter:card', seo.twitterCard || 'summary_large_image');
-    setTwitterTag('twitter:site', seo.twitterHandle || '');
-    setTwitterTag('twitter:creator', seo.twitterHandle || '');
-    setTwitterTag('twitter:title', seo.title || '');
-    setTwitterTag('twitter:description', seo.description || '');
-    setTwitterTag('twitter:image', seo.ogImage || '');
+    setTwitterTag('twitter:card', seo?.twitterCard || 'summary_large_image');
+    setTwitterTag('twitter:site', seo?.twitterHandle || '');
+    setTwitterTag('twitter:creator', seo?.twitterHandle || '');
+    setTwitterTag('twitter:title', finalTitle);
+    setTwitterTag('twitter:description', finalDescription);
+    setTwitterTag('twitter:image', finalOgImage);
 
     // Robots
     const robots = document.querySelector('meta[name="robots"]');
-    if (robots) robots.setAttribute('content', seo.robots || 'index, follow');
+    if (robots) robots.setAttribute('content', seo?.robots || 'index, follow');
 
     // Canonical
     let canonical = document.querySelector('link[rel="canonical"]');
-    if (seo.canonicalUrl || window.location.origin.includes('jonniarmani.com')) {
+    if (finalCanonical || window.location.origin.includes('jonniarmani.com')) {
       if (!canonical) {
         canonical = document.createElement('link');
         canonical.setAttribute('rel', 'canonical');
         document.head.appendChild(canonical);
       }
       
-      // If we are on the production domain but no explicit canonical, set current URL
-      // If we have an explicit canonical, use it.
-      const href = seo.canonicalUrl || window.location.href.split('?')[0];
+      const href = finalCanonical || window.location.href.split('?')[0];
       canonical.setAttribute('href', href);
     } else {
-      // In dev/preview, we might want to remove canonical or point to current page to avoid crawler warnings
       if (canonical) canonical.remove();
     }
 

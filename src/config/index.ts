@@ -202,24 +202,24 @@ export const PORTFOLIO = [
 
 export const SEO = {
   home: {
-    title: "Jonni Armani Media | Florida Gulf Coast Video & Photography",
-    description: "Premium visual storytelling for brands and athletes in Bradenton and Sarasota. Specialized commercial film and high-end photography that drives real growth.",
+    title: "Jonni Armani Media | Florida Video & Photography",
+    description: "Premium cinematic video and commercial photography in Bradenton and Sarasota. High-end storytelling for brands, athletes, and medical professionals.",
   },
   about: {
-    title: "About | Professional Photographer & Videographer Bradenton FL",
-    description: "Meet Jonni Armani, a dedicated creative professional in Florida. We offer cinematic brand stories and sports media for elite performers and local businesses.",
+    title: "About Jonni Armani | Creative Professional FL",
+    description: "Over 14 years of experience in high-end cinematography and photography. Based in Bradenton, Florida, delivering strategic visual results.",
   },
   services: {
-    title: "Services | High-End Film & Brand Photography Florida",
-    description: "Expert media services for luxury brands, sports agencies, and medical groups. Serving the Gulf Coast with clear, professional, and impactful visuals.",
+    title: "Services | Cinematic Film & Brand Photography",
+    description: "Expert media services for luxury brands, sports, and healthcare. Serving the Florida Gulf Coast with professional, impactful visual solutions.",
   },
   work: {
-    title: "Portfolio | Commercial Film & Sports Photography Sarasota",
-    description: "View our recent work with IMG Academy, LECOM Park, and Florida brands. High-quality visuals for athletes, luxury real estate, and healthcare clients.",
+    title: "Portfolio | Commercial Film & Sports Media",
+    description: "Explore our work with professional athletes and luxury brands. High-impact cinematography and photography across Sarasota and Tampa Bay.",
   },
   contact: {
-    title: "Start Your Project | Media Inquiries Bradenton & Sarasota",
-    description: "Ready to elevate your brand? Contact us for professional video and photo projects in Bradenton, Tampa, and the surrounding Florida Gulf Coast areas.",
+    title: "Contact | Start Your Media Project Today",
+    description: "Elevate your brand with professional video and photo. Contact Jonni Armani Media for projects in Bradenton, Sarasota, and the Florida Gulf Coast.",
   }
 };
 
@@ -236,7 +236,7 @@ export const ABOUT_CONTENT = {
 
 export const HOME_CONTENT = {
   lensTitle: "Precision Visuals. Strategic Growth.",
-  lensText: "In a competitive business world, good video and photo are required. I focus on creating high-impact stories that help your brand grow. We provide professional results for businesses along the Florida Gulf Coast. Our work helps you build trust and stand out in your market. We use the best gear to make sure your project looks great. From commercial film to elite sports media, we help you succeed with visual power. Let us tell your story and help your brand reach its full potential.",
+  lensText: "In today's fast-paced digital landscape, high-quality visual content is not just an advantage—it is a necessity for survival. Jonni Armani Media specializes in creating intentional, cinematic narratives that translate directly into business growth and professional authority. Based in Bradenton, Florida, we provide world-class video production and commercial photography tailored to the unique demands of high-stakes industries.\n\nOur approach combines technical mastery with a deep understanding of human connection. Whether we are filming a broadcast-quality sports reel at IMG Academy, a precise clinical documentary for a Sarasota medical practice, or a luxury brand story for a Gulf Coast resort, our goal remains the same: to deliver media that commands attention and inspires action. We utilize industry-leading cinema gear and a meticulous post-production process to ensure every frame reflects the premium nature of your brand. By choosing Jonni Armani Media, you are investing in a strategic partnership dedicated to elevating your visual identity and helping you dominate your market.",
   lensImage: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1200",
   ctaBackground: "https://images.unsplash.com/photo-1520116467321-f1463a863260?auto=format&fit=crop&q=80&w=2000",
   faqTitle: "Frequently Asked Questions",
