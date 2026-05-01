@@ -1939,7 +1939,7 @@ export default function Admin() {
                           <div className="aspect-video bg-black overflow-hidden mb-4 relative">
                             {visual.type === 'video' ? (
                               <div className="w-full h-full flex items-center justify-center text-white bg-zinc-900 border border-zinc-800">
-                                <video src={visual.url} className="w-full h-full object-cover opacity-50" />
+                                {visual.url && <video src={visual.url} className="w-full h-full object-cover opacity-50" />}
                                 <span className="absolute text-[8px] uppercase tracking-widest font-black bg-brand-gold px-2 py-1 text-black">Video Preview</span>
                               </div>
                             ) : (
@@ -2115,7 +2115,13 @@ export default function Admin() {
                       <div className="flex flex-col space-y-4">
                         <div className="flex space-x-4">
                           <div className="w-20 h-20 bg-gray-100 overflow-hidden shrink-0">
-                            <img src={localContent.about.profileImage} alt="" className="w-full h-full object-cover" />
+                            {localContent.about.profileImage ? (
+                              <img src={localContent.about.profileImage} alt="" className="w-full h-full object-cover" />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center bg-zinc-200">
+                                <User size={24} className="text-zinc-400" />
+                              </div>
+                            )}
                           </div>
                           <input 
                             className="flex-1 bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-xs" 

@@ -213,10 +213,16 @@ export default function Video() {
 
         <section className="mt-24 sm:mt-40 border-t border-gray-100 pt-16 sm:pt-32 text-center">
           <h2 className="text-3xl sm:text-4xl font-display font-bold mb-8 uppercase tracking-tighter italic">Ready to tell your <span className="not-italic text-brand-gold">Video Story?</span></h2>
-          <div className="flex justify-center">
-            <Link to="/contact?type=video" className="bg-brand-black text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold transition-colors inline-flex items-center">
-              Start Video Project <ArrowRight size={18} className="ml-3" />
+          <div className="flex flex-col items-center gap-8">
+            <Link to="/contact?type=video" className="bg-brand-black text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold transition-colors inline-flex items-center group">
+              Start Video Project <ArrowRight size={18} className="ml-3 group-hover:translate-x-1 transition-transform" />
             </Link>
+            <div className="max-w-lg">
+              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-gold mb-4 block">Regional Deployment</span>
+              <p className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.2em] mx-auto leading-relaxed">
+                Serving the creative economy of Bradenton, Palmetto, Sarasota, and the Florida Suncoast with Cinematic Excellence.
+              </p>
+            </div>
           </div>
         </section>
       </div>

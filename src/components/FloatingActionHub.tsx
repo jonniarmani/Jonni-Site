@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Video, Camera, Plus, X, ArrowUpRight } from "lucide-react";
 
 export default function FloatingActionHub() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -14,8 +14,8 @@ export default function FloatingActionHub() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Show after scrolling past hero
-      setIsVisible(currentScrollY > 700);
+      // Always visible as requested
+      setIsVisible(true);
       
       // Handle scrolling state
       setIsScrolling(true);
@@ -60,24 +60,24 @@ export default function FloatingActionHub() {
             <div className="flex gap-4 p-2 bg-white/80 backdrop-blur-md rounded-full border border-white/20 shadow-2xl pointer-events-auto">
               <Link
                 to="/contact?type=video"
-                className="bg-brand-gold text-white px-8 py-5 rounded-full font-black uppercase tracking-[0.2em] text-[10px] flex items-center group active:scale-95 transition-all hover:bg-brand-black shadow-lg"
+                className="bg-brand-gold text-white px-7 py-4 rounded-full font-black uppercase tracking-[0.2em] text-[10px] flex items-center group active:scale-95 transition-all hover:bg-brand-black shadow-lg"
               >
-                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-4 group-hover:bg-brand-gold transition-colors">
-                  <Video size={18} />
+                <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center mr-4 group-hover:bg-brand-gold transition-colors">
+                  <Video size={16} />
                 </div>
                 <span>Start Video Project</span>
-                <ArrowUpRight size={14} className="ml-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform opacity-50" />
+                <ArrowUpRight size={12} className="ml-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform opacity-50" />
               </Link>
               
               <Link
                 to="/contact?type=photo"
-                className="bg-brand-black text-white px-8 py-5 rounded-full font-black uppercase tracking-[0.2em] text-[10px] flex items-center group active:scale-95 transition-all hover:bg-brand-gold shadow-lg"
+                className="bg-brand-black text-white px-7 py-4 rounded-full font-black uppercase tracking-[0.2em] text-[10px] flex items-center group active:scale-95 transition-all hover:bg-brand-gold shadow-lg"
               >
-                <div className="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center mr-4 group-hover:bg-brand-black transition-colors">
-                  <Camera size={18} className="text-brand-gold" />
+                <div className="w-9 h-9 rounded-full bg-brand-gold/20 flex items-center justify-center mr-4 group-hover:bg-brand-black transition-colors">
+                  <Camera size={16} className="text-brand-gold" />
                 </div>
                 <span>Start Photo Project</span>
-                <ArrowUpRight size={14} className="ml-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform opacity-50" />
+                <ArrowUpRight size={12} className="ml-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform opacity-50" />
               </Link>
             </div>
           </motion.div>
@@ -111,9 +111,9 @@ export default function FloatingActionHub() {
                     <Link
                       to="/contact?type=video"
                       onClick={() => setIsOpen(false)}
-                      className="w-14 h-14 bg-brand-gold text-white rounded-full flex items-center justify-center shadow-2xl active:scale-95 transition-all"
+                      className="w-12 h-12 bg-brand-gold text-white rounded-full flex items-center justify-center shadow-2xl active:scale-95 transition-all"
                     >
-                      <Video size={20} />
+                      <Video size={18} />
                     </Link>
                   </div>
 
@@ -125,9 +125,9 @@ export default function FloatingActionHub() {
                     <Link
                       to="/contact?type=photo"
                       onClick={() => setIsOpen(false)}
-                      className="w-14 h-14 bg-brand-black text-white rounded-full flex items-center justify-center shadow-2xl active:scale-95 transition-all border border-brand-gold/30"
+                      className="w-12 h-12 bg-brand-black text-white rounded-full flex items-center justify-center shadow-2xl active:scale-95 transition-all border border-brand-gold/30"
                     >
-                      <Camera size={20} className="text-brand-gold" />
+                      <Camera size={18} className="text-brand-gold" />
                     </Link>
                   </div>
                 </motion.div>
@@ -138,16 +138,16 @@ export default function FloatingActionHub() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`
-                pointer-events-auto relative w-14 h-14 rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.3)] 
+                pointer-events-auto relative w-12 h-12 rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.3)] 
                 transition-all duration-500 group active:scale-90
                 ${isOpen ? 'bg-brand-black rotate-90' : 'bg-brand-gold'}
               `}
             >
               {isOpen ? (
-                <X size={20} className="text-brand-gold" />
+                <X size={18} className="text-brand-gold" />
               ) : (
                 <div className="relative flex items-center justify-center">
-                  <Plus size={20} className="text-white" />
+                  <Plus size={18} className="text-white" />
                   {!isScrolling && (
                     <motion.div 
                       initial={{ scale: 0, opacity: 0 }}

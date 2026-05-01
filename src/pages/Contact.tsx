@@ -269,11 +269,13 @@ export default function Contact() {
                  </Link>
               </div>
               <div className="order-1 lg:order-2 aspect-[4/3] bg-brand-gray overflow-hidden">
-                 <img 
-                    src={content.contact.image} 
-                    alt="Creative Direction & Strategic Production" 
-                    className="w-full h-full object-cover grayscale opacity-80"
-                 />
+                 {content.contact.image && (
+                   <img 
+                      src={content.contact.image} 
+                      alt="Creative Direction & Strategic Production" 
+                      className="w-full h-full object-cover grayscale opacity-80"
+                   />
+                 )}
               </div>
            </div>
         </div>

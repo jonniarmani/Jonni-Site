@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import PageTransition from "./components/PageTransition";
 import PromoPopup from "./components/PromoPopup";
 import CodeInjection from "./components/CodeInjection";
+import FloatingActionHub from "./components/FloatingActionHub";
 import SEO from "./components/SEO";
 import { ContentProvider } from "./lib/ContentContext";
 
@@ -40,7 +41,6 @@ export default function App() {
   return (
     <ContentProvider>
       <CodeInjection />
-      <SEO />
       <Router>
         <ScrollToTop />
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-brand-gold focus:text-white focus:font-bold focus:uppercase focus:tracking-widest focus:rounded-full">
@@ -56,6 +56,7 @@ export default function App() {
 
           <Header />
           <PromoPopup />
+          <FloatingActionHub />
           <main id="main-content" className="flex-grow">
             <PageTransition>
               <Suspense fallback={<div className="h-screen w-full bg-brand-black flex items-center justify-center"><div className="w-8 h-8 border-2 border-brand-gold border-t-transparent rounded-full animate-spin"></div></div>}>

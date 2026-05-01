@@ -208,10 +208,16 @@ export default function Photo() {
 
         <section className="mt-24 sm:mt-60 border-t border-gray-100 pt-16 sm:pt-32 text-center">
           <h2 className="text-3xl sm:text-4xl font-display font-bold mb-8 uppercase tracking-tighter italic">Secure Your <span className="not-italic text-brand-gold">Visual Legacy?</span></h2>
-          <div className="flex justify-center">
-            <Link to="/contact?type=photo" className="bg-brand-black text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold transition-colors inline-flex items-center">
-              Book Photography <ArrowRight size={18} className="ml-3" />
+          <div className="flex flex-col items-center gap-8">
+            <Link to="/contact?type=photo" className="bg-brand-black text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold transition-colors inline-flex items-center group">
+              Book Photography <ArrowRight size={18} className="ml-3 group-hover:translate-x-1 transition-transform" />
             </Link>
+            <div className="max-w-lg">
+              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-gold mb-4 block">Tactical Photography</span>
+              <p className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.2em] mx-auto leading-relaxed">
+                Premium Commercial Photography & Brand Identity services across Sarasota, Bradenton, and the Tampa Bay metropolis.
+              </p>
+            </div>
           </div>
         </section>
       </div>

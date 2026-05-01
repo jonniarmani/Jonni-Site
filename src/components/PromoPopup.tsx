@@ -8,13 +8,19 @@ export default function PromoPopup() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (content?.promo?.enabled) {
+    const hasSeenPromo = sessionStorage.getItem('promo-seen');
+    if (content?.promo?.enabled && !hasSeenPromo) {
       const timer = setTimeout(() => {
         setIsVisible(true);
       }, 3000); // Show after 3 seconds
       return () => clearTimeout(timer);
     }
   }, [content?.promo?.enabled]);
+
+  const handleClose = () => {
+    setIsVisible(false);
+    sessionStorage.setItem('promo-seen', 'true');
+  };
 
   if (!content?.promo?.enabled) return null;
 
@@ -29,7 +35,7 @@ export default function PromoPopup() {
             className="relative bg-zinc-900 text-white p-10 md:p-14 max-w-lg w-full shadow-2xl border border-white/10"
           >
             <button
-              onClick={() => setIsVisible(false)}
+              onClick={handleClose}
               className="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors p-2"
               aria-label="Close promotion"
             >
@@ -60,7 +66,7 @@ export default function PromoPopup() {
               </div>
               
               <button
-                onClick={() => setIsVisible(false)}
+                onClick={handleClose}
                 className="w-full bg-brand-gold text-black py-5 font-black uppercase tracking-[0.2em] text-xs hover:bg-white transition-all"
               >
                 Claim This Offer

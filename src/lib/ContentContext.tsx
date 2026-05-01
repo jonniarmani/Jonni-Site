@@ -259,8 +259,15 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const isAdmin = user?.email === 'jonniarmani@gmail.com';
 
+  const contextValue = React.useMemo(() => ({ 
+    content, 
+    loading, 
+    user, 
+    isAdmin 
+  }), [content, loading, user, isAdmin]);
+
   return (
-    <ContentContext.Provider value={{ content, loading, user, isAdmin }}>
+    <ContentContext.Provider value={contextValue}>
       {children}
     </ContentContext.Provider>
   );

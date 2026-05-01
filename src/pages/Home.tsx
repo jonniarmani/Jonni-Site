@@ -7,7 +7,6 @@ import HeroMontage from "../components/HeroMontage";
 import IndustriesGrid from "../components/IndustriesGrid";
 import { useContent } from "../lib/ContentContext";
 import ResponsiveImage from "../components/ResponsiveImage";
-import FloatingActionHub from "../components/FloatingActionHub";
 
 export default function Home() {
   const { content } = useContent();
@@ -43,22 +42,44 @@ export default function Home() {
             <p className="text-lg md:text-2xl font-light mb-12 max-w-2xl leading-relaxed text-gray-300">
               {brand.taglineExtended}
             </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+            <div className="hidden md:flex flex-row gap-4 mt-8">
               <Link 
-                to="/contact?type=video" 
+                to="/video" 
                 className="bg-brand-gold text-white px-10 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-black hover:text-white transition-all inline-flex items-center group"
               >
-                Start Video Project
+                View Video Gallery
                 <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
-                to="/contact?type=photo" 
+                to="/photo" 
                 className="bg-white text-brand-black px-10 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold hover:text-white transition-all inline-flex items-center group"
               >
-                Start Photo Project
+                View Photo Gallery
                 <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
+            
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              className="mt-8 border-t border-white/10 pt-8"
+            >
+              <div className="flex flex-wrap gap-x-8 gap-y-4">
+                <div className="flex flex-col">
+                  <span className="text-brand-gold text-[10px] font-black uppercase tracking-[0.3em] mb-2">Service Hubs</span>
+                  <p className="text-gray-400 text-xs font-bold uppercase tracking-widest leading-relaxed">
+                    Bradenton • Sarasota • Tampa • Palmetto
+                  </p>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-brand-gold text-[10px] font-black uppercase tracking-[0.3em] mb-2">Core Disciplines</span>
+                  <p className="text-gray-400 text-xs font-bold uppercase tracking-widest leading-relaxed max-w-md">
+                    Cinematography, Commercial Photography, Athletic Identity, & Luxury Brand Architecture.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
 
@@ -85,6 +106,8 @@ export default function Home() {
               className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
               style={{ objectPosition: content.home.lensImagePosition || 'center center' }}
               sizes="(max-width: 1024px) 100vw, 50vw"
+              loading="eager"
+              fetchPriority="high"
             />
           )}
               </div>
@@ -277,17 +300,17 @@ export default function Home() {
           <p className="text-gray-400 text-lg sm:text-xl mb-12 max-w-2xl mx-auto font-light">
              Serving {brand.location}. Let's build your visual legacy.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Link to="/contact?type=video" className="bg-brand-gold text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-black hover:scale-105 transition-all flex items-center justify-center">
-              Start Video Project <ArrowRight size={16} className="ml-3" />
-            </Link>
-            <Link to="/contact?type=photo" className="bg-white/10 backdrop-blur-md border border-white/20 px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold hover:text-white transition-all flex items-center justify-center">
-              Start Photo Project <ArrowRight size={16} className="ml-3" />
-            </Link>
+          <div className="flex flex-col items-center">
+            <p className="text-gray-500 text-[10px] uppercase font-black tracking-[0.5em] mb-4">
+              Direct Transmission Available
+            </p>
+            <div className="h-[1px] w-12 bg-brand-gold/30 mb-8" />
+            <p className="text-gray-400 text-xs font-bold uppercase tracking-widest max-w-xl mx-auto leading-loose px-4">
+              Professional Production Services for Bradenton, Sarasota, & Tampa Bay. Specialized in Cinematic Visual Identities for the Gulf Coast Region.
+            </p>
           </div>
         </div>
       </section>
-      <FloatingActionHub />
     </div>
   );
 }

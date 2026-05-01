@@ -44,14 +44,16 @@ export default function SEO({ title, description, keywords, ogImage, canonicalUr
     }
 
     // OG Tags
-    const setOgTag = (property: string, content: string) => {
+    const setOgTag = (property: string, contentStr: string) => {
       let tag = document.querySelector(`meta[property="${property}"]`);
-      if (!tag && content) {
+      if (!tag && contentStr) {
         tag = document.createElement('meta');
         tag.setAttribute('property', property);
         document.head.appendChild(tag);
       }
-      if (tag) tag.setAttribute('content', content);
+      if (tag && tag.getAttribute('content') !== contentStr) {
+        tag.setAttribute('content', contentStr);
+      }
     };
 
     setOgTag('og:title', finalTitle);
@@ -62,14 +64,16 @@ export default function SEO({ title, description, keywords, ogImage, canonicalUr
     setOgTag('og:site_name', 'Jonni Armani Media');
 
     // Twitter Tags
-    const setTwitterTag = (name: string, content: string) => {
+    const setTwitterTag = (name: string, contentStr: string) => {
       let tag = document.querySelector(`meta[name="${name}"]`);
-      if (!tag && content) {
+      if (!tag && contentStr) {
         tag = document.createElement('meta');
         tag.setAttribute('name', name);
         document.head.appendChild(tag);
       }
-      if (tag) tag.setAttribute('content', content);
+      if (tag && tag.getAttribute('content') !== contentStr) {
+        tag.setAttribute('content', contentStr);
+      }
     };
 
     setTwitterTag('twitter:card', seo?.twitterCard || 'summary_large_image');

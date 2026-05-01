@@ -151,13 +151,11 @@ export default function About() {
                </div>
             </div>
 
-            <div className="mt-24 flex flex-col sm:flex-row gap-6">
-              <Link to="/contact?type=video" className="bg-brand-black text-white px-10 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold transition-colors inline-flex items-center justify-center">
-                Start Video Project <ArrowRight size={18} className="ml-3" />
-              </Link>
-              <Link to="/contact?type=photo" className="bg-white border-2 border-brand-black text-brand-black px-10 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-all inline-flex items-center justify-center">
-                Start Photo Project <ArrowRight size={18} className="ml-3" />
-              </Link>
+            <div className="mt-12 flex flex-col pt-12 border-t border-brand-black/5">
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-gold mb-3">Service Availability</span>
+              <p className="text-gray-500 text-[10px] uppercase font-bold tracking-widest leading-relaxed">
+                Now Boarding Multi-Channel Production Projects in Sarasota and Bradenton for Q4.
+              </p>
             </div>
           </div>
         </div>

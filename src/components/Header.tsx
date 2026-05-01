@@ -42,63 +42,59 @@ export default function Header() {
     >
       <div className={`container mx-auto transition-all duration-500 ${
         scrolled 
-          ? "bg-white/90 backdrop-blur-lg px-6 py-4 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/20 max-w-5xl" 
+          ? "bg-white/90 backdrop-blur-lg px-6 py-4 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/20 max-w-6xl" 
           : "max-w-7xl"
       } flex justify-between items-center`}>
-        <Link 
-          to="/" 
-          className="font-display text-lg sm:text-2xl font-bold tracking-tighter uppercase group flex items-center overflow-hidden"
-          id="nav-logo"
-        >
-          <motion.span 
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ type: "spring", damping: 20, stiffness: 100, delay: 0.1 }}
-            className="group-hover:opacity-70 transition-opacity"
+        <div className="flex flex-col">
+          <Link 
+            to="/" 
+            className="font-display text-lg sm:text-2xl font-bold tracking-tighter uppercase group flex items-center overflow-hidden"
+            id="nav-logo"
           >
-            Jonni Armani <span className="text-brand-gold">Media</span>
-          </motion.span>
-        </Link>
+            <motion.span 
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ type: "spring", damping: 20, stiffness: 100, delay: 0.1 }}
+              className="group-hover:opacity-70 transition-opacity"
+            >
+              Jonni Armani <span className="text-brand-gold">Media</span>
+            </motion.span>
+          </Link>
+          
+          {/* SEO Text - Desktop Only */}
+          <div className="hidden md:block">
+            <span className="text-[7px] font-black uppercase tracking-[0.4em] text-brand-black/40">
+              Professional Video & Photography | serving Sarasota, Bradenton, Tampa & Palmetto, FL
+            </span>
+          </div>
+        </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-10">
-          {NAV_ITEMS.map((item) => {
-            const isSpecial = item.label === "Video" || item.label === "Photo";
-            
-            if (isSpecial) {
-              const isVideo = item.label === "Video";
-              return (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  className={`text-[10px] uppercase tracking-[0.2em] font-bold px-6 py-2.5 rounded-full border-2 transition-all duration-300 flex items-center group active:scale-95 ${
-                    location.pathname === item.href 
-                    ? "bg-brand-gold text-white border-brand-gold shadow-lg shadow-brand-gold/20" 
-                    : "border-brand-gold text-brand-black hover:bg-brand-gold hover:text-white"
-                  }`}
-                >
-                  {isVideo ? (
-                    <Video size={14} className="mr-2 transition-transform group-hover:scale-110" />
-                  ) : (
-                    <Camera size={14} className="mr-2 transition-transform group-hover:scale-110" />
-                  )}
-                  <span>{item.label}</span>
-                </Link>
-              );
-            }
+        <nav className="hidden md:flex items-center space-x-8">
+          <Link to="/" className={`text-[10px] uppercase tracking-widest font-black hover:text-brand-gold transition-colors ${location.pathname === '/' ? 'text-brand-gold' : 'text-brand-black'}`}>Home</Link>
+          <Link to="/services" className={`text-[10px] uppercase tracking-widest font-black hover:text-brand-gold transition-colors ${location.pathname === '/services' ? 'text-brand-gold' : 'text-brand-black'}`}>Services</Link>
+          
+          <div className="flex items-center space-x-2 bg-gray-100 p-1 rounded-full">
+            <Link 
+              to="/video" 
+              className={`px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-2 ${
+                location.pathname === '/video' ? 'bg-brand-gold text-white shadow-sm' : 'text-gray-500 hover:text-brand-black'
+              }`}
+            >
+              <Video size={10} /> Video
+            </Link>
+            <Link 
+              to="/photo" 
+              className={`px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-2 ${
+                location.pathname === '/photo' ? 'bg-brand-black text-white shadow-sm' : 'text-gray-500 hover:text-brand-gold'
+              }`}
+            >
+              <Camera size={10} /> Photo
+            </Link>
+          </div>
 
-            return (
-              <Link
-                key={item.href}
-                to={item.href}
-                className={`text-sm uppercase tracking-widest font-medium hover:text-brand-gold transition-colors ${
-                  location.pathname === item.href ? "text-brand-gold" : "text-brand-black"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+          <Link to="/about" className={`text-[10px] uppercase tracking-widest font-black hover:text-brand-gold transition-colors ${location.pathname === '/about' ? 'text-brand-gold' : 'text-brand-black'}`}>About</Link>
+          <Link to="/contact" className="bg-brand-black text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-brand-gold transition-all">Inquire</Link>
         </nav>
 
         {/* Mobile Toggle Button - High Visibility Floating Button */}
@@ -114,32 +110,6 @@ export default function Header() {
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </motion.button>
       </div>
-
-      {/* Floating Bottom Hub for Mobile - Always Following */}
-      <AnimatePresence>
-        {!isOpen && (
-          <motion.div 
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 100, opacity: 0 }}
-            className="fixed bottom-8 left-0 right-0 z-50 px-6 md:hidden flex justify-center"
-          >
-            <div className="bg-brand-black/95 backdrop-blur-md text-white rounded-full px-6 py-4 shadow-2xl border border-white/10 flex items-center space-x-6">
-              <Link to="/" className="text-[10px] font-black uppercase tracking-widest text-white/50 hover:text-brand-gold transition-colors">Home</Link>
-              <div className="w-[1px] h-4 bg-white/10" />
-              <Link to="/contact" className="text-[10px] font-black uppercase tracking-widest text-brand-gold">Inquire</Link>
-              <div className="w-[1px] h-4 bg-white/10" />
-              <button 
-                onClick={() => setIsOpen(true)}
-                className="text-[10px] font-black uppercase tracking-widest flex items-center space-x-2"
-              >
-                <span>Menu</span>
-                <Menu size={14} className="text-brand-gold" />
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Mobile Nav Overlay */}
       <AnimatePresence>

@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { db, doc, onSnapshot, collection, handleFirestoreError, OperationType } from '../lib/firebase';
 import { addDoc, query, where, orderBy, getDoc, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { motion } from 'motion/react';
-import { MessageSquare, Send, History, Check, Loader2, Gauge, AlertCircle, Briefcase, ChevronRight, Activity, Layers, Star } from 'lucide-react';
+import { MessageSquare, Send, History, Check, Loader2, Gauge, AlertCircle, Briefcase, ChevronRight, Activity, Layers, Star, User } from 'lucide-react';
 import { useContent } from '../lib/ContentContext';
 
 export default function Portal() {
@@ -277,7 +277,11 @@ export default function Portal() {
                 </p>
                 <div className="pt-4 flex items-center space-x-3">
                    <div className="w-8 h-8 rounded-full border border-brand-gold/30 p-1">
-                      <img src={content.about.profileImage} className="w-full h-full object-cover rounded-full grayscale" alt="" />
+                      {content.about.profileImage ? (
+                        <img src={content.about.profileImage} className="w-full h-full object-cover rounded-full grayscale" alt="" />
+                      ) : (
+                        <User size={20} className="w-full h-full text-brand-gold" />
+                      )}
                    </div>
                    <div>
                       <span className="block text-[8px] font-black uppercase tracking-widest">Jonni Armani</span>

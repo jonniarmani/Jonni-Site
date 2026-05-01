@@ -158,13 +158,12 @@ export default function Services() {
              <p className="text-gray-400 text-lg sm:text-xl font-light leading-relaxed">
                I don't just show up with a camera. We sit down, define the objective, audit your current brand presence, and build a visual roadmap that hits your targets.
              </p>
-             <div className="pt-10 flex flex-col sm:flex-row justify-center gap-6">
-                <Link to="/contact?type=video" className="bg-brand-gold text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-black hover:text-white transition-all">
-                  Start Video Project
-                </Link>
-                <Link to="/contact?type=photo" className="bg-white/10 backdrop-blur-md border border-white/20 px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-brand-black transition-all">
-                  Start Photo Project
-                </Link>
+             <div className="pt-10 flex flex-col items-center">
+                <div className="h-[1px] w-12 bg-white/20 mb-8" />
+                <p className="text-gray-500 text-[10px] uppercase font-black tracking-[0.4em] mb-4">Production Regions</p>
+                <p className="text-gray-400 text-xs font-bold uppercase tracking-widest leading-loose">
+                  Tampa • St. Pete • Bradenton • Sarasota • Lakewood Ranch • Venice • Palmetto
+                </p>
              </div>
           </div>
         </section>
