@@ -79,7 +79,7 @@ export default function FloatingActionHub() {
               y: isScrollingDown && !isOpen ? 120 : 0 
             }}
             exit={{ scale: 0, opacity: 0, y: 50 }}
-            className="fixed bottom-8 right-6 z-[70] md:hidden flex flex-col items-end space-y-4"
+            className="fixed bottom-24 right-6 z-[70] md:hidden flex flex-col items-end space-y-4"
           >
             {/* Action Options */}
             <AnimatePresence>
