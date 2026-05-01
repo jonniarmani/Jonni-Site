@@ -23,7 +23,7 @@ export default function FloatingActionHub() {
       
       scrollTimeout.current = setTimeout(() => {
         setIsScrolling(false);
-      }, 1000);
+      }, 300);
 
       // Auto-close menu on scroll
       if (Math.abs(currentScrollY - lastScrollY.current) > 10) {
@@ -91,7 +91,7 @@ export default function FloatingActionHub() {
               y: "-50%" 
             }}
             exit={{ x: 100, opacity: 0 }}
-            transition={{ type: "spring", damping: 25, stiffness: 120 }}
+            transition={{ type: "spring", damping: 20, stiffness: 300 }}
             className="fixed top-1/2 right-0 z-[70] md:hidden flex flex-col items-end space-y-4 pr-3 pointer-events-none"
           >
             {/* Action Options */}
