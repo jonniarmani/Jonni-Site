@@ -77,6 +77,7 @@ interface SiteContent {
     autoApply: boolean;
     competitors: string[];
     profession: string;
+    strategicPrompt?: string;
     lastScan?: string;
     insights: {
       id: string;

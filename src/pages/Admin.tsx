@@ -745,97 +745,309 @@ export default function Admin() {
               {/* SEO Optimizer Tab */}
               {activeTab === 'optimizer' && (
                 <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <div className="border-b pb-4 mb-8">
-                    <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Performance & Discovery</h2>
-                    <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Maximum SEO Exposure & Page Velocity</p>
-                  </div>
-
-                  <div className="bg-zinc-900 rounded-lg p-12 text-white relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full -mr-48 -mt-48 blur-3xl group-hover:bg-brand-gold/20 transition-all duration-1000" />
-                    
-                    <div className="relative z-10 space-y-8">
-                      <div className="flex items-center space-x-4">
-                        <div className="w-16 h-16 rounded-full bg-brand-gold/20 border border-brand-gold/30 flex items-center justify-center text-brand-gold">
-                          <Zap size={32} className={isOptimizing ? "animate-pulse" : ""} />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-display font-bold uppercase tracking-tight">Master Site Optimizer</h3>
-                          <p className="text-gray-400 text-xs font-medium uppercase tracking-widest">One-Click Authority Engine</p>
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8 border-y border-white/5">
-                        <div className="space-y-3">
-                          <div className="flex items-center space-x-2">
-                            <Check size={14} className="text-brand-gold" />
-                            <span className="text-[10px] font-black uppercase tracking-widest">SEO Meta Alignment</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Check size={14} className="text-brand-gold" />
-                            <span className="text-[10px] font-black uppercase tracking-widest">Category Integrity Check</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Check size={14} className="text-brand-gold" />
-                            <span className="text-[10px] font-black uppercase tracking-widest">Alt-Tag Generation</span>
-                          </div>
-                        </div>
-                        <div className="space-y-3">
-                          <div className="flex items-center space-x-2">
-                            <Check size={14} className="text-brand-gold" />
-                            <span className="text-[10px] font-black uppercase tracking-widest">Image Delivery Audit</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Check size={14} className="text-brand-gold" />
-                            <span className="text-[10px] font-black uppercase tracking-widest">Mobile Velocity Check</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Check size={14} className="text-brand-gold" />
-                            <span className="text-[10px] font-black uppercase tracking-widest">Sitemap Synchronization</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="pt-4">
-                        <button 
-                          onClick={runMasterOptimization}
-                          disabled={isOptimizing}
-                          className="w-full bg-brand-gold text-white py-6 font-black uppercase tracking-[0.4em] text-xs hover:bg-brand-black transition-all shadow-xl shadow-brand-gold/20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed group"
-                        >
-                          <span className="flex items-center justify-center">
-                            {isOptimizing ? (
-                              <>
-                                <RefreshCw size={14} className="mr-3 animate-spin" /> Analyzing Visual Architecture...
-                              </>
-                            ) : (
-                              <>
-                                Execute Site Optimization <Target size={14} className="ml-3 group-hover:scale-125 transition-transform" />
-                              </>
-                            )}
-                          </span>
-                        </button>
-                      </div>
+                  <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b pb-4 mb-8">
+                    <div>
+                      <h2 className="text-2xl font-display font-bold uppercase tracking-tight">SEO Intelligence</h2>
+                      <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Market Dominance & AI-Driven Visual Strategy</p>
+                    </div>
+                    <div className="flex items-center space-x-2 bg-brand-gold/10 px-4 py-2 border border-brand-gold/20">
+                      <Zap size={14} className="text-brand-gold" />
+                      <span className="text-[10px] font-black uppercase tracking-widest text-brand-gold">AI Engine Active</span>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12">
-                     <div className="p-8 bg-zinc-50 border border-gray-100 rounded-lg">
-                       <Activity size={24} className="text-green-500 mb-4" />
-                       <h4 className="text-[10px] font-black uppercase tracking-widest mb-2">Core Web Vitals</h4>
-                       <div className="text-2xl font-display font-bold">98/100</div>
-                       <div className="text-[8px] text-gray-400 uppercase font-bold mt-1">Excellent Performance</div>
-                     </div>
-                     <div className="p-8 bg-zinc-50 border border-gray-100 rounded-lg">
-                       <Search size={24} className="text-blue-500 mb-4" />
-                       <h4 className="text-[10px] font-black uppercase tracking-widest mb-2">SEO Visibility</h4>
-                       <div className="text-2xl font-display font-bold">A+</div>
-                       <div className="text-[8px] text-gray-400 uppercase font-bold mt-1">Full Keyword Coverage</div>
-                     </div>
-                     <div className="p-8 bg-zinc-50 border border-gray-100 rounded-lg">
-                       <Check size={24} className="text-cyan-500 mb-4" />
-                       <h4 className="text-[10px] font-black uppercase tracking-widest mb-2">Sync Status</h4>
-                       <div className="text-2xl font-display font-bold">Verified</div>
-                       <div className="text-[8px] text-gray-400 uppercase font-bold mt-1">Portfolio & Services Aligned</div>
-                     </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    {/* Main Intelligence Console */}
+                    <div className="lg:col-span-8 space-y-12">
+                      <div className="bg-zinc-900 rounded-lg p-8 sm:p-12 text-white relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full -mr-48 -mt-48 blur-3xl group-hover:bg-brand-gold/20 transition-all duration-1000" />
+                        
+                        <div className="relative z-10 space-y-8">
+                          <div className="flex items-center space-x-4">
+                            <div className="w-16 h-16 rounded-full bg-brand-gold/20 border border-brand-gold/30 flex items-center justify-center text-brand-gold">
+                              <Zap size={32} className={isOptimizing ? "animate-pulse" : ""} />
+                            </div>
+                            <div>
+                              <h3 className="text-xl font-display font-bold uppercase tracking-tight">Master Site Optimizer</h3>
+                              <p className="text-gray-400 text-xs font-medium uppercase tracking-widest">Autonomous Authority Engine</p>
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8 border-y border-white/5">
+                            <div className="space-y-3">
+                              <div className="flex items-center space-x-2">
+                                <Check size={14} className="text-brand-gold" />
+                                <span className="text-[10px] font-black uppercase tracking-widest">SEO Meta Alignment</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <Check size={14} className="text-brand-gold" />
+                                <span className="text-[10px] font-black uppercase tracking-widest">Category Integrity Check</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <Check size={14} className="text-brand-gold" />
+                                <span className="text-[10px] font-black uppercase tracking-widest">Alt-Tag Generation</span>
+                              </div>
+                            </div>
+                            <div className="space-y-3">
+                              <div className="flex items-center space-x-2">
+                                <Check size={14} className="text-brand-gold" />
+                                <span className="text-[10px] font-black uppercase tracking-widest">Image Delivery Audit</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <Check size={14} className="text-brand-gold" />
+                                <span className="text-[10px] font-black uppercase tracking-widest">Mobile Velocity Check</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <Check size={14} className="text-brand-gold" />
+                                <span className="text-[10px] font-black uppercase tracking-widest">Market Index Sync</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="pt-4">
+                            <button 
+                              onClick={runMasterOptimization}
+                              disabled={isOptimizing}
+                              className="w-full bg-brand-gold text-white py-6 font-black uppercase tracking-[0.4em] text-xs hover:bg-brand-black transition-all shadow-xl shadow-brand-gold/20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed group"
+                            >
+                              <span className="flex items-center justify-center">
+                                {isOptimizing ? (
+                                  <>
+                                    <RefreshCw size={14} className="mr-3 animate-spin" /> recalibrating visual architecture...
+                                  </>
+                                ) : (
+                                  <>
+                                    Deploy Optimization Sequence <Target size={14} className="ml-3 group-hover:scale-125 transition-transform" />
+                                  </>
+                                )}
+                               </span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* AI Intelligence Settings */}
+                      <div className="space-y-8">
+                        <div className="flex items-center space-x-3 border-b border-gray-100 pb-4">
+                          <Settings size={18} className="text-brand-gold" />
+                          <h3 className="text-sm font-black uppercase tracking-widest">Engine Parameters</h3>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                          <div className="space-y-2">
+                            <label className="text-[10px] uppercase font-black text-gray-400">Primary Profession / Niche</label>
+                            <input 
+                              className="w-full p-4 bg-zinc-50 border border-gray-100 outline-none font-bold text-sm focus:border-brand-gold" 
+                              value={localContent.aiIntelligence?.profession || ""}
+                              placeholder="e.g., Commercial Cinematographer & Surgeon Brand Strategist"
+                              onChange={(e) => setLocalContent({
+                                ...localContent, 
+                                aiIntelligence: {
+                                  ...(localContent.aiIntelligence || { enabled: true, autoApply: false, competitors: [], profession: "", insights: [] }),
+                                  profession: e.target.value
+                                }
+                              })}
+                            />
+                            <p className="text-[8px] text-gray-400 font-medium uppercase tracking-tighter italic">Used to calibrate AI content focus</p>
+                          </div>
+
+                          <div className="md:col-span-2 space-y-2">
+                            <label className="text-[10px] uppercase font-black text-gray-400">Strategic Objective / AI Identity Prompt</label>
+                            <textarea 
+                              rows={3}
+                              className="w-full p-4 bg-zinc-50 border border-gray-100 outline-none font-medium text-sm focus:border-brand-gold leading-relaxed" 
+                              value={localContent.aiIntelligence?.strategicPrompt || ""}
+                              placeholder="Describe your brand's unique edge and target audience in detail. This prompt guides the SEO engine's decisions..."
+                              onChange={(e) => setLocalContent({
+                                ...localContent, 
+                                aiIntelligence: {
+                                  ...(localContent.aiIntelligence || { enabled: true, autoApply: false, competitors: [], profession: "", insights: [] }),
+                                  strategicPrompt: e.target.value
+                                }
+                              })}
+                            />
+                            <p className="text-[8px] text-gray-400 font-medium uppercase tracking-tighter italic">Primary directive for the intelligence engine. Injected into all optimization logic.</p>
+                          </div>
+                          
+                          <div className="space-y-4">
+                            <div className="flex justify-between items-center">
+                              <label className="text-[10px] uppercase font-black text-gray-400">Autonomous Mode</label>
+                              <button 
+                                onClick={() => setLocalContent({
+                                  ...localContent,
+                                  aiIntelligence: {
+                                    ...(localContent.aiIntelligence || { enabled: true, autoApply: false, competitors: [], profession: "", insights: [] }),
+                                    autoApply: !localContent.aiIntelligence?.autoApply
+                                  }
+                                })}
+                                className={`w-12 h-6 rounded-full relative transition-colors ${localContent.aiIntelligence?.autoApply ? 'bg-brand-gold' : 'bg-gray-200'}`}
+                              >
+                                <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${localContent.aiIntelligence?.autoApply ? 'left-7' : 'left-1'}`} />
+                              </button>
+                            </div>
+                            <p className="text-[9px] text-gray-500 font-medium leading-relaxed">
+                              When enabled, the AI engine will automatically apply non-destructive SEO improvements to your tags and meta descriptions daily.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* AI Insights Feed */}
+                      <div className="space-y-6 pt-8">
+                        <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+                          <div className="flex items-center space-x-3">
+                            <Activity size={18} className="text-brand-gold" />
+                            <h3 className="text-sm font-black uppercase tracking-widest">Strategy Feed</h3>
+                          </div>
+                          <span className="text-[8px] font-black uppercase tracking-widest text-gray-400">Last Scanned: {localContent.aiIntelligence?.lastScan ? new Date(localContent.aiIntelligence.lastScan).toLocaleDateString() : 'Never'}</span>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-4">
+                          {localContent.aiIntelligence?.insights?.length ? (
+                            localContent.aiIntelligence.insights.map((insight) => (
+                              <div key={insight.id} className="p-6 bg-white border border-gray-100 rounded-sm hover:border-brand-gold transition-all group">
+                                <div className="flex justify-between items-start mb-4">
+                                  <div className="flex items-center space-x-3">
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                                      insight.type === 'seo' ? 'bg-blue-50 text-blue-500' : 
+                                      insight.type === 'competitor' ? 'bg-purple-50 text-purple-500' : 
+                                      'bg-emerald-50 text-emerald-500'
+                                    }`}>
+                                      {insight.type === 'seo' ? <Search size={14} /> : insight.type === 'competitor' ? <Target size={14} /> : <Zap size={14} />}
+                                    </div>
+                                    <div>
+                                      <h4 className="text-[11px] font-black uppercase tracking-widest">{insight.title}</h4>
+                                      <span className="text-[7px] font-bold text-gray-400 uppercase tracking-tighter">{insight.date}</span>
+                                    </div>
+                                  </div>
+                                  <span className={`text-[7px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${
+                                    insight.impact === 'high' ? 'bg-red-50 text-red-500' : 'bg-zinc-100 text-zinc-500'
+                                  }`}>
+                                    {insight.impact} Impact
+                                  </span>
+                                </div>
+                                <p className="text-[11px] text-gray-600 font-medium leading-relaxed mb-4">{insight.description}</p>
+                                <div className="flex space-x-3">
+                                  <button className="text-[9px] font-black uppercase tracking-widest text-brand-gold hover:text-brand-black transition-colors">Apply Strategy</button>
+                                  <button className="text-[9px] font-black uppercase tracking-widest text-gray-300 hover:text-red-500 transition-colors">Dismiss</button>
+                                </div>
+                              </div>
+                            ))
+                          ) : (
+                            <div className="py-12 text-center border border-dashed border-gray-100 rounded-lg">
+                              <p className="text-[10px] uppercase font-black tracking-widest text-gray-300">No strategic insights generated yet.</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Competitor Analysis Sidebar */}
+                    <div className="lg:col-span-4 space-y-8">
+                      <div className="bg-zinc-50 p-8 rounded-lg border border-gray-100 h-fit sticky top-8">
+                        <div className="flex items-center space-x-3 mb-8">
+                          <Target size={20} className="text-brand-gold" />
+                          <h3 className="text-xs font-black uppercase tracking-widest">Competitor Intel</h3>
+                        </div>
+
+                        <div className="space-y-6">
+                          <p className="text-[10px] text-gray-500 font-medium leading-relaxed uppercase tracking-widest border-b border-gray-200 pb-4">
+                            Input competitor URLs below for the AI engine to monitor their visual strategy and keywords.
+                          </p>
+
+                          <div className="space-y-4">
+                            {(localContent.aiIntelligence?.competitors || []).map((comp, idx) => (
+                              <div key={idx} className="flex items-center justify-between group bg-white p-3 border border-gray-100">
+                                <span className="text-[9px] font-bold text-zinc-600 truncate max-w-[180px]">{comp}</span>
+                                <button 
+                                  onClick={() => {
+                                    const newComps = [...(localContent.aiIntelligence?.competitors || [])];
+                                    newComps.splice(idx, 1);
+                                    setLocalContent({
+                                      ...localContent,
+                                      aiIntelligence: {
+                                        ...(localContent.aiIntelligence || { enabled: true, autoApply: false, competitors: [], profession: "", insights: [] }),
+                                        competitors: newComps
+                                      }
+                                    });
+                                  }}
+                                  className="text-gray-300 hover:text-red-500 transition-colors"
+                                >
+                                  <Trash size={12} />
+                                </button>
+                              </div>
+                            ))}
+
+                            <div className="pt-4">
+                              <div className="flex gap-2">
+                                <input 
+                                  id="new-competitor-url"
+                                  className="flex-1 bg-white border border-gray-200 p-3 text-[10px] outline-none focus:border-brand-gold" 
+                                  placeholder="https://competitor.com"
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                      const val = (e.currentTarget as HTMLInputElement).value;
+                                      if (val && !localContent.aiIntelligence?.competitors.includes(val)) {
+                                        const newComps = [...(localContent.aiIntelligence?.competitors || []), val];
+                                        setLocalContent({
+                                          ...localContent,
+                                          aiIntelligence: {
+                                            ...(localContent.aiIntelligence || { enabled: true, autoApply: false, competitors: [], profession: "", insights: [] }),
+                                            competitors: newComps
+                                          }
+                                        });
+                                        (e.currentTarget as HTMLInputElement).value = '';
+                                      }
+                                    }
+                                  }}
+                                />
+                                <button 
+                                  onClick={() => {
+                                    const input = document.getElementById('new-competitor-url') as HTMLInputElement;
+                                    const val = input.value;
+                                    if (val && !localContent.aiIntelligence?.competitors.includes(val)) {
+                                      const newComps = [...(localContent.aiIntelligence?.competitors || []), val];
+                                      setLocalContent({
+                                        ...localContent,
+                                        aiIntelligence: {
+                                          ...(localContent.aiIntelligence || { enabled: true, autoApply: false, competitors: [], profession: "", insights: [] }),
+                                          competitors: newComps
+                                        }
+                                      });
+                                      input.value = '';
+                                    }
+                                  }}
+                                  className="w-10 h-10 bg-brand-black text-brand-gold flex items-center justify-center hover:bg-zinc-800 transition-all"
+                                >
+                                  <Plus size={16} />
+                                </button>
+                              </div>
+                              <p className="text-[7px] text-gray-400 font-bold uppercase mt-2 tracking-tighter">Enter URL and press "+" to track</p>
+                            </div>
+                          </div>
+
+                          <div className="pt-8 border-t border-gray-200">
+                             <div className="bg-brand-black p-6 text-white overflow-hidden relative group rounded-sm">
+                                <div className="absolute top-0 right-0 w-24 h-24 bg-brand-gold/10 rounded-full -mr-12 -mt-12 blur-2xl group-hover:bg-brand-gold/20 transition-all" />
+                                <h4 className="text-[8px] font-black uppercase tracking-[0.3em] text-brand-gold mb-3">Market Sync Status</h4>
+                                <div className="space-y-3">
+                                   <div className="flex justify-between items-center text-[7px] font-black uppercase tracking-[0.1em]">
+                                      <span className="text-gray-400 font-bold">Region</span>
+                                      <span>Sarasota/Tampa</span>
+                                   </div>
+                                   <div className="flex justify-between items-center text-[7px] font-black uppercase tracking-[0.1em]">
+                                      <span className="text-gray-400 font-bold">Industry Focus</span>
+                                      <span>{localContent.aiIntelligence?.profession || "High-End Media"}</span>
+                                   </div>
+                                   <div className="w-full h-[2px] bg-white/10 mt-2">
+                                      <div className="w-3/4 h-full bg-brand-gold shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
