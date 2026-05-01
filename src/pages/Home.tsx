@@ -7,6 +7,7 @@ import HeroMontage from "../components/HeroMontage";
 import IndustriesGrid from "../components/IndustriesGrid";
 import { useContent } from "../lib/ContentContext";
 import ResponsiveImage from "../components/ResponsiveImage";
+import FloatingActionHub from "../components/FloatingActionHub";
 
 export default function Home() {
   const { content } = useContent();
@@ -286,6 +287,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <FloatingActionHub />
     </div>
   );
 }
