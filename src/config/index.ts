@@ -85,64 +85,7 @@ export const SERVICES = [
   }
 ];
 
-export const PORTFOLIO = [
-  {
-    category: "Hospitality",
-    title: "Longboat Key Resort Feature",
-    placeholder: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "photo"
-  },
-  {
-    category: "Hospitality",
-    title: "Sarasota Luxury Suite Series",
-    placeholder: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "photo"
-  },
-  {
-    category: "Hospitality",
-    title: "The Guest Experience",
-    placeholder: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "photo"
-  },
-  {
-    category: "Commercial",
-    title: "Gulf Coast Brand Story",
-    placeholder: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "video"
-  },
-  {
-    category: "Sports",
-    title: "IMG Elite Performance Showcase",
-    placeholder: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "video"
-  },
-  {
-    category: "Healthcare",
-    title: "Siesta Key Dental Feature",
-    placeholder: "https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "photo"
-  },
-  {
-    category: "Headshots",
-    title: "Anna Maria Style Editorial",
-    placeholder: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "photo"
-  },
-  {
-    category: "Brand Stories",
-    title: "Executive Presence Series",
-    placeholder: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "video"
-  }
-];
+export const PORTFOLIO: any[] = [];
 
 export const SEO = {
   home: {
@@ -175,14 +118,14 @@ export const ABOUT_CONTENT = {
   storyText2: "Our methodology is rooted in the belief that professional media is a necessity for survival in a saturated economy. We serve a portfolio of surgeons, elite athletes at IMG Academy, and luxury hospitality brands that require more than just 'content'; they require a legacy.",
   storyText3: "Integrity, precision, and a relentless pursuit of the perfect frame define every deployment. We provide the technical backbone for your brand's narrative, ensuring your message is delivered with cinematic power and professional maturity.",
   quote: "I am not here to record moments. I am here to architect your visual legacy.",
-  profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1000"
+  profileImage: ""
 };
 
 export const HOME_CONTENT = {
   lensTitle: "Absolute Clarity. Strategic Growth.",
   lensText: "In a visual-first economy, the quality of your media dictates the ceiling of your brand's growth. Jonni Armani Media specializes in high-stakes visual storytelling, providing the cinematic infrastructure needed for brands to dominate their market. From the surgical suites of Sarasota to the high-energy sidelines of Palmetto, we deliver visual assets that translate directly into professional trust and business ROI.\n\nOur process is refined, focused, and explicitly designed for those who refuse to settle for the generic. We deploy industry-standard cinema optics and a meticulous post-production pipeline to ensure your narrative is delivered with unrivaled power. Serving Bradenton, Sarasota, and the Florida Gulf Coast.",
-  lensImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200",
-  ctaBackground: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=2000",
+  lensImage: "",
+  ctaBackground: "",
   faqTitle: "Operational Details",
   faqSubtitle: "Strategic Information for Your Next Production",
   faqs: [
@@ -203,38 +146,12 @@ export const HOME_CONTENT = {
       answer: "We provide broadcast-quality recruitment media and athletic identity reels for elite performers at IMG Academy and other professional training facilities in Southwest Florida."
     }
   ],
-  heroVisuals: [
-    { url: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Sports' },
-    { url: "https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Healthcare' },
-    { url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Hospitality' },
-    { url: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Corporate' },
-    { url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Coastal' }
-  ]
+  heroVisuals: []
 };
 
-export const TESTIMONIALS = [
-  {
-    author: "Jordan Thompson",
-    role: "Healthcare Director",
-    content: "Jonni is an absolute professional. The cinematic quality of the video he produced for our regional practice was beyond our expectations. He understands the nuances of professional brand storytelling.",
-    rating: 5,
-    date: "3 months ago"
-  },
-  {
-    author: "Sarah Mitchell",
-    role: "Commercial Marketing Lead",
-    content: "High-impact visuals and a strategic eye. He captured our brand story perfectly. The ROI on the media assets we received has already proven itself across our social platforms.",
-    rating: 5,
-    date: "1 month ago"
-  },
-  {
-    author: "Marcus Rivera",
-    role: "Professional Athletics Coach",
-    content: "The sports media Jonni produces is next level. Fast turnaround and broadcast quality gear used with actual intent. If you need to stand out from the noise, this is who you call.",
-    rating: 5,
-    date: "2 weeks ago"
-  }
-];
+
+
+export const TESTIMONIALS: { author: string; role: string; content: string; rating: number; date: string; }[] = [];
 
 export const INDUSTRIES = [
   { id: "real-estate", name: "Luxury Real Estate", description: "Cinematic walkthroughs for Sarasota waterfront estates and architectural showcases." },
@@ -264,7 +181,7 @@ export const SCHEMA_JSON_LD = {
     "@type": "ImageObject",
     "url": "https://jonniarmani.com/logo.png"
   },
-  "image": "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000",
+  "image": "",
   "description": "Premium cinematic video production and commercial photography specializing in sports, healthcare, and luxury brands across the Florida Gulf Coast.",
   "telephone": BRAND.contact.phone,
   "email": BRAND.contact.email,

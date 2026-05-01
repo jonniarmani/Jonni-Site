@@ -21,8 +21,16 @@ export const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
   loading = "lazy",
   ...props 
 }) => {
-  // Check if it's an Unsplash URL to apply optimization
-  const isUnsplash = src.includes('images.unsplash.com');
+  // If no source provided or it's a template placeholder (Unsplash), return nothing or a branded skeleton
+  // The user specifically asked to remove template photos
+  const isUnsplash = src?.includes('images.unsplash.com');
+  if (!src || isUnsplash) {
+    return (
+      <div className={`bg-zinc-900 flex items-center justify-center ${className}`}>
+         <span className="text-brand-gold text-[8px] font-black uppercase tracking-[0.3em] opacity-20">Jonni Armani Media</span>
+      </div>
+    );
+  }
 
   const defaultProps = {
     alt,

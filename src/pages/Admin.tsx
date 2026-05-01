@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useContent } from '../lib/ContentContext';
 import { auth, googleProvider, signInWithPopup, signOut, db, doc, setDoc, handleFirestoreError, OperationType, collection, deleteDoc, onSnapshot } from '../lib/firebase';
 import { addDoc, query, where, orderBy, getDocs, updateDoc, Timestamp, serverTimestamp } from 'firebase/firestore';
-import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Upload, Download, RefreshCw, Globe, Twitter, ShieldCheck, Check, Filter, Settings, Activity, Zap, Search, ExternalLink, AlertCircle, Target, BarChart as ChartIcon, PieChart as PieIcon, LineChart as LineIcon, MousePointer2, Mail, Send, History, Briefcase as ProjectIcon, Layers, Loader2, Gauge, Menu } from 'lucide-react';
+import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, Camera, MessageSquare, Star, Code, Palette, Upload, Download, RefreshCw, Globe, Twitter, ShieldCheck, Check, Filter, Settings, Activity, Zap, Search, ExternalLink, AlertCircle, Target, BarChart as ChartIcon, PieChart as PieIcon, LineChart as LineIcon, MousePointer2, Mail, Send, History, Briefcase as ProjectIcon, Layers, Loader2, Gauge, Menu } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import FileUploader from '../components/FileUploader';
 
@@ -1943,7 +1943,13 @@ export default function Admin() {
                                 <span className="absolute text-[8px] uppercase tracking-widest font-black bg-brand-gold px-2 py-1 text-black">Video Preview</span>
                               </div>
                             ) : (
-                              <img src={visual.url || "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=1000"} className="w-full h-full object-cover" alt="" />
+                              <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
+                                {visual.url ? (
+                                  <img src={visual.url} className="w-full h-full object-cover" alt="" />
+                                ) : (
+                                  <Camera className="text-zinc-600" size={24} />
+                                )}
+                              </div>
                             )}
                           </div>
                           

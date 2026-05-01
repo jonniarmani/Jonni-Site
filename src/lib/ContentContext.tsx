@@ -104,20 +104,8 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [content, setContent] = useState<SiteContent>({
     brand: BRAND,
     services: SERVICES.map(s => {
-      let visualUrl = "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200";
+      let visualUrl = "";
       let visualType: 'image' | 'video' = 'image';
-
-      if (s.id === 'healthcare') {
-        visualUrl = "https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?auto=format&fit=crop&q=80&w=1200";
-      } else if (s.id === 'corporate') {
-        visualUrl = "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200";
-      } else if (s.id === 'family') {
-        visualUrl = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1200";
-      } else if (s.id === 'sports') {
-        visualUrl = "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=1200";
-      } else if (s.id === 'hospitality') {
-        visualUrl = "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1200";
-      }
 
       return {
         ...s,
@@ -134,7 +122,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       client: "Private Client",
       year: "2026",
       isFeatured: true,
-      images: [p.placeholder, p.placeholder] 
+      images: p.placeholder ? [p.placeholder] : [] 
     })),
     about: ABOUT_CONTENT,
     home: HOME_CONTENT,
@@ -150,7 +138,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       title: "Start Your Brand Genesis.",
       subtitle: "Inquire for Production Space.",
       description: "Every legacy begins with a single frame. Whether you're planning a multi-million dollar resort campaign or a focused executive identity series, our technical team is ready to deploy. Serving Bradenton, Sarasota, and the Florida Gulf Coast.",
-      image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=2000",
+      image: "",
       email: "jonniarmani@gmail.com",
       phone: "208.549.9544",
       address: "Bradenton/Sarasota, Florida",
@@ -174,7 +162,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       title: SEO.home.title,
       description: SEO.home.description,
       keywords: "video production Bradenton, Sarasota commercial photographer, Tampa brand storytelling, luxury real estate video Florida, healthcare marketing media, sports performance reels, architectural photography, yacht cinematography Gulf Coast",
-      ogImage: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000",
+      ogImage: "",
       h1Override: "Cinematic Video <br /> <span class='text-brand-gold'>Commercial Photography</span>",
       altTags: {
         "home-lens": "Jonni Armani Professional Video Production Bradenton Florida Gulf Coast Luxury Real Estate & Commercial",
