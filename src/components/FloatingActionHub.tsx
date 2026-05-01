@@ -32,8 +32,8 @@ export default function FloatingActionHub() {
 
   // Determine X offset based on state
   // On Desktop/Idle: 0
-  // On Mobile Scroll Down: Slide out but leave icon peek
-  const xOffset = isHovered ? 0 : isScrollingDown ? 140 : 0;
+  // On Mobile Scroll Down: Slide out but leave enough to read "Start"
+  const xOffset = isHovered ? 0 : isScrollingDown ? 90 : 0;
 
   return (
     <AnimatePresence>
@@ -54,35 +54,36 @@ export default function FloatingActionHub() {
              <motion.div 
                initial={{ opacity: 0 }}
                animate={{ opacity: 1 }}
-               className="absolute -left-6 top-1/2 -translate-y-1/2 text-brand-gold animate-pulse lg:hidden"
+               className="absolute -left-10 top-1/2 -translate-y-1/2 text-brand-gold animate-pulse lg:hidden flex flex-col items-center"
              >
-               <ChevronLeft size={20} />
+               <ChevronLeft size={24} />
+               <span className="text-[6px] font-black uppercase vertical-text mt-1">Peek</span>
              </motion.div>
           )}
 
           <Link
             to="/contact?type=video"
-            className="group pointer-events-auto flex items-center bg-brand-gold text-white pl-5 pr-8 py-4 rounded-l-full shadow-2xl transition-all hover:pr-12 active:scale-95 border-y border-l border-white/10"
+            className="group pointer-events-auto flex items-center bg-brand-gold text-white pl-5 pr-10 py-5 rounded-l-full shadow-2xl transition-all hover:pr-14 active:scale-95 border-y border-l border-white/10"
           >
-            <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center mr-4 shrink-0">
-              <Video size={16} />
+            <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center mr-4 shrink-0 shadow-inner">
+              <Video size={18} />
             </div>
             <div className="flex flex-col">
-              <span className="text-[6px] font-black uppercase tracking-tighter opacity-70 leading-none mb-1">Production</span>
-              <span className="text-[10px] font-black uppercase tracking-widest whitespace-nowrap">Video Project</span>
+              <span className="text-[10px] font-black uppercase tracking-widest whitespace-nowrap">Start Video</span>
+              <span className="text-[7px] font-black uppercase tracking-[0.2em] opacity-60 leading-none mt-1">Cinematography</span>
             </div>
           </Link>
 
           <Link
             to="/contact?type=photo"
-            className="group pointer-events-auto flex items-center bg-brand-black text-white pl-5 pr-8 py-4 rounded-l-full shadow-2xl transition-all hover:pr-12 active:scale-95 border-y border-l border-brand-gold/30"
+            className="group pointer-events-auto flex items-center bg-brand-black text-white pl-5 pr-10 py-5 rounded-l-full shadow-2xl transition-all hover:pr-14 active:scale-95 border-y border-l border-brand-gold/30"
           >
-            <div className="w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center mr-4 shrink-0">
-              <Camera size={16} className="text-brand-black" />
+            <div className="w-9 h-9 rounded-full bg-brand-gold flex items-center justify-center mr-4 shrink-0 shadow-lg">
+              <Camera size={18} className="text-brand-black" />
             </div>
             <div className="flex flex-col">
-              <span className="text-[6px] font-black uppercase tracking-tighter text-brand-gold leading-none mb-1">Capturing</span>
-              <span className="text-[10px] font-black uppercase tracking-widest whitespace-nowrap">Photo Project</span>
+              <span className="text-[10px] font-black uppercase tracking-widest whitespace-nowrap">Start Photo</span>
+              <span className="text-[7px] font-black uppercase tracking-[0.2em] text-brand-gold leading-none mt-1">Photography</span>
             </div>
           </Link>
         </motion.div>
