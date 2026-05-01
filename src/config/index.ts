@@ -110,7 +110,7 @@ export const PORTFOLIO = [
   {
     category: "Commercial",
     title: "Gulf Coast Brand Story",
-    placeholder: "https://images.unsplash.com/photo-1520116467321-f1463a863260?auto=format&fit=crop&q=80&w=1200",
+    placeholder: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200",
     url: "#",
     type: "video"
   },
@@ -124,14 +124,14 @@ export const PORTFOLIO = [
   {
     category: "Healthcare",
     title: "Siesta Key Dental Feature",
-    placeholder: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1200",
+    placeholder: "https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?auto=format&fit=crop&q=80&w=1200",
     url: "#",
     type: "photo"
   },
   {
     category: "Headshots",
     title: "Anna Maria Style Editorial",
-    placeholder: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=1200",
+    placeholder: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1200",
     url: "#",
     type: "photo"
   },
@@ -141,129 +141,73 @@ export const PORTFOLIO = [
     placeholder: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200",
     url: "#",
     type: "video"
-  },
-  {
-    category: "Events",
-    title: "Florida Coastal Production",
-    placeholder: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "video"
-  },
-  {
-    category: "Family",
-    title: "Bradenton Legacy Session",
-    placeholder: "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "photo"
-  },
-  {
-    category: "Family",
-    title: "Siesta Key Sunset Collective",
-    placeholder: "https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "photo"
-  },
-  {
-    category: "Sports",
-    title: "LECOM Park Baseball Series",
-    placeholder: "https://images.unsplash.com/photo-1541252260730-0412e8e2108e?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "video"
-  },
-  {
-    category: "Commercial",
-    title: "Coastal Luxury Showcase",
-    placeholder: "https://images.unsplash.com/photo-1520116467321-f1463a863260?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "photo"
-  },
-  {
-    category: "Healthcare",
-    title: "Gulf Coast Health Systems",
-    placeholder: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "video"
-  },
-  {
-    category: "Sports",
-    title: "IMG Academy Athletic Identity",
-    placeholder: "https://images.unsplash.com/photo-1530549387634-e797ea9961f6?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "video"
-  },
-  {
-    category: "Brand Stories",
-    title: "The Founders Documentary",
-    placeholder: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200",
-    url: "#",
-    type: "video"
   }
 ];
 
 export const SEO = {
   home: {
-    title: "Jonni Armani Media | Florida Video & Photography",
-    description: "Premium video and photography in Bradenton & Sarasota. High-impact commercial media for brands, athletes, and medical professionals.",
+    title: "Jonni Armani Media | Cinematic Video & Commercial Photography",
+    description: "Premium visual storytelling for brands, athletes, and healthcare in Bradenton, Sarasota, and the Florida Gulf Coast.",
   },
   about: {
-    title: "About Jonni Armani | Creative Professional FL",
-    description: "Over 14 years of high-end cinematography and photography experience. Based in Bradenton, FL, delivering strategic visual results.",
+    title: "The Artist | Jonni Armani Media",
+    description: "14+ years of cinematic mastery. Architecting high-stakes visual assets for Florida's industry leaders.",
   },
   services: {
-    title: "Services | Cinematic Film & Brand Photography",
-    description: "Expert media services for luxury brands, sports, and healthcare. Serving the Florida Gulf Coast with professional, strategic visuals.",
+    title: "Production Services | Cinematic Film & Brand Photography",
+    description: "Tailored cinematic solutions for luxury hospitality, sports, and surgical narratives.",
   },
   work: {
-    title: "Portfolio | Commercial Film & Sports Media",
-    description: "Explore our work with elite athletes and luxury brands. High-impact cinematography and photography across Sarasota and Tampa Bay.",
+    title: "The Frame | Commercial Portfolio",
+    description: "Visual proof of strategic growth. High-impact cinematography and photography across Southwest Florida.",
   },
   contact: {
-    title: "Contact | Start Your Media Project Today",
-    description: "Elevate your brand with professional video and photo. Contact Jonni Armani Media for projects in Florida's Gulf Coast area.",
+    title: "Genesis | Start Your Production",
+    description: "Deploy our technical team for your next major campaign on the Florida Gulf Coast.",
   }
 };
 
 export const ABOUT_CONTENT = {
   heroTitle: "The Vision Behind The Craft",
   heroSubtitle: "Jonni Armani Media",
-  storyTitle: "Simple Strategy. Great Results.",
-  storyText1: "I am a professional photographer and videographer based in Bradenton, Florida. With over 14 years of experience, I believe every project should tell a clear story that connects with people.",
-  storyText2: "Whether I'm working on a commercial shoot, a medical documentary, or capture sports action, my goal is to stay out of the way while getting the best shots possible.",
-  storyText3: "I value honesty and hard work. My aim is to show not just how a moment looks, but how it feels. We help businesses and individuals stand out with high-quality media that builds trust and shows authority.",
-  quote: "I want to preserve exactly how a moment felt, not just what it looked like.",
+  storyTitle: "High-Stakes Visual Architecture.",
+  storyText1: "Based in Bradenton, Florida, Jonni Armani Media is a strategic production house dedicated to the art of absolute clarity. With 14 years of operational experience in high-end cinematography and commercial photography, we don't just capture images—we architect visual assets that command market authority.",
+  storyText2: "Our methodology is rooted in the belief that professional media is a necessity for survival in a saturated economy. We serve a portfolio of surgeons, elite athletes at IMG Academy, and luxury hospitality brands that require more than just 'content'; they require a legacy.",
+  storyText3: "Integrity, precision, and a relentless pursuit of the perfect frame define every deployment. We provide the technical backbone for your brand's narrative, ensuring your message is delivered with cinematic power and professional maturity.",
+  quote: "I am not here to record moments. I am here to architect your visual legacy.",
   profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1000"
 };
 
 export const HOME_CONTENT = {
-  lensTitle: "Precision Visuals. Strategic Growth.",
-  lensText: "In today's fast-paced digital landscape, high-quality visual content is not just an advantage—it is a necessity for survival. Jonni Armani Media specializes in creating intentional, cinematic narratives that translate directly into business growth and professional authority. Based in Bradenton, Florida, we provide world-class video production and commercial photography tailored to the unique demands of high-stakes industries.\n\nOur approach combines technical mastery with a deep understanding of human connection. Whether we are filming a broadcast-quality sports reel at IMG Academy, a precise clinical documentary for a Sarasota medical practice, or a luxury brand story for a Gulf Coast resort, our goal remains the same: to deliver media that commands attention and inspires action. We utilize industry-leading cinema gear and a meticulous post-production process to ensure every frame reflects the premium nature of your brand. By choosing Jonni Armani Media, you are investing in a strategic partnership dedicated to elevating your visual identity and helping you dominate your market.",
-  lensImage: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1200",
-  ctaBackground: "https://images.unsplash.com/photo-1520116467321-f1463a863260?auto=format&fit=crop&q=80&w=2000",
-  faqTitle: "Frequently Asked Questions",
-  faqSubtitle: "Information about our creative process and services.",
+  lensTitle: "Absolute Clarity. Strategic Growth.",
+  lensText: "In a visual-first economy, the quality of your media dictates the ceiling of your brand's growth. Jonni Armani Media specializes in high-stakes visual storytelling, providing the cinematic infrastructure needed for brands to dominate their market. From the surgical suites of Sarasota to the high-energy sidelines of Palmetto, we deliver visual assets that translate directly into professional trust and business ROI.\n\nOur process is refined, focused, and explicitly designed for those who refuse to settle for the generic. We deploy industry-standard cinema optics and a meticulous post-production pipeline to ensure your narrative is delivered with unrivaled power. Serving Bradenton, Sarasota, and the Florida Gulf Coast.",
+  lensImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200",
+  ctaBackground: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=2000",
+  faqTitle: "Operational Details",
+  faqSubtitle: "Strategic Information for Your Next Production",
   faqs: [
     {
-      question: "What areas do you serve in Florida?",
-      answer: "We offer video and photo services in Bradenton, Sarasota, Tampa, and St. Petersburg. We also work in Siesta Key, Anna Maria Island, and Lakewood Ranch. If you are on the Florida Gulf Coast, we can help with your project."
+      question: "What is the primary operational area for Jonni Armani Media?",
+      answer: "We are based in Bradenton, Florida, and primarily serve Sarasota, Tampa, Palmetto, and the surrounding Gulf Coast keys. We are available for global deployment on a per-project basis."
     },
     {
-      question: "How long does a video project take?",
-      answer: "Most commercial video projects take between two to four weeks to finish. This includes planning, filming, and editing. We work fast to provide high-quality results for your business needs."
+      question: "What is the standard production timeline?",
+      answer: "A standard commercial production typically spans 3-5 weeks from discovery to delivery. This timeline ensures a meticulous edit and professional color grade that meets our rigorous internal standards."
     },
     {
-      question: "Do you offer sports photography at IMG Academy?",
-      answer: "Yes, we often work with athletes at IMG Academy. We create performance reels and recruiting media that help students stand out. We also cover local sports events across Southwest Florida."
+      question: "Do you specialize in surgical and medical media?",
+      answer: "Yes. We have extensive experience in high-stakes medical narratives, specializing in cosmetic and clinical transformations. Our technical team understands the protocol and precision required within surgical environments."
     },
     {
-      question: "Can you help with branding for law firms and medical offices?",
-      answer: "We focus on professional branding for doctors, law firms, and business leaders. We provide clean headshots and office films that build trust with your clients. Our goal is to make your practice look credible and welcoming."
+      question: "Are performance reels available for IMG Academy athletes?",
+      answer: "We provide broadcast-quality recruitment media and athletic identity reels for elite performers at IMG Academy and other professional training facilities in Southwest Florida."
     }
   ],
   heroVisuals: [
-    { url: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Sports' },
-    { url: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Healthcare' },
-    { url: "https://images.unsplash.com/photo-1544698310-74ae2696c1e3?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Performance' },
-    { url: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Brand Stories' },
+    { url: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Sports' },
+    { url: "https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Healthcare' },
+    { url: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Hospitality' },
+    { url: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Corporate' },
     { url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Coastal' }
   ]
 };

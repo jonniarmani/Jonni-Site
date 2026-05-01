@@ -103,27 +103,19 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [content, setContent] = useState<SiteContent>({
     brand: BRAND,
     services: SERVICES.map(s => {
-      let visualUrl = "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=80&w=1000";
+      let visualUrl = "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200";
       let visualType: 'image' | 'video' = 'image';
 
       if (s.id === 'healthcare') {
-        visualUrl = "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200";
-        visualType = 'image';
+        visualUrl = "https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?auto=format&fit=crop&q=80&w=1200";
       } else if (s.id === 'corporate') {
-        visualUrl = "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=1200";
-        visualType = 'image';
+        visualUrl = "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200";
       } else if (s.id === 'family') {
-        visualUrl = "https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?auto=format&fit=crop&q=80&w=1200";
-        visualType = 'image';
+        visualUrl = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1200";
       } else if (s.id === 'sports') {
         visualUrl = "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=1200";
-        visualType = 'image';
-      } else if (s.id === 'commercial') {
-        visualUrl = "https://images.unsplash.com/photo-1520116467321-f1463a863260?auto=format&fit=crop&q=80&w=1200";
-        visualType = 'image';
       } else if (s.id === 'hospitality') {
         visualUrl = "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1200";
-        visualType = 'image';
       }
 
       return {
@@ -133,15 +125,15 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         photoCategory: s.photoCategory
       };
     }),
-    portfolio: PORTFOLIO.map((p, index) => ({
+    portfolio: PORTFOLIO.map((p) => ({
       ...p,
       videoUrl: "",
-      type: (index % 2 === 0) ? 'video' : 'photo',
+      type: p.type || 'photo',
       alt: p.title,
       client: "Private Client",
       year: "2026",
       isFeatured: true,
-      images: [p.placeholder, p.placeholder, p.placeholder, p.placeholder] 
+      images: [p.placeholder, p.placeholder] 
     })),
     about: ABOUT_CONTENT,
     home: HOME_CONTENT,

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useContent } from '../lib/ContentContext';
 import { auth, googleProvider, signInWithPopup, signOut, db, doc, setDoc, handleFirestoreError, OperationType, collection, deleteDoc, onSnapshot } from '../lib/firebase';
 import { addDoc, query, where, orderBy, getDocs, updateDoc, Timestamp, serverTimestamp } from 'firebase/firestore';
-import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Upload, Download, RefreshCw, Globe, Twitter, ShieldCheck, Check, Filter, Settings, Activity, Zap, Search, ExternalLink, AlertCircle, Target, BarChart as ChartIcon, PieChart as PieIcon, LineChart as LineIcon, MousePointer2, Mail, Send, History, Briefcase as ProjectIcon, Layers, Loader2, Gauge } from 'lucide-react';
+import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, MessageSquare, Star, Code, Palette, Upload, Download, RefreshCw, Globe, Twitter, ShieldCheck, Check, Filter, Settings, Activity, Zap, Search, ExternalLink, AlertCircle, Target, BarChart as ChartIcon, PieChart as PieIcon, LineChart as LineIcon, MousePointer2, Mail, Send, History, Briefcase as ProjectIcon, Layers, Loader2, Gauge, Menu } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import FileUploader from '../components/FileUploader';
 
@@ -589,7 +589,6 @@ export default function Admin() {
       
       await setDoc(doc(db, 'settings', 'content'), contentToSave);
       setLocalContent(contentToSave);
-      alert("Content synchronized successfully. (AI artifacts purged)");
     } catch (err) {
       handleFirestoreError(err, OperationType.WRITE, path);
     }
@@ -597,21 +596,21 @@ export default function Admin() {
   };
 
   const tabs = [
-    { id: 'identity', label: 'Branding', icon: Info, color: 'text-blue-500' },
-    { id: 'home', label: 'Home', icon: Home, color: 'text-emerald-500' },
-    { id: 'about', label: 'About', icon: User, color: 'text-purple-500' },
-    { id: 'services', label: 'Services', icon: Briefcase, color: 'text-orange-500' },
-    { id: 'video-work', label: 'Video', icon: VideoIcon, color: 'text-red-500' },
+    { id: 'identity', label: 'Branding', icon: Info, color: 'text-brand-black' },
+    { id: 'home', label: 'Home', icon: Home, color: 'text-brand-black' },
+    { id: 'about', label: 'About', icon: User, color: 'text-brand-black' },
+    { id: 'services', label: 'Services', icon: Briefcase, color: 'text-brand-black' },
+    { id: 'video-work', label: 'Video', icon: VideoIcon, color: 'text-brand-black' },
     { id: 'photo-work', label: 'Photo', icon: ImageIcon, color: 'text-brand-gold' },
-    { id: 'promo', label: 'Promo', icon: Megaphone, color: 'text-pink-500' },
-    { id: 'testimonials', label: 'Reviews', icon: Star, color: 'text-yellow-500' },
+    { id: 'promo', label: 'Promo', icon: Megaphone, color: 'text-brand-black' },
+    { id: 'testimonials', label: 'Reviews', icon: Star, color: 'text-brand-black' },
     { id: 'industries', label: 'Markets', icon: Globe, color: 'text-brand-gold' },
-    { id: 'inquiries', label: 'Leads', icon: MessageSquare, color: 'text-indigo-500' },
-    { id: 'projects', label: 'Projects', icon: BarChart, color: 'text-emerald-500' },
-    { id: 'contact', label: 'Contact', icon: Mail, color: 'text-rose-500' },
-    { id: 'analytics', label: 'Stats', icon: Activity, color: 'text-red-500' },
+    { id: 'inquiries', label: 'Leads', icon: MessageSquare, color: 'text-brand-black' },
+    { id: 'projects', label: 'Projects', icon: BarChart, color: 'text-brand-black' },
+    { id: 'contact', label: 'Contact', icon: Mail, color: 'text-brand-black' },
+    { id: 'analytics', label: 'Stats', icon: Activity, color: 'text-brand-black' },
     { id: 'optimizer', label: 'SEO', icon: Zap, color: 'text-brand-gold' },
-    { id: 'code', label: 'Tech', icon: Code, color: 'text-gray-500' },
+    { id: 'code', label: 'Tech', icon: Code, color: 'text-brand-black' },
     { id: 'theme', label: 'Design', icon: Palette, color: 'text-brand-gold' },
   ];
 
@@ -628,7 +627,7 @@ export default function Admin() {
   return (
     <div className="pt-24 pb-40 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-zinc-50 min-h-screen">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-8 border-b-2 border-brand-black/5 pb-12">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8 border-b-2 border-brand-black/5 pb-12">
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <div className="w-12 h-12 rounded-full bg-brand-black flex items-center justify-center text-brand-gold shadow-xl">
