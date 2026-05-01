@@ -1,53 +1,90 @@
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { useState, useEffect } from "react";
-import { ArrowRight, Video, Camera } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Video, Camera, ChevronLeft } from "lucide-react";
 
 export default function FloatingActionHub() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show after scrolling 600px (past hero)
-      setIsVisible(window.scrollY > 600);
+      const currentScrollY = window.scrollY;
+      
+      // Show after scrolling past hero
+      setIsVisible(currentScrollY > 700);
+      
+      // Detect scroll direction
+      if (currentScrollY > lastScrollY.current && currentScrollY > 700) {
+        setIsScrollingDown(true);
+      } else {
+        setIsScrollingDown(false);
+      }
+      
+      lastScrollY.current = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Determine X offset based on state
+  // On Desktop/Idle: 0
+  // On Mobile Scroll Down: Slide out but leave icon peek
+  const xOffset = isHovered ? 0 : isScrollingDown ? 140 : 0;
 
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          className="fixed bottom-24 left-0 right-0 z-40 px-6 flex justify-center pointer-events-none"
+          initial={{ x: 200, opacity: 0 }}
+          animate={{ 
+            x: xOffset,
+            opacity: 1 
+          }}
+          exit={{ x: 200, opacity: 0 }}
+          transition={{ type: "spring", damping: 25, stiffness: 120 }}
+          onHoverStart={() => setIsHovered(true)}
+          onHoverEnd={() => setIsHovered(false)}
+          className="fixed right-0 top-1/2 -translate-y-1/2 z-[60] flex flex-col items-end space-y-3 pointer-events-none"
         >
-          <div className="flex flex-col sm:flex-row gap-3 pointer-events-auto">
-            <Link
-              to="/contact?type=video"
-              className="bg-brand-gold text-white px-6 py-4 rounded-full font-black uppercase tracking-widest text-[10px] shadow-2xl flex items-center group active:scale-95 transition-all hover:bg-brand-black"
-            >
-              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center mr-3 group-hover:bg-brand-gold transition-colors">
-                <Video size={14} />
-              </div>
-              <span>Start Video Project</span>
-              <ArrowRight size={14} className="ml-3 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            
-            <Link
-              to="/contact?type=photo"
-              className="bg-brand-black text-white px-6 py-4 rounded-full font-black uppercase tracking-widest text-[10px] shadow-2xl flex items-center group active:scale-95 transition-all hover:bg-brand-gold"
-            >
-              <div className="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center mr-3 group-hover:bg-brand-black transition-colors">
-                <Camera size={14} className="text-brand-gold" />
-              </div>
-              <span>Start Photo Project</span>
-              <ArrowRight size={14} className="ml-3 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
+          {isScrollingDown && !isHovered && (
+             <motion.div 
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               className="absolute -left-6 top-1/2 -translate-y-1/2 text-brand-gold animate-pulse lg:hidden"
+             >
+               <ChevronLeft size={20} />
+             </motion.div>
+          )}
+
+          <Link
+            to="/contact?type=video"
+            className="group pointer-events-auto flex items-center bg-brand-gold text-white pl-5 pr-8 py-4 rounded-l-full shadow-2xl transition-all hover:pr-12 active:scale-95 border-y border-l border-white/10"
+          >
+            <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center mr-4 shrink-0">
+              <Video size={16} />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[6px] font-black uppercase tracking-tighter opacity-70 leading-none mb-1">Production</span>
+              <span className="text-[10px] font-black uppercase tracking-widest whitespace-nowrap">Video Project</span>
+            </div>
+          </Link>
+
+          <Link
+            to="/contact?type=photo"
+            className="group pointer-events-auto flex items-center bg-brand-black text-white pl-5 pr-8 py-4 rounded-l-full shadow-2xl transition-all hover:pr-12 active:scale-95 border-y border-l border-brand-gold/30"
+          >
+            <div className="w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center mr-4 shrink-0">
+              <Camera size={16} className="text-brand-black" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[6px] font-black uppercase tracking-tighter text-brand-gold leading-none mb-1">Capturing</span>
+              <span className="text-[10px] font-black uppercase tracking-widest whitespace-nowrap">Photo Project</span>
+            </div>
+          </Link>
         </motion.div>
       )}
     </AnimatePresence>
