@@ -187,6 +187,7 @@ export default function Admin() {
   const [localContent, setLocalContent] = useState(content);
   const [isSaving, setIsSaving] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>('identity');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // Leads state
   const [leads, setLeads] = useState<any[]>([]);
   const [leadsLoading, setLeadsLoading] = useState(false);
@@ -596,22 +597,22 @@ export default function Admin() {
   };
 
   const tabs = [
-    { id: 'identity', label: 'Identity', icon: Info, color: 'text-blue-500' },
-    { id: 'home', label: 'Home Page', icon: Home, color: 'text-emerald-500' },
-    { id: 'about', label: 'The Artist', icon: User, color: 'text-purple-500' },
-    { id: 'services', label: 'Architecture', icon: Briefcase, color: 'text-orange-500' },
-    { id: 'video-work', label: 'Cine Reel', icon: VideoIcon, color: 'text-red-500' },
-    { id: 'photo-work', label: 'Stills', icon: ImageIcon, color: 'text-brand-gold' },
-    { id: 'promo', label: 'Campaigns', icon: Megaphone, color: 'text-pink-500' },
-    { id: 'testimonials', label: 'Authority', icon: Star, color: 'text-yellow-500' },
-    { id: 'industries', label: 'Industries', icon: Globe, color: 'text-brand-gold' },
+    { id: 'identity', label: 'Branding', icon: Info, color: 'text-blue-500' },
+    { id: 'home', label: 'Home', icon: Home, color: 'text-emerald-500' },
+    { id: 'about', label: 'About', icon: User, color: 'text-purple-500' },
+    { id: 'services', label: 'Services', icon: Briefcase, color: 'text-orange-500' },
+    { id: 'video-work', label: 'Video', icon: VideoIcon, color: 'text-red-500' },
+    { id: 'photo-work', label: 'Photo', icon: ImageIcon, color: 'text-brand-gold' },
+    { id: 'promo', label: 'Promo', icon: Megaphone, color: 'text-pink-500' },
+    { id: 'testimonials', label: 'Reviews', icon: Star, color: 'text-yellow-500' },
+    { id: 'industries', label: 'Markets', icon: Globe, color: 'text-brand-gold' },
     { id: 'inquiries', label: 'Leads', icon: MessageSquare, color: 'text-indigo-500' },
-    { id: 'projects', label: 'Production Flow', icon: BarChart, color: 'text-emerald-500' },
-    { id: 'contact', label: 'Contact Page', icon: Mail, color: 'text-rose-500' },
-    { id: 'analytics', label: 'Analytics', icon: Activity, color: 'text-red-500' },
-    { id: 'optimizer', label: 'SEO & Speed', icon: Zap, color: 'text-brand-gold' },
-    { id: 'code', label: 'System', icon: Code, color: 'text-gray-500' },
-    { id: 'theme', label: 'Studio Design', icon: Palette, color: 'text-brand-gold' },
+    { id: 'projects', label: 'Projects', icon: BarChart, color: 'text-emerald-500' },
+    { id: 'contact', label: 'Contact', icon: Mail, color: 'text-rose-500' },
+    { id: 'analytics', label: 'Stats', icon: Activity, color: 'text-red-500' },
+    { id: 'optimizer', label: 'SEO', icon: Zap, color: 'text-brand-gold' },
+    { id: 'code', label: 'Tech', icon: Code, color: 'text-gray-500' },
+    { id: 'theme', label: 'Design', icon: Palette, color: 'text-brand-gold' },
   ];
 
   const StatCircle = ({ label, value, icon: Icon }: any) => (
@@ -627,7 +628,7 @@ export default function Admin() {
   return (
     <div className="pt-24 pb-40 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-zinc-50 min-h-screen">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8 border-b-2 border-brand-black/5 pb-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-8 border-b-2 border-brand-black/5 pb-12">
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <div className="w-12 h-12 rounded-full bg-brand-black flex items-center justify-center text-brand-gold shadow-xl">
@@ -639,7 +640,13 @@ export default function Admin() {
               </div>
             </div>
           </div>
-          <div className="flex gap-4 w-full md:w-auto">
+          <div className="flex gap-4 w-full md:w-auto items-center">
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden w-12 h-12 bg-white border border-gray-100 flex items-center justify-center text-brand-black shadow-sm"
+            >
+              <Layers size={20} className={mobileMenuOpen ? "text-brand-gold" : ""} />
+            </button>
             {newLeadsCount > 0 && (
               <button 
                 onClick={() => setActiveTab('inquiries')}
@@ -671,9 +678,15 @@ export default function Admin() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 relative">
           {/* Enhanced Navigation Sidebar */}
-          <div className="lg:col-span-3 space-y-2">
+          <div className={`lg:col-span-3 space-y-2 ${mobileMenuOpen ? 'block' : 'hidden lg:block'} fixed lg:relative inset-0 lg:inset-auto z-50 lg:z-0 bg-zinc-50/95 lg:bg-transparent p-6 lg:p-0 overflow-y-auto lg:overflow-visible`}>
+            <div className="flex justify-between items-center mb-6 lg:hidden">
+              <span className="text-xs font-black uppercase tracking-widest">Menu</span>
+              <button onClick={() => setMobileMenuOpen(false)} className="w-10 h-10 border border-gray-200 flex items-center justify-center">
+                <Plus size={20} className="rotate-45" />
+              </button>
+            </div>
             <div className="bg-white border border-gray-100 p-2 rounded-sm shadow-sm mb-6">
               <div className="p-4 border-b border-gray-50 mb-2">
                 <div className="flex items-center space-x-3">
@@ -686,36 +699,36 @@ export default function Admin() {
                   </div>
                 </div>
               </div>
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id as Tab)}
-                  className={`w-full flex items-center justify-between px-5 py-4 font-black uppercase tracking-widest text-[10px] transition-all group group relative ${
-                    activeTab === tab.id 
-                      ? 'text-brand-black' 
-                      : 'text-gray-400 hover:text-brand-gold'
-                  }`}
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${activeTab === tab.id ? 'bg-brand-black text-brand-gold shadow-lg ring-2 ring-brand-gold/20' : 'bg-gray-50 text-gray-400 group-hover:bg-brand-gold/10 group-hover:text-brand-gold'}`}>
-                      <tab.icon size={14} />
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-1">
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => {
+                      setActiveTab(tab.id as Tab);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`w-full flex items-center justify-between px-3 lg:px-5 py-3 lg:py-4 font-black uppercase tracking-widest text-[9px] lg:text-[10px] transition-all group relative border lg:border-none ${
+                      activeTab === tab.id 
+                        ? 'text-brand-black border-brand-gold/30 bg-brand-gold/5 lg:bg-transparent' 
+                        : 'text-gray-400 hover:text-brand-gold border-transparent'
+                    }`}
+                  >
+                    <div className="flex items-center space-x-2 lg:space-x-4">
+                      <div className={`w-6 h-6 lg:w-8 lg:h-8 rounded-full flex items-center justify-center transition-all ${activeTab === tab.id ? 'bg-brand-black text-brand-gold shadow-lg ring-2 ring-brand-gold/20' : 'bg-gray-50 text-gray-400 group-hover:bg-brand-gold/10 group-hover:text-brand-gold'}`}>
+                        <tab.icon size={activeTab === tab.id ? 10 : 12} />
+                      </div>
+                      <span className="truncate">{tab.label}</span>
+                      {tab.id === 'inquiries' && unreadCount > 0 && (
+                        <span className="bg-brand-black text-brand-gold text-[7px] font-black px-1 py-0.5 rounded-sm animate-pulse">
+                          {unreadCount}
+                        </span>
+                      )}
                     </div>
-                    <span>{tab.label}</span>
-                    {tab.id === 'inquiries' && unreadCount > 0 && (
-                      <span className="bg-brand-black text-brand-gold text-[8px] font-black px-1.5 py-0.5 rounded-sm animate-pulse ml-2">
-                        {unreadCount} Msg
-                      </span>
-                    )}
-                    {tab.id === 'inquiries' && newLeadsCount > 0 && (
-                      <span className="bg-red-500 text-white text-[8px] font-black px-1.5 py-0.5 rounded-sm animate-bounce ml-2">
-                        {newLeadsCount} New
-                      </span>
-                    )}
-                  </div>
-                  {activeTab === tab.id && <ChevronRight size={14} className="text-brand-gold animate-bounce-x" />}
-                  {activeTab === tab.id && <div className="absolute left-0 w-1 h-8 bg-brand-gold rounded-full" />}
-                </button>
-              ))}
+                    {activeTab === tab.id && <ChevronRight size={12} className="text-brand-gold hidden lg:block animate-bounce-x" />}
+                    {activeTab === tab.id && <div className="absolute left-0 w-1 h-6 lg:h-8 bg-brand-gold rounded-full hidden lg:block" />}
+                  </button>
+                ))}
+              </div>
             </div>
             
             <div className="grid grid-cols-3 gap-2 mt-8">
@@ -727,7 +740,7 @@ export default function Admin() {
 
           {/* Enhanced Editor Area */}
           <div className="lg:col-span-9">
-            <div className="bg-white p-8 md:p-12 shadow-2xl border border-gray-100 min-h-[700px] rounded-sm relative overflow-hidden">
+            <div className="bg-white p-4 sm:p-8 md:p-12 shadow-2xl border border-gray-100 min-h-[700px] rounded-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full -mr-32 -mt-32 blur-3xl pointer-events-none" />
               
               {/* SEO Optimizer Tab */}
