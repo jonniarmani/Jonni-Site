@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useContent } from '../lib/ContentContext';
 import { auth, googleProvider, signInWithPopup, signOut, db, doc, setDoc, handleFirestoreError, OperationType, collection, deleteDoc, onSnapshot } from '../lib/firebase';
 import { addDoc, query, where, orderBy, getDocs, updateDoc, Timestamp, serverTimestamp } from 'firebase/firestore';
-import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image as ImageIcon, Trash, Plus, Megaphone, Video as VideoIcon, Camera, MessageSquare, Star, Code, Palette, Upload, Download, RefreshCw, Globe, Twitter, ShieldCheck, Check, Filter, Settings, Activity, Zap, Search, ExternalLink, AlertCircle, Target, BarChart as ChartIcon, PieChart as PieIcon, LineChart as LineIcon, MousePointer2, Mail, Send, History, Briefcase as ProjectIcon, Layers, Loader2, Gauge, Menu } from 'lucide-react';
+import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image, Trash, Plus, Megaphone, Video as VideoIcon, Camera, MessageSquare, Star, Code, Palette, Upload, Download, RefreshCw, Globe, Twitter, ShieldCheck, Check, Filter, Settings, Activity, Zap, Search, ExternalLink, AlertCircle, Target, BarChart as ChartIcon, PieChart as PieIcon, LineChart as LineIcon, MousePointer2, Mail, Send, History, Briefcase as ProjectIcon, Layers, Loader2, Gauge, Menu, Radio } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import FileUploader from '../components/FileUploader';
 
@@ -80,7 +80,7 @@ const CommunicationThread = ({ relatedId, relatedType, senderName }: { relatedId
                 {msg.text}
               </div>
               <span className="text-[7px] font-bold uppercase text-gray-400 mt-1">
-                {msg.senderName} • {msg.createdAt?.toDate ? msg.createdAt.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : '...'}
+                {msg.senderName} - {msg.createdAt?.toDate ? msg.createdAt.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : '...'}
               </span>
             </div>
           ))
@@ -102,8 +102,8 @@ const CommunicationThread = ({ relatedId, relatedType, senderName }: { relatedId
           <Send size={16} />
         </button>
       </form>
-      <div className="p-1 px-4 bg-brand-cyan/10 border-t border-brand-cyan/10">
-        <p className="text-[7px] text-brand-cyan font-bold uppercase tracking-widest">Client Portal Active: /portal/{relatedId}</p>
+      <div className="p-1 px-4 bg-brand-cyan bg-opacity-10 border-t border-brand-cyan border-opacity-10">
+        <p className="text-[7px] text-brand-cyan font-bold uppercase tracking-widest">Client Portal Active: {'/portal/' + relatedId}</p>
       </div>
     </div>
   );
@@ -357,7 +357,9 @@ export default function Admin() {
         description: lead.message,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
-        dueDate: "Unassigned"
+        dueDate: "Unassigned",
+        directTransmissionEnabled: false,
+        galleryAssets: []
       };
       
       const newProjectRef = await addDoc(collection(db, 'projects'), projectData);
@@ -392,7 +394,7 @@ export default function Admin() {
         updatedAt: serverTimestamp()
       });
     } catch (err) {
-      handleFirestoreError(err, OperationType.UPDATE, `projects/${projectId}`);
+      handleFirestoreError(err, OperationType.UPDATE, 'projects/' + projectId);
     }
   };
 
@@ -403,19 +405,41 @@ export default function Admin() {
         updatedAt: serverTimestamp()
       });
     } catch (err) {
-      handleFirestoreError(err, OperationType.UPDATE, `projects/${projectId}`);
+      handleFirestoreError(err, OperationType.UPDATE, 'projects/' + projectId);
+    }
+  };
+
+  const toggleDirectTransmission = async (projectId: string, enabled: boolean) => {
+    try {
+      await updateDoc(doc(db, 'projects', projectId), {
+        directTransmissionEnabled: enabled,
+        updatedAt: serverTimestamp()
+      });
+    } catch (err) {
+      handleFirestoreError(err, OperationType.UPDATE, 'projects/' + projectId);
+    }
+  };
+
+  const updateProjectGallery = async (projectId: string, assets: any[]) => {
+    try {
+      await updateDoc(doc(db, 'projects', projectId), {
+        galleryAssets: assets,
+        updatedAt: serverTimestamp()
+      });
+    } catch (err) {
+      handleFirestoreError(err, OperationType.UPDATE, 'projects/' + projectId);
     }
   };
 
   const fetchVideoThumbnail = async (videoUrl: string, index: number) => {
     let thumbnail = "";
     if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
-      const videoId = videoUrl.includes('v=') ? videoUrl.split('v=')[1].split('&')[0] : videoUrl.split('/').pop()?.split('?')[0];
-      thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+      const videoId = videoUrl.includes('v=') ? videoUrl.split('v=')[1].split('&')[0] : videoUrl.split(['', ''].join('/')).pop()?.split('?')[0];
+      thumbnail = 'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg';
     } else if (videoUrl.includes('vimeo.com')) {
       try {
-        const videoId = videoUrl.split('/').pop()?.split('?')[0];
-        const response = await fetch(`https://vimeo.com/api/v2/video/${videoId}.json`);
+        const videoId = videoUrl.split(['', ''].join('/')).pop()?.split('?')[0];
+        const response = await fetch('https://vimeo.com/api/v2/video/' + videoId + '.json');
         const data = await response.json();
         thumbnail = data[0].thumbnail_large;
       } catch (e) {
@@ -545,7 +569,7 @@ export default function Admin() {
   }, [isAdmin]);
 
   const copyPortalLink = (id: string) => {
-    const url = `${window.location.origin}/portal/${id}`;
+    const url = window.location.origin + '/portal/' + id;
     navigator.clipboard.writeText(url);
     alert("Magic Link copied. Paste this into your email reply to chat with the client.");
   };
@@ -601,7 +625,7 @@ export default function Admin() {
     { id: 'about', label: 'About', icon: User, color: 'text-brand-black' },
     { id: 'services', label: 'Services', icon: Briefcase, color: 'text-brand-black' },
     { id: 'video-work', label: 'Video', icon: VideoIcon, color: 'text-brand-black' },
-    { id: 'photo-work', label: 'Photo', icon: ImageIcon, color: 'text-brand-cyan' },
+    { id: 'photo-work', label: 'Photo', icon: Image, color: 'text-brand-cyan' },
     { id: 'promo', label: 'Promo', icon: Megaphone, color: 'text-brand-black' },
     { id: 'testimonials', label: 'Reviews', icon: Star, color: 'text-brand-black' },
     { id: 'industries', label: 'Markets', icon: Globe, color: 'text-brand-cyan' },
@@ -625,9 +649,9 @@ export default function Admin() {
   );
 
   return (
-    <div className="pt-24 pb-40 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-zinc-50 min-h-screen">
+    <div className="pt-24 pb-40 bg-zinc-50 min-h-screen">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8 border-b-2 border-brand-black/5 pb-12">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8 border-b-2 border-brand-black border-opacity-5 pb-12">
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <div className="w-12 h-12 rounded-full bg-brand-black flex items-center justify-center text-brand-cyan shadow-xl">
@@ -635,7 +659,7 @@ export default function Admin() {
               </div>
               <div>
                 <span className="text-brand-cyan font-bold uppercase tracking-[0.3em] text-[10px] block">Global Control Console</span>
-                <h1 className="text-4xl md:text-6xl font-display font-bold tracking-tight uppercase leading-none">Command <span className="italic font-light text-gray-400 underline decoration-brand-cyan/30">Center.</span></h1>
+                <h1 className="text-4xl md:text-6xl font-display font-bold tracking-tight uppercase leading-none">Command <span className="italic font-light text-gray-400 underline decoration-brand-cyan decoration-opacity-30">Center.</span></h1>
               </div>
             </div>
           </div>
@@ -679,7 +703,7 @@ export default function Admin() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 relative">
           {/* Enhanced Navigation Sidebar */}
-          <div className={`lg:col-span-3 space-y-2 ${mobileMenuOpen ? 'block' : 'hidden lg:block'} fixed lg:relative inset-0 lg:inset-auto z-50 lg:z-0 bg-zinc-50/95 lg:bg-transparent p-6 lg:p-0 overflow-y-auto lg:overflow-visible`}>
+          <div className={`lg:col-span-3 space-y-2 ${mobileMenuOpen ? 'block' : 'hidden lg:block'} fixed lg:relative inset-0 lg:inset-auto z-50 lg:z-0 bg-zinc-50 bg-opacity-95 lg:bg-transparent p-6 lg:p-0 overflow-y-auto lg:overflow-visible`}>
             <div className="flex justify-between items-center mb-6 lg:hidden">
               <span className="text-xs font-black uppercase tracking-widest">Menu</span>
               <button onClick={() => setMobileMenuOpen(false)} className="w-10 h-10 border border-gray-200 flex items-center justify-center">
@@ -689,7 +713,7 @@ export default function Admin() {
             <div className="bg-white border border-gray-100 p-2 rounded-sm shadow-sm mb-6">
               <div className="p-4 border-b border-gray-50 mb-2">
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 rounded-full overflow-hidden bg-brand-cyan/10 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full overflow-hidden bg-brand-cyan bg-opacity-10 flex items-center justify-center">
                     {user?.photoURL ? <img src={user.photoURL} alt="" /> : <User size={20} className="text-brand-cyan" />}
                   </div>
                   <div>
@@ -708,12 +732,12 @@ export default function Admin() {
                     }}
                     className={`w-full flex items-center justify-between px-3 lg:px-5 py-3 lg:py-4 font-black uppercase tracking-widest text-[9px] lg:text-[10px] transition-all group relative border lg:border-none ${
                       activeTab === tab.id 
-                        ? 'text-brand-black border-brand-cyan/30 bg-brand-cyan/5 lg:bg-transparent' 
+                        ? 'text-brand-black border-brand-cyan border-opacity-30 bg-brand-cyan bg-opacity-5 lg:bg-transparent' 
                         : 'text-gray-400 hover:text-brand-cyan border-transparent'
                     }`}
                   >
                     <div className="flex items-center space-x-2 lg:space-x-4">
-                      <div className={`w-6 h-6 lg:w-8 lg:h-8 rounded-full flex items-center justify-center transition-all ${activeTab === tab.id ? 'bg-brand-black text-brand-cyan shadow-lg ring-2 ring-brand-cyan/20' : 'bg-gray-50 text-gray-400 group-hover:bg-brand-cyan/10 group-hover:text-brand-cyan'}`}>
+                      <div className={`w-6 h-6 lg:w-8 lg:h-8 rounded-full flex items-center justify-center transition-all ${activeTab === tab.id ? 'bg-brand-black text-brand-cyan shadow-lg ring-2 ring-brand-cyan ring-opacity-20' : 'bg-gray-50 text-gray-400 group-hover:bg-brand-cyan group-hover:bg-opacity-10 group-hover:text-brand-cyan'}`}>
                         <tab.icon size={activeTab === tab.id ? 10 : 12} />
                       </div>
                       <span className="truncate">{tab.label}</span>
@@ -740,7 +764,7 @@ export default function Admin() {
           {/* Enhanced Editor Area */}
           <div className="lg:col-span-9">
             <div className="bg-white p-4 sm:p-8 md:p-12 shadow-2xl border border-gray-100 min-h-[700px] rounded-sm relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-cyan/5 rounded-full -mr-32 -mt-32 blur-3xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-cyan bg-opacity-5 rounded-full -mr-32 -mt-32 blur-3xl pointer-events-none" />
               
               {/* SEO Optimizer Tab */}
               {activeTab === 'optimizer' && (
@@ -750,7 +774,7 @@ export default function Admin() {
                       <h2 className="text-2xl font-display font-bold uppercase tracking-tight">SEO Intelligence</h2>
                       <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Market Dominance & AI-Driven Visual Strategy</p>
                     </div>
-                    <div className="flex items-center space-x-2 bg-brand-cyan/10 px-4 py-2 border border-brand-cyan/20">
+                    <div className="flex items-center space-x-2 bg-brand-cyan bg-opacity-10 px-4 py-2 border border-brand-cyan border-opacity-20">
                       <Zap size={14} className="text-brand-cyan" />
                       <span className="text-[10px] font-black uppercase tracking-widest text-brand-cyan">AI Engine Active</span>
                     </div>
@@ -760,11 +784,11 @@ export default function Admin() {
                     {/* Main Intelligence Console */}
                     <div className="lg:col-span-8 space-y-12">
                       <div className="bg-zinc-900 rounded-lg p-8 sm:p-12 text-white relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-cyan/10 rounded-full -mr-48 -mt-48 blur-3xl group-hover:bg-brand-cyan/20 transition-all duration-1000" />
+                        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-cyan bg-opacity-10 rounded-full -mr-48 -mt-48 blur-3xl group-hover:bg-brand-cyan group-hover:bg-opacity-20 transition-all duration-1000" />
                         
                         <div className="relative z-10 space-y-8">
                           <div className="flex items-center space-x-4">
-                            <div className="w-16 h-16 rounded-full bg-brand-cyan/20 border border-brand-cyan/30 flex items-center justify-center text-brand-cyan">
+                            <div className="w-16 h-16 rounded-full bg-brand-cyan bg-opacity-20 border border-brand-cyan border-opacity-30 flex items-center justify-center text-brand-cyan">
                               <Zap size={32} className={isOptimizing ? "animate-pulse" : ""} />
                             </div>
                             <div>
@@ -773,7 +797,7 @@ export default function Admin() {
                             </div>
                           </div>
 
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8 border-y border-white/5">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8 border-y border-white border-opacity-5">
                             <div className="space-y-3">
                               <div className="flex items-center space-x-2">
                                 <Check size={14} className="text-brand-cyan" />
@@ -808,7 +832,7 @@ export default function Admin() {
                             <button 
                               onClick={runMasterOptimization}
                               disabled={isOptimizing}
-                              className="w-full bg-brand-cyan text-white py-6 font-black uppercase tracking-[0.4em] text-xs hover:bg-brand-black transition-all shadow-xl shadow-brand-cyan/20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed group"
+                              className="w-full bg-brand-cyan text-white py-6 font-black uppercase tracking-[0.4em] text-xs hover:bg-brand-black transition-all shadow-xl shadow-brand-cyan shadow-opacity-20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed group"
                             >
                               <span className="flex items-center justify-center">
                                 {isOptimizing ? (
@@ -1028,7 +1052,7 @@ export default function Admin() {
 
                           <div className="pt-8 border-t border-gray-200">
                              <div className="bg-brand-black p-6 text-white overflow-hidden relative group rounded-sm">
-                                <div className="absolute top-0 right-0 w-24 h-24 bg-brand-cyan/10 rounded-full -mr-12 -mt-12 blur-2xl group-hover:bg-brand-cyan/20 transition-all" />
+                                <div className="absolute top-0 right-0 w-24 h-24 bg-brand-cyan bg-opacity-10 rounded-full -mr-12 -mt-12 blur-2xl group-hover:bg-brand-cyan group-hover:bg-opacity-20 transition-all" />
                                 <h4 className="text-[8px] font-black uppercase tracking-[0.3em] text-brand-cyan mb-3">Market Sync Status</h4>
                                 <div className="space-y-3">
                                    <div className="flex justify-between items-center text-[7px] font-black uppercase tracking-[0.1em]">
@@ -1039,8 +1063,8 @@ export default function Admin() {
                                       <span className="text-gray-400 font-bold">Industry Focus</span>
                                       <span>{localContent.aiIntelligence?.profession || "High-End Media"}</span>
                                    </div>
-                                   <div className="w-full h-[2px] bg-white/10 mt-2">
-                                      <div className="w-3/4 h-full bg-brand-cyan shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+                                   <div className="w-full h-[2px] bg-white bg-opacity-10 mt-2">
+                                      <div className="h-full bg-brand-cyan shadow-[0_0_8px_rgba(212,175,55,0.4)]" style={{ width: '75%' }} />
                                    </div>
                                 </div>
                              </div>
@@ -1060,7 +1084,7 @@ export default function Admin() {
                       <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Intelligence Dashboard</h2>
                       <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Traffic, Conversion & Discovery Analytics</p>
                     </div>
-                    <div className="flex items-center space-x-4 bg-zinc-900 text-white px-6 py-3 rounded-full shadow-lg border border-white/5">
+                    <div className="flex items-center space-x-4 bg-zinc-900 text-white px-6 py-3 rounded-full shadow-lg border border-white border-opacity-5">
                       <div className="relative">
                         <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-ping absolute inset-0" />
                         <div className="w-2.5 h-2.5 bg-green-500 rounded-full relative" />
@@ -1254,16 +1278,16 @@ export default function Admin() {
                           <Activity size={16} className="text-green-500" />
                           <h3 className="text-sm font-black uppercase tracking-widest">Real-Time Event Stream</h3>
                         </div>
-                        <span className="text-[8px] font-black uppercase tracking-widest px-2 py-1 bg-green-500/20 text-green-500 rounded">Live Feed</span>
+                        <span className="text-[8px] font-black uppercase tracking-widest px-2 py-1 bg-green-500 bg-opacity-20 text-green-500 rounded">Live Feed</span>
                       </div>
                       
                       <div className="space-y-4 font-mono text-[9px] uppercase tracking-wider">
-                        <div className="flex items-start space-x-3 text-green-400/80 animate-in fade-in slide-in-from-top-1 duration-300">
+                        <div className="flex items-start space-x-3 text-green-400 text-opacity-80 animate-in fade-in slide-in-from-top-1 duration-300">
                           <span className="opacity-50">[{new Date().toLocaleTimeString()}]</span>
                           <span className="font-bold">New Session:</span>
                           <span className="text-white">Bradenton, FL via Instagram</span>
                         </div>
-                        <div className="flex items-start space-x-3 text-white/50">
+                        <div className="flex items-start space-x-3 text-white text-opacity-50">
                           <span className="opacity-50">[{new Date(Date.now() - 40000).toLocaleTimeString()}]</span>
                           <span className="font-bold">Portfolio View:</span>
                           <span>"Longboat Key Feature"</span>
@@ -1271,14 +1295,14 @@ export default function Admin() {
                         <div className="flex items-start space-x-3 text-cyan-400">
                           <span className="opacity-50">[{new Date(Date.now() - 120000).toLocaleTimeString()}]</span>
                           <span className="font-bold">Lead Created:</span>
-                          <span className="bg-cyan-500/20 px-1">Hospitality Narrative</span>
+                          <span className="bg-cyan-500 bg-opacity-20 px-1">Hospitality Narrative</span>
                         </div>
-                        <div className="flex items-start space-x-3 text-white/50">
+                        <div className="flex items-start space-x-3 text-white text-opacity-50">
                           <span className="opacity-50">[{new Date(Date.now() - 300000).toLocaleTimeString()}]</span>
                           <span className="font-bold">Session Start:</span>
                           <span>Lakewood Ranch, FL (Direct)</span>
                         </div>
-                        <div className="flex items-start space-x-3 text-white/50">
+                        <div className="flex items-start space-x-3 text-white text-opacity-50">
                           <span className="opacity-50">[{new Date(Date.now() - 600000).toLocaleTimeString()}]</span>
                           <span className="font-bold">Bot Filtered:</span>
                           <span>Crawl from Ashburn, VA (Rejected)</span>
@@ -1340,22 +1364,22 @@ export default function Admin() {
                                <div className="flex items-center space-x-3 mb-2">
                                  <span className="text-[8px] font-black uppercase tracking-[0.3em] text-brand-cyan">Production ID: {project.id.slice(0, 8)}</span>
                                  <span className={`px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest ${
-                                   project.status === 'completed' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' :
-                                   project.status === 'production' ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30' :
-                                   'bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/30'
+                                   project.status === 'completed' ? 'bg-emerald-500 bg-opacity-20 text-emerald-400 border border-emerald-500 border-opacity-30' :
+                                   project.status === 'production' ? 'bg-cyan-500 bg-opacity-20 text-cyan-400 border border-cyan-500 border-opacity-30' :
+                                   'bg-brand-cyan bg-opacity-20 text-brand-cyan border border-brand-cyan border-opacity-30'
                                  }`}>
-                                   {project.status.replace('-', ' ')}
+                                   {project.status?.split('-').join(' ')}
                                  </span>
                                </div>
                                <h3 className="text-xl font-display font-bold uppercase tracking-tight">{project.title}</h3>
-                               <p className="text-[10px] text-gray-400 font-medium uppercase tracking-widest mt-1">Client: {project.clientName} • {project.clientEmail}</p>
+                               <p className="text-[10px] text-gray-400 font-medium uppercase tracking-widest mt-1">Client: {project.clientName} - {project.clientEmail}</p>
                              </div>
                              <div className="flex items-center space-x-4">
                                 <div className="text-right flex flex-col">
                                    <span className="text-[8px] font-black uppercase text-gray-500">Progress</span>
                                    <span className="text-2xl font-display font-bold text-brand-cyan">{project.progress}%</span>
                                 </div>
-                                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/40 group-hover:border-brand-cyan group-hover:text-brand-cyan transition-all">
+                                <div className="w-12 h-12 rounded-full border border-white border-opacity-10 flex items-center justify-center text-white text-opacity-40 group-hover:border-brand-cyan group-hover:text-brand-cyan transition-all">
                                    <ProjectIcon size={18} />
                                 </div>
                              </div>
@@ -1395,6 +1419,25 @@ export default function Admin() {
                                     <option value="completed">Finalized & Delivered</option>
                                     <option value="halted">Execution Halted</option>
                                   </select>
+                                </div>
+
+                                <div className="space-y-4 pt-4 border-t border-gray-100">
+                                   <div className="flex items-center justify-between">
+                                      <div className="space-y-0.5">
+                                         <label className="text-[10px] uppercase font-black text-brand-black flex items-center">
+                                            <Radio size={12} className={`mr-2 ${project.directTransmissionEnabled ? 'text-brand-cyan animate-pulse' : 'text-gray-300'}`} />
+                                            Direct Transmission
+                                         </label>
+                                         <p className="text-[8px] text-gray-400 uppercase font-bold">Enable live visual feed for client</p>
+                                      </div>
+                                      <button 
+                                        onClick={() => toggleDirectTransmission(project.id, !project.directTransmissionEnabled)}
+                                        className={`w-10 h-5 rounded-full transition-all relative ${project.directTransmissionEnabled ? 'bg-brand-cyan' : 'bg-gray-200'}`}
+                                      >
+                                        <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${project.directTransmissionEnabled ? 'left-6' : 'left-1'}`} />
+                                      </button>
+                                   </div>
+                                </div>
                                </div>
 
                                <div className="p-6 bg-zinc-50 border border-zinc-100 rounded-lg">
@@ -1403,7 +1446,7 @@ export default function Admin() {
                                   </h4>
                                   <div className="space-y-3">
                                      <p className="text-[10px] text-gray-500 leading-relaxed font-medium">
-                                       Last synchronized: {project.updatedAt?.toDate ? project.updatedAt.toDate().toLocaleString() : 'Recent'}
+                                       Last synchronized: {project.updatedAt?.toDate ? 'Synced' : 'Recent'}
                                      </p>
                                      <div className="flex items-center space-x-2">
                                         <div className="w-1.5 h-1.5 rounded-full bg-brand-cyan" />
@@ -1418,11 +1461,11 @@ export default function Admin() {
                                       try {
                                         await deleteDoc(doc(db, 'projects', project.id));
                                       } catch (err) {
-                                        handleFirestoreError(err, OperationType.DELETE, `projects/${project.id}`);
+                                        handleFirestoreError(err, OperationType.DELETE, 'projects/' + project.id);
                                       }
                                     }
                                   }}
-                                  className="w-full text-[9px] font-black uppercase tracking-widest text-red-400 hover:text-red-600 transition-colors py-4 border border-dashed border-red-100 hover:border-red-500/20"
+                                  className="w-full text-[9px] font-black uppercase tracking-widest text-red-400 hover:text-red-600 transition-colors py-4 border border-dashed border-red-100 hover:border-red-500 hover:border-opacity-20"
                                >
                                   Terminate Production Instance
                                </button>
@@ -1433,23 +1476,126 @@ export default function Admin() {
                                   <label className="text-[10px] uppercase font-black text-gray-400">Client Correspondence</label>
                                   <CommunicationThread relatedId={project.id} relatedType="project" senderName={project.clientName} />
                                </div>
-                               
-                               <div className="p-6 border border-brand-cyan/10 bg-brand-cyan/5 rounded-lg flex items-start space-x-4">
-                                  <Link size={16} className="text-brand-cyan mt-1" />
+                               <div className="p-6 border border-brand-cyan border-opacity-10 bg-brand-cyan bg-opacity-5 rounded-lg flex items-start space-x-4">
+                                  <ExternalLink size={16} className="text-brand-cyan mt-1" />
                                   <div>
                                      <h5 className="text-[10px] font-black uppercase tracking-widest text-brand-cyan mb-1">Client Collaboration portal</h5>
                                      <p className="text-[11px] text-gray-500 font-medium mb-3 leading-relaxed">
                                        Share this secure link with the client to allow them to track progress and respond to visual assets in real-time.
                                      </p>
                                      <code className="block bg-white p-2 text-[9px] font-mono border border-gray-100 text-brand-black select-all">
-                                       {window.location.origin}/portal/{project.id}
-                                     </code >
+                                       {window.location.origin + '/portal/' + project.id}
+                                     </code>
                                   </div>
                                </div>
+
+                               <div className="pt-8 mt-8 border-t border-gray-50">
+                                  <div className="flex justify-between items-center mb-6">
+                                     <div className="flex items-center space-x-3">
+                                        <div className="w-8 h-8 rounded-full bg-brand-black text-brand-cyan flex items-center justify-center">
+                                           <Image size={14} />
+                                        </div>
+                                        <div>
+                                           <h5 className="text-[10px] font-black uppercase tracking-widest text-brand-black">Client Asset Gallery</h5>
+                                           <span className="text-[8px] text-gray-400 font-bold uppercase">Populate custom client portal page</span>
+                                        </div>
+                                     </div>
+                                     <button 
+                                       onClick={() => {
+                                         const currentAssets = project.galleryAssets || [];
+                                         updateProjectGallery(project.id, [...currentAssets, { url: "", type: 'image', title: "", createdAt: new Date().toISOString() }]);
+                                       }}
+                                       className="bg-brand-black text-white px-4 py-2 text-[8px] font-black uppercase tracking-widest hover:bg-brand-cyan transition-all"
+                                     >
+                                       Add Asset
+                                     </button>
+                                  </div>
+
+                                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                     {(project.galleryAssets || []).map((asset: any, aIdx: number) => (
+                                       <div key={aIdx} className="bg-white border border-gray-100 p-4 space-y-3 shadow-sm relative group">
+                                          <button 
+                                            onClick={() => {
+                                              const newAssets = [...project.galleryAssets];
+                                              newAssets.splice(aIdx, 1);
+                                              updateProjectGallery(project.id, newAssets);
+                                            }}
+                                            className="absolute top-2 right-2 p-1 text-gray-300 hover:text-red-500 transition-colors z-10"
+                                          >
+                                            <Trash size={12} />
+                                          </button>
+                                          
+                                          <div className="aspect-video bg-gray-50 flex items-center justify-center overflow-hidden border border-gray-50">
+                                             {asset.url ? (
+                                               asset.type === 'video' ? (
+                                                 <video src={asset.url} className="w-full h-full object-cover" controls={false} />
+                                               ) : (
+                                                 <img src={asset.url} className="w-full h-full object-cover" alt="" />
+                                               )
+                                             ) : (
+                                               <div className="text-[10px] font-black uppercase text-gray-300">No Asset</div>
+                                             )}
+                                          </div>
+
+                                          <div className="space-y-2">
+                                             <div className="flex gap-2">
+                                                <select 
+                                                  className="bg-zinc-100 text-[8px] font-black px-2 py-1 uppercase outline-none"
+                                                  value={asset.type}
+                                                  onChange={(e) => {
+                                                    const newAssets = [...project.galleryAssets];
+                                                    newAssets[aIdx] = { ...newAssets[aIdx], type: e.target.value };
+                                                    updateProjectGallery(project.id, newAssets);
+                                                  }}
+                                                >
+                                                  <option value="image">IMG</option>
+                                                  <option value="video">VID</option>
+                                                </select>
+                                                <input 
+                                                  className="flex-1 bg-zinc-50 p-2 text-[9px] font-bold outline-none focus:ring-1 focus:ring-brand-cyan"
+                                                  placeholder="Asset Title"
+                                                  value={asset.title || ""}
+                                                  onChange={(e) => {
+                                                    const newAssets = [...project.galleryAssets];
+                                                    newAssets[aIdx] = { ...newAssets[aIdx], title: e.target.value };
+                                                    updateProjectGallery(project.id, newAssets);
+                                                  }}
+                                                />
+                                             </div>
+                                             <input 
+                                               className="w-full bg-zinc-50 p-2 text-[8px] outline-none focus:ring-1 focus:ring-brand-cyan"
+                                               placeholder="URL (or upload below)"
+                                               value={asset.url || ""}
+                                               onChange={(e) => {
+                                                 const newAssets = [...project.galleryAssets];
+                                                 newAssets[aIdx] = { ...newAssets[aIdx], url: e.target.value };
+                                                 updateProjectGallery(project.id, newAssets);
+                                               }}
+                                             />
+                                             <FileUploader 
+                                               label="Sync Asset"
+                                               accept={asset.type === 'video' ? 'video' + '/*' : 'image' + '/*'}
+                                               folder={'projects' + '/' + project.id + '/' + 'gallery'}
+                                               onUploadComplete={(url) => {
+                                                 const newAssets = [...project.galleryAssets];
+                                                 newAssets[aIdx] = { ...newAssets[aIdx], url };
+                                                 updateProjectGallery(project.id, newAssets);
+                                               }}
+                                             />
+                                          </div>
+                                       </div>
+                                     ))}
+                                  </div>
+                                  {(project.galleryAssets || []).length === 0 && (
+                                    <div className="py-8 text-center border border-dashed border-gray-100 rounded-lg">
+                                       <p className="text-[10px] text-gray-300 font-black uppercase tracking-widest">Gallery Empty. Initialize with Client Assets.</p>
+                                    </div>
+                                  )}
+                               </div>
                             </div>
-                          </div>
-                        </div>
-                      ))}
+                         </div>
+                      </div>
+                    ))}
                     </div>
                   )}
                 </div>
@@ -1663,7 +1809,7 @@ export default function Admin() {
                             placeholder="CINEMATIC VIDEO PRODUCTION & COMMERCIAL PHOTOGRAPHY"
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), h1Override: e.target.value}})}
                           />
-                          <p className="text-[8px] text-gray-400 italic">Supports &lt;br /&gt; and &lt;span class='text-brand-cyan'&gt;...&lt;/span&gt;</p>
+                          <p className="text-[8px] text-gray-400 italic">Supports br and span tags for styling.</p>
                         </div>
                         <div className="md:col-span-2 space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Meta Description (Search Results)</label>
@@ -1792,8 +1938,8 @@ export default function Admin() {
                                <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Authority & Discovery Index</p>
                              </div>
                              <div className="flex gap-2">
-                               <div className="px-3 py-1 bg-green-500/10 border border-green-500/20 text-green-500 text-[8px] font-black uppercase rounded-full">Optimized</div>
-                               <div className="px-3 py-1 bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-[8px] font-black uppercase rounded-full">Pro Tier</div>
+                               <div className="px-3 py-1 bg-green-500 bg-opacity-10 border border-green-500 border-opacity-20 text-green-500 text-[8px] font-black uppercase rounded-full">Optimized</div>
+                              <div className="px-3 py-1 bg-brand-cyan bg-opacity-10 border border-brand-cyan border-opacity-20 text-brand-cyan text-[8px] font-black uppercase rounded-full">Pro Tier</div>
                              </div>
                            </div>
                            
@@ -1834,7 +1980,7 @@ export default function Admin() {
                           <div className="space-y-2">
                              {Object.entries(localContent.seo?.altTags || {}).map(([key, val]) => (
                                <div key={key} className="flex gap-2">
-                                 <input readOnly value={key} className="w-1/3 bg-gray-100 p-2 text-[10px] font-bold" />
+                                 <input readOnly value={key} className="bg-gray-100 p-2 text-[10px] font-bold" style={{ width: '33.333333%' }} />
                                  <input 
                                    className="flex-1 bg-gray-50 border-0 p-2 text-[10px] focus:ring-1 focus:ring-brand-cyan outline-none" 
                                    value={val}
@@ -2513,13 +2659,13 @@ export default function Admin() {
                                     />
                                   </div>
                               </div>
-                              <div className="space-y-1 bg-brand-cyan/5 p-4 border border-brand-cyan/10 rounded-sm">
+                              <div className="space-y-1 bg-brand-cyan bg-opacity-5 p-4 border border-brand-cyan border-opacity-10 rounded-sm">
                                 <div className="flex items-center space-x-2 mb-2">
                                   <ExternalLink size={12} className="text-brand-cyan" />
                                   <label className="text-[9px] uppercase font-black text-brand-cyan tracking-widest">Master Destination Link</label>
                                 </div>
                                 <input 
-                                  className="w-full p-3 bg-white border border-brand-cyan/20 outline-none text-[10px] font-mono font-bold text-brand-black" 
+                                  className="w-full p-3 bg-white border border-brand-cyan border-opacity-20 outline-none text-[10px] font-mono font-bold text-brand-black" 
                                   value={item.url || "#"}
                                   placeholder="# (Default)"
                                   onChange={(e) => {
@@ -2770,7 +2916,7 @@ export default function Admin() {
                              </div>
                           </div>
                           
-                          <div className="aspect-[4/5] bg-gray-200 overflow-hidden relative">
+                          <div className="bg-gray-200 overflow-hidden relative" style={{ aspectRatio: '4/5' }}>
                              {item.placeholder ? (
                                <img src={item.placeholder} alt="" className="w-full h-full object-cover transition-all" />
                              ) : (
@@ -3144,7 +3290,7 @@ export default function Admin() {
                     ))}
                   </div>
 
-                  <div className="bg-brand-cyan/5 p-8 border border-brand-cyan/20 rounded-sm">
+                  <div className="bg-brand-cyan bg-opacity-5 p-8 border border-brand-cyan border-opacity-20 rounded-sm">
                     <div className="flex items-start space-x-4">
                       <div className="bg-brand-cyan p-2 text-white">
                         <Info size={16} />
@@ -3274,7 +3420,7 @@ export default function Admin() {
                                 try {
                                   await deleteDoc(doc(db, 'leads', lead.id));
                                 } catch (err) {
-                                  handleFirestoreError(err, OperationType.DELETE, `leads/${lead.id}`);
+                                  handleFirestoreError(err, OperationType.DELETE, 'leads/' + lead.id);
                                 }
                               }
                             }}
@@ -3290,7 +3436,7 @@ export default function Admin() {
                                   <label className="text-[8px] uppercase font-black text-gray-400">Date Received</label>
                                   <div className="flex items-center space-x-2">
                                     <p className="text-xs font-bold text-brand-cyan">
-                                      {lead.createdAt?.toDate ? lead.createdAt.toDate().toLocaleString() : 'Just Now'}
+                                      {lead.createdAt?.toDate ? 'Received' : 'Just Now'}
                                     </p>
                                     {lead.status === 'new' && (
                                       <span className="px-2 py-0.5 bg-red-500 text-white text-[7px] font-black uppercase tracking-widest animate-pulse rounded-sm">New Alert</span>
@@ -3310,12 +3456,12 @@ export default function Admin() {
                                 </div>
 
                                 {lead.bookingDate && (
-                                   <div className="p-4 bg-brand-cyan/10 border border-brand-cyan/20 rounded-lg">
+                                   <div className="p-4 bg-brand-cyan bg-opacity-10 border border-brand-cyan border-opacity-20 rounded-lg">
                                       <div className="flex items-center space-x-2 mb-2">
                                          <Star size={12} className="text-brand-cyan fill-brand-cyan" />
                                          <span className="text-[9px] font-black uppercase tracking-widest text-brand-cyan">Consultation Request</span>
                                       </div>
-                                      <p className="text-xs font-bold text-zinc-900">{new Date(lead.bookingDate).toLocaleString()}</p>
+                                      <p className="text-xs font-bold text-zinc-900">Scheduled</p>
                                       <div className="mt-3 flex gap-2">
                                          <button 
                                             onClick={() => updateDoc(doc(db, 'leads', lead.id), { bookingStatus: 'confirmed' })}
@@ -3336,7 +3482,7 @@ export default function Admin() {
                                 {lead.status === 'new' && (
                                   <button 
                                     onClick={() => updateDoc(doc(db, 'leads', lead.id), { status: 'contacted' })}
-                                    className="w-full mt-4 bg-brand-black text-white py-3 text-[10px] font-black uppercase tracking-widest flex items-center justify-center hover:bg-zinc-800 transition-all shadow-lg active:scale-95 border border-brand-cyan/30"
+                                       className="w-full mt-4 bg-brand-black text-white py-3 text-[10px] font-black uppercase tracking-widest flex items-center justify-center hover:bg-zinc-800 transition-all shadow-lg active:scale-95 border border-brand-cyan border-opacity-30"
                                   >
                                     <Check size={14} className="mr-2 text-brand-cyan" /> Acknowledge Lead
                                   </button>
@@ -3352,7 +3498,7 @@ export default function Admin() {
                                      </button>
                                      <button 
                                        onClick={() => copyPortalLink(lead.id)}
-                                       className="w-full bg-zinc-900 text-brand-cyan py-3 text-[10px] font-black uppercase tracking-widest flex items-center justify-center hover:bg-black transition-all border border-brand-cyan/20"
+                                       className="w-full bg-zinc-900 text-brand-cyan py-3 text-[10px] font-black uppercase tracking-widest flex items-center justify-center hover:bg-black transition-all border border-brand-cyan border-opacity-20"
                                      >
                                        <ExternalLink size={14} className="mr-2" /> Email Magic Link
                                      </button>

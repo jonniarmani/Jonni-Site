@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { db, doc, onSnapshot, collection, handleFirestoreError, OperationType } from '../lib/firebase';
 import { addDoc, query, where, orderBy, getDoc, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { motion } from 'motion/react';
-import { MessageSquare, Send, History, Check, Loader2, Gauge, AlertCircle, Briefcase, ChevronRight, Activity, Layers, Star, User } from 'lucide-react';
+import { MessageSquare, Send, History, Check, Loader2, Gauge, AlertCircle, Briefcase, ChevronRight, Activity, Layers, Star, User, Radio, Image, PlayCircle, Maximize2 } from 'lucide-react';
 import { useContent } from '../lib/ContentContext';
 
 export default function Portal() {
@@ -22,31 +22,50 @@ export default function Portal() {
   useEffect(() => {
     if (!id) return;
 
-    const loadData = async () => {
+    let unsub: (() => void) | undefined;
+
+    const findResource = async () => {
       try {
+        setLoading(true);
         // Try project first
-        const projectDoc = await getDoc(doc(db, 'projects', id));
-        if (projectDoc.exists()) {
-          setRelatedData({ id: projectDoc.id, ...projectDoc.data() });
+        const projectRef = doc(db, 'projects', id);
+        const projectSnap = await getDoc(projectRef);
+        
+        if (projectSnap.exists()) {
           setRelatedType('project');
+          unsub = onSnapshot(projectRef, (doc) => {
+            if (doc.exists()) {
+              setRelatedData({ id: doc.id, ...doc.data() });
+              setLoading(false);
+            }
+          });
         } else {
           // Try lead
-          const leadDoc = await getDoc(doc(db, 'leads', id));
-          if (leadDoc.exists()) {
-            setRelatedData({ id: leadDoc.id, ...leadDoc.data() });
+          const leadRef = doc(db, 'leads', id);
+          const leadSnap = await getDoc(leadRef);
+          
+          if (leadSnap.exists()) {
             setRelatedType('lead');
+            unsub = onSnapshot(leadRef, (doc) => {
+              if (doc.exists()) {
+                setRelatedData({ id: doc.id, ...doc.data() });
+                setLoading(false);
+              }
+            });
           } else {
             setError("The visual transmission channel could not be located. Identity mismatch or expired link.");
+            setLoading(false);
           }
         }
       } catch (err) {
         setError("Security rejection. Channel access denied.");
         console.error(err);
+        setLoading(false);
       }
-      setLoading(false);
     };
 
-    loadData();
+    findResource();
+    return () => unsub?.();
   }, [id]);
 
   useEffect(() => {
@@ -213,7 +232,22 @@ export default function Portal() {
                            <div className="flex items-center text-[8px] font-black uppercase text-brand-black mb-1">
                              <Activity size={10} className="mr-2" /> Current Phase
                            </div>
-                           <p className="text-xs font-bold uppercase text-brand-cyan">{relatedData.status.replace('-', ' ')}</p>
+                           <p className="text-xs font-bold uppercase text-brand-cyan">{relatedData.status?.split('-').join(' ')}</p>
+                        </div>
+                        
+                        <div className="pt-6 border-t border-gray-100 space-y-4">
+                           <div className="flex items-center space-x-2">
+                              <Radio size={14} className={relatedData.directTransmissionEnabled ? "text-brand-cyan animate-pulse" : "text-gray-300"} />
+                              <span className="text-[10px] font-black uppercase tracking-widest leading-none">Transmission Status</span>
+                           </div>
+                           <div className={`p-4 border ${relatedData.directTransmissionEnabled ? 'bg-zinc-50 border-brand-cyan' : 'bg-gray-50 border-gray-100'}`}>
+                              <div className="flex items-center justify-between">
+                                 <span className="text-[8px] font-black uppercase tracking-widest text-gray-400">Signal:</span>
+                                 <span className={`text-[8px] font-black uppercase ${relatedData.directTransmissionEnabled ? 'text-brand-cyan' : 'text-gray-300'}`}>
+                                    {relatedData.directTransmissionEnabled ? 'Active / Synchronized' : 'Standby / Encrypted'}
+                                 </span>
+                              </div>
+                           </div>
                         </div>
                      </div>
                    )}
@@ -270,13 +304,13 @@ export default function Portal() {
               </div>
               
               <div className="bg-brand-black text-white p-8 space-y-6 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-cyan/10 rounded-full -mr-16 -mt-16 blur-2xl" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-cyan bg-opacity-10 rounded-full -mr-16 -mt-16 blur-2xl" />
                 <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-500">Authority Note</h3>
                 <p className="text-xs font-medium leading-relaxed italic opacity-80">
                   "Our goal is absolute visual dominance for your brand. Use this channel to coordinate precisely with our technical leads."
                 </p>
                 <div className="pt-4 flex items-center space-x-3">
-                   <div className="w-8 h-8 rounded-full border border-brand-cyan/30 p-1">
+                   <div className="w-8 h-8 rounded-full border border-brand-cyan border-opacity-30 p-1">
                       {content.about.profileImage ? (
                         <img src={content.about.profileImage} className="w-full h-full object-cover rounded-full grayscale" alt="" />
                       ) : (
@@ -291,8 +325,78 @@ export default function Portal() {
               </div>
             </div>
 
-            {/* Main: Chat Environment */}
-            <div className="lg:w-2/3 flex flex-col bg-white border border-gray-100 shadow-xl h-[700px]">
+             {/* Main: Chat Environment and Gallery */}
+            <div className="lg:w-2/3 space-y-12">
+              
+              {/* Asset Gallery Section (New feature requested) */}
+              {relatedType === 'project' && relatedData.galleryAssets?.length > 0 && (
+                <div className="bg-white border border-gray-100 shadow-sm p-8">
+                  <div className="flex items-center justify-between mb-8">
+                    <div>
+                      <h3 className="text-xl font-display font-bold uppercase tracking-tight">Client <span className="text-brand-cyan">Asset Gallery</span></h3>
+                      <p className="text-[8px] text-gray-400 font-black uppercase tracking-[0.3em] mt-1">Direct Secure delivery of visual components</p>
+                    </div>
+                    <div className="flex items-center space-x-2 text-[8px] font-black uppercase text-gray-400">
+                      <Layers size={12} className="text-brand-cyan" />
+                      <span>{relatedData.galleryAssets.length} Artifacts</span>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {relatedData.galleryAssets.map((asset: any, idx: number) => (
+                      <motion.div 
+                        key={idx}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: idx * 0.1 }}
+                        className="group relative bg-zinc-900 overflow-hidden aspect-video border border-zinc-800"
+                      >
+                        {asset.type === 'video' ? (
+                          <div className="relative w-full h-full">
+                            <video 
+                              src={asset.url} 
+                              className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity"
+                              onMouseEnter={(e) => (e.target as HTMLVideoElement).play()}
+                              onMouseLeave={(e) => {
+                                (e.target as HTMLVideoElement).pause();
+                                (e.target as HTMLVideoElement).currentTime = 0;
+                              }}
+                              muted
+                              loop
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity">
+                              <PlayCircle size={40} className="text-white opacity-40" />
+                            </div>
+                          </div>
+                        ) : (
+                          <img 
+                            src={asset.url} 
+                            alt={asset.title} 
+                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" 
+                          />
+                        )}
+                        
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                          <h4 className="text-[10px] font-black uppercase tracking-widest text-brand-cyan mb-1">{asset.title || 'Visual Component'}</h4>
+                          <div className="flex justify-between items-center">
+                            <span className="text-[7px] font-bold text-gray-400 uppercase tracking-tighter">Artifact ID: {idx + 1}</span>
+                            <a 
+                              href={asset.url} 
+                              target="_blank" 
+                              rel="noreferrer"
+                              className="w-8 h-8 rounded-full bg-brand-cyan bg-opacity-20 backdrop-blur-sm flex items-center justify-center text-brand-cyan hover:bg-brand-cyan hover:text-black transition-all"
+                            >
+                              <Maximize2 size={12} />
+                            </a>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex flex-col bg-white border border-gray-100 shadow-xl h-[600px]">
               <div className="p-6 border-b border-gray-50 flex items-center justify-between">
                 <div>
                    <h3 className="text-sm font-black uppercase tracking-widest">Correspondence Core</h3>
@@ -304,7 +408,7 @@ export default function Portal() {
                 </div>
               </div>
 
-              <div className="flex-1 overflow-y-auto p-8 space-y-6 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+              <div className="flex-1 overflow-y-auto p-8 space-y-6 bg-gray-50">
                 {messages.length === 0 ? (
                   <div className="flex flex-col items-center justify-center h-full opacity-20 text-center px-12">
                      <History size={48} className="mb-4" />
@@ -326,7 +430,7 @@ export default function Portal() {
                         {msg.text}
                       </div>
                       <span className="text-[8px] font-black uppercase text-gray-400 mt-2 tracking-widest">
-                        {msg.senderName} • {msg.createdAt?.toDate ? msg.createdAt.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : '...'}
+                        {msg.senderName} • {msg.createdAt?.toDate ? 'Time' : '...'}
                       </span>
                     </motion.div>
                   ))
@@ -350,10 +454,10 @@ export default function Portal() {
                 </button>
               </form>
             </div>
-
           </div>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }
