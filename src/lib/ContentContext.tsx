@@ -154,7 +154,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     },
     theme: {
       primaryColor: "#000000",
-      accentColor: "#D4AF37",
+      accentColor: "#00f2ff",
       fontDisplay: "Outfit",
       fontSans: "Inter"
     },
@@ -163,7 +163,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       description: SEO.home.description,
       keywords: "video production Bradenton, Sarasota commercial photographer, Tampa brand storytelling, luxury real estate video Florida, healthcare marketing media, sports performance reels, architectural photography, yacht cinematography Gulf Coast",
       ogImage: "",
-      h1Override: "Cinematic Video <br /> <span class='text-brand-gold'>Commercial Photography</span>",
+      h1Override: "Cinematic Video <br /> <span class='text-brand-cyan'>Commercial Photography</span>",
       altTags: {
         "home-lens": "Jonni Armani Professional Video Production Bradenton Florida Gulf Coast Luxury Real Estate & Commercial",
         "about-profile": "Jonni Armani Cinematic Photographer Sarasota Bradenton Tampa Surgeon & Athlete Brand Stories",

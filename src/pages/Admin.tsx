@@ -66,7 +66,7 @@ const CommunicationThread = ({ relatedId, relatedType, senderName }: { relatedId
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {loading ? (
           <div className="flex items-center justify-center h-full">
-            <Loader2 className="w-4 h-4 text-brand-gold animate-spin" />
+            <Loader2 className="w-4 h-4 text-brand-cyan animate-spin" />
           </div>
         ) : messages.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full opacity-30 text-center px-8">
@@ -89,7 +89,7 @@ const CommunicationThread = ({ relatedId, relatedType, senderName }: { relatedId
       
       <form onSubmit={handleSend} className="p-3 bg-zinc-50 border-t border-gray-100 flex items-center space-x-2">
         <input 
-          className="flex-1 bg-white border border-gray-200 p-2 text-xs outline-none focus:border-brand-gold" 
+          className="flex-1 bg-white border border-gray-200 p-2 text-xs outline-none focus:border-brand-cyan" 
           placeholder="Initiate transmission..."
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
@@ -97,13 +97,13 @@ const CommunicationThread = ({ relatedId, relatedType, senderName }: { relatedId
         <button 
           type="submit"
           disabled={sending}
-          className="w-10 h-10 bg-brand-black text-brand-gold flex items-center justify-center hover:bg-zinc-800 transition-all disabled:opacity-50"
+          className="w-10 h-10 bg-brand-black text-brand-cyan flex items-center justify-center hover:bg-zinc-800 transition-all disabled:opacity-50"
         >
           <Send size={16} />
         </button>
       </form>
-      <div className="p-1 px-4 bg-brand-gold/10 border-t border-brand-gold/10">
-        <p className="text-[7px] text-brand-gold font-bold uppercase tracking-widest">Client Portal Active: /portal/{relatedId}</p>
+      <div className="p-1 px-4 bg-brand-cyan/10 border-t border-brand-cyan/10">
+        <p className="text-[7px] text-brand-cyan font-bold uppercase tracking-widest">Client Portal Active: /portal/{relatedId}</p>
       </div>
     </div>
   );
@@ -139,33 +139,33 @@ const FocalPointSelector = ({ value, onChange, label = "Focal Point Precision" }
         <div className="space-y-1">
           <div className="flex justify-between items-center text-[7px] font-black uppercase text-gray-500">
             <span>Horizontal Alignment: {h}%</span>
-            <button type="button" onClick={() => onChange(`50% ${v}%`)} className="text-brand-gold hover:underline">Reset</button>
+            <button type="button" onClick={() => onChange(`50% ${v}%`)} className="text-brand-cyan hover:underline">Reset</button>
           </div>
           <input 
             type="range" min="0" max="100" value={h}
             onChange={(e) => onChange(`${e.target.value}% ${v}%`)}
-            className="w-full h-1 bg-gray-200 accent-brand-gold appearance-none cursor-pointer rounded-full"
+            className="w-full h-1 bg-gray-200 accent-brand-cyan appearance-none cursor-pointer rounded-full"
           />
         </div>
 
         <div className="space-y-1">
           <div className="flex justify-between items-center text-[7px] font-black uppercase text-gray-500">
             <span>Vertical Alignment: {v}%</span>
-            <button type="button" onClick={() => onChange(`${h}% 50%`)} className="text-brand-gold hover:underline">Reset</button>
+            <button type="button" onClick={() => onChange(`${h}% 50%`)} className="text-brand-cyan hover:underline">Reset</button>
           </div>
           <input 
             type="range" min="0" max="100" value={v}
             onChange={(e) => onChange(`${h}% ${e.target.value}%`)}
-            className="w-full h-1 bg-gray-200 accent-brand-gold appearance-none cursor-pointer rounded-full"
+            className="w-full h-1 bg-gray-200 accent-brand-cyan appearance-none cursor-pointer rounded-full"
           />
         </div>
       </div>
 
       <div className="flex flex-wrap gap-1 pt-1">
-        <button type="button" onClick={() => onChange('50% 50%')} className="text-[7px] px-2 py-0.5 bg-white border border-gray-200 text-gray-400 hover:border-brand-gold hover:text-brand-gold font-bold uppercase transition-all">Center</button>
-        <button type="button" onClick={() => onChange('0% 0%')} className="text-[7px] px-2 py-0.5 bg-white border border-gray-200 text-gray-400 hover:border-brand-gold hover:text-brand-gold font-bold uppercase transition-all">T-L</button>
-        <button type="button" onClick={() => onChange('100% 0%')} className="text-[7px] px-2 py-0.5 bg-white border border-gray-200 text-gray-400 hover:border-brand-gold hover:text-brand-gold font-bold uppercase transition-all">T-R</button>
-        <button type="button" onClick={() => onChange('50% 100%')} className="text-[7px] px-2 py-0.5 bg-white border border-gray-200 text-gray-400 hover:border-brand-gold hover:text-brand-gold font-bold uppercase transition-all">Bottom</button>
+        <button type="button" onClick={() => onChange('50% 50%')} className="text-[7px] px-2 py-0.5 bg-white border border-gray-200 text-gray-400 hover:border-brand-cyan hover:text-brand-cyan font-bold uppercase transition-all">Center</button>
+        <button type="button" onClick={() => onChange('0% 0%')} className="text-[7px] px-2 py-0.5 bg-white border border-gray-200 text-gray-400 hover:border-brand-cyan hover:text-brand-cyan font-bold uppercase transition-all">T-L</button>
+        <button type="button" onClick={() => onChange('100% 0%')} className="text-[7px] px-2 py-0.5 bg-white border border-gray-200 text-gray-400 hover:border-brand-cyan hover:text-brand-cyan font-bold uppercase transition-all">T-R</button>
+        <button type="button" onClick={() => onChange('50% 100%')} className="text-[7px] px-2 py-0.5 bg-white border border-gray-200 text-gray-400 hover:border-brand-cyan hover:text-brand-cyan font-bold uppercase transition-all">Bottom</button>
       </div>
     </div>
   );
@@ -566,7 +566,7 @@ export default function Admin() {
               alert(`Authentication failed: ${error.message || "Unknown error"}. Check console for details.`);
             }
           }}
-          className="bg-brand-black text-white px-12 py-5 font-bold uppercase tracking-widest text-sm flex items-center mx-auto hover:bg-brand-gold transition-colors"
+          className="bg-brand-black text-white px-12 py-5 font-bold uppercase tracking-widest text-sm flex items-center mx-auto hover:bg-brand-cyan transition-colors"
         >
           <LogIn size={18} className="mr-3" /> Authenticate with Google
         </button>
@@ -601,22 +601,22 @@ export default function Admin() {
     { id: 'about', label: 'About', icon: User, color: 'text-brand-black' },
     { id: 'services', label: 'Services', icon: Briefcase, color: 'text-brand-black' },
     { id: 'video-work', label: 'Video', icon: VideoIcon, color: 'text-brand-black' },
-    { id: 'photo-work', label: 'Photo', icon: ImageIcon, color: 'text-brand-gold' },
+    { id: 'photo-work', label: 'Photo', icon: ImageIcon, color: 'text-brand-cyan' },
     { id: 'promo', label: 'Promo', icon: Megaphone, color: 'text-brand-black' },
     { id: 'testimonials', label: 'Reviews', icon: Star, color: 'text-brand-black' },
-    { id: 'industries', label: 'Markets', icon: Globe, color: 'text-brand-gold' },
+    { id: 'industries', label: 'Markets', icon: Globe, color: 'text-brand-cyan' },
     { id: 'inquiries', label: 'Leads', icon: MessageSquare, color: 'text-brand-black' },
     { id: 'projects', label: 'Projects', icon: BarChart, color: 'text-brand-black' },
     { id: 'contact', label: 'Contact', icon: Mail, color: 'text-brand-black' },
     { id: 'analytics', label: 'Stats', icon: Activity, color: 'text-brand-black' },
-    { id: 'optimizer', label: 'SEO', icon: Zap, color: 'text-brand-gold' },
+    { id: 'optimizer', label: 'SEO', icon: Zap, color: 'text-brand-cyan' },
     { id: 'code', label: 'Tech', icon: Code, color: 'text-brand-black' },
-    { id: 'theme', label: 'Design', icon: Palette, color: 'text-brand-gold' },
+    { id: 'theme', label: 'Design', icon: Palette, color: 'text-brand-cyan' },
   ];
 
   const StatCircle = ({ label, value, icon: Icon }: any) => (
-    <div className="flex flex-col items-center space-y-2 p-4 bg-white border border-gray-100 rounded-sm shadow-sm group hover:border-brand-gold transition-all">
-      <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-brand-gold group-hover:text-white transition-all">
+    <div className="flex flex-col items-center space-y-2 p-4 bg-white border border-gray-100 rounded-sm shadow-sm group hover:border-brand-cyan transition-all">
+      <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-brand-cyan group-hover:text-white transition-all">
         <Icon size={18} />
       </div>
       <span className="text-[8px] font-black uppercase tracking-widest text-gray-400">{label}</span>
@@ -630,12 +630,12 @@ export default function Admin() {
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8 border-b-2 border-brand-black/5 pb-12">
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-full bg-brand-black flex items-center justify-center text-brand-gold shadow-xl">
+              <div className="w-12 h-12 rounded-full bg-brand-black flex items-center justify-center text-brand-cyan shadow-xl">
                 <Settings size={24} className="animate-[spin_10s_linear_infinite]" />
               </div>
               <div>
-                <span className="text-brand-gold font-bold uppercase tracking-[0.3em] text-[10px] block">Global Control Console</span>
-                <h1 className="text-4xl md:text-6xl font-display font-bold tracking-tight uppercase leading-none">Command <span className="italic font-light text-gray-400 underline decoration-brand-gold/30">Center.</span></h1>
+                <span className="text-brand-cyan font-bold uppercase tracking-[0.3em] text-[10px] block">Global Control Console</span>
+                <h1 className="text-4xl md:text-6xl font-display font-bold tracking-tight uppercase leading-none">Command <span className="italic font-light text-gray-400 underline decoration-brand-cyan/30">Center.</span></h1>
               </div>
             </div>
           </div>
@@ -644,7 +644,7 @@ export default function Admin() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden w-12 h-12 bg-white border border-gray-100 flex items-center justify-center text-brand-black shadow-sm"
             >
-              <Layers size={20} className={mobileMenuOpen ? "text-brand-gold" : ""} />
+              <Layers size={20} className={mobileMenuOpen ? "text-brand-cyan" : ""} />
             </button>
             {newLeadsCount > 0 && (
               <button 
@@ -661,7 +661,7 @@ export default function Admin() {
               disabled={isSaving}
               className="flex-1 md:flex-none group relative overflow-hidden bg-brand-black text-white px-10 py-4 font-black uppercase tracking-[0.2em] text-[11px] hover:scale-[1.02] transition-all shadow-2xl active:scale-95 disabled:opacity-50"
             >
-              <div className="absolute inset-0 bg-brand-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo -z-10" />
+              <div className="absolute inset-0 bg-brand-cyan translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo -z-10" />
               <div className="flex items-center justify-center">
                 <Save size={14} className="mr-3" /> 
                 {isSaving ? "Synchronizing..." : "Publish Changes"}
@@ -689,8 +689,8 @@ export default function Admin() {
             <div className="bg-white border border-gray-100 p-2 rounded-sm shadow-sm mb-6">
               <div className="p-4 border-b border-gray-50 mb-2">
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 rounded-full overflow-hidden bg-brand-gold/10 flex items-center justify-center">
-                    {user?.photoURL ? <img src={user.photoURL} alt="" /> : <User size={20} className="text-brand-gold" />}
+                  <div className="w-10 h-10 rounded-full overflow-hidden bg-brand-cyan/10 flex items-center justify-center">
+                    {user?.photoURL ? <img src={user.photoURL} alt="" /> : <User size={20} className="text-brand-cyan" />}
                   </div>
                   <div>
                     <span className="block text-[10px] font-black uppercase tracking-widest text-zinc-900 truncate max-w-[140px]">{user?.displayName || 'Admin'}</span>
@@ -708,23 +708,23 @@ export default function Admin() {
                     }}
                     className={`w-full flex items-center justify-between px-3 lg:px-5 py-3 lg:py-4 font-black uppercase tracking-widest text-[9px] lg:text-[10px] transition-all group relative border lg:border-none ${
                       activeTab === tab.id 
-                        ? 'text-brand-black border-brand-gold/30 bg-brand-gold/5 lg:bg-transparent' 
-                        : 'text-gray-400 hover:text-brand-gold border-transparent'
+                        ? 'text-brand-black border-brand-cyan/30 bg-brand-cyan/5 lg:bg-transparent' 
+                        : 'text-gray-400 hover:text-brand-cyan border-transparent'
                     }`}
                   >
                     <div className="flex items-center space-x-2 lg:space-x-4">
-                      <div className={`w-6 h-6 lg:w-8 lg:h-8 rounded-full flex items-center justify-center transition-all ${activeTab === tab.id ? 'bg-brand-black text-brand-gold shadow-lg ring-2 ring-brand-gold/20' : 'bg-gray-50 text-gray-400 group-hover:bg-brand-gold/10 group-hover:text-brand-gold'}`}>
+                      <div className={`w-6 h-6 lg:w-8 lg:h-8 rounded-full flex items-center justify-center transition-all ${activeTab === tab.id ? 'bg-brand-black text-brand-cyan shadow-lg ring-2 ring-brand-cyan/20' : 'bg-gray-50 text-gray-400 group-hover:bg-brand-cyan/10 group-hover:text-brand-cyan'}`}>
                         <tab.icon size={activeTab === tab.id ? 10 : 12} />
                       </div>
                       <span className="truncate">{tab.label}</span>
                       {tab.id === 'inquiries' && unreadCount > 0 && (
-                        <span className="bg-brand-black text-brand-gold text-[7px] font-black px-1 py-0.5 rounded-sm animate-pulse">
+                        <span className="bg-brand-black text-brand-cyan text-[7px] font-black px-1 py-0.5 rounded-sm animate-pulse">
                           {unreadCount}
                         </span>
                       )}
                     </div>
-                    {activeTab === tab.id && <ChevronRight size={12} className="text-brand-gold hidden lg:block animate-bounce-x" />}
-                    {activeTab === tab.id && <div className="absolute left-0 w-1 h-6 lg:h-8 bg-brand-gold rounded-full hidden lg:block" />}
+                    {activeTab === tab.id && <ChevronRight size={12} className="text-brand-cyan hidden lg:block animate-bounce-x" />}
+                    {activeTab === tab.id && <div className="absolute left-0 w-1 h-6 lg:h-8 bg-brand-cyan rounded-full hidden lg:block" />}
                   </button>
                 ))}
               </div>
@@ -740,7 +740,7 @@ export default function Admin() {
           {/* Enhanced Editor Area */}
           <div className="lg:col-span-9">
             <div className="bg-white p-4 sm:p-8 md:p-12 shadow-2xl border border-gray-100 min-h-[700px] rounded-sm relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full -mr-32 -mt-32 blur-3xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-cyan/5 rounded-full -mr-32 -mt-32 blur-3xl pointer-events-none" />
               
               {/* SEO Optimizer Tab */}
               {activeTab === 'optimizer' && (
@@ -750,9 +750,9 @@ export default function Admin() {
                       <h2 className="text-2xl font-display font-bold uppercase tracking-tight">SEO Intelligence</h2>
                       <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Market Dominance & AI-Driven Visual Strategy</p>
                     </div>
-                    <div className="flex items-center space-x-2 bg-brand-gold/10 px-4 py-2 border border-brand-gold/20">
-                      <Zap size={14} className="text-brand-gold" />
-                      <span className="text-[10px] font-black uppercase tracking-widest text-brand-gold">AI Engine Active</span>
+                    <div className="flex items-center space-x-2 bg-brand-cyan/10 px-4 py-2 border border-brand-cyan/20">
+                      <Zap size={14} className="text-brand-cyan" />
+                      <span className="text-[10px] font-black uppercase tracking-widest text-brand-cyan">AI Engine Active</span>
                     </div>
                   </div>
 
@@ -760,11 +760,11 @@ export default function Admin() {
                     {/* Main Intelligence Console */}
                     <div className="lg:col-span-8 space-y-12">
                       <div className="bg-zinc-900 rounded-lg p-8 sm:p-12 text-white relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full -mr-48 -mt-48 blur-3xl group-hover:bg-brand-gold/20 transition-all duration-1000" />
+                        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-cyan/10 rounded-full -mr-48 -mt-48 blur-3xl group-hover:bg-brand-cyan/20 transition-all duration-1000" />
                         
                         <div className="relative z-10 space-y-8">
                           <div className="flex items-center space-x-4">
-                            <div className="w-16 h-16 rounded-full bg-brand-gold/20 border border-brand-gold/30 flex items-center justify-center text-brand-gold">
+                            <div className="w-16 h-16 rounded-full bg-brand-cyan/20 border border-brand-cyan/30 flex items-center justify-center text-brand-cyan">
                               <Zap size={32} className={isOptimizing ? "animate-pulse" : ""} />
                             </div>
                             <div>
@@ -776,29 +776,29 @@ export default function Admin() {
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-8 border-y border-white/5">
                             <div className="space-y-3">
                               <div className="flex items-center space-x-2">
-                                <Check size={14} className="text-brand-gold" />
+                                <Check size={14} className="text-brand-cyan" />
                                 <span className="text-[10px] font-black uppercase tracking-widest">SEO Meta Alignment</span>
                               </div>
                               <div className="flex items-center space-x-2">
-                                <Check size={14} className="text-brand-gold" />
+                                <Check size={14} className="text-brand-cyan" />
                                 <span className="text-[10px] font-black uppercase tracking-widest">Category Integrity Check</span>
                               </div>
                               <div className="flex items-center space-x-2">
-                                <Check size={14} className="text-brand-gold" />
+                                <Check size={14} className="text-brand-cyan" />
                                 <span className="text-[10px] font-black uppercase tracking-widest">Alt-Tag Generation</span>
                               </div>
                             </div>
                             <div className="space-y-3">
                               <div className="flex items-center space-x-2">
-                                <Check size={14} className="text-brand-gold" />
+                                <Check size={14} className="text-brand-cyan" />
                                 <span className="text-[10px] font-black uppercase tracking-widest">Image Delivery Audit</span>
                               </div>
                               <div className="flex items-center space-x-2">
-                                <Check size={14} className="text-brand-gold" />
+                                <Check size={14} className="text-brand-cyan" />
                                 <span className="text-[10px] font-black uppercase tracking-widest">Mobile Velocity Check</span>
                               </div>
                               <div className="flex items-center space-x-2">
-                                <Check size={14} className="text-brand-gold" />
+                                <Check size={14} className="text-brand-cyan" />
                                 <span className="text-[10px] font-black uppercase tracking-widest">Market Index Sync</span>
                               </div>
                             </div>
@@ -808,7 +808,7 @@ export default function Admin() {
                             <button 
                               onClick={runMasterOptimization}
                               disabled={isOptimizing}
-                              className="w-full bg-brand-gold text-white py-6 font-black uppercase tracking-[0.4em] text-xs hover:bg-brand-black transition-all shadow-xl shadow-brand-gold/20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed group"
+                              className="w-full bg-brand-cyan text-white py-6 font-black uppercase tracking-[0.4em] text-xs hover:bg-brand-black transition-all shadow-xl shadow-brand-cyan/20 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed group"
                             >
                               <span className="flex items-center justify-center">
                                 {isOptimizing ? (
@@ -829,7 +829,7 @@ export default function Admin() {
                       {/* AI Intelligence Settings */}
                       <div className="space-y-8">
                         <div className="flex items-center space-x-3 border-b border-gray-100 pb-4">
-                          <Settings size={18} className="text-brand-gold" />
+                          <Settings size={18} className="text-brand-cyan" />
                           <h3 className="text-sm font-black uppercase tracking-widest">Engine Parameters</h3>
                         </div>
                         
@@ -837,7 +837,7 @@ export default function Admin() {
                           <div className="space-y-2">
                             <label className="text-[10px] uppercase font-black text-gray-400">Primary Profession / Niche</label>
                             <input 
-                              className="w-full p-4 bg-zinc-50 border border-gray-100 outline-none font-bold text-sm focus:border-brand-gold" 
+                              className="w-full p-4 bg-zinc-50 border border-gray-100 outline-none font-bold text-sm focus:border-brand-cyan" 
                               value={localContent.aiIntelligence?.profession || ""}
                               placeholder="e.g., Commercial Cinematographer & Surgeon Brand Strategist"
                               onChange={(e) => setLocalContent({
@@ -855,7 +855,7 @@ export default function Admin() {
                             <label className="text-[10px] uppercase font-black text-gray-400">Strategic Objective / AI Identity Prompt</label>
                             <textarea 
                               rows={3}
-                              className="w-full p-4 bg-zinc-50 border border-gray-100 outline-none font-medium text-sm focus:border-brand-gold leading-relaxed" 
+                              className="w-full p-4 bg-zinc-50 border border-gray-100 outline-none font-medium text-sm focus:border-brand-cyan leading-relaxed" 
                               value={localContent.aiIntelligence?.strategicPrompt || ""}
                               placeholder="Describe your brand's unique edge and target audience in detail. This prompt guides the SEO engine's decisions..."
                               onChange={(e) => setLocalContent({
@@ -880,7 +880,7 @@ export default function Admin() {
                                     autoApply: !localContent.aiIntelligence?.autoApply
                                   }
                                 })}
-                                className={`w-12 h-6 rounded-full relative transition-colors ${localContent.aiIntelligence?.autoApply ? 'bg-brand-gold' : 'bg-gray-200'}`}
+                                className={`w-12 h-6 rounded-full relative transition-colors ${localContent.aiIntelligence?.autoApply ? 'bg-brand-cyan' : 'bg-gray-200'}`}
                               >
                                 <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${localContent.aiIntelligence?.autoApply ? 'left-7' : 'left-1'}`} />
                               </button>
@@ -896,7 +896,7 @@ export default function Admin() {
                       <div className="space-y-6 pt-8">
                         <div className="flex items-center justify-between border-b border-gray-100 pb-4">
                           <div className="flex items-center space-x-3">
-                            <Activity size={18} className="text-brand-gold" />
+                            <Activity size={18} className="text-brand-cyan" />
                             <h3 className="text-sm font-black uppercase tracking-widest">Strategy Feed</h3>
                           </div>
                           <span className="text-[8px] font-black uppercase tracking-widest text-gray-400">Last Scanned: {localContent.aiIntelligence?.lastScan ? new Date(localContent.aiIntelligence.lastScan).toLocaleDateString() : 'Never'}</span>
@@ -905,7 +905,7 @@ export default function Admin() {
                         <div className="grid grid-cols-1 gap-4">
                           {localContent.aiIntelligence?.insights?.length ? (
                             localContent.aiIntelligence.insights.map((insight) => (
-                              <div key={insight.id} className="p-6 bg-white border border-gray-100 rounded-sm hover:border-brand-gold transition-all group">
+                              <div key={insight.id} className="p-6 bg-white border border-gray-100 rounded-sm hover:border-brand-cyan transition-all group">
                                 <div className="flex justify-between items-start mb-4">
                                   <div className="flex items-center space-x-3">
                                     <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
@@ -928,7 +928,7 @@ export default function Admin() {
                                 </div>
                                 <p className="text-[11px] text-gray-600 font-medium leading-relaxed mb-4">{insight.description}</p>
                                 <div className="flex space-x-3">
-                                  <button className="text-[9px] font-black uppercase tracking-widest text-brand-gold hover:text-brand-black transition-colors">Apply Strategy</button>
+                                  <button className="text-[9px] font-black uppercase tracking-widest text-brand-cyan hover:text-brand-black transition-colors">Apply Strategy</button>
                                   <button className="text-[9px] font-black uppercase tracking-widest text-gray-300 hover:text-red-500 transition-colors">Dismiss</button>
                                 </div>
                               </div>
@@ -946,7 +946,7 @@ export default function Admin() {
                     <div className="lg:col-span-4 space-y-8">
                       <div className="bg-zinc-50 p-8 rounded-lg border border-gray-100 h-fit sticky top-8">
                         <div className="flex items-center space-x-3 mb-8">
-                          <Target size={20} className="text-brand-gold" />
+                          <Target size={20} className="text-brand-cyan" />
                           <h3 className="text-xs font-black uppercase tracking-widest">Competitor Intel</h3>
                         </div>
 
@@ -982,7 +982,7 @@ export default function Admin() {
                               <div className="flex gap-2">
                                 <input 
                                   id="new-competitor-url"
-                                  className="flex-1 bg-white border border-gray-200 p-3 text-[10px] outline-none focus:border-brand-gold" 
+                                  className="flex-1 bg-white border border-gray-200 p-3 text-[10px] outline-none focus:border-brand-cyan" 
                                   placeholder="https://competitor.com"
                                   onKeyDown={(e) => {
                                     if (e.key === 'Enter') {
@@ -1017,7 +1017,7 @@ export default function Admin() {
                                       input.value = '';
                                     }
                                   }}
-                                  className="w-10 h-10 bg-brand-black text-brand-gold flex items-center justify-center hover:bg-zinc-800 transition-all"
+                                  className="w-10 h-10 bg-brand-black text-brand-cyan flex items-center justify-center hover:bg-zinc-800 transition-all"
                                 >
                                   <Plus size={16} />
                                 </button>
@@ -1028,8 +1028,8 @@ export default function Admin() {
 
                           <div className="pt-8 border-t border-gray-200">
                              <div className="bg-brand-black p-6 text-white overflow-hidden relative group rounded-sm">
-                                <div className="absolute top-0 right-0 w-24 h-24 bg-brand-gold/10 rounded-full -mr-12 -mt-12 blur-2xl group-hover:bg-brand-gold/20 transition-all" />
-                                <h4 className="text-[8px] font-black uppercase tracking-[0.3em] text-brand-gold mb-3">Market Sync Status</h4>
+                                <div className="absolute top-0 right-0 w-24 h-24 bg-brand-cyan/10 rounded-full -mr-12 -mt-12 blur-2xl group-hover:bg-brand-cyan/20 transition-all" />
+                                <h4 className="text-[8px] font-black uppercase tracking-[0.3em] text-brand-cyan mb-3">Market Sync Status</h4>
                                 <div className="space-y-3">
                                    <div className="flex justify-between items-center text-[7px] font-black uppercase tracking-[0.1em]">
                                       <span className="text-gray-400 font-bold">Region</span>
@@ -1040,7 +1040,7 @@ export default function Admin() {
                                       <span>{localContent.aiIntelligence?.profession || "High-End Media"}</span>
                                    </div>
                                    <div className="w-full h-[2px] bg-white/10 mt-2">
-                                      <div className="w-3/4 h-full bg-brand-gold shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+                                      <div className="w-3/4 h-full bg-brand-cyan shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
                                    </div>
                                 </div>
                              </div>
@@ -1089,7 +1089,7 @@ export default function Admin() {
                     </div>
                     <div className="bg-white border border-gray-100 p-6 shadow-sm rounded-sm">
                       <div className="flex items-center justify-between mb-4">
-                        <Activity size={16} className="text-brand-gold" />
+                        <Activity size={16} className="text-brand-cyan" />
                         <span className="text-[8px] font-black text-red-500 uppercase tracking-widest">-1.1%</span>
                       </div>
                       <div className="text-2xl font-display font-bold">62</div>
@@ -1111,7 +1111,7 @@ export default function Admin() {
                     <div className="lg:col-span-8 bg-white border border-gray-100 p-8 shadow-sm rounded-sm min-h-[400px]">
                       <div className="flex items-center justify-between mb-8">
                         <div className="flex items-center space-x-2">
-                          <Activity size={16} className="text-brand-gold" />
+                          <Activity size={16} className="text-brand-cyan" />
                           <h3 className="text-sm font-black uppercase tracking-widest">Visitor Volume (7 Days)</h3>
                         </div>
                         <div className="flex space-x-4">
@@ -1120,7 +1120,7 @@ export default function Admin() {
                              <span className="text-[8px] font-bold uppercase text-gray-400">Total Visits</span>
                            </div>
                            <div className="flex items-center space-x-2">
-                             <div className="w-2.5 h-2.5 bg-brand-gold rounded-full" />
+                             <div className="w-2.5 h-2.5 bg-brand-cyan rounded-full" />
                              <span className="text-[8px] font-bold uppercase text-gray-400">Qualified Leads</span>
                            </div>
                         </div>
@@ -1338,11 +1338,11 @@ export default function Admin() {
                           <div className="bg-zinc-900 p-6 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                              <div>
                                <div className="flex items-center space-x-3 mb-2">
-                                 <span className="text-[8px] font-black uppercase tracking-[0.3em] text-brand-gold">Production ID: {project.id.slice(0, 8)}</span>
+                                 <span className="text-[8px] font-black uppercase tracking-[0.3em] text-brand-cyan">Production ID: {project.id.slice(0, 8)}</span>
                                  <span className={`px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-widest ${
                                    project.status === 'completed' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' :
                                    project.status === 'production' ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30' :
-                                   'bg-brand-gold/20 text-brand-gold border border-brand-gold/30'
+                                   'bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/30'
                                  }`}>
                                    {project.status.replace('-', ' ')}
                                  </span>
@@ -1353,9 +1353,9 @@ export default function Admin() {
                              <div className="flex items-center space-x-4">
                                 <div className="text-right flex flex-col">
                                    <span className="text-[8px] font-black uppercase text-gray-500">Progress</span>
-                                   <span className="text-2xl font-display font-bold text-brand-gold">{project.progress}%</span>
+                                   <span className="text-2xl font-display font-bold text-brand-cyan">{project.progress}%</span>
                                 </div>
-                                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/40 group-hover:border-brand-gold group-hover:text-brand-gold transition-all">
+                                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/40 group-hover:border-brand-cyan group-hover:text-brand-cyan transition-all">
                                    <ProjectIcon size={18} />
                                 </div>
                              </div>
@@ -1367,7 +1367,7 @@ export default function Admin() {
                                <div className="space-y-4">
                                   <label className="text-[10px] uppercase font-black text-gray-400 flex justify-between">
                                     <span>Deployment Status</span>
-                                    <span className="text-brand-gold">{Math.round(project.progress)}%</span>
+                                    <span className="text-brand-cyan">{Math.round(project.progress)}%</span>
                                   </label>
                                   <input 
                                     type="range" min="0" max="100" value={project.progress}
@@ -1384,7 +1384,7 @@ export default function Admin() {
                                <div className="space-y-4">
                                   <label className="text-[10px] uppercase font-black text-gray-400">Flow Control</label>
                                   <select 
-                                    className="w-full p-4 bg-gray-50 border border-gray-100 text-[10px] font-black uppercase tracking-widest outline-none focus:border-brand-gold"
+                                    className="w-full p-4 bg-gray-50 border border-gray-100 text-[10px] font-black uppercase tracking-widest outline-none focus:border-brand-cyan"
                                     value={project.status}
                                     onChange={(e) => updateProjectStatus(project.id, e.target.value)}
                                   >
@@ -1399,14 +1399,14 @@ export default function Admin() {
 
                                <div className="p-6 bg-zinc-50 border border-zinc-100 rounded-lg">
                                   <h4 className="text-[9px] font-black uppercase tracking-widest mb-4 flex items-center">
-                                    <Gauge size={12} className="mr-2 text-brand-gold" /> Critical Milestone
+                                    <Gauge size={12} className="mr-2 text-brand-cyan" /> Critical Milestone
                                   </h4>
                                   <div className="space-y-3">
                                      <p className="text-[10px] text-gray-500 leading-relaxed font-medium">
                                        Last synchronized: {project.updatedAt?.toDate ? project.updatedAt.toDate().toLocaleString() : 'Recent'}
                                      </p>
                                      <div className="flex items-center space-x-2">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
+                                        <div className="w-1.5 h-1.5 rounded-full bg-brand-cyan" />
                                         <span className="text-[8px] font-bold uppercase text-brand-black">Project Secure</span>
                                      </div>
                                   </div>
@@ -1434,10 +1434,10 @@ export default function Admin() {
                                   <CommunicationThread relatedId={project.id} relatedType="project" senderName={project.clientName} />
                                </div>
                                
-                               <div className="p-6 border border-brand-gold/10 bg-brand-gold/5 rounded-lg flex items-start space-x-4">
-                                  <Link size={16} className="text-brand-gold mt-1" />
+                               <div className="p-6 border border-brand-cyan/10 bg-brand-cyan/5 rounded-lg flex items-start space-x-4">
+                                  <Link size={16} className="text-brand-cyan mt-1" />
                                   <div>
-                                     <h5 className="text-[10px] font-black uppercase tracking-widest text-brand-gold mb-1">Client Collaboration portal</h5>
+                                     <h5 className="text-[10px] font-black uppercase tracking-widest text-brand-cyan mb-1">Client Collaboration portal</h5>
                                      <p className="text-[11px] text-gray-500 font-medium mb-3 leading-relaxed">
                                        Share this secure link with the client to allow them to track progress and respond to visual assets in real-time.
                                      </p>
@@ -1468,7 +1468,7 @@ export default function Admin() {
                       <div className="space-y-2">
                         <label className="text-[10px] uppercase font-black text-gray-400">Hero Title</label>
                         <input 
-                          className="w-full p-4 bg-white border border-gray-100 focus:border-brand-gold outline-none font-bold text-xl" 
+                          className="w-full p-4 bg-white border border-gray-100 focus:border-brand-cyan outline-none font-bold text-xl" 
                           value={localContent.contact.title}
                           onChange={(e) => setLocalContent({...localContent, contact: {...localContent.contact, title: e.target.value}})}
                         />
@@ -1476,7 +1476,7 @@ export default function Admin() {
                       <div className="space-y-2">
                         <label className="text-[10px] uppercase font-black text-gray-400">Subtitle Accent</label>
                         <input 
-                          className="w-full p-3 bg-white border border-gray-100 focus:border-brand-gold outline-none font-bold text-xs" 
+                          className="w-full p-3 bg-white border border-gray-100 focus:border-brand-cyan outline-none font-bold text-xs" 
                           value={localContent.contact.subtitle}
                           onChange={(e) => setLocalContent({...localContent, contact: {...localContent.contact, subtitle: e.target.value}})}
                         />
@@ -1484,7 +1484,7 @@ export default function Admin() {
                       <div className="space-y-2">
                         <label className="text-[10px] uppercase font-black text-gray-400">Brand Positioning Statement</label>
                         <textarea 
-                          className="w-full p-4 bg-white border border-gray-100 focus:border-brand-gold outline-none font-medium text-sm min-h-[120px] leading-relaxed" 
+                          className="w-full p-4 bg-white border border-gray-100 focus:border-brand-cyan outline-none font-medium text-sm min-h-[120px] leading-relaxed" 
                           value={localContent.contact.description}
                           onChange={(e) => setLocalContent({...localContent, contact: {...localContent.contact, description: e.target.value}})}
                         />
@@ -1505,7 +1505,7 @@ export default function Admin() {
                         <div className="space-y-2">
                           <label className="text-[10px] uppercase font-black text-gray-400">Email Address</label>
                           <input 
-                            className="w-full p-3 bg-white border border-gray-100 focus:border-brand-gold outline-none font-bold text-xs" 
+                            className="w-full p-3 bg-white border border-gray-100 focus:border-brand-cyan outline-none font-bold text-xs" 
                             value={localContent.contact.email}
                             onChange={(e) => setLocalContent({...localContent, contact: {...localContent.contact, email: e.target.value}})}
                           />
@@ -1513,7 +1513,7 @@ export default function Admin() {
                         <div className="space-y-2">
                           <label className="text-[10px] uppercase font-black text-gray-400">Phone Contact</label>
                           <input 
-                            className="w-full p-3 bg-white border border-gray-100 focus:border-brand-gold outline-none font-bold text-xs" 
+                            className="w-full p-3 bg-white border border-gray-100 focus:border-brand-cyan outline-none font-bold text-xs" 
                             value={localContent.contact.phone}
                             onChange={(e) => setLocalContent({...localContent, contact: {...localContent.contact, phone: e.target.value}})}
                           />
@@ -1522,7 +1522,7 @@ export default function Admin() {
                       <div className="space-y-2">
                         <label className="text-[10px] uppercase font-black text-gray-400">Availability Statement</label>
                         <input 
-                          className="w-full p-3 bg-white border border-gray-100 focus:border-brand-gold outline-none font-bold text-xs" 
+                          className="w-full p-3 bg-white border border-gray-100 focus:border-brand-cyan outline-none font-bold text-xs" 
                           value={localContent.contact.availability}
                           onChange={(e) => setLocalContent({...localContent, contact: {...localContent.contact, availability: e.target.value}})}
                         />
@@ -1531,7 +1531,7 @@ export default function Admin() {
                   </div>
 
                   <div className="pt-12 border-t border-gray-100">
-                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] mb-8 text-brand-gold">Inquiry Form Configuration</h3>
+                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] mb-8 text-brand-cyan">Inquiry Form Configuration</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-2">
                         <label className="text-[10px] uppercase font-black text-gray-400">Form Header</label>
@@ -1566,7 +1566,7 @@ export default function Admin() {
                     <div className="space-y-4">
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Agency Name</label>
                       <input 
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                         value={localContent.brand.name}
                         onChange={(e) => setLocalContent({...localContent, brand: {...localContent.brand, name: e.target.value}})}
                       />
@@ -1574,7 +1574,7 @@ export default function Admin() {
                     <div className="space-y-4">
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Core Tagline</label>
                       <input 
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                         value={localContent.brand.tagline}
                         onChange={(e) => setLocalContent({...localContent, brand: {...localContent.brand, tagline: e.target.value}})}
                       />
@@ -1583,7 +1583,7 @@ export default function Admin() {
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Extended Proposition</label>
                       <textarea 
                         rows={3}
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                         value={localContent.brand.taglineExtended}
                         onChange={(e) => setLocalContent({...localContent, brand: {...localContent.brand, taglineExtended: e.target.value}})}
                       />
@@ -1591,7 +1591,7 @@ export default function Admin() {
                     <div className="space-y-4">
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Email</label>
                       <input 
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                         value={localContent.brand.contact.email}
                         onChange={(e) => setLocalContent({...localContent, brand: {...localContent.brand, contact: {...localContent.brand.contact, email: e.target.value}}})}
                       />
@@ -1599,7 +1599,7 @@ export default function Admin() {
                     <div className="space-y-4">
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Phone</label>
                       <input 
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                         value={localContent.brand.contact.phone}
                         onChange={(e) => setLocalContent({...localContent, brand: {...localContent.brand, contact: {...localContent.brand.contact, phone: e.target.value}}})}
                       />
@@ -1608,7 +1608,7 @@ export default function Admin() {
                       <div className="space-y-4">
                         <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Instagram URL</label>
                         <input 
-                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-[#E4405F]" 
+                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium text-[#E4405F]" 
                           value={localContent.brand.socials.instagram}
                           onChange={(e) => setLocalContent({...localContent, brand: {...localContent.brand, socials: {...localContent.brand.socials, instagram: e.target.value}}})}
                         />
@@ -1616,7 +1616,7 @@ export default function Admin() {
                       <div className="space-y-4">
                         <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Facebook URL</label>
                         <input 
-                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-[#1877F2]" 
+                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium text-[#1877F2]" 
                           value={(localContent.brand.socials as any).facebook || ""}
                           onChange={(e) => setLocalContent({...localContent, brand: {...localContent.brand, socials: {...localContent.brand.socials, facebook: e.target.value}}})}
                         />
@@ -1624,7 +1624,7 @@ export default function Admin() {
                       <div className="space-y-4">
                         <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">YouTube URL</label>
                         <input 
-                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-[#FF0000]" 
+                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium text-[#FF0000]" 
                           value={(localContent.brand.socials as any).youtube || ""}
                           onChange={(e) => setLocalContent({...localContent, brand: {...localContent.brand, socials: {...localContent.brand.socials, youtube: e.target.value}}})}
                         />
@@ -1632,7 +1632,7 @@ export default function Admin() {
                       <div className="space-y-4">
                         <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Vimeo URL</label>
                         <input 
-                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-[#1AB7EA]" 
+                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium text-[#1AB7EA]" 
                           value={localContent.brand.socials.vimeo}
                           onChange={(e) => setLocalContent({...localContent, brand: {...localContent.brand, socials: {...localContent.brand.socials, vimeo: e.target.value}}})}
                         />
@@ -1647,10 +1647,10 @@ export default function Admin() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="md:col-span-2 space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest flex items-center">
-                            <Globe size={12} className="mr-2 text-brand-gold" /> Meta Title (Browser Tab)
+                            <Globe size={12} className="mr-2 text-brand-cyan" /> Meta Title (Browser Tab)
                           </label>
                           <input 
-                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-bold" 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-bold" 
                             value={localContent.seo?.title || ""}
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), title: e.target.value}})}
                           />
@@ -1658,18 +1658,18 @@ export default function Admin() {
                         <div className="md:col-span-2 space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">H1 Tag Override (Home Page)</label>
                           <input 
-                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-bold" 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-bold" 
                             value={localContent.seo?.h1Override || ""}
                             placeholder="CINEMATIC VIDEO PRODUCTION & COMMERCIAL PHOTOGRAPHY"
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), h1Override: e.target.value}})}
                           />
-                          <p className="text-[8px] text-gray-400 italic">Supports &lt;br /&gt; and &lt;span class='text-brand-gold'&gt;...&lt;/span&gt;</p>
+                          <p className="text-[8px] text-gray-400 italic">Supports &lt;br /&gt; and &lt;span class='text-brand-cyan'&gt;...&lt;/span&gt;</p>
                         </div>
                         <div className="md:col-span-2 space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Meta Description (Search Results)</label>
                           <textarea 
                             rows={2}
-                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium leading-relaxed" 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium leading-relaxed" 
                             value={localContent.seo?.description || ""}
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), description: e.target.value}})}
                           />
@@ -1677,7 +1677,7 @@ export default function Admin() {
                         <div className="space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Search Keywords</label>
                           <input 
-                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                             placeholder="comma, separated, list"
                             value={localContent.seo?.keywords || ""}
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), keywords: e.target.value}})}
@@ -1686,7 +1686,7 @@ export default function Admin() {
                         <div className="space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Canonical URL</label>
                           <input 
-                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                             placeholder="https://yourdomain.com"
                             value={localContent.seo?.canonicalUrl || ""}
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), canonicalUrl: e.target.value}})}
@@ -1702,7 +1702,7 @@ export default function Admin() {
                         <div className="space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">OG Share Image (URL or Upload)</label>
                           <input 
-                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                             value={localContent.seo?.ogImage || ""}
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), ogImage: e.target.value}})}
                           />
@@ -1716,7 +1716,7 @@ export default function Admin() {
                         <div className="space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Twitter Handle</label>
                           <input 
-                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                             placeholder="@yourhandle"
                             value={localContent.seo?.twitterHandle || ""}
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), twitterHandle: e.target.value}})}
@@ -1725,7 +1725,7 @@ export default function Admin() {
                         <div className="space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Twitter Card Type</label>
                           <select 
-                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium appearance-none" 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium appearance-none" 
                             value={localContent.seo?.twitterCard || "summary_large_image"}
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), twitterCard: e.target.value as any}})}
                           >
@@ -1738,7 +1738,7 @@ export default function Admin() {
                         <div className="space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Facebook App ID</label>
                           <input 
-                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                             value={localContent.seo?.facebookAppId || ""}
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), facebookAppId: e.target.value}})}
                           />
@@ -1753,7 +1753,7 @@ export default function Admin() {
                         <div className="space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Robots Meta</label>
                           <input 
-                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                             placeholder="index, follow"
                             value={localContent.seo?.robots || ""}
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), robots: e.target.value}})}
@@ -1762,7 +1762,7 @@ export default function Admin() {
                         <div className="space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Site Language</label>
                           <input 
-                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                             placeholder="en-US"
                             value={localContent.seo?.language || ""}
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), language: e.target.value}})}
@@ -1771,7 +1771,7 @@ export default function Admin() {
                         <div className="space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Sitemap URL</label>
                           <input 
-                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-xs" 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium text-xs" 
                             placeholder="https://yourdomain.com/sitemap.xml"
                             value={localContent.seo?.sitemapUrl || ""}
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), sitemapUrl: e.target.value}})}
@@ -1780,7 +1780,7 @@ export default function Admin() {
                         <div className="space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Content Author</label>
                           <input 
-                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                            className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                             value={localContent.seo?.author || ""}
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), author: e.target.value}})}
                           />
@@ -1788,12 +1788,12 @@ export default function Admin() {
                         <div className="md:col-span-2 pt-12 border-t mt-12 bg-zinc-900 p-8 rounded-lg text-white">
                            <div className="flex justify-between items-center mb-8">
                              <div>
-                               <h4 className="text-xs font-black uppercase text-brand-gold tracking-[0.3em] mb-1">Cine-SEO Optimizer</h4>
+                               <h4 className="text-xs font-black uppercase text-brand-cyan tracking-[0.3em] mb-1">Cine-SEO Optimizer</h4>
                                <p className="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Authority & Discovery Index</p>
                              </div>
                              <div className="flex gap-2">
                                <div className="px-3 py-1 bg-green-500/10 border border-green-500/20 text-green-500 text-[8px] font-black uppercase rounded-full">Optimized</div>
-                               <div className="px-3 py-1 bg-brand-gold/10 border border-brand-gold/20 text-brand-gold text-[8px] font-black uppercase rounded-full">Pro Tier</div>
+                               <div className="px-3 py-1 bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-[8px] font-black uppercase rounded-full">Pro Tier</div>
                              </div>
                            </div>
                            
@@ -1808,21 +1808,21 @@ export default function Admin() {
                              <div className="space-y-1">
                                <span className="text-[8px] text-gray-500 uppercase font-black block">Social Graph</span>
                                <div className="flex items-center space-x-2">
-                                 <Check size={10} className="text-brand-gold" />
+                                 <Check size={10} className="text-brand-cyan" />
                                  <span className="text-xs font-bold font-mono uppercase leading-none">Graph Connected</span>
                                </div>
                              </div>
                              <div className="space-y-1">
                                <span className="text-[8px] text-gray-500 uppercase font-black block">Sitemap</span>
                                <div className="flex items-center space-x-2">
-                                 <Check size={10} className="text-brand-gold" />
+                                 <Check size={10} className="text-brand-cyan" />
                                  <span className="text-xs font-bold font-mono uppercase leading-none">XML Validated</span>
                                </div>
                              </div>
                              <div className="space-y-1">
                                <span className="text-[8px] text-gray-500 uppercase font-black block">Authority</span>
                                <div className="flex items-center space-x-2">
-                                 <Check size={10} className="text-brand-gold" />
+                                 <Check size={10} className="text-brand-cyan" />
                                  <span className="text-xs font-bold font-mono uppercase leading-none">Agency Tier</span>
                                </div>
                              </div>
@@ -1836,7 +1836,7 @@ export default function Admin() {
                                <div key={key} className="flex gap-2">
                                  <input readOnly value={key} className="w-1/3 bg-gray-100 p-2 text-[10px] font-bold" />
                                  <input 
-                                   className="flex-1 bg-gray-50 border-0 p-2 text-[10px] focus:ring-1 focus:ring-brand-gold outline-none" 
+                                   className="flex-1 bg-gray-50 border-0 p-2 text-[10px] focus:ring-1 focus:ring-brand-cyan outline-none" 
                                    value={val}
                                    onChange={(e) => setLocalContent({
                                      ...localContent, 
@@ -1854,7 +1854,7 @@ export default function Admin() {
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Advanced JSON-LD Schema (LocalBusiness, etc)</label>
                           <textarea 
                             rows={6}
-                            className="w-full bg-gray-900 text-green-400 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-mono text-[10px]" 
+                            className="w-full bg-gray-900 text-green-400 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-mono text-[10px]" 
                             value={localContent.seo?.schemaMarkup || ""}
                             placeholder='{"@context": "https://schema.org", "@type": "LocalBusiness", ...}'
                             onChange={(e) => setLocalContent({...localContent, seo: {...(localContent.seo || {}), schemaMarkup: e.target.value}})}
@@ -1878,13 +1878,13 @@ export default function Admin() {
                   
                   <div className="space-y-6">
                     <div className="flex justify-between items-center">
-                      <h3 className="text-xs font-black uppercase tracking-widest text-brand-gold">Hero Montage Visuals</h3>
+                      <h3 className="text-xs font-black uppercase tracking-widest text-brand-cyan">Hero Montage Visuals</h3>
                       <button 
                         onClick={() => {
                           const newHero = [...localContent.home.heroVisuals, { url: "", type: 'image' as const, category: "New" }];
                           setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
                         }}
-                        className="w-10 h-10 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-lg active:scale-95"
+                        className="w-10 h-10 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-cyan transition-all shadow-lg active:scale-95"
                         title="Add Hero Visual"
                       >
                         <Plus size={18} />
@@ -1894,7 +1894,7 @@ export default function Admin() {
                       {localContent.home.heroVisuals.map((visual, idx) => (
                         <div key={idx} className="bg-gray-50 p-6 border border-gray-100 space-y-4 relative group">
                           <div className="flex justify-between items-center pb-2 border-b border-gray-200 mb-2">
-                             <span className="text-[10px] font-black text-brand-gold uppercase tracking-widest">
+                             <span className="text-[10px] font-black text-brand-cyan uppercase tracking-widest">
                                Position {idx + 1}
                              </span>
                              <div className="flex gap-2">
@@ -1906,7 +1906,7 @@ export default function Admin() {
                                    [newHero[idx], newHero[idx-1]] = [newHero[idx-1], newHero[idx]];
                                    setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
                                  }}
-                                 className="p-1 text-gray-400 hover:text-brand-gold disabled:opacity-20 transition-all font-bold text-xs"
+                                 className="p-1 text-gray-400 hover:text-brand-cyan disabled:opacity-20 transition-all font-bold text-xs"
                                  title="Move Up"
                                >
                                  ↑
@@ -1919,7 +1919,7 @@ export default function Admin() {
                                    [newHero[idx], newHero[idx+1]] = [newHero[idx+1], newHero[idx]];
                                    setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
                                  }}
-                                 className="p-1 text-gray-400 hover:text-brand-gold disabled:opacity-20 transition-all font-bold text-xs"
+                                 className="p-1 text-gray-400 hover:text-brand-cyan disabled:opacity-20 transition-all font-bold text-xs"
                                  title="Move Down"
                                >
                                  ↓
@@ -1940,7 +1940,7 @@ export default function Admin() {
                             {visual.type === 'video' ? (
                               <div className="w-full h-full flex items-center justify-center text-white bg-zinc-900 border border-zinc-800">
                                 {visual.url && <video src={visual.url} className="w-full h-full object-cover opacity-50" />}
-                                <span className="absolute text-[8px] uppercase tracking-widest font-black bg-brand-gold px-2 py-1 text-black">Video Preview</span>
+                                <span className="absolute text-[8px] uppercase tracking-widest font-black bg-brand-cyan px-2 py-1 text-black">Video Preview</span>
                               </div>
                             ) : (
                               <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
@@ -1957,7 +1957,7 @@ export default function Admin() {
                             <div className="space-y-2">
                               <label className="text-[10px] uppercase font-black text-gray-400">Category Tag</label>
                               <input 
-                                className="w-full text-xs font-bold p-2 bg-white border-0 outline-none focus:ring-1 focus:ring-brand-gold"
+                                className="w-full text-xs font-bold p-2 bg-white border-0 outline-none focus:ring-1 focus:ring-brand-cyan"
                                 value={visual.category}
                                 onChange={(e) => {
                                   const newHero = [...localContent.home.heroVisuals];
@@ -1969,7 +1969,7 @@ export default function Admin() {
                             <div className="space-y-2">
                               <label className="text-[10px] uppercase font-black text-gray-400">Media Type</label>
                               <select 
-                                className="w-full text-xs font-bold p-2 bg-white border-0 outline-none focus:ring-1 focus:ring-brand-gold"
+                                className="w-full text-xs font-bold p-2 bg-white border-0 outline-none focus:ring-1 focus:ring-brand-cyan"
                                 value={visual.type}
                                 onChange={(e) => {
                                   const newHero = [...localContent.home.heroVisuals];
@@ -1985,7 +1985,7 @@ export default function Admin() {
                           <div className="space-y-2">
                             <label className="text-[10px] uppercase font-black text-gray-400">Source URL (or Upload Below)</label>
                             <input 
-                              className="w-full text-[10px] p-2 bg-white border-0 outline-none focus:ring-1 focus:ring-brand-gold" 
+                              className="w-full text-[10px] p-2 bg-white border-0 outline-none focus:ring-1 focus:ring-brand-cyan" 
                               value={visual.url}
                               onChange={(e) => {
                                 const newHero = [...localContent.home.heroVisuals];
@@ -2023,7 +2023,7 @@ export default function Admin() {
                                       newHero[idx] = {...newHero[idx], brightness: 100};
                                       setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
                                     }}
-                                    className="text-[7px] font-black uppercase text-brand-gold"
+                                    className="text-[7px] font-black uppercase text-brand-cyan"
                                   >Reset</button>
                                 </div>
                                 <input 
@@ -2034,7 +2034,7 @@ export default function Admin() {
                                     newHero[idx] = {...newHero[idx], brightness: parseInt(e.target.value)};
                                     setLocalContent({...localContent, home: {...localContent.home, heroVisuals: newHero}});
                                   }}
-                                  className="w-full h-1 bg-gray-200 accent-brand-gold appearance-none cursor-pointer rounded-full"
+                                  className="w-full h-1 bg-gray-200 accent-brand-cyan appearance-none cursor-pointer rounded-full"
                                 />
                               </div>
                             </div>
@@ -2048,7 +2048,7 @@ export default function Admin() {
                     <div className="space-y-4">
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Authority Title</label>
                       <input 
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                         value={localContent.home.lensTitle}
                         onChange={(e) => setLocalContent({...localContent, home: {...localContent.home, lensTitle: e.target.value}})}
                       />
@@ -2057,7 +2057,7 @@ export default function Admin() {
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Authority Text</label>
                       <textarea 
                         rows={4}
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium leading-relaxed" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium leading-relaxed" 
                         value={localContent.home.lensText}
                         onChange={(e) => setLocalContent({...localContent, home: {...localContent.home, lensText: e.target.value}})}
                       />
@@ -2065,7 +2065,7 @@ export default function Admin() {
                     <div className="space-y-4">
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Authority Secondary Visual (Direct URL or Upload)</label>
                       <input 
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                         value={localContent.home.lensImage}
                         onChange={(e) => setLocalContent({...localContent, home: {...localContent.home, lensImage: e.target.value}})}
                       />
@@ -2083,7 +2083,7 @@ export default function Admin() {
                     <div className="space-y-4">
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">CTA Section Background (Direct URL or Upload)</label>
                       <input 
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                         value={localContent.home.ctaBackground}
                         onChange={(e) => setLocalContent({...localContent, home: {...localContent.home, ctaBackground: e.target.value}})}
                       />
@@ -2124,7 +2124,7 @@ export default function Admin() {
                             )}
                           </div>
                           <input 
-                            className="flex-1 bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-xs" 
+                            className="flex-1 bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium text-xs" 
                             value={localContent.about.profileImage}
                             onChange={(e) => setLocalContent({...localContent, about: {...localContent.about, profileImage: e.target.value}})}
                           />
@@ -2143,7 +2143,7 @@ export default function Admin() {
                     <div className="space-y-4">
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Category Title</label>
                       <input 
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                         value={localContent.about.heroTitle}
                         onChange={(e) => setLocalContent({...localContent, about: {...localContent.about, heroTitle: e.target.value}})}
                       />
@@ -2151,7 +2151,7 @@ export default function Admin() {
                     <div className="space-y-4">
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Hero Name</label>
                       <input 
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                         value={localContent.about.heroSubtitle}
                         onChange={(e) => setLocalContent({...localContent, about: {...localContent.about, heroSubtitle: e.target.value}})}
                       />
@@ -2159,7 +2159,7 @@ export default function Admin() {
                     <div className="md:col-span-2 space-y-4">
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Main Philosophy Hook</label>
                       <input 
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium" 
                         value={localContent.about.storyTitle}
                         onChange={(e) => setLocalContent({...localContent, about: {...localContent.about, storyTitle: e.target.value}})}
                       />
@@ -2168,7 +2168,7 @@ export default function Admin() {
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Story Block 1</label>
                       <textarea 
                         rows={3}
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium leading-relaxed" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium leading-relaxed" 
                         value={localContent.about.storyText1}
                         onChange={(e) => setLocalContent({...localContent, about: {...localContent.about, storyText1: e.target.value}})}
                       />
@@ -2177,7 +2177,7 @@ export default function Admin() {
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Story Block 2</label>
                       <textarea 
                         rows={3}
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium leading-relaxed" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium leading-relaxed" 
                         value={localContent.about.storyText2}
                         onChange={(e) => setLocalContent({...localContent, about: {...localContent.about, storyText2: e.target.value}})}
                       />
@@ -2185,7 +2185,7 @@ export default function Admin() {
                     <div className="md:col-span-2 space-y-4">
                       <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Call to Action Quote</label>
                       <input 
-                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium italic" 
+                        className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium italic" 
                         value={localContent.about.quote}
                         onChange={(e) => setLocalContent({...localContent, about: {...localContent.about, quote: e.target.value}})}
                       />
@@ -2208,7 +2208,7 @@ export default function Admin() {
                           const newServices = [...localContent.services, { id: Date.now().toString(), title: "New Service", short: "", description: "", whoItsFor: "", outcome: "", icon: "Video", visualUrl: "", visualType: 'image' as const }];
                           setLocalContent({...localContent, services: newServices});
                         }}
-                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-xl active:scale-90"
+                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-cyan transition-all shadow-xl active:scale-90"
                         title="Add Strategic Service"
                       >
                         <Plus size={24} />
@@ -2222,7 +2222,7 @@ export default function Admin() {
                           <button 
                             onClick={() => reorderService(idx, 'up')}
                             disabled={idx === 0}
-                            className="w-10 h-10 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center text-gray-400 hover:text-brand-gold disabled:opacity-20 transition-all font-bold"
+                            className="w-10 h-10 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center text-gray-400 hover:text-brand-cyan disabled:opacity-20 transition-all font-bold"
                             title="Move Up"
                           >
                             ↑
@@ -2230,7 +2230,7 @@ export default function Admin() {
                           <button 
                             onClick={() => reorderService(idx, 'down')}
                             disabled={idx === localContent.services.length - 1}
-                            className="w-10 h-10 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center text-gray-400 hover:text-brand-gold disabled:opacity-20 transition-all font-bold"
+                            className="w-10 h-10 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center text-gray-400 hover:text-brand-cyan disabled:opacity-20 transition-all font-bold"
                             title="Move Down"
                           >
                             ↓
@@ -2254,7 +2254,7 @@ export default function Admin() {
                             <div className="space-y-2">
                               <label className="text-[10px] uppercase font-black text-gray-400">Title</label>
                               <input 
-                                className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none font-bold text-lg" 
+                                className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none font-bold text-lg" 
                                 value={service.title}
                                 onChange={(e) => {
                                   const newServices = [...localContent.services];
@@ -2266,7 +2266,7 @@ export default function Admin() {
                             <div className="space-y-2">
                               <label className="text-[10px] uppercase font-black text-gray-400">Short Summary</label>
                               <input 
-                                className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-sm" 
+                                className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none font-medium text-sm" 
                                 value={service.short}
                                 onChange={(e) => {
                                   const newServices = [...localContent.services];
@@ -2279,7 +2279,7 @@ export default function Admin() {
                               <label className="text-[10px] uppercase font-black text-gray-400">Full Analysis</label>
                               <textarea 
                                 rows={4}
-                                className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none leading-relaxed text-sm" 
+                                className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none leading-relaxed text-sm" 
                                 value={service.description}
                                 onChange={(e) => {
                                   const newServices = [...localContent.services];
@@ -2317,7 +2317,7 @@ export default function Admin() {
                             <div className="space-y-2">
                               <label className="text-[10px] uppercase font-black text-gray-400">Visual URL (or Upload)</label>
                               <input 
-                                className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-xs" 
+                                className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none text-xs" 
                                 value={service.visualUrl || ""}
                                 onChange={(e) => {
                                   const newServices = [...localContent.services];
@@ -2350,7 +2350,7 @@ export default function Admin() {
                                <div className="space-y-2">
                                  <label className="text-[10px] uppercase font-black text-gray-400">Lucide Icon</label>
                                  <input 
-                                   className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-xs font-bold" 
+                                   className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none text-xs font-bold" 
                                    value={service.icon}
                                    onChange={(e) => {
                                      const newServices = [...localContent.services];
@@ -2362,7 +2362,7 @@ export default function Admin() {
                                <div className="space-y-2">
                                  <label className="text-[10px] uppercase font-black text-gray-400">Photo Gallery Link (Category)</label>
                                  <input 
-                                   className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-xs font-bold text-brand-gold" 
+                                   className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none text-xs font-bold text-brand-cyan" 
                                    value={service.photoCategory || ""}
                                    placeholder="e.g. Commercial"
                                    onChange={(e) => {
@@ -2375,7 +2375,7 @@ export default function Admin() {
                                <div className="md:col-span-2 space-y-2">
                                  <label className="text-[10px] uppercase font-black text-gray-400">Client Profile</label>
                                  <input 
-                                   className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-xs" 
+                                   className="w-full p-4 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none text-xs" 
                                    value={service.whoItsFor}
                                    onChange={(e) => {
                                      const newServices = [...localContent.services];
@@ -2407,7 +2407,7 @@ export default function Admin() {
                           const newWork = [...localContent.portfolio, { category: "Brand Story", title: "New Video Project", placeholder: "", url: "#", videoUrl: "", type: 'video' }];
                           setLocalContent({...localContent, portfolio: newWork});
                         }}
-                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-xl active:scale-90"
+                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-cyan transition-all shadow-xl active:scale-90"
                         title="Add Video Asset"
                       >
                         <Plus size={24} />
@@ -2420,7 +2420,7 @@ export default function Admin() {
                       return (
                         <div key={realIdx} className="p-6 bg-gray-50 border border-gray-100 rounded-lg space-y-4 relative">
                           <div className="flex justify-between items-center pb-2 border-b border-gray-200 mb-2">
-                             <span className="text-[10px] font-black text-brand-gold uppercase tracking-widest">
+                             <span className="text-[10px] font-black text-brand-cyan uppercase tracking-widest">
                                Position {idx + 1}
                              </span>
                              <div className="flex gap-2">
@@ -2435,7 +2435,7 @@ export default function Admin() {
                                    [newPortfolio[realIdx], newPortfolio[targetRealIdx]] = [newPortfolio[targetRealIdx], newPortfolio[realIdx]];
                                    setLocalContent({...localContent, portfolio: newPortfolio});
                                  }}
-                                 className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-gold shadow-md transition-all font-bold"
+                                 className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-cyan shadow-md transition-all font-bold"
                                  title="Move Previous"
                                >
                                  <ChevronRight size={18} className="rotate-180" />
@@ -2451,7 +2451,7 @@ export default function Admin() {
                                    [newPortfolio[realIdx], newPortfolio[targetRealIdx]] = [newPortfolio[targetRealIdx], newPortfolio[realIdx]];
                                    setLocalContent({...localContent, portfolio: newPortfolio});
                                  }}
-                                 className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-gold shadow-md transition-all font-bold"
+                                 className="w-10 h-10 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-cyan shadow-md transition-all font-bold"
                                  title="Move Next"
                                >
                                  <ChevronRight size={18} />
@@ -2477,10 +2477,10 @@ export default function Admin() {
                                <div className="text-gray-600 text-[10px] font-black uppercase">No Preview</div>
                              )}
                              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                               <VideoIcon size={32} className="text-brand-gold opacity-50" />
+                               <VideoIcon size={32} className="text-brand-cyan opacity-50" />
                              </div>
                              {item.isFeatured && (
-                               <div className="absolute top-2 left-2 bg-brand-gold text-black text-[7px] font-black uppercase px-2 py-1 shadow-lg z-20 flex items-center">
+                               <div className="absolute top-2 left-2 bg-brand-cyan text-black text-[7px] font-black uppercase px-2 py-1 shadow-lg z-20 flex items-center">
                                  <Star size={8} className="mr-1 fill-black" /> Featured on Homepage
                                </div>
                              )}
@@ -2491,7 +2491,7 @@ export default function Admin() {
                                 <div className="space-y-2">
                                   <label className="text-[10px] uppercase font-black text-gray-400">Category Tag</label>
                                   <input 
-                                    className="w-full p-3 bg-white border border-gray-100 focus:border-brand-gold outline-none font-bold text-xs" 
+                                    className="w-full p-3 bg-white border border-gray-100 focus:border-brand-cyan outline-none font-bold text-xs" 
                                     value={item.category}
                                     onChange={(e) => {
                                       const newPortfolio = [...localContent.portfolio];
@@ -2503,7 +2503,7 @@ export default function Admin() {
                                 <div className="space-y-2">
                                     <label className="text-[10px] uppercase font-black text-gray-400">Project Title</label>
                                     <input 
-                                      className="w-full p-3 bg-white border border-gray-100 focus:border-brand-gold outline-none font-bold text-xs" 
+                                      className="w-full p-3 bg-white border border-gray-100 focus:border-brand-cyan outline-none font-bold text-xs" 
                                       value={item.title}
                                       onChange={(e) => {
                                         const newPortfolio = [...localContent.portfolio];
@@ -2513,13 +2513,13 @@ export default function Admin() {
                                     />
                                   </div>
                               </div>
-                              <div className="space-y-1 bg-brand-gold/5 p-4 border border-brand-gold/10 rounded-sm">
+                              <div className="space-y-1 bg-brand-cyan/5 p-4 border border-brand-cyan/10 rounded-sm">
                                 <div className="flex items-center space-x-2 mb-2">
-                                  <ExternalLink size={12} className="text-brand-gold" />
-                                  <label className="text-[9px] uppercase font-black text-brand-gold tracking-widest">Master Destination Link</label>
+                                  <ExternalLink size={12} className="text-brand-cyan" />
+                                  <label className="text-[9px] uppercase font-black text-brand-cyan tracking-widest">Master Destination Link</label>
                                 </div>
                                 <input 
-                                  className="w-full p-3 bg-white border border-brand-gold/20 outline-none text-[10px] font-mono font-bold text-brand-black" 
+                                  className="w-full p-3 bg-white border border-brand-cyan/20 outline-none text-[10px] font-mono font-bold text-brand-black" 
                                   value={item.url || "#"}
                                   placeholder="# (Default)"
                                   onChange={(e) => {
@@ -2536,7 +2536,7 @@ export default function Admin() {
                               <div className="space-y-2">
                                 <label className="text-[10px] uppercase font-black text-gray-400">Client / Brand</label>
                                 <input 
-                                  className="w-full p-3 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-xs" 
+                                  className="w-full p-3 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none text-xs" 
                                   value={item.client || ""}
                                   placeholder="e.g. Nike"
                                   onChange={(e) => {
@@ -2549,7 +2549,7 @@ export default function Admin() {
                               <div className="space-y-2">
                                 <label className="text-[10px] uppercase font-black text-gray-400">Production Year</label>
                                 <input 
-                                  className="w-full p-3 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-xs" 
+                                  className="w-full p-3 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none text-xs" 
                                   value={item.year || ""}
                                   placeholder="2024"
                                   onChange={(e) => {
@@ -2564,7 +2564,7 @@ export default function Admin() {
                             <div className="space-y-2">
                               <label className="text-[10px] uppercase font-black text-gray-400">SEO Alt Text (Accessibility)</label>
                               <input 
-                                className="w-full p-3 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-xs" 
+                                className="w-full p-3 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none text-xs" 
                                 value={item.alt || ""}
                                 placeholder="Describe the video content for Google..."
                                 onChange={(e) => {
@@ -2585,14 +2585,14 @@ export default function Admin() {
                                   newPortfolio[realIdx] = {...newPortfolio[realIdx], isFeatured: e.target.checked};
                                   setLocalContent({...localContent, portfolio: newPortfolio});
                                 }}
-                                className="w-4 h-4 accent-brand-gold"
+                                className="w-4 h-4 accent-brand-cyan"
                               />
                               <label htmlFor={`featured-v-${realIdx}`} className="text-[10px] uppercase font-black text-gray-700">Display on Homepage (Featured)</label>
                             </div>
                             <div className="space-y-2">
                               <label className="text-[10px] uppercase font-black text-gray-400">Poster / Placeholder URL (or Upload)</label>
                               <input 
-                                className="w-full p-3 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-[10px]" 
+                                className="w-full p-3 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none text-[10px]" 
                                 value={item.placeholder}
                                 onChange={(e) => {
                                   const newPortfolio = [...localContent.portfolio];
@@ -2623,7 +2623,7 @@ export default function Admin() {
                                 <label className="text-[10px] uppercase font-black text-gray-400">Video Source Link (or Upload)</label>
                                 <div className="flex gap-2">
                                   <input 
-                                    className="flex-1 p-3 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-[10px] font-mono text-brand-gold" 
+                                    className="flex-1 p-3 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none text-[10px] font-mono text-brand-cyan" 
                                     value={item.videoUrl || ""}
                                     onChange={(e) => {
                                       const newPortfolio = [...localContent.portfolio];
@@ -2633,7 +2633,7 @@ export default function Admin() {
                                   />
                                   <button 
                                     onClick={() => fetchVideoThumbnail(item.videoUrl || "", realIdx)}
-                                    className="p-3 bg-white border-0 text-brand-gold hover:bg-gray-100 transition-colors"
+                                    className="p-3 bg-white border-0 text-brand-cyan hover:bg-gray-100 transition-colors"
                                     title="Fetch Thumbnail from URL"
                                   >
                                     <RefreshCw size={14} />
@@ -2673,7 +2673,7 @@ export default function Admin() {
                           const newWork = [...localContent.portfolio, { category: "Branding", title: "New Photo Project", placeholder: "", url: "#", videoUrl: "", type: 'photo' }];
                           setLocalContent({...localContent, portfolio: newWork});
                         }}
-                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-xl active:scale-90"
+                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-cyan transition-all shadow-xl active:scale-90"
                         title="Add Still Asset"
                       >
                         <Plus size={24} />
@@ -2686,7 +2686,7 @@ export default function Admin() {
                       return (
                         <div key={realIdx} className="p-4 bg-gray-50 border border-gray-100 rounded-lg space-y-4 relative group">
                           <div className="flex justify-between items-center pb-2 border-b border-gray-200 mb-2">
-                             <span className="text-[10px] font-black text-brand-gold uppercase tracking-widest">
+                             <span className="text-[10px] font-black text-brand-cyan uppercase tracking-widest">
                                Position {idx + 1}
                              </span>
                              <div className="flex gap-2">
@@ -2702,7 +2702,7 @@ export default function Admin() {
                                      [newPortfolio[realIdx], newPortfolio[targetRealIdx]] = [newPortfolio[targetRealIdx], newPortfolio[realIdx]];
                                      setLocalContent({...localContent, portfolio: newPortfolio});
                                    }}
-                                   className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-gold shadow-sm transition-all disabled:opacity-30"
+                                   className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-cyan shadow-sm transition-all disabled:opacity-30"
                                    title="Move Up"
                                  >
                                    <ChevronRight size={14} className="-rotate-90" />
@@ -2718,7 +2718,7 @@ export default function Admin() {
                                      [newPortfolio[realIdx], newPortfolio[targetRealIdx]] = [newPortfolio[targetRealIdx], newPortfolio[realIdx]];
                                      setLocalContent({...localContent, portfolio: newPortfolio});
                                    }}
-                                   className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-gold shadow-sm transition-all disabled:opacity-30"
+                                   className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-cyan shadow-sm transition-all disabled:opacity-30"
                                    title="Move Down"
                                  >
                                    <ChevronRight size={14} className="rotate-90" />
@@ -2734,7 +2734,7 @@ export default function Admin() {
                                      [newPortfolio[realIdx], newPortfolio[prevRealIdx]] = [newPortfolio[prevRealIdx], newPortfolio[realIdx]];
                                      setLocalContent({...localContent, portfolio: newPortfolio});
                                    }}
-                                   className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-gold shadow-sm transition-all disabled:opacity-30"
+                                   className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-cyan shadow-sm transition-all disabled:opacity-30"
                                    title="Move Left"
                                  >
                                    <ChevronRight size={14} className="rotate-180" />
@@ -2750,7 +2750,7 @@ export default function Admin() {
                                      [newPortfolio[realIdx], newPortfolio[nextRealIdx]] = [newPortfolio[nextRealIdx], newPortfolio[realIdx]];
                                      setLocalContent({...localContent, portfolio: newPortfolio});
                                    }}
-                                   className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-gold shadow-sm transition-all disabled:opacity-30"
+                                   className="w-8 h-8 rounded-full flex items-center justify-center bg-white border border-gray-100 text-gray-400 hover:text-brand-cyan shadow-sm transition-all disabled:opacity-30"
                                    title="Move Right"
                                  >
                                    <ChevronRight size={14} />
@@ -2777,7 +2777,7 @@ export default function Admin() {
                                <div className="w-full h-full flex items-center justify-center font-display text-gray-300 font-bold uppercase text-[10px]">No Image</div>
                              )}
                              {item.isFeatured && (
-                               <div className="absolute top-2 left-2 bg-brand-gold text-black text-[7px] font-black uppercase px-2 py-1 shadow-lg z-20 flex items-center">
+                               <div className="absolute top-2 left-2 bg-brand-cyan text-black text-[7px] font-black uppercase px-2 py-1 shadow-lg z-20 flex items-center">
                                  <Star size={8} className="mr-1 fill-black" /> Featured
                                </div>
                              )}
@@ -2788,7 +2788,7 @@ export default function Admin() {
                               <div className="space-y-1">
                                 <label className="text-[8px] uppercase font-black text-gray-400 leading-none">Category</label>
                                 <input 
-                                  className="w-full p-2 bg-white border-b border-gray-200 focus:border-brand-gold outline-none font-bold text-[10px]" 
+                                  className="w-full p-2 bg-white border-b border-gray-200 focus:border-brand-cyan outline-none font-bold text-[10px]" 
                                   value={item.category}
                                   onChange={(e) => {
                                     const newPortfolio = [...localContent.portfolio];
@@ -2800,7 +2800,7 @@ export default function Admin() {
                               <div className="space-y-1">
                                 <label className="text-[8px] uppercase font-black text-gray-400 leading-none">Project Title</label>
                                 <input 
-                                  className="w-full p-2 bg-white border-b border-gray-200 focus:border-brand-gold outline-none font-bold text-[10px]" 
+                                  className="w-full p-2 bg-white border-b border-gray-200 focus:border-brand-cyan outline-none font-bold text-[10px]" 
                                   value={item.title}
                                   onChange={(e) => {
                                     const newPortfolio = [...localContent.portfolio];
@@ -2830,7 +2830,7 @@ export default function Admin() {
                             <div className="space-y-1">
                               <label className="text-[8px] uppercase font-black text-gray-400">Title</label>
                               <input 
-                                className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none font-bold text-[10px]" 
+                                className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none font-bold text-[10px]" 
                                 value={item.title}
                                 onChange={(e) => {
                                   const newPortfolio = [...localContent.portfolio];
@@ -2844,7 +2844,7 @@ export default function Admin() {
                               <div className="space-y-1">
                                 <label className="text-[8px] uppercase font-black text-gray-400">Client</label>
                                 <input 
-                                  className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-[9px]" 
+                                  className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none text-[9px]" 
                                   value={item.client || ""}
                                   onChange={(e) => {
                                     const newPortfolio = [...localContent.portfolio];
@@ -2856,7 +2856,7 @@ export default function Admin() {
                               <div className="space-y-1">
                                 <label className="text-[8px] uppercase font-black text-gray-400">Year</label>
                                 <input 
-                                  className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-[9px]" 
+                                  className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none text-[9px]" 
                                   value={item.year || ""}
                                   onChange={(e) => {
                                     const newPortfolio = [...localContent.portfolio];
@@ -2870,7 +2870,7 @@ export default function Admin() {
                             <div className="space-y-1">
                               <label className="text-[8px] uppercase font-black text-gray-400">SEO Alt Text</label>
                               <input 
-                                className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-[9px]" 
+                                className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none text-[9px]" 
                                 value={item.alt || ""}
                                 onChange={(e) => {
                                   const newPortfolio = [...localContent.portfolio];
@@ -2890,14 +2890,14 @@ export default function Admin() {
                                   newPortfolio[realIdx] = {...newPortfolio[realIdx], isFeatured: e.target.checked};
                                   setLocalContent({...localContent, portfolio: newPortfolio});
                                 }}
-                                className="w-3 h-3 accent-brand-gold"
+                                className="w-3 h-3 accent-brand-cyan"
                               />
                               <label htmlFor={`featured-p-${realIdx}`} className="text-[8px] uppercase font-black text-gray-600">Featured on Home</label>
                             </div>
                             <div className="space-y-1">
                               <label className="text-[8px] uppercase font-black text-gray-400">Main Thumbnail URL (or Upload)</label>
                               <input 
-                                className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-[8px]" 
+                                className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none text-[8px]" 
                                 value={item.placeholder}
                                 onChange={(e) => {
                                   const newPortfolio = [...localContent.portfolio];
@@ -2930,7 +2930,7 @@ export default function Admin() {
                                 <div key={imgIdx} className="space-y-1 p-2 bg-zinc-50 rounded">
                                   <label className="text-[7px] uppercase font-bold text-gray-300">Image {imgIdx + 1}</label>
                                   <input 
-                                    className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-gold outline-none text-[8px]" 
+                                    className="w-full p-2 bg-white border-0 focus:ring-1 focus:ring-brand-cyan outline-none text-[8px]" 
                                     value={item.images?.[imgIdx] || ""}
                                     placeholder={`Gallery Image ${imgIdx + 1} URL`}
                                     onChange={(e) => {
@@ -2990,7 +2990,7 @@ export default function Admin() {
                       <div className="md:col-span-2 space-y-4">
                         <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Promotion Title</label>
                         <input 
-                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-bold text-xl" 
+                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-bold text-xl" 
                           value={localContent.promo.title}
                           onChange={(e) => setLocalContent({...localContent, promo: {...localContent.promo, title: e.target.value}})}
                         />
@@ -2999,7 +2999,7 @@ export default function Admin() {
                         <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Promotional Message</label>
                         <textarea 
                           rows={3}
-                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium leading-relaxed" 
+                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium leading-relaxed" 
                           value={localContent.promo.message}
                           onChange={(e) => setLocalContent({...localContent, promo: {...localContent.promo, message: e.target.value}})}
                         />
@@ -3007,7 +3007,7 @@ export default function Admin() {
                       <div className="space-y-4">
                         <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Discount / Access Code</label>
                         <input 
-                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-black text-brand-gold tracking-widest" 
+                          className="w-full bg-gray-50 border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-black text-brand-cyan tracking-widest" 
                           value={localContent.promo.code}
                           onChange={(e) => setLocalContent({...localContent, promo: {...localContent.promo, code: e.target.value}})}
                         />
@@ -3017,10 +3017,10 @@ export default function Admin() {
                     <div className="mt-12 p-8 border-2 border-dashed border-gray-100 rounded-xl">
                       <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-300 mb-8 border-b pb-4">Live Preview Concept</h4>
                       <div className={`p-8 bg-zinc-900 text-white max-w-sm mx-auto shadow-2xl transition-opacity duration-500 ${localContent.promo.enabled ? 'opacity-100' : 'opacity-20'}`}>
-                        <div className="w-12 h-1 bg-brand-gold mb-6" />
+                        <div className="w-12 h-1 bg-brand-cyan mb-6" />
                         <h5 className="text-2xl font-display font-bold uppercase tracking-tighter mb-4 italic leading-none">{localContent.promo.title}</h5>
                         <p className="text-gray-400 text-sm font-medium mb-8 leading-relaxed">{localContent.promo.message}</p>
-                        <div className="py-3 px-4 border border-zinc-700 text-brand-gold text-xs font-black tracking-widest text-center uppercase">
+                        <div className="py-3 px-4 border border-zinc-700 text-brand-cyan text-xs font-black tracking-widest text-center uppercase">
                           Code: {localContent.promo.code}
                         </div>
                       </div>
@@ -3046,7 +3046,7 @@ export default function Admin() {
                             { author: "New Reviewer", role: "Client", content: "Great experience...", rating: 5, date: "Just now" }
                           ]
                         })}
-                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-xl active:scale-90"
+                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-cyan transition-all shadow-xl active:scale-90"
                         title="Add Strategy Endorsement"
                       >
                         <Plus size={24} />
@@ -3075,7 +3075,7 @@ export default function Admin() {
                           <div className="space-y-4">
                             <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Client Name</label>
                             <input 
-                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-gold outline-none font-bold text-sm" 
+                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-cyan outline-none font-bold text-sm" 
                               value={review.author}
                               onChange={(e) => {
                                 const newTestimonials = [...localContent.testimonials];
@@ -3087,7 +3087,7 @@ export default function Admin() {
                           <div className="space-y-4">
                             <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Role / Company</label>
                             <input 
-                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-sm" 
+                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-cyan outline-none font-medium text-sm" 
                               value={review.role}
                               onChange={(e) => {
                                 const newTestimonials = [...localContent.testimonials];
@@ -3100,7 +3100,7 @@ export default function Admin() {
                             <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Testimonial Content</label>
                             <textarea 
                               rows={4}
-                              className="w-full bg-white border-0 p-4 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-sm leading-relaxed" 
+                              className="w-full bg-white border-0 p-4 focus:ring-1 focus:ring-brand-cyan outline-none font-medium text-sm leading-relaxed" 
                               value={review.content}
                               onChange={(e) => {
                                 const newTestimonials = [...localContent.testimonials];
@@ -3120,7 +3120,7 @@ export default function Admin() {
                                     newTestimonials[idx].rating = star;
                                     setLocalContent({...localContent, testimonials: newTestimonials});
                                   }}
-                                  className={`${review.rating >= star ? 'text-brand-gold' : 'text-gray-200'} transition-colors`}
+                                  className={`${review.rating >= star ? 'text-brand-cyan' : 'text-gray-200'} transition-colors`}
                                 >
                                   <Star size={20} fill={review.rating >= star ? "currentColor" : "none"} />
                                 </button>
@@ -3130,7 +3130,7 @@ export default function Admin() {
                           <div className="space-y-4">
                             <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Display Date</label>
                             <input 
-                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-sm" 
+                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-cyan outline-none font-medium text-sm" 
                               value={review.date}
                               onChange={(e) => {
                                 const newTestimonials = [...localContent.testimonials];
@@ -3144,13 +3144,13 @@ export default function Admin() {
                     ))}
                   </div>
 
-                  <div className="bg-brand-gold/5 p-8 border border-brand-gold/20 rounded-sm">
+                  <div className="bg-brand-cyan/5 p-8 border border-brand-cyan/20 rounded-sm">
                     <div className="flex items-start space-x-4">
-                      <div className="bg-brand-gold p-2 text-white">
+                      <div className="bg-brand-cyan p-2 text-white">
                         <Info size={16} />
                       </div>
                       <div>
-                        <h4 className="text-sm font-bold uppercase tracking-widest text-brand-gold mb-2">Live Sync Protocol</h4>
+                        <h4 className="text-sm font-bold uppercase tracking-widest text-brand-cyan mb-2">Live Sync Protocol</h4>
                         <p className="text-xs text-gray-600 font-medium leading-relaxed">
                           Currently, reviews are manually curated for maximum visual impact. To pull live data directly from Google, specialized API keys are required. Use this interface to keep your highest-converting social proof current.
                         </p>
@@ -3177,7 +3177,7 @@ export default function Admin() {
                             { id: Date.now().toString(), name: "New Industry", description: "Targeted sector description for strategic search optimization." }
                           ]
                         })}
-                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-gold transition-all shadow-xl active:scale-90"
+                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-cyan transition-all shadow-xl active:scale-90"
                         title="Add Target Vertical"
                       >
                         <Plus size={24} />
@@ -3205,7 +3205,7 @@ export default function Admin() {
                           <div className="space-y-2">
                             <label className="text-[9px] uppercase font-black text-gray-400 tracking-widest">Industry Name</label>
                             <input 
-                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-gold outline-none font-bold text-sm" 
+                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-cyan outline-none font-bold text-sm" 
                               value={industry.name}
                               onChange={(e) => {
                                 const newIndustries = [...(localContent.industries || [])];
@@ -3218,7 +3218,7 @@ export default function Admin() {
                             <label className="text-[9px] uppercase font-black text-gray-400 tracking-widest">SEO Optimization Bio</label>
                             <textarea 
                               rows={3}
-                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-gold outline-none font-medium text-xs leading-relaxed" 
+                              className="w-full bg-white border-0 p-3 focus:ring-1 focus:ring-brand-cyan outline-none font-medium text-xs leading-relaxed" 
                               value={industry.description}
                               onChange={(e) => {
                                 const newIndustries = [...(localContent.industries || [])];
@@ -3235,12 +3235,12 @@ export default function Admin() {
 
                   <div className="bg-brand-black p-8 rounded-sm text-white relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-4 opacity-10">
-                      <Activity size={120} className="text-brand-gold" />
+                      <Activity size={120} className="text-brand-cyan" />
                     </div>
                     <div className="relative z-10">
                       <div className="flex items-center space-x-3 mb-4">
-                        <Activity size={20} className="text-brand-gold" />
-                        <h4 className="text-sm font-black uppercase tracking-[0.2em] text-brand-gold">Search Engine Authority</h4>
+                        <Activity size={20} className="text-brand-cyan" />
+                        <h4 className="text-sm font-black uppercase tracking-[0.2em] text-brand-cyan">Search Engine Authority</h4>
                       </div>
                       <p className="text-xs text-gray-400 font-medium leading-relaxed max-w-2xl">
                         By specifically naming high-value professions like <span className="text-white italic">Yacht Brokers, Surgeons, and IMG Athletes</span>, you create "contextual anchors" for search engines. This section infuses these keywords into your site architecture, ensuring you rank when clients search for specialized cinematic services in the Gulf Coast.
@@ -3289,7 +3289,7 @@ export default function Admin() {
                                 <div className="space-y-1">
                                   <label className="text-[8px] uppercase font-black text-gray-400">Date Received</label>
                                   <div className="flex items-center space-x-2">
-                                    <p className="text-xs font-bold text-brand-gold">
+                                    <p className="text-xs font-bold text-brand-cyan">
                                       {lead.createdAt?.toDate ? lead.createdAt.toDate().toLocaleString() : 'Just Now'}
                                     </p>
                                     {lead.status === 'new' && (
@@ -3300,7 +3300,7 @@ export default function Admin() {
                                 <div className="space-y-1">
                                   <label className="text-[8px] uppercase font-black text-gray-400">Identity</label>
                                   <p className="text-sm font-bold uppercase tracking-tight">{lead.name}</p>
-                                  <a href={`mailto:${lead.email}`} className="text-xs text-gray-500 hover:text-brand-gold transition-colors font-medium">{lead.email}</a>
+                                  <a href={`mailto:${lead.email}`} className="text-xs text-gray-500 hover:text-brand-cyan transition-colors font-medium">{lead.email}</a>
                                 </div>
                                 <div className="space-y-1">
                                   <label className="text-[8px] uppercase font-black text-gray-400">Production Focus</label>
@@ -3310,10 +3310,10 @@ export default function Admin() {
                                 </div>
 
                                 {lead.bookingDate && (
-                                   <div className="p-4 bg-brand-gold/10 border border-brand-gold/20 rounded-lg">
+                                   <div className="p-4 bg-brand-cyan/10 border border-brand-cyan/20 rounded-lg">
                                       <div className="flex items-center space-x-2 mb-2">
-                                         <Star size={12} className="text-brand-gold fill-brand-gold" />
-                                         <span className="text-[9px] font-black uppercase tracking-widest text-brand-gold">Consultation Request</span>
+                                         <Star size={12} className="text-brand-cyan fill-brand-cyan" />
+                                         <span className="text-[9px] font-black uppercase tracking-widest text-brand-cyan">Consultation Request</span>
                                       </div>
                                       <p className="text-xs font-bold text-zinc-900">{new Date(lead.bookingDate).toLocaleString()}</p>
                                       <div className="mt-3 flex gap-2">
@@ -3336,9 +3336,9 @@ export default function Admin() {
                                 {lead.status === 'new' && (
                                   <button 
                                     onClick={() => updateDoc(doc(db, 'leads', lead.id), { status: 'contacted' })}
-                                    className="w-full mt-4 bg-brand-black text-white py-3 text-[10px] font-black uppercase tracking-widest flex items-center justify-center hover:bg-zinc-800 transition-all shadow-lg active:scale-95 border border-brand-gold/30"
+                                    className="w-full mt-4 bg-brand-black text-white py-3 text-[10px] font-black uppercase tracking-widest flex items-center justify-center hover:bg-zinc-800 transition-all shadow-lg active:scale-95 border border-brand-cyan/30"
                                   >
-                                    <Check size={14} className="mr-2 text-brand-gold" /> Acknowledge Lead
+                                    <Check size={14} className="mr-2 text-brand-cyan" /> Acknowledge Lead
                                   </button>
                                 )}
 
@@ -3352,7 +3352,7 @@ export default function Admin() {
                                      </button>
                                      <button 
                                        onClick={() => copyPortalLink(lead.id)}
-                                       className="w-full bg-zinc-900 text-brand-gold py-3 text-[10px] font-black uppercase tracking-widest flex items-center justify-center hover:bg-black transition-all border border-brand-gold/20"
+                                       className="w-full bg-zinc-900 text-brand-cyan py-3 text-[10px] font-black uppercase tracking-widest flex items-center justify-center hover:bg-black transition-all border border-brand-cyan/20"
                                      >
                                        <ExternalLink size={14} className="mr-2" /> Email Magic Link
                                      </button>
@@ -3412,7 +3412,7 @@ export default function Admin() {
                         <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Head Snippet (META / GTM / FONTS)</label>
                         <textarea 
                           rows={4}
-                          className="w-full bg-zinc-900 text-brand-gold p-4 outline-none font-mono text-[10px] leading-relaxed shadow-inner" 
+                          className="w-full bg-zinc-900 text-brand-cyan p-4 outline-none font-mono text-[10px] leading-relaxed shadow-inner" 
                           placeholder="<script>... analytics ...</script>"
                           value={localContent.customCode?.head || ""}
                           onChange={(e) => setLocalContent({...localContent, customCode: {...(localContent.customCode || {}), head: e.target.value}})}
@@ -3423,7 +3423,7 @@ export default function Admin() {
                         <textarea 
                           rows={8}
                           className="w-full bg-zinc-900 text-green-400 p-4 outline-none font-mono text-[11px] leading-relaxed shadow-inner" 
-                          placeholder=":root { --brand-gold: #ff0000; }"
+                          placeholder=":root { --brand-cyan: #ff0000; }"
                           value={localContent.customCode?.css || ""}
                           onChange={(e) => setLocalContent({...localContent, customCode: {...(localContent.customCode || {}), css: e.target.value}})}
                         />
@@ -3441,7 +3441,7 @@ export default function Admin() {
                        <div className="flex flex-wrap gap-4">
                          <button 
                             onClick={downloadBackup}
-                            className="bg-brand-black text-white px-6 py-3 text-[10px] font-black uppercase tracking-widest flex items-center hover:bg-brand-gold transition-all shadow-lg active:scale-95"
+                            className="bg-brand-black text-white px-6 py-3 text-[10px] font-black uppercase tracking-widest flex items-center hover:bg-brand-cyan transition-all shadow-lg active:scale-95"
                          >
                             <Download size={14} className="mr-2" /> Download Site Backup
                          </button>
@@ -3470,7 +3470,7 @@ export default function Admin() {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                     <div className="space-y-8">
-                      <h3 className="text-[10px] font-black uppercase tracking-widest text-brand-gold border-b pb-2">Chromatic Authority</h3>
+                      <h3 className="text-[10px] font-black uppercase tracking-widest text-brand-cyan border-b pb-2">Chromatic Authority</h3>
                       <div className="space-y-6">
                         <div className="space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Primary Brand Color (Surface)</label>
@@ -3494,12 +3494,12 @@ export default function Admin() {
                             <input 
                               type="color" 
                               className="w-12 h-12 rounded-sm cursor-pointer border-0"
-                              value={localContent.theme?.accentColor || "#D4AF37"}
+                              value={localContent.theme?.accentColor || "#00f2ff"}
                               onChange={(e) => setLocalContent({...localContent, theme: {...(localContent.theme || {}), accentColor: e.target.value}})}
                             />
                             <input 
-                              className="flex-1 bg-gray-50 border-0 p-4 font-mono text-xs uppercase text-brand-gold font-bold" 
-                              value={localContent.theme?.accentColor || "#D4AF37"}
+                              className="flex-1 bg-gray-50 border-0 p-4 font-mono text-xs uppercase text-brand-cyan font-bold" 
+                              value={localContent.theme?.accentColor || "#00f2ff"}
                               onChange={(e) => setLocalContent({...localContent, theme: {...(localContent.theme || {}), accentColor: e.target.value}})}
                             />
                           </div>
@@ -3508,7 +3508,7 @@ export default function Admin() {
                     </div>
                     
                     <div className="space-y-8">
-                      <h3 className="text-[10px] font-black uppercase tracking-widest text-brand-gold border-b pb-2">Typography Engine</h3>
+                      <h3 className="text-[10px] font-black uppercase tracking-widest text-brand-cyan border-b pb-2">Typography Engine</h3>
                       <div className="space-y-6">
                         <div className="space-y-4">
                           <label className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Display Typeface (Headings)</label>

@@ -59,7 +59,7 @@ export default function Video() {
             <motion.span 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-brand-gold uppercase tracking-[0.4em] text-xs font-bold mb-8 block"
+              className="text-brand-cyan uppercase tracking-[0.4em] text-xs font-bold mb-8 block"
             >
               Florida Commercial & Sports Video
             </motion.span>
@@ -79,7 +79,7 @@ export default function Video() {
                 key={cat}
                 onClick={() => setFilter(cat)}
                 className={`text-xs uppercase tracking-[0.2em] font-bold pb-2 border-b-2 transition-all ${
-                  filter === cat ? "border-brand-gold text-brand-black" : "border-transparent text-gray-400 hover:text-brand-gold"
+                  filter === cat ? "border-brand-cyan text-brand-black" : "border-transparent text-gray-400 hover:text-brand-cyan"
                 }`}
               >
                 {cat}
@@ -181,14 +181,14 @@ export default function Video() {
                   <div className="flex justify-between items-start">
                     <div className="space-y-2">
                       <div className="flex items-center space-x-3">
-                        <span className="text-brand-gold uppercase tracking-[0.3em] text-[10px] font-black">{item.category}</span>
+                        <span className="text-brand-cyan uppercase tracking-[0.3em] text-[10px] font-black">{item.category}</span>
                         {(item.client || item.year) && (
                           <span className="text-gray-400 text-[9px] uppercase font-medium tracking-widest border-l border-gray-200 pl-3">
                             {item.client} {item.year && ` | ${item.year}`}
                           </span>
                         )}
                       </div>
-                      <h2 className="text-3xl font-display font-bold tracking-tight uppercase group-hover:text-brand-gold transition-colors">{item.title}</h2>
+                      <h2 className="text-3xl font-display font-bold tracking-tight uppercase group-hover:text-brand-cyan transition-colors">{item.title}</h2>
                     </div>
                     <div className="flex flex-col items-end gap-2">
                       <div className="w-12 h-12 flex items-center justify-end text-brand-black group-hover:translate-x-2 transition-transform">
@@ -198,7 +198,7 @@ export default function Video() {
                         <Link 
                           to={item.url} 
                           onClick={(e) => e.stopPropagation()}
-                          className="text-[9px] uppercase font-black text-brand-gold bg-brand-gold/10 px-2 py-1 rounded hover:bg-brand-gold hover:text-white transition-colors flex items-center gap-1"
+                          className="text-[9px] uppercase font-black text-brand-cyan bg-brand-cyan/10 px-2 py-1 rounded hover:bg-brand-cyan hover:text-white transition-colors flex items-center gap-1"
                         >
                           Project Details <Play size={10} className="fill-current" />
                         </Link>
@@ -212,13 +212,13 @@ export default function Video() {
         </div>
 
         <section className="mt-24 sm:mt-40 border-t border-gray-100 pt-16 sm:pt-32 text-center">
-          <h2 className="text-3xl sm:text-4xl font-display font-bold mb-8 uppercase tracking-tighter italic">Ready to tell your <span className="not-italic text-brand-gold">Video Story?</span></h2>
+          <h2 className="text-3xl sm:text-4xl font-display font-bold mb-8 uppercase tracking-tighter italic">Ready to tell your <span className="not-italic text-brand-cyan">Video Story?</span></h2>
           <div className="flex flex-col items-center gap-8">
-            <Link to="/contact?type=video" className="bg-brand-black text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold transition-colors inline-flex items-center group">
+            <Link to="/contact?type=video" className="bg-brand-black text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-cyan transition-colors inline-flex items-center group">
               Start Video Project <ArrowRight size={18} className="ml-3 group-hover:translate-x-1 transition-transform" />
             </Link>
             <div className="max-w-lg">
-              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-gold mb-4 block">Regional Deployment</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-cyan mb-4 block">Regional Deployment</span>
               <p className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.2em] mx-auto leading-relaxed">
                 Serving the creative economy of Bradenton, Palmetto, Sarasota, and the Florida Suncoast with Cinematic Excellence.
               </p>

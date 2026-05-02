@@ -29,13 +29,13 @@ export default function Services() {
           <motion.span 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-brand-gold uppercase tracking-[0.4em] text-xs font-bold mb-8 block font-sans"
+            className="text-brand-cyan uppercase tracking-[0.4em] text-xs font-bold mb-8 block font-sans"
           >
             Florida Gulf Coast Media Solutions
           </motion.span>
           <div className="mb-12">
             <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9] uppercase italic">
-              Professional Media <br /> <span className="text-brand-gold not-italic">& Identity Production.</span>
+              Professional Media <br /> <span className="text-brand-cyan not-italic">& Identity Production.</span>
             </h1>
           </div>
           <p className="text-gray-500 text-lg sm:text-2xl font-light max-w-2xl leading-relaxed">
@@ -101,11 +101,11 @@ export default function Services() {
                 
                 <div className={`lg:col-span-5 space-y-10 ${!isEven ? 'lg:order-1' : ''}`}>
                   <div className="space-y-4">
-                    <div className="w-16 h-16 bg-brand-black flex items-center justify-center text-brand-gold mb-8">
+                    <div className="w-16 h-16 bg-brand-black flex items-center justify-center text-brand-cyan mb-8">
                        <Icon size={32} />
                     </div>
                     <h2 className="text-4xl font-display font-bold tracking-tight uppercase">{service.title}</h2>
-                    <h3 className="text-brand-gold uppercase tracking-[0.2em] text-xs font-bold">{service.short}</h3>
+                    <h3 className="text-brand-cyan uppercase tracking-[0.2em] text-xs font-bold">{service.short}</h3>
                   </div>
                   
                   <div className="space-y-6">
@@ -117,11 +117,11 @@ export default function Services() {
                     </p>
                     
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                      <div className="bg-gray-50 p-6 border-l-2 border-brand-gold">
+                      <div className="bg-gray-50 p-6 border-l-2 border-brand-cyan">
                         <p className="text-[10px] uppercase tracking-widest font-black text-gray-400 mb-2">Ideal For</p>
                         <p className="text-sm font-bold text-gray-900 leading-tight">{service.whoItsFor}</p>
                       </div>
-                      <div className="bg-gray-50 p-6 border-l-2 border-brand-gold">
+                      <div className="bg-gray-50 p-6 border-l-2 border-brand-cyan">
                         <p className="text-[10px] uppercase tracking-widest font-black text-gray-400 mb-2">Core Outcome</p>
                         <p className="text-sm font-bold text-gray-900 leading-tight">{service.outcome}</p>
                       </div>
@@ -131,7 +131,7 @@ export default function Services() {
                   <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 pt-6">
                     <Link 
                       to="/contact" 
-                      className="inline-flex items-center text-brand-black font-bold uppercase tracking-widest text-xs border-b-2 border-brand-gold pb-1 hover:border-brand-black transition-colors"
+                      className="inline-flex items-center text-brand-black font-bold uppercase tracking-widest text-xs border-b-2 border-brand-cyan pb-1 hover:border-brand-black transition-colors"
                     >
                       Inquire About This Service <ArrowRight size={16} className="ml-3" />
                     </Link>
@@ -139,7 +139,7 @@ export default function Services() {
                     {service.photoCategory && (
                       <Link 
                         to={`/photo?category=${service.photoCategory}`} 
-                        className="inline-flex items-center text-gray-400 font-bold uppercase tracking-widest text-[10px] hover:text-brand-gold transition-colors group"
+                        className="inline-flex items-center text-gray-400 font-bold uppercase tracking-widest text-[10px] hover:text-brand-cyan transition-colors group"
                       >
                         <Camera size={14} className="mr-2 group-hover:scale-110 transition-transform" /> View the {service.photoCategory} Gallery
                       </Link>
@@ -154,7 +154,7 @@ export default function Services() {
         {/* Collaborative Section */}
         <section className="mt-24 sm:mt-60 bg-brand-black p-8 sm:p-16 md:p-24 text-white text-center">
           <div className="max-w-4xl mx-auto space-y-12">
-             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight italic">Every production is a <span className="text-brand-gold not-italic">partnership.</span></h2>
+             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight italic">Every production is a <span className="text-brand-cyan not-italic">partnership.</span></h2>
              <p className="text-gray-400 text-lg sm:text-xl font-light leading-relaxed">
                I don't just show up with a camera. We sit down, define the objective, audit your current brand presence, and build a visual roadmap that hits your targets.
              </p>

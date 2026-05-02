@@ -12,7 +12,7 @@ export default function Privacy() {
         <Link to="/" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-brand-black mb-12 transition-colors">
           <ArrowLeft size={14} className="mr-2" /> Back Home
         </Link>
-        <h1 className="text-4xl sm:text-6xl font-display font-bold tracking-tighter uppercase mb-12">Privacy <span className="text-brand-gold italic">Policy</span></h1>
+        <h1 className="text-4xl sm:text-6xl font-display font-bold tracking-tighter uppercase mb-12">Privacy <span className="text-brand-cyan italic">Policy</span></h1>
         
         <div className="prose prose-zinc max-w-none space-y-8 text-gray-600">
           <section>
@@ -42,7 +42,7 @@ export default function Privacy() {
 
           <section>
             <h2 className="text-xl font-bold uppercase tracking-widest text-brand-black mb-4">Contact Us</h2>
-            <p>If you have any questions about this privacy policy or our privacy practices, please contact us at: <a href={`mailto:${BRAND.contact.email}`} className="text-brand-gold font-bold">{BRAND.contact.email}</a></p>
+            <p>If you have any questions about this privacy policy or our privacy practices, please contact us at: <a href={`mailto:${BRAND.contact.email}`} className="text-brand-cyan font-bold">{BRAND.contact.email}</a></p>
           </section>
         </div>
       </div>

@@ -39,7 +39,7 @@ export default function CodeInjection() {
     if (theme) {
       const root = document.documentElement;
       if (theme.primaryColor) root.style.setProperty('--brand-black', theme.primaryColor);
-      if (theme.accentColor) root.style.setProperty('--brand-gold', theme.accentColor);
+      if (theme.accentColor) root.style.setProperty('--brand-cyan', theme.accentColor);
       if (theme.fontDisplay) root.style.setProperty('--font-display-override', theme.fontDisplay);
       if (theme.fontSans) root.style.setProperty('--font-sans-override', theme.fontSans);
     }

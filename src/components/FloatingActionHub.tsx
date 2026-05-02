@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect, useRef } from "react";
 import { Video, Camera, Plus, X, ArrowUpRight } from "lucide-react";
 
 export default function FloatingActionHub() {
+  const location = useLocation();
   const [isVisible, setIsVisible] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
@@ -60,9 +61,9 @@ export default function FloatingActionHub() {
             <div className="flex gap-4 p-2 bg-white/80 backdrop-blur-md rounded-full border border-white/20 shadow-2xl pointer-events-auto">
               <Link
                 to="/contact?type=video"
-                className="bg-brand-gold text-white px-7 py-4 rounded-full font-black uppercase tracking-[0.2em] text-[10px] flex items-center group active:scale-95 transition-all hover:bg-brand-black shadow-lg"
+                className="bg-brand-cyan text-white px-7 py-4 rounded-full font-black uppercase tracking-[0.2em] text-[10px] flex items-center group active:scale-95 transition-all hover:bg-brand-black shadow-lg"
               >
-                <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center mr-4 group-hover:bg-brand-gold transition-colors">
+                <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center mr-4 group-hover:bg-brand-cyan transition-colors">
                   <Video size={16} />
                 </div>
                 <span>Start Video Project</span>
@@ -71,10 +72,10 @@ export default function FloatingActionHub() {
               
               <Link
                 to="/contact?type=photo"
-                className="bg-brand-black text-white px-7 py-4 rounded-full font-black uppercase tracking-[0.2em] text-[10px] flex items-center group active:scale-95 transition-all hover:bg-brand-gold shadow-lg"
+                className="bg-brand-black text-white px-7 py-4 rounded-full font-black uppercase tracking-[0.2em] text-[10px] flex items-center group active:scale-95 transition-all hover:bg-brand-cyan shadow-lg"
               >
-                <div className="w-9 h-9 rounded-full bg-brand-gold/20 flex items-center justify-center mr-4 group-hover:bg-brand-black transition-colors">
-                  <Camera size={16} className="text-brand-gold" />
+                <div className="w-9 h-9 rounded-full bg-brand-cyan/20 flex items-center justify-center mr-4 group-hover:bg-brand-black transition-colors">
+                  <Camera size={16} className="text-brand-cyan" />
                 </div>
                 <span>Start Photo Project</span>
                 <ArrowUpRight size={12} className="ml-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform opacity-50" />
@@ -82,89 +83,55 @@ export default function FloatingActionHub() {
             </div>
           </motion.div>
 
-          {/* MOBILE: Right-Side Midpoint Hub (Appears when stopped) */}
+          {/* MOBILE: Centered Bottom Nav Bar */}
           <motion.div
-            initial={{ x: 100, opacity: 0 }}
+            initial={{ y: 100, opacity: 0 }}
             animate={{ 
-              x: (!isScrolling || isOpen) ? 0 : 80, 
-              opacity: 1,
-              y: "-50%" 
+              y: isScrolling && !isOpen ? 120 : 0, 
+              opacity: 1 
             }}
-            exit={{ x: 100, opacity: 0 }}
-            transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            className="fixed top-1/2 right-0 z-[70] md:hidden flex flex-col items-end space-y-4 pr-3 pointer-events-none"
+            exit={{ y: 100, opacity: 0 }}
+            className="fixed bottom-6 left-0 right-0 z-[70] md:hidden px-4 pointer-events-none"
           >
-            {/* Action Options */}
-            <AnimatePresence>
-              {isOpen && (
-                <motion.div
-                  initial={{ opacity: 0, x: 20, scale: 0.8 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  exit={{ opacity: 0, x: 20, scale: 0.8 }}
-                  className="flex flex-col items-end space-y-3 mb-2 pointer-events-auto"
-                >
-                  {/* Video Option */}
-                  <div className="flex items-center">
-                    <span className="bg-white px-3 py-1.5 rounded-sm text-[8px] font-black uppercase tracking-widest text-brand-black shadow-xl mr-3 border border-gray-100">
-                      Cinematography
-                    </span>
-                    <Link
-                      to="/contact?type=video"
-                      onClick={() => setIsOpen(false)}
-                      className="w-12 h-12 bg-brand-gold text-white rounded-full flex items-center justify-center shadow-2xl active:scale-95 transition-all"
-                    >
-                      <Video size={18} />
-                    </Link>
-                  </div>
+            <div className="bg-white/90 backdrop-blur-xl border border-white/20 shadow-[0_15px_50px_rgba(0,0,0,0.15)] rounded-full px-2 py-2 flex items-center justify-between pointer-events-auto max-w-sm mx-auto">
+              <Link 
+                to="/" 
+                className={`flex flex-col items-center justify-center w-12 h-12 rounded-full transition-all ${location.pathname === '/' ? 'text-brand-cyan bg-gray-50' : 'text-gray-400'}`}
+              >
+                <div className="text-[10px] font-black uppercase tracking-tighter">Home</div>
+              </Link>
+              
+              <Link 
+                to="/video" 
+                className={`flex items-center gap-2 px-4 h-11 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
+                  location.pathname === '/video' 
+                    ? 'bg-brand-cyan text-black shadow-lg shadow-brand-cyan/20' 
+                    : 'text-gray-700'
+                }`}
+              >
+                <Video size={14} />
+                <span>Video</span>
+              </Link>
 
-                  {/* Photo Option */}
-                  <div className="flex items-center">
-                    <span className="bg-white px-3 py-1.5 rounded-sm text-[8px] font-black uppercase tracking-widest text-brand-black shadow-xl mr-3 border border-gray-100">
-                      Photography
-                    </span>
-                    <Link
-                      to="/contact?type=photo"
-                      onClick={() => setIsOpen(false)}
-                      className="w-12 h-12 bg-brand-black text-white rounded-full flex items-center justify-center shadow-2xl active:scale-95 transition-all border border-brand-gold/30"
-                    >
-                      <Camera size={18} className="text-brand-gold" />
-                    </Link>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+              <Link 
+                to="/photo" 
+                className={`flex items-center gap-2 px-4 h-11 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
+                  location.pathname === '/photo' 
+                    ? 'bg-black text-white shadow-lg' 
+                    : 'text-gray-700'
+                }`}
+              >
+                <Camera size={14} />
+                <span>Photo</span>
+              </Link>
 
-            {/* Main Trigger Hub */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className={`
-                pointer-events-auto relative w-12 h-12 rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.3)] 
-                transition-all duration-500 group active:scale-90
-                ${isOpen ? 'bg-brand-black rotate-90' : 'bg-brand-gold'}
-              `}
-            >
-              {isOpen ? (
-                <X size={18} className="text-brand-gold" />
-              ) : (
-                <div className="relative flex items-center justify-center">
-                  <Plus size={18} className="text-white" />
-                  {!isScrolling && (
-                    <motion.div 
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      className="absolute -left-2 top-0 -translate-x-full bg-brand-black text-white px-3 py-2 text-[8px] font-black uppercase tracking-widest rounded-sm flex items-center shadow-2xl whitespace-nowrap"
-                    >
-                      Start Project
-                    </motion.div>
-                  )}
-                </div>
-              )}
-
-              {/* Pulsing ring for visibility when stopped */}
-              {!isOpen && !isScrolling && (
-                <span className="absolute inset-0 rounded-full bg-brand-gold/40 animate-ping scale-110" />
-              )}
-            </button>
+              <Link 
+                to="/contact" 
+                className={`flex flex-col items-center justify-center w-12 h-12 rounded-full transition-all bg-brand-cyan text-white shadow-lg active:scale-95`}
+              >
+                <Plus size={20} />
+              </Link>
+            </div>
           </motion.div>
         </>
       )}

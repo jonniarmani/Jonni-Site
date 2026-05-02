@@ -146,9 +146,7 @@ export const HOME_CONTENT = {
       answer: "We provide broadcast-quality recruitment media and athletic identity reels for elite performers at IMG Academy and other professional training facilities in Southwest Florida."
     }
   ],
-  heroVisuals: [
-    { url: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=2000", type: 'image', category: 'Sports' }
-  ]
+  heroVisuals: []
 };
 
 

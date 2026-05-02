@@ -44,6 +44,31 @@ export default function HeroMontage() {
     return () => clearInterval(timer);
   }, [visuals.length]);
 
+  const getVideoType = (url: string) => {
+    if (url.includes('youtube.com') || url.includes('youtu.be')) return 'youtube';
+    if (url.includes('vimeo.com')) return 'vimeo';
+    return 'direct';
+  };
+
+  const getEmbedUrl = (url: string, type: string) => {
+    if (type === 'youtube') {
+      let id = "";
+      if (url.includes('v=')) {
+        id = url.split('v=').pop()?.split('&')[0] || "";
+      } else if (url.includes('youtu.be/')) {
+        id = url.split('youtu.be/').pop()?.split('?')[0] || "";
+      } else {
+        id = url.split('/').pop()?.split('?')[0] || "";
+      }
+      return `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&rel=0&controls=0&loop=1&playlist=${id}`;
+    }
+    if (type === 'vimeo') {
+      const id = url.split('/').pop()?.split('?')[0];
+      return `https://player.vimeo.com/video/${id}?autoplay=1&muted=1&background=1`;
+    }
+    return url;
+  };
+
   if (!visuals || visuals.length === 0) return null;
 
   return (
@@ -59,21 +84,32 @@ export default function HeroMontage() {
         >
           {visuals[index].type === 'video' ? (
             visuals[index].url && (
-              <video
-                src={visuals[index].url}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-                crossOrigin="anonymous"
-                {...(index === 0 ? { fetchPriority: "high" } : {})}
-                className="w-full h-full object-cover"
-                style={{ 
-                  objectPosition: visuals[index].objectPosition || 'center center',
-                  filter: `brightness(${visuals[index].brightness ?? 100}%)`
-                }}
-              />
+              <div className="w-full h-full">
+                {getVideoType(visuals[index].url) === 'direct' ? (
+                  <video
+                    src={visuals[index].url}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    crossOrigin="anonymous"
+                    {...(index === 0 ? { fetchPriority: "high" } : {})}
+                    className="w-full h-full object-cover"
+                    style={{ 
+                      objectPosition: visuals[index].objectPosition || 'center center',
+                      filter: `brightness(${visuals[index].brightness ?? 100}%)`
+                    }}
+                  />
+                ) : (
+                  <iframe
+                    src={getEmbedUrl(visuals[index].url, getVideoType(visuals[index].url))}
+                    className="w-full h-full border-0 pointer-events-none scale-110"
+                    allow="autoplay; fullscreen"
+                    title="Hero Video"
+                  />
+                )}
+              </div>
             )
           ) : (
             visuals[index].url && (

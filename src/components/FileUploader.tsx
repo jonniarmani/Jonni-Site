@@ -133,17 +133,17 @@ export default function FileUploader({ onUploadComplete, folder = 'uploads', acc
           disabled={uploading}
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10"
         />
-        <div className={`border-2 border-dashed p-4 rounded-sm transition-colors flex flex-col items-center justify-center space-y-2 ${uploading ? 'bg-gray-50 border-brand-gold' : 'bg-white border-gray-200 hover:border-brand-gold'}`}>
+        <div className={`border-2 border-dashed p-4 rounded-sm transition-colors flex flex-col items-center justify-center space-y-2 ${uploading ? 'bg-gray-50 border-brand-cyan' : 'bg-white border-gray-200 hover:border-brand-cyan'}`}>
           {uploading ? (
             <>
-              <Loader2 className="animate-spin text-brand-gold" size={24} />
+              <Loader2 className="animate-spin text-brand-cyan" size={24} />
               <div className="w-full bg-gray-200 h-1 rounded-full overflow-hidden mt-2">
                 <div 
-                  className="bg-brand-gold h-full transition-all duration-300" 
+                  className="bg-brand-cyan h-full transition-all duration-300" 
                   style={{ width: `${progress}%` }}
                 />
               </div>
-              <span className="text-[10px] font-bold text-brand-gold uppercase">{Math.round(progress)}% Uploading...</span>
+              <span className="text-[10px] font-bold text-brand-cyan uppercase">{Math.round(progress)}% Uploading...</span>
             </>
           ) : (
             <>

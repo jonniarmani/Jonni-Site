@@ -27,7 +27,7 @@ export const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
   if (!src) {
     return (
       <div className={`bg-zinc-900 flex items-center justify-center ${className}`}>
-         <span className="text-brand-gold text-[8px] font-black uppercase tracking-[0.3em] opacity-20">Jonni Armani Media</span>
+         <span className="text-brand-cyan text-[8px] font-black uppercase tracking-[0.3em] opacity-20">Jonni Armani Media</span>
       </div>
     );
   }

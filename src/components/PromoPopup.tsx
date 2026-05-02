@@ -43,10 +43,10 @@ export default function PromoPopup() {
             </button>
 
             <div className="flex items-center space-x-4 mb-8">
-              <div className="w-12 h-12 bg-brand-gold flex items-center justify-center rounded-sm">
+              <div className="w-12 h-12 bg-brand-cyan flex items-center justify-center rounded-sm">
                 <Gift className="text-black" size={24} />
               </div>
-              <div className="h-1 w-20 bg-brand-gold" />
+              <div className="h-1 w-20 bg-brand-cyan" />
             </div>
 
             <h2 className="text-4xl md:text-5xl font-display font-bold uppercase tracking-tighter mb-6 italic leading-none">
@@ -60,14 +60,14 @@ export default function PromoPopup() {
             <div className="space-y-6">
               <div className="bg-brand-black/50 border border-white/10 p-6 flex flex-col items-center justify-center space-y-2">
                 <span className="text-[10px] uppercase font-black tracking-[0.3em] text-gray-500">Access Code</span>
-                <span className="text-3xl font-display font-bold tracking-widest text-brand-gold select-all uppercase">
+                <span className="text-3xl font-display font-bold tracking-widest text-brand-cyan select-all uppercase">
                   {content.promo.code}
                 </span>
               </div>
               
               <button
                 onClick={handleClose}
-                className="w-full bg-brand-gold text-black py-5 font-black uppercase tracking-[0.2em] text-xs hover:bg-white transition-all"
+                className="w-full bg-brand-cyan text-black py-5 font-black uppercase tracking-[0.2em] text-xs hover:bg-white transition-all"
               >
                 Claim This Offer
               </button>

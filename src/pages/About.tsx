@@ -18,7 +18,7 @@ export default function About() {
           <motion.span 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-brand-gold uppercase tracking-[0.4em] text-xs font-bold mb-8 block"
+            className="text-brand-cyan uppercase tracking-[0.4em] text-xs font-bold mb-8 block"
           >
             {about.heroTitle}
           </motion.span>
@@ -27,7 +27,7 @@ export default function About() {
               {about.heroSubtitle.split(' ')[0]} <span className="italic font-light">{about.heroSubtitle.split(' ').slice(1).join(' ')}</span>
             </h1>
           </div>
-          <div className="w-24 h-1 bg-brand-gold mx-auto" />
+          <div className="w-24 h-1 bg-brand-cyan mx-auto" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
@@ -48,11 +48,11 @@ export default function About() {
                 <p className="text-xl font-display font-bold">{brand.name}</p>
               </div>
               <div className="flex space-x-6">
-                 <a href={brand.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-brand-black hover:text-brand-gold transition-colors flex items-center space-x-2 font-bold uppercase tracking-widest text-xs">
+                 <a href={brand.socials.instagram} target="_blank" rel="noopener noreferrer" className="text-brand-black hover:text-brand-cyan transition-colors flex items-center space-x-2 font-bold uppercase tracking-widest text-xs">
                     <Instagram size={18} />
                     <span>Follow Journey</span>
                  </a>
-                 <a href={brand.socials.vimeo} target="_blank" rel="noopener noreferrer" className="text-brand-black hover:text-brand-gold transition-colors flex items-center space-x-2 font-bold uppercase tracking-widest text-xs">
+                 <a href={brand.socials.vimeo} target="_blank" rel="noopener noreferrer" className="text-brand-black hover:text-brand-cyan transition-colors flex items-center space-x-2 font-bold uppercase tracking-widest text-xs">
                     <Video size={18} />
                     <span>Watch Work</span>
                  </a>
@@ -73,11 +73,11 @@ export default function About() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
               <div className="bg-brand-gray p-8">
-                <h3 className="text-brand-gold text-lg mb-4 uppercase tracking-widest font-bold">The Approach</h3>
+                <h3 className="text-brand-cyan text-lg mb-4 uppercase tracking-widest font-bold">The Approach</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">I don't just "film." I architect visual assets. Every shot is calculated to reinforce your brand's authority, utilizing broadcast-quality gear and an editorial eye that strips away the noise.</p>
               </div>
               <div className="bg-brand-gray p-8">
-                <h3 className="text-brand-gold text-lg mb-4 uppercase tracking-widest font-bold">The Result</h3>
+                <h3 className="text-brand-cyan text-lg mb-4 uppercase tracking-widest font-bold">The Result</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">Whether it's a 30-second sports highlight or a 10-minute medical documentary, the goal is the same: A visual experience that leaves your competition in the background.</p>
               </div>
             </div>
@@ -86,7 +86,7 @@ export default function About() {
               {about.storyText2}
             </p>
 
-            <blockquote className="border-l-4 border-brand-gold pl-6 md:pl-10 py-4 my-10 md:my-16 italic text-2xl md:text-3xl font-display font-light text-brand-black">
+            <blockquote className="border-l-4 border-brand-cyan pl-6 md:pl-10 py-4 my-10 md:my-16 italic text-2xl md:text-3xl font-display font-light text-brand-black">
               "{about.quote}"
             </blockquote>
 
@@ -98,7 +98,7 @@ export default function About() {
             <div className="my-24 space-y-12">
               <div className="flex items-center space-x-4 mb-8">
                 <div className="h-[1px] flex-grow bg-gray-200" />
-                <h3 className="text-xs font-black uppercase tracking-[0.5em] text-brand-gold">Behind the Lens</h3>
+                <h3 className="text-xs font-black uppercase tracking-[0.5em] text-brand-cyan">Behind the Lens</h3>
                 <div className="h-[1px] flex-grow bg-gray-200" />
               </div>
               
@@ -134,11 +134,11 @@ export default function About() {
 
                {/* Integrated Services Area */}
                <div className="bg-brand-gray p-12 space-y-8">
-                  <h3 className="text-xs uppercase tracking-widest font-black text-brand-gold">Current Specializations</h3>
+                  <h3 className="text-xs uppercase tracking-widest font-black text-brand-cyan">Current Specializations</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                      {["Cinematic Brand Stories", "Sports & Event Media", "Healthcare Production", "Corporate Identity"].map(service => (
                        <div key={service} className="flex items-center space-x-4">
-                          <div className="w-1.5 h-1.5 bg-brand-gold rounded-full" />
+                          <div className="w-1.5 h-1.5 bg-brand-cyan rounded-full" />
                           <span className="text-sm font-bold uppercase tracking-widest text-brand-black">{service}</span>
                        </div>
                      ))}
@@ -152,7 +152,7 @@ export default function About() {
             </div>
 
             <div className="mt-12 flex flex-col pt-12 border-t border-brand-black/5">
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-gold mb-3">Service Availability</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-cyan mb-3">Service Availability</span>
               <p className="text-gray-500 text-[10px] uppercase font-bold tracking-widest leading-relaxed">
                 Now Boarding Multi-Channel Production Projects in Sarasota and Bradenton for Q4.
               </p>

@@ -43,14 +43,14 @@ export default function App() {
       <CodeInjection />
       <Router>
         <ScrollToTop />
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-brand-gold focus:text-white focus:font-bold focus:uppercase focus:tracking-widest focus:rounded-full">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-brand-cyan focus:text-white focus:font-bold focus:uppercase focus:tracking-widest focus:rounded-full">
           Skip to content
         </a>
-        <div className="flex flex-col min-h-screen selection:bg-brand-gold selection:text-white relative">
+        <div className="flex flex-col min-h-screen selection:bg-brand-cyan selection:text-white relative">
           
           {/* Scroll Progress HUD */}
           <motion.div
-            className="fixed top-0 left-0 right-0 h-[2px] bg-brand-gold z-[101] origin-left"
+            className="fixed top-0 left-0 right-0 h-[2px] bg-brand-cyan z-[101] origin-left"
             style={{ scaleX: useScroll().scrollYProgress }}
           />
 
@@ -59,7 +59,7 @@ export default function App() {
           <FloatingActionHub />
           <main id="main-content" className="flex-grow">
             <PageTransition>
-              <Suspense fallback={<div className="h-screen w-full bg-brand-black flex items-center justify-center"><div className="w-8 h-8 border-2 border-brand-gold border-t-transparent rounded-full animate-spin"></div></div>}>
+              <Suspense fallback={<div className="h-screen w-full bg-brand-black flex items-center justify-center"><div className="w-8 h-8 border-2 border-brand-cyan border-t-transparent rounded-full animate-spin"></div></div>}>
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />

@@ -12,7 +12,7 @@ export default function Terms() {
         <Link to="/" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-brand-black mb-12 transition-colors">
           <ArrowLeft size={14} className="mr-2" /> Back Home
         </Link>
-        <h1 className="text-4xl sm:text-6xl font-display font-bold tracking-tighter uppercase mb-12">Terms of <span className="text-brand-gold italic">Service</span></h1>
+        <h1 className="text-4xl sm:text-6xl font-display font-bold tracking-tighter uppercase mb-12">Terms of <span className="text-brand-cyan italic">Service</span></h1>
         
         <div className="prose prose-zinc max-w-none space-y-8 text-gray-600">
           <section>

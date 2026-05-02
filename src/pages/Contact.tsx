@@ -65,7 +65,7 @@ export default function Contact() {
           <motion.span 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-brand-gold uppercase tracking-[0.4em] text-xs font-bold mb-8 block"
+            className="text-brand-cyan uppercase tracking-[0.4em] text-xs font-bold mb-8 block"
           >
             {content.contact.subtitle}
           </motion.span>
@@ -89,30 +89,30 @@ export default function Contact() {
           <div className="lg:col-span-5 space-y-20">
             <div className="space-y-12">
                <div className="flex items-start space-x-6">
-                  <div className="w-12 h-12 bg-brand-gray flex items-center justify-center text-brand-gold shrink-0">
+                  <div className="w-12 h-12 bg-brand-gray flex items-center justify-center text-brand-cyan shrink-0">
                      <Mail size={20} />
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-widest font-black text-gray-400 mb-2">Direct Channel</p>
-                    <a href={`mailto:${content.contact.email}`} className="text-2xl font-display font-bold hover:text-brand-gold transition-colors">{content.contact.email}</a>
+                    <a href={`mailto:${content.contact.email}`} className="text-2xl font-display font-bold hover:text-brand-cyan transition-colors">{content.contact.email}</a>
                   </div>
                </div>
                <div className="flex items-start space-x-6">
-                  <div className="w-12 h-12 bg-brand-gray flex items-center justify-center text-brand-gold shrink-0">
+                  <div className="w-12 h-12 bg-brand-gray flex items-center justify-center text-brand-cyan shrink-0">
                      <Phone size={20} />
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-widest font-black text-gray-400 mb-2">Voice & Message</p>
-                    <a href={`tel:${content.contact.phone.replace(/\./g, '')}`} className="text-2xl font-display font-bold hover:text-brand-gold transition-colors">{content.contact.phone}</a>
+                    <a href={`tel:${content.contact.phone.replace(/\./g, '')}`} className="text-2xl font-display font-bold hover:text-brand-cyan transition-colors">{content.contact.phone}</a>
                   </div>
                </div>
                <div className="flex items-start space-x-6">
-                  <div className="w-12 h-12 bg-brand-gray flex items-center justify-center text-brand-gold shrink-0">
+                  <div className="w-12 h-12 bg-brand-gray flex items-center justify-center text-brand-cyan shrink-0">
                      <Calendar size={20} />
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-widest font-black text-gray-400 mb-2">Live Availability</p>
-                    <Link to="/booking" className="text-2xl font-display font-bold hover:text-brand-gold transition-colors inline-flex items-center group">
+                    <Link to="/booking" className="text-2xl font-display font-bold hover:text-brand-cyan transition-colors inline-flex items-center group">
                       Book a Session <ArrowRight size={20} className="ml-3 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
@@ -122,7 +122,7 @@ export default function Contact() {
             <div className="bg-brand-black text-white p-12 space-y-8">
                <h2 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-500">Location Focus</h2>
                <p className="text-lg font-light leading-relaxed">
-                  Headquartered in <span className="text-brand-gold font-bold">{content.contact.address}</span>. {content.contact.availability}
+                  Headquartered in <span className="text-brand-cyan font-bold">{content.contact.address}</span>. {content.contact.availability}
                </p>
                <div className="text-[10px] uppercase tracking-widest font-medium text-gray-500 border-t border-white/10 pt-8">
                   Commercial • Sports • Healthcare • Brand Stories
@@ -138,7 +138,7 @@ export default function Contact() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="bg-brand-gray p-16 text-center space-y-8"
               >
-                <div className="w-20 h-20 bg-brand-black text-brand-gold flex items-center justify-center mx-auto rounded-full">
+                <div className="w-20 h-20 bg-brand-black text-brand-cyan flex items-center justify-center mx-auto rounded-full">
                   <CheckCircle size={40} />
                 </div>
                 <h2 className="text-3xl font-display font-bold uppercase tracking-tight">Transmission Received</h2>
@@ -147,7 +147,7 @@ export default function Contact() {
                 </p>
                 <button 
                   onClick={() => setFormState("idle")}
-                  className="text-brand-black font-bold uppercase tracking-widest text-xs border-b-2 border-brand-gold pb-1"
+                  className="text-brand-black font-bold uppercase tracking-widest text-xs border-b-2 border-brand-cyan pb-1"
                 >
                   Send Another Message
                 </button>
@@ -179,7 +179,7 @@ export default function Contact() {
                       id="name"
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className="w-full bg-brand-gray px-6 py-4 outline-none border-b-2 border-transparent focus:border-brand-gold transition-all font-medium text-base" 
+                      className="w-full bg-brand-gray px-6 py-4 outline-none border-b-2 border-transparent focus:border-brand-cyan transition-all font-medium text-base" 
                       placeholder="Jane Doe"
                     />
                   </div>
@@ -191,7 +191,7 @@ export default function Contact() {
                       id="email"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className="w-full bg-brand-gray px-6 py-4 outline-none border-b-2 border-transparent focus:border-brand-gold transition-all font-medium text-base" 
+                      className="w-full bg-brand-gray px-6 py-4 outline-none border-b-2 border-transparent focus:border-brand-cyan transition-all font-medium text-base" 
                       placeholder="jane@company.com"
                     />
                   </div>
@@ -204,7 +204,7 @@ export default function Contact() {
                     value={selectedService}
                     onChange={(e) => setSelectedService(e.target.value)}
                     required
-                    className="w-full bg-brand-gray px-6 py-4 outline-none border-b-2 border-transparent focus:border-brand-gold transition-all font-medium appearance-none text-base"
+                    className="w-full bg-brand-gray px-6 py-4 outline-none border-b-2 border-transparent focus:border-brand-cyan transition-all font-medium appearance-none text-base"
                   >
                     <option value="">Select Service Type...</option>
                     <optgroup label="Cinematography / Video">
@@ -236,7 +236,7 @@ export default function Contact() {
                     rows={6}
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    className="w-full bg-brand-gray px-6 py-4 outline-none border-b-2 border-transparent focus:border-brand-gold transition-all font-medium resize-none text-base" 
+                    className="w-full bg-brand-gray px-6 py-4 outline-none border-b-2 border-transparent focus:border-brand-cyan transition-all font-medium resize-none text-base" 
                     placeholder="Briefly describe your objectives, timeline, and vision..."
                   ></textarea>
                 </div>
@@ -244,7 +244,7 @@ export default function Contact() {
                 <button 
                   type="submit"
                   disabled={formState === "submitting"}
-                  className="w-full bg-brand-black text-white py-6 font-bold uppercase tracking-[0.4em] text-xs hover:bg-brand-gold transition-all disabled:opacity-50"
+                  className="w-full bg-brand-black text-white py-6 font-bold uppercase tracking-[0.4em] text-xs hover:bg-brand-cyan transition-all disabled:opacity-50"
                 >
                   {formState === "submitting" ? "Processing..." : "Initiate Connection"}
                 </button>
@@ -257,14 +257,14 @@ export default function Contact() {
         <div className="mt-24 sm:mt-40 pt-24 sm:pt-40 border-t border-gray-100">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <div className="order-2 lg:order-1">
-                 <h2 className="text-3xl sm:text-4xl font-display font-medium mb-10 tracking-tight leading-tight uppercase italic">{content.about.storyTitle.split(' ').slice(0, -1).join(' ')} <br/><span className="text-brand-gold not-italic font-bold">{content.about.storyTitle.split(' ').slice(-1)}</span></h2>
+                 <h2 className="text-3xl sm:text-4xl font-display font-medium mb-10 tracking-tight leading-tight uppercase italic">{content.about.storyTitle.split(' ').slice(0, -1).join(' ')} <br/><span className="text-brand-cyan not-italic font-bold">{content.about.storyTitle.split(' ').slice(-1)}</span></h2>
                  <p className="text-gray-500 text-lg font-light leading-relaxed mb-8">
                     {content.about.storyText1}
                  </p>
                  <p className="text-gray-600 font-medium mb-12">
                     "{content.about.quote}"
                  </p>
-                 <Link to="/about" className="inline-flex items-center text-brand-black font-bold uppercase tracking-widest text-xs border-b-2 border-brand-gold pb-1 hover:border-brand-black transition-colors">
+                 <Link to="/about" className="inline-flex items-center text-brand-black font-bold uppercase tracking-widest text-xs border-b-2 border-brand-cyan pb-1 hover:border-brand-black transition-colors">
                     Read the full story <ArrowRight size={14} className="ml-2" />
                  </Link>
               </div>

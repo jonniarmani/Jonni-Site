@@ -30,12 +30,12 @@ function PhotoProject({ item }: { item: PhotoItem }) {
       <div className="lg:col-span-4 space-y-8">
         <div className="space-y-4">
           <div className="flex justify-between items-baseline border-b border-gray-100 pb-2">
-            <span className="text-brand-gold uppercase tracking-[0.3em] text-[10px] font-black">{item.category}</span>
+            <span className="text-brand-cyan uppercase tracking-[0.3em] text-[10px] font-black">{item.category}</span>
             <span className="text-gray-400 text-[9px] uppercase font-medium">
               {item.client} {item.year && `• ${item.year}`}
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tighter uppercase group-hover:text-brand-gold transition-colors leading-[0.9]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tighter uppercase group-hover:text-brand-cyan transition-colors leading-[0.9]">
             {item.title}
           </h2>
         </div>
@@ -47,7 +47,7 @@ function PhotoProject({ item }: { item: PhotoItem }) {
         {item.url && item.url !== "#" && (
           <Link 
             to={item.url} 
-            className="inline-flex items-center gap-2 text-brand-gold uppercase font-black text-[10px] tracking-widest bg-brand-gold/10 px-4 py-2 rounded-sm border border-brand-gold/20 hover:bg-brand-gold hover:text-white transition-all mt-4"
+            className="inline-flex items-center gap-2 text-brand-cyan uppercase font-black text-[10px] tracking-widest bg-brand-cyan/10 px-4 py-2 rounded-sm border border-brand-cyan/20 hover:bg-brand-cyan hover:text-white transition-all mt-4"
           >
             Visit Detailed Gallery <ArrowRight size={14} />
           </Link>
@@ -93,7 +93,7 @@ function PhotoProject({ item }: { item: PhotoItem }) {
               
               <div className="absolute bottom-6 left-6">
                  <p className="text-white/40 text-[9px] uppercase tracking-[0.5em] font-black">Frame {activeIdx + 1}</p>
-                 <div className="w-12 h-[1px] bg-brand-gold mt-2" />
+                 <div className="w-12 h-[1px] bg-brand-cyan mt-2" />
               </div>
             </motion.div>
           </AnimatePresence>
@@ -105,7 +105,7 @@ function PhotoProject({ item }: { item: PhotoItem }) {
             <button 
               key={i} 
               onClick={() => setActiveIdx(i)}
-              className={`flex-shrink-0 w-24 sm:w-32 aspect-[4/5] bg-zinc-100 overflow-hidden relative cursor-pointer transition-all duration-300 border-2 ${activeIdx === i ? 'border-brand-gold ring-4 ring-brand-gold/10' : 'border-transparent opacity-60 hover:opacity-100'}`}
+              className={`flex-shrink-0 w-24 sm:w-32 aspect-[4/5] bg-zinc-100 overflow-hidden relative cursor-pointer transition-all duration-300 border-2 ${activeIdx === i ? 'border-brand-cyan ring-4 ring-brand-cyan/10' : 'border-transparent opacity-60 hover:opacity-100'}`}
             >
               {img && (
                 <ResponsiveImage 
@@ -116,7 +116,7 @@ function PhotoProject({ item }: { item: PhotoItem }) {
                 />
               )}
               {activeIdx === i && (
-                <div className="absolute inset-0 bg-brand-gold/20" />
+                <div className="absolute inset-0 bg-brand-cyan/20" />
               )}
             </button>
           ))}
@@ -163,7 +163,7 @@ export default function Photo() {
             <motion.span 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-brand-gold uppercase tracking-[0.4em] text-xs font-bold mb-8 block"
+              className="text-brand-cyan uppercase tracking-[0.4em] text-xs font-bold mb-8 block"
             >
               Bradenton & Sarasota Photography
             </motion.span>
@@ -183,7 +183,7 @@ export default function Photo() {
                 key={cat}
                 onClick={() => setFilter(cat)}
                 className={`text-[10px] uppercase tracking-[0.3em] font-black pb-3 border-b-2 transition-all ${
-                  filter === cat ? "border-brand-gold text-brand-black" : "border-transparent text-gray-300 hover:text-brand-gold"
+                  filter === cat ? "border-brand-cyan text-brand-black" : "border-transparent text-gray-300 hover:text-brand-cyan"
                 }`}
               >
                 {cat}
@@ -207,13 +207,13 @@ export default function Photo() {
         </div>
 
         <section className="mt-24 sm:mt-60 border-t border-gray-100 pt-16 sm:pt-32 text-center">
-          <h2 className="text-3xl sm:text-4xl font-display font-bold mb-8 uppercase tracking-tighter italic">Secure Your <span className="not-italic text-brand-gold">Visual Legacy?</span></h2>
+          <h2 className="text-3xl sm:text-4xl font-display font-bold mb-8 uppercase tracking-tighter italic">Secure Your <span className="not-italic text-brand-cyan">Visual Legacy?</span></h2>
           <div className="flex flex-col items-center gap-8">
-            <Link to="/contact?type=photo" className="bg-brand-black text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-gold transition-colors inline-flex items-center group">
+            <Link to="/contact?type=photo" className="bg-brand-black text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-brand-cyan transition-colors inline-flex items-center group">
               Book Photography <ArrowRight size={18} className="ml-3 group-hover:translate-x-1 transition-transform" />
             </Link>
             <div className="max-w-lg">
-              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-gold mb-4 block">Tactical Photography</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.5em] text-brand-cyan mb-4 block">Tactical Photography</span>
               <p className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.2em] mx-auto leading-relaxed">
                 Premium Commercial Photography & Brand Identity services across Sarasota, Bradenton, and the Tampa Bay metropolis.
               </p>

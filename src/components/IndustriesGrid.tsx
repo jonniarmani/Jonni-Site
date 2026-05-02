@@ -16,7 +16,7 @@ export default function IndustriesGrid({ industries }: { industries?: Industry[]
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div className="max-w-2xl">
-            <span className="text-brand-gold font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">
+            <span className="text-brand-cyan font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">
               Strategic Vertical Authority
             </span>
             <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight uppercase leading-none italic">
@@ -26,7 +26,7 @@ export default function IndustriesGrid({ industries }: { industries?: Industry[]
               Tailored cinematic solutions for high-stakes professions across the Florida Gulf Coast. From Sarasota waterfront estates to Tampa tech headquarters.
             </p>
           </div>
-          <div className="hidden md:flex items-center space-x-4 text-brand-gold opacity-30">
+          <div className="hidden md:flex items-center space-x-4 text-brand-cyan opacity-30">
              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-right">
                 Vertical <br /> Specialist
              </span>
@@ -41,22 +41,22 @@ export default function IndustriesGrid({ industries }: { industries?: Industry[]
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="group relative bg-[#111] p-8 border border-white/5 hover:border-brand-gold/30 transition-all duration-500 overflow-hidden"
+              className="group relative bg-[#111] p-8 border border-white/5 hover:border-brand-cyan/30 transition-all duration-500 overflow-hidden"
             >
               <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500">
-                <ArrowUpRight size={20} className="text-brand-gold" />
+                <ArrowUpRight size={20} className="text-brand-cyan" />
               </div>
-              <span className="text-[8px] font-black text-brand-gold mb-4 block tracking-[0.3em] opacity-50 group-hover:opacity-100 transition-opacity">
+              <span className="text-[8px] font-black text-brand-cyan mb-4 block tracking-[0.3em] opacity-50 group-hover:opacity-100 transition-opacity">
                 {String(index + 1).padStart(2, '0')}
               </span>
-              <h3 className="text-xl font-display font-bold uppercase tracking-tight mb-3 group-hover:text-brand-gold transition-colors">
+              <h3 className="text-xl font-display font-bold uppercase tracking-tight mb-3 group-hover:text-brand-cyan transition-colors">
                 {industry.name}
               </h3>
               <p className="text-gray-500 text-xs leading-relaxed group-hover:text-gray-300 transition-colors">
                 {industry.description}
               </p>
               
-              <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-brand-gold group-hover:w-full transition-all duration-700" />
+              <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-brand-cyan group-hover:w-full transition-all duration-700" />
             </motion.div>
           ))}
         </div>

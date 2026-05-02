@@ -136,7 +136,7 @@ export default function Portal() {
 
   if (loading) return (
     <div className="min-h-screen pt-40 flex flex-col items-center justify-center bg-zinc-50">
-      <Loader2 className="w-12 h-12 text-brand-gold animate-spin mb-4" />
+      <Loader2 className="w-12 h-12 text-brand-cyan animate-spin mb-4" />
       <span className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">Synchronizing Visual Core...</span>
     </div>
   );
@@ -147,7 +147,7 @@ export default function Portal() {
         <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-6" />
         <h2 className="text-2xl font-display font-bold uppercase tracking-tight mb-4">Transmission Error</h2>
         <p className="text-gray-500 text-sm font-medium mb-8 leading-relaxed">{error}</p>
-        <Link to="/" className="inline-block bg-brand-black text-white px-8 py-4 text-[10px] font-black uppercase tracking-widest hover:bg-brand-gold transition-colors">
+        <Link to="/" className="inline-block bg-brand-black text-white px-8 py-4 text-[10px] font-black uppercase tracking-widest hover:bg-brand-cyan transition-colors">
           Return to Hub
         </Link>
       </div>
@@ -159,7 +159,7 @@ export default function Portal() {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12">
-            <h1 className="text-3xl sm:text-5xl font-display font-bold uppercase tracking-tight">Client <span className="text-brand-gold italic">Transmission Portal</span></h1>
+            <h1 className="text-3xl sm:text-5xl font-display font-bold uppercase tracking-tight">Client <span className="text-brand-cyan italic">Transmission Portal</span></h1>
             <p className="text-gray-400 text-xs font-bold uppercase tracking-widest mt-2 flex items-center">
               <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse" />
               Secure Protocol Active • {relatedData?.title || 'System Resource'}
@@ -171,11 +171,11 @@ export default function Portal() {
             <div className="lg:w-1/3 space-y-8">
               <div className="bg-white border border-gray-100 p-8 shadow-sm">
                 <div className="flex items-center space-x-3 mb-8">
-                  <div className="w-10 h-10 rounded-full bg-brand-black flex items-center justify-center text-brand-gold">
+                  <div className="w-10 h-10 rounded-full bg-brand-black flex items-center justify-center text-brand-cyan">
                     {relatedType === 'project' ? <Briefcase size={20} /> : <MessageSquare size={20} />}
                   </div>
                   <div>
-                    <span className="text-[8px] font-black uppercase tracking-widest text-brand-gold block">Visual Production Protocol</span>
+                    <span className="text-[8px] font-black uppercase tracking-widest text-brand-cyan block">Visual Production Protocol</span>
                     <h2 className="text-xl font-display font-bold uppercase tracking-tight">{relatedType === 'project' ? 'Active Workflow' : 'Lead Transmission'}</h2>
                   </div>
                 </div>
@@ -194,13 +194,13 @@ export default function Portal() {
                      <div className="pt-6 border-t border-gray-50 space-y-4">
                         <div className="flex justify-between items-end">
                            <label className="text-[8px] uppercase font-black text-gray-400">Execution Progress</label>
-                           <span className="text-xl font-display font-bold text-brand-gold">{relatedData.progress}%</span>
+                           <span className="text-xl font-display font-bold text-brand-cyan">{relatedData.progress}%</span>
                         </div>
                         <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
                            <motion.div 
                               initial={{ width: 0 }}
                               animate={{ width: `${relatedData.progress}%` }}
-                              className="h-full bg-brand-gold"
+                              className="h-full bg-brand-cyan"
                            />
                         </div>
                         <div className="flex justify-between text-[7px] font-black uppercase text-gray-300">
@@ -213,14 +213,14 @@ export default function Portal() {
                            <div className="flex items-center text-[8px] font-black uppercase text-brand-black mb-1">
                              <Activity size={10} className="mr-2" /> Current Phase
                            </div>
-                           <p className="text-xs font-bold uppercase text-brand-gold">{relatedData.status.replace('-', ' ')}</p>
+                           <p className="text-xs font-bold uppercase text-brand-cyan">{relatedData.status.replace('-', ' ')}</p>
                         </div>
                      </div>
                    )}
 
                    <div className="pt-8 border-t border-gray-100">
                       <div className="flex items-center space-x-2 mb-4">
-                         <Star size={14} className="text-brand-gold fill-brand-gold" />
+                         <Star size={14} className="text-brand-cyan fill-brand-cyan" />
                          <span className="text-[10px] font-black uppercase tracking-widest leading-none">Schedule Consultation</span>
                       </div>
                       
@@ -251,12 +251,12 @@ export default function Portal() {
                                  type="datetime-local" 
                                  name="bookingDate"
                                  required
-                                 className="w-full bg-zinc-100 border border-gray-200 p-3 text-[10px] uppercase font-bold outline-none focus:ring-1 focus:ring-brand-gold"
+                                 className="w-full bg-zinc-100 border border-gray-200 p-3 text-[10px] uppercase font-bold outline-none focus:ring-1 focus:ring-brand-cyan"
                                />
                             </div>
                             <button 
                               disabled={sending}
-                              className="w-full bg-brand-black text-white py-3 text-[9px] font-black uppercase tracking-widest hover:bg-brand-gold transition-all shadow-lg shadow-brand-black/10 active:scale-95 disabled:opacity-50"
+                              className="w-full bg-brand-black text-white py-3 text-[9px] font-black uppercase tracking-widest hover:bg-brand-cyan transition-all shadow-lg shadow-brand-black/10 active:scale-95 disabled:opacity-50"
                             >
                                Initiate Booking
                             </button>
@@ -270,22 +270,22 @@ export default function Portal() {
               </div>
               
               <div className="bg-brand-black text-white p-8 space-y-6 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/10 rounded-full -mr-16 -mt-16 blur-2xl" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-cyan/10 rounded-full -mr-16 -mt-16 blur-2xl" />
                 <h3 className="text-[10px] font-black uppercase tracking-widest text-gray-500">Authority Note</h3>
                 <p className="text-xs font-medium leading-relaxed italic opacity-80">
                   "Our goal is absolute visual dominance for your brand. Use this channel to coordinate precisely with our technical leads."
                 </p>
                 <div className="pt-4 flex items-center space-x-3">
-                   <div className="w-8 h-8 rounded-full border border-brand-gold/30 p-1">
+                   <div className="w-8 h-8 rounded-full border border-brand-cyan/30 p-1">
                       {content.about.profileImage ? (
                         <img src={content.about.profileImage} className="w-full h-full object-cover rounded-full grayscale" alt="" />
                       ) : (
-                        <User size={20} className="w-full h-full text-brand-gold" />
+                        <User size={20} className="w-full h-full text-brand-cyan" />
                       )}
                    </div>
                    <div>
                       <span className="block text-[8px] font-black uppercase tracking-widest">Jonni Armani</span>
-                      <span className="block text-[7px] font-bold text-brand-gold uppercase">Production Lead</span>
+                      <span className="block text-[7px] font-bold text-brand-cyan uppercase">Production Lead</span>
                    </div>
                 </div>
               </div>
@@ -336,7 +336,7 @@ export default function Portal() {
               <form onSubmit={handleSend} className="p-6 bg-gray-50 border-t border-gray-100 flex items-center space-x-4">
                 <input 
                   autoFocus
-                  className="flex-1 bg-white border border-gray-200 p-4 text-sm font-medium outline-none focus:ring-2 focus:ring-brand-gold focus:border-brand-gold transition-all" 
+                  className="flex-1 bg-white border border-gray-200 p-4 text-sm font-medium outline-none focus:ring-2 focus:ring-brand-cyan focus:border-brand-cyan transition-all" 
                   placeholder="Input transmission protocol..."
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
@@ -344,7 +344,7 @@ export default function Portal() {
                 <button 
                   type="submit"
                   disabled={sending}
-                  className="w-14 h-14 bg-brand-gold text-white flex items-center justify-center hover:bg-brand-black transition-all shadow-lg active:scale-95 disabled:opacity-50"
+                  className="w-14 h-14 bg-brand-cyan text-white flex items-center justify-center hover:bg-brand-black transition-all shadow-lg active:scale-95 disabled:opacity-50"
                 >
                   <Send size={20} />
                 </button>
