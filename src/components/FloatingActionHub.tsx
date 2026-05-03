@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect, useRef } from "react";
-import { Video, Camera, Plus, X, ArrowUpRight } from "lucide-react";
+import { Video, Camera, Plus, X, ArrowUpRight, Menu as MenuIcon } from "lucide-react";
 
 export default function FloatingActionHub() {
   const location = useLocation();
@@ -125,17 +125,50 @@ export default function FloatingActionHub() {
                 <span>Photo</span>
               </Link>
 
-              <Link 
-                to="/contact" 
-                title="Contact and Inquire about Video/Photo services"
-                aria-label="Contact and Inquire"
-                className={`flex flex-col items-center justify-center w-12 h-12 rounded-full transition-all bg-brand-black text-brand-cyan shadow-lg active:scale-95`}
+              <button 
+                onClick={() => setIsOpen(!isOpen)}
+                className={`flex flex-col items-center justify-center w-12 h-12 rounded-full transition-all ${isOpen ? 'bg-brand-cyan text-black' : 'bg-brand-black text-brand-cyan'} shadow-lg active:scale-95`}
+                aria-label="Toggle mobile menu"
               >
-                <Plus size={20} />
-                <span className="sr-only">Contact Jonni Armani Media for Bookings</span>
-              </Link>
+                {isOpen ? <X size={20} /> : <MenuIcon size={20} />}
+              </button>
             </div>
           </motion.div>
+
+          {/* MOBILE: Expanded Menu */}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                className="fixed bottom-24 left-4 right-4 z-[65] md:hidden"
+              >
+                <div className="bg-brand-black/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl max-w-sm mx-auto">
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { label: "Book Now", href: "/booking", icon: Plus, color: "text-brand-cyan" },
+                      { label: "Services", href: "/services", icon: Video, color: "text-white" },
+                      { label: "About", href: "/about", icon: ArrowUpRight, color: "text-white" },
+                      { label: "Contact", href: "/contact", icon: Plus, color: "text-white" },
+                    ].map((item, idx) => (
+                      <Link
+                        key={idx}
+                        to={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className="flex flex-col items-center justify-center aspect-square bg-white/5 rounded-2xl hover:bg-white/10 transition-colors border border-white/5 group"
+                      >
+                        <item.icon size={24} className={`mb-3 ${item.color} group-hover:scale-110 transition-transform`} />
+                        <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors">
+                          {item.label}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </>
       )}
     </AnimatePresence>
