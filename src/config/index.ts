@@ -25,8 +25,8 @@ export const BRAND = {
 export const SERVICES = [
   {
     id: "commercial",
-    title: "Commercial & Promotional Video",
-    short: "Cinematic Brand Storytelling & Marketing Media.",
+    title: "Brand & Promo Video",
+    short: "Professional Storytelling & Marketing Video.",
     description: "We make professional videos for businesses in Bradenton and Tampa. We tell your brand story with high-quality film. Our videos help you get noticed and grow your team. We work with local shops and large companies to create ads that people remember. Our goal is to make your business look its best. We provide clear, high-end visuals that help you reach more customers. Use our films to show what makes your company special.",
     whoItsFor: "Local businesses and brands that want to grow with professional video.",
     outcome: "Strong videos that help you earn trust and get more clients.",
@@ -35,18 +35,18 @@ export const SERVICES = [
   },
   {
     id: "sports",
-    title: "Elite Athletic & Performance Media",
-    short: "Professional Athletics & High-Energy Sports Media.",
+    title: "Sports & Athlete Media",
+    short: "Professional Sports Media & Recruiting Reels.",
     description: "We record sports action for top athletes in Florida. Our team captures high-speed motion and great still shots. These are perfect for recruiting and social media. We help players at IMG Academy and other local schools tell their athletic story. We make high-energy reels that help scouts see your talent. Our videos help you build a fan base and get brand deals. Get professional media that shows off your hard work and skill.",
-    whoItsFor: "IMG Academy students and pro athletes who want to get noticed.",
+    whoItsFor: "High school and pro athletes who want to get noticed.",
     outcome: "Exciting media for college recruiting and building your social brand.",
     icon: "Zap",
     photoCategory: "Sports"
   },
   {
     id: "healthcare",
-    title: "Medical & Wellness Narrative",
-    short: "Precision Visual Solutions for Medical Professionals.",
+    title: "Medical & Health Video",
+    short: "Visual Solutions for Doctors & Health Groups.",
     description: "We create clear films for doctors and health groups in Sarasota. We focus on patient care and clinical skill. Our videos help medical teams build trust with new patients. We show your surgical work and your office in a professional way. These films help people feel safe and welcome at your practice. We make high-level medical media that is easy to understand. Showcase your expertise with high-quality clinical storytelling.",
     whoItsFor: "Doctors and health clinics that want to build trust with patients.",
     outcome: "Trust-building media that shows your skill and care for patients.",
@@ -55,8 +55,8 @@ export const SERVICES = [
   },
   {
     id: "corporate",
-    title: "Corporate & Identity Portraiture",
-    short: "Premium Executive Headshots & Personal Branding.",
+    title: "Business Portraits",
+    short: "Professional Headshots & Personal Branding.",
     description: "Your photo is often the first thing people see. We take clean, professional headshots for business leaders in Bradenton. Our portraits help you look credible on LinkedIn and your website. We work with law firms and business owners to create a sharp look. A great photo shows that you can be trusted in your field. We help you stand out with a solid visual identity. Get portraits that command respect and show your professional power.",
     whoItsFor: "Business owners and leaders who need a professional look.",
     outcome: "Polished photos that help you look professional and earn respect.",
@@ -64,9 +64,9 @@ export const SERVICES = [
     photoCategory: "Headshots"
   },
   {
-    id: "family",
-    title: "Family Legacy Collective",
-    short: "Cinematic Family Archives & Coastal Portraiture.",
+    id: "familylegacy",
+    title: "Family Photo & Film",
+    short: "Family Beach Portraits & Legacy Films.",
     description: "We help you save family memories with beautiful photos on Florida beaches. We love doing sunset shoots on Siesta Key and Anna Maria Island. We capture real moments of your family together. This is a great choice for families visiting the local area. We provide high-quality prints and films that you can keep for a long time. Our goal is to record your family story in a natural way. Preserve your most important moments with cinematic coastal art.",
     whoItsFor: "Families on vacation who want great photos of their time together.",
     outcome: "Timeless family photos and films that you will treasure forever.",
@@ -75,8 +75,8 @@ export const SERVICES = [
   },
   {
     id: "hospitality",
-    title: "Brand Stories in Hospitality",
-    short: "Cinematic Narrative for Resorts & Luxury Retreats.",
+    title: "Resort & Hotel Video",
+    short: "Professional Films for Resorts & Luxury Stays.",
     description: "We film luxury resorts and hotels on the Florida Gulf Coast. From Longboat Key to Sarasota, we show what makes your location special. We focus on the guest experience and the beauty of your property. Our films invite people to book a stay at your hotel. This service is made for premium resorts and boutique hotels. We create visuals that improve how guests see your brand. Drive more bookings with polished, cinematic hospitality media.",
     whoItsFor: "Hotels and resorts that want to show off their luxury experience.",
     outcome: "Beautiful films that help you get more bookings and happy guests.",
@@ -89,35 +89,35 @@ export const PORTFOLIO: any[] = [];
 
 export const SEO = {
   home: {
-    title: "Jonni Armani Media | Cinematic Video & Photography",
-    description: "Premium cinematic video and photography for brands, athletes, and healthcare in Bradenton, Sarasota, and the Florida Gulf Coast.",
+    title: "Jonni Armani Media | Video & Photography",
+    description: "Professional video and photography for local brands, athletes, and healthcare in Bradenton and Sarasota.",
   },
   about: {
     title: "The Artist | Jonni Armani Media",
-    description: "With 14 years of experience, Jonni Armani Media creates high-end video and brand stories for the top industry leaders in Florida.",
+    description: "With 14 years of experience, Jonni Armani Media creates high-end video and brand stories for local Florida business leaders.",
   },
   services: {
-    title: "Production Services | Cinematic Film & Brand Photography",
-    description: "Tailored films for luxury resorts, sports, and medical groups. Premium visual production services across Southwest Florida.",
+    title: "Production Services | Video & Photography",
+    description: "Tailored films for luxury resorts, sports teams, and medical groups. Quality visual services across Southwest Florida.",
   },
   work: {
-    title: "Portfolio | Cinematic Video & Photography",
-    description: "See our high-impact cinematography and professional photography projects from across Sarasota, Tampa, and Southwest Florida.",
+    title: "Portfolio | Video & Photography",
+    description: "See our professional films and photography from across Sarasota, Tampa, and the Florida Gulf Coast.",
   },
   contact: {
     title: "Start Your Production | Jonni Armani Media",
-    description: "Work with our technical team on your next major campaign. Contact Jonni Armani Media for premium video and photography services.",
+    description: "Work with our team on your next video project. Contact Jonni Armani Media for quality local production services.",
   }
 };
 
 export const ABOUT_CONTENT = {
-  heroTitle: "The Vision Behind The Craft",
+  heroTitle: "Our Local Vision",
   heroSubtitle: "Jonni Armani Media",
-  storyTitle: "High-Stakes Visual Architecture.",
-  storyText1: "Based in Bradenton, Florida, Jonni Armani Media is a strategic production house dedicated to the art of absolute clarity. With 14 years of operational experience in high-end cinematography and commercial photography, we don't just capture images—we architect visual assets that command market authority.",
-  storyText2: "Our methodology is rooted in the belief that professional media is a necessity for survival in a saturated economy. We serve a portfolio of surgeons, elite athletes at IMG Academy, and luxury hospitality brands that require more than just 'content'; they require a legacy.",
-  storyText3: "Integrity, precision, and a relentless pursuit of the perfect frame define every deployment. We provide the technical backbone for your brand's narrative, ensuring your message is delivered with cinematic power and professional maturity.",
-  quote: "I am not here to record moments. I am here to architect your visual legacy.",
+  storyTitle: "High-Quality Video Made Simple.",
+  storyText1: "Based in Bradenton, Florida, Jonni Armani Media helps local brands get noticed. With 14 years of experience in making films and taking photos, we know how to make your business look great. We don't just record video—we tell a story that helps you grow.",
+  storyText2: "We work with all kinds of clients, from doctors and sports teams to hotels and local shops. We know that in today's world, you need good video to stand out. We provide the high-quality films that help you build a real connection with your customers.",
+  storyText3: "We focus on being clear, honest, and professional in every project. We handle all the technical parts of the job so you can focus on your business. We are here to make sure your brand is seen and heard with the power of great film.",
+  quote: "We don't just record moments. We build your brand with the power of visual stories.",
   profileImage: ""
 };
 
@@ -174,12 +174,12 @@ export const INDUSTRIES = [
 export const SCHEMA_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "@id": "https://www.jonniarmani.com/#organization",
+  "@id": "https://jonniarmani.com/#organization",
   "name": "Jonni Armani Media",
-  "url": "https://www.jonniarmani.com",
+  "url": "https://jonniarmani.com",
   "logo": {
     "@type": "ImageObject",
-    "url": "https://www.jonniarmani.com/logo.png"
+    "url": "https://jonniarmani.com/logo.png"
   },
   "image": "",
   "description": "Premium cinematic video production and commercial photography specializing in sports, healthcare, and luxury brands across the Florida Gulf Coast.",

@@ -156,27 +156,54 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <div className="space-y-4">
                 <div className="w-12 h-[2px] bg-brand-cyan mb-6" />
-                <h3 className="text-2xl font-display font-bold uppercase italic">Discovery <span className="text-gray-300 not-italic">& Insight.</span></h3>
+                <h3 className="text-2xl font-display font-bold uppercase italic">First <span className="text-gray-300 not-italic">Meeting.</span></h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Every successful media project begins with a deep understanding of your brand's unique DNA. We sit down with you to identify core objectives, target demographics, and the emotional resonance you want to achieve. Whether it's a promotional video for a local Bradenton business or a high-stakes sports recruitment film, our discovery phase ensures every frame serves a purpose.
+                  Every great video starts with a good plan. We sit down with you to learn about your business and your goals. We want to know who your customers are and what makes you special. Whether you need a short ad for a local shop or a sports reel for a young athlete, we make sure we have a clear path before we start filming.
                 </p>
               </div>
               <div className="space-y-4">
                 <div className="w-12 h-[2px] bg-brand-cyan mb-6" />
-                <h3 className="text-2xl font-display font-bold uppercase italic">Technical <span className="text-gray-300 not-italic">Execution.</span></h3>
+                <h3 className="text-2xl font-display font-bold uppercase italic">On the <span className="text-gray-300 not-italic">Scene.</span></h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  We deploy industry-standard cinema cameras and lighting packages to capture your story with unrivaled clarity. Our technical expertise allows us to navigate complex environments—from sterile medical suites in Sarasota to the high-motion sidelines of Florida sporting events. We don't just record; we craft visuals that stand out in a saturated digital landscape.
+                  We use top-quality cameras and lights to make your video look professional. Our team is skilled at filming in many different places. We can work in busy medical offices in Sarasota or on the sidelines of a fast-moving sports game. We don't just point and shoot; we carefully frame every shot to make sure you look your absolute best.
                 </p>
               </div>
               <div className="space-y-4">
                 <div className="w-12 h-[2px] bg-brand-cyan mb-6" />
-                <h3 className="text-2xl font-display font-bold uppercase italic">Post-Production <span className="text-gray-300 not-italic">Mastery.</span></h3>
+                <h3 className="text-2xl font-display font-bold uppercase italic">The Final <span className="text-gray-300 not-italic">Edit.</span></h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  The true magic happens in the edit. Our post-production pipeline includes professional color grading, precision sound design, and strategic narrative pacing. We refine the raw footage into a polished visual product that aligns with your brand's voice and professional standards. The result is a high-impact asset ready for broadcast, social media, or corporate distribution.
+                  The real work happens after the cameras are turned off. We spend hours editing your video to make sure it flows perfectly. We add professional color, clear sound, and the right music to match your brand's voice. The result is a high-quality video that you can proudly share on social media, your website, or in your store.
                 </p>
               </div>
             </div>
             
+            {/* Added more content for Text-to-HTML ratio boost */}
+            <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-gray-200 pt-20">
+              <div className="space-y-6">
+                <h4 className="text-brand-black font-bold uppercase tracking-widest text-xs">Our Commitment to Quality</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  At Jonni Armani Media, we believe that every business in the Bradenton and Sarasota area deserves to have high-quality visuals. In today's digital age, your online presence is often the first thing people see. If your photos and videos look blurry or unprofessional, it can hurt your reputation. We are here to change that by providing affordable yet high-end media services for all local industries.
+                </p>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  We have spent over a decade learning the best ways to capture light, sound, and emotion. This experience allows us to work quickly and efficiently while still delivering a product that looks like it belongs on the big screen. We take pride in our roots here in Southwest Florida and love helping our neighbors succeed with the power of great storytelling.
+                </p>
+              </div>
+              <div className="space-y-6">
+                <h4 className="text-brand-black font-bold uppercase tracking-widest text-xs">Why Choose Local Production?</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Choosing a local production company means working with a team that knows your market. We understand the local culture in Tampa, the luxury feel of the Keys, and the competitive sports spirit at IMG Academy. This local knowledge helps us create content that truly resonates with people living in our community. We are just a phone call away and always ready to help you with your next project.
+                </p>
+                <ul className="space-y-3">
+                  {["Fast Turnaround Times", "Local Market Knowledge", "Professional Gear & Lighting", "Custom Brand Strategies"].map((benefit) => (
+                    <li key={benefit} className="flex items-center text-xs font-bold uppercase tracking-widest text-brand-black">
+                      <CheckCircle2 size={14} className="text-brand-cyan mr-3" />
+                      {benefit}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
             {/* Added more keywords/text for density */}
             <div className="mt-20 p-10 border border-gray-200 bg-white shadow-sm">
               <h4 className="text-brand-black font-bold uppercase tracking-widest text-xs mb-6">Strategic Visual Positioning</h4>
