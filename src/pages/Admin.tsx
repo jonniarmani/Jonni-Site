@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useContent } from '../lib/ContentContext';
 import { auth, googleProvider, signInWithPopup, signOut, db, doc, setDoc, handleFirestoreError, OperationType, collection, deleteDoc, onSnapshot } from '../lib/firebase';
 import { addDoc, query, where, orderBy, getDocs, updateDoc, Timestamp, serverTimestamp } from 'firebase/firestore';
-import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image, Trash, Plus, Megaphone, Video as VideoIcon, Camera, MessageSquare, Star, Code, Palette, Upload, Download, RefreshCw, Globe, Twitter, ShieldCheck, Check, Filter, Settings, Activity, Zap, Search, ExternalLink, AlertCircle, Target, BarChart as ChartIcon, PieChart as PieIcon, LineChart as LineIcon, MousePointer2, Mail, Send, History, Briefcase as ProjectIcon, Layers, Loader2, Gauge, Menu, Radio } from 'lucide-react';
+import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image, Trash, Plus, Megaphone, Video as VideoIcon, Camera, MessageSquare, Star, Code, Palette, Upload, Download, RefreshCw, Globe, Copy, Twitter, ShieldCheck, Check, Filter, Settings, Activity, Zap, Search, ExternalLink, AlertCircle, Target, BarChart as ChartIcon, PieChart as PieIcon, LineChart as LineIcon, MousePointer2, Mail, Send, History, Briefcase as ProjectIcon, Layers, Loader2, Gauge, Menu, Radio } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import FileUploader from '../components/FileUploader';
 
@@ -103,7 +103,7 @@ const CommunicationThread = ({ relatedId, relatedType, senderName }: { relatedId
         </button>
       </form>
       <div className="p-1 px-4 bg-brand-cyan bg-opacity-10 border-t border-brand-cyan border-opacity-10">
-        <p className="text-[7px] text-brand-cyan font-bold uppercase tracking-widest">Client Portal Active: {'/portal/' + relatedId}</p>
+        <p className="text-[7px] text-brand-cyan font-bold uppercase tracking-widest">Client Portal Active: {`/portal/${relatedId}`}</p>
       </div>
     </div>
   );
@@ -431,14 +431,31 @@ export default function Admin() {
     }
   };
 
+  const duplicateProject = async (project: any) => {
+    try {
+      const { id, ...projectData } = project;
+      const duplicatedData = {
+        ...projectData,
+        title: `${projectData.title} (Copy)`,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        status: 'draft'
+      };
+      await addDoc(collection(db, 'projects'), duplicatedData);
+      alert("Project architecture duplicated successfully.");
+    } catch (err) {
+      handleFirestoreError(err, OperationType.CREATE, 'projects');
+    }
+  };
+
   const fetchVideoThumbnail = async (videoUrl: string, index: number) => {
     let thumbnail = "";
     if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
-      const videoId = videoUrl.includes('v=') ? videoUrl.split('v=')[1].split('&')[0] : videoUrl.split(['', ''].join('/')).pop()?.split('?')[0];
+      const videoId = videoUrl.includes('v=') ? videoUrl.split('v=')[1].split('&')[0] : videoUrl.split('/').pop()?.split('?')[0];
       thumbnail = 'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg';
     } else if (videoUrl.includes('vimeo.com')) {
       try {
-        const videoId = videoUrl.split(['', ''].join('/')).pop()?.split('?')[0];
+        const videoId = videoUrl.split('/').pop()?.split('?')[0];
         const response = await fetch('https://vimeo.com/api/v2/video/' + videoId + '.json');
         const data = await response.json();
         thumbnail = data[0].thumbnail_large;
@@ -569,7 +586,7 @@ export default function Admin() {
   }, [isAdmin]);
 
   const copyPortalLink = (id: string) => {
-    const url = window.location.origin + '/portal/' + id;
+    const url = `${window.location.origin}/portal/${id}`;
     navigator.clipboard.writeText(url);
     alert("Magic Link copied. Paste this into your email reply to chat with the client.");
   };
@@ -602,7 +619,6 @@ export default function Admin() {
       </div>
     );
   }
-
   const handleSave = async () => {
     setIsSaving(true);
     const path = 'settings/content';
@@ -1356,7 +1372,7 @@ export default function Admin() {
                     </div>
                   ) : (
                     <div className="space-y-12">
-                      {projects.map((project) => (
+                      {projects.map((project: any) => (
                         <div key={project.id} className="bg-white border border-gray-100 shadow-sm overflow-hidden group">
                           {/* Project Header */}
                           <div className="bg-zinc-900 p-6 text-white flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
@@ -1437,7 +1453,6 @@ export default function Admin() {
                                         <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${project.directTransmissionEnabled ? 'left-6' : 'left-1'}`} />
                                       </button>
                                    </div>
-                                </div>
                                </div>
 
                                <div className="p-6 bg-zinc-50 border border-zinc-100 rounded-lg">
@@ -1455,13 +1470,22 @@ export default function Admin() {
                                   </div>
                                </div>
                                
+                               <div className="flex gap-3 mb-4">
+                                  <button 
+                                     onClick={() => duplicateProject(project)}
+                                     className="flex-1 bg-white border border-zinc-200 text-zinc-600 py-4 text-[10px] font-black uppercase tracking-widest flex items-center justify-center hover:bg-zinc-50 transition-all shadow-sm"
+                                  >
+                                     <Copy size={14} className="mr-2" /> Duplicate Instance
+                                  </button>
+                               </div>
+
                                <button 
                                   onClick={async () => {
                                     if (window.confirm("Permanent archive removal of project?")) {
                                       try {
                                         await deleteDoc(doc(db, 'projects', project.id));
                                       } catch (err) {
-                                        handleFirestoreError(err, OperationType.DELETE, 'projects/' + project.id);
+                                        handleFirestoreError(err, OperationType.DELETE, `projects/${project.id}`);
                                       }
                                     }
                                   }}
@@ -1484,7 +1508,7 @@ export default function Admin() {
                                        Share this secure link with the client to allow them to track progress and respond to visual assets in real-time.
                                      </p>
                                      <code className="block bg-white p-2 text-[9px] font-mono border border-gray-100 text-brand-black select-all">
-                                       {window.location.origin + '/portal/' + project.id}
+                                       {`${window.location.origin}/portal/${project.id}`}
                                      </code>
                                   </div>
                                </div>
@@ -1574,8 +1598,8 @@ export default function Admin() {
                                              />
                                              <FileUploader 
                                                label="Sync Asset"
-                                               accept={asset.type === 'video' ? 'video' + '/*' : 'image' + '/*'}
-                                               folder={'projects' + '/' + project.id + '/' + 'gallery'}
+                                               accept={asset.type === 'video' ? "video/*" : "image/*"}
+                                               folder={`projects/${project.id}/gallery`}
                                                onUploadComplete={(url) => {
                                                  const newAssets = [...project.galleryAssets];
                                                  newAssets[aIdx] = { ...newAssets[aIdx], url };
@@ -2916,7 +2940,7 @@ export default function Admin() {
                              </div>
                           </div>
                           
-                          <div className="bg-gray-200 overflow-hidden relative" style={{ aspectRatio: '4/5' }}>
+                          <div className="bg-gray-200 overflow-hidden relative" style={{ aspectRatio: "4/5" }}>
                              {item.placeholder ? (
                                <img src={item.placeholder} alt="" className="w-full h-full object-cover transition-all" />
                              ) : (
