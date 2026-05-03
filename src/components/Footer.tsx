@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Instagram, Facebook, Youtube, Video, Mail, Phone, Calendar } from "lucide-react";
 import { useContent } from "../lib/ContentContext";
 
+import ShareButtons from "./ShareButtons";
+
 export default function Footer() {
   const { content } = useContent();
   const { brand } = content;
@@ -54,7 +56,10 @@ export default function Footer() {
         </motion.div>
       </div>
       
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative z-10 text-center md:text-left">
+        <ShareButtons />
+        <div className="h-[1px] w-full bg-white/5 mb-16" />
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
           <div className="md:col-span-2 space-y-8">
             <Link to="/" className="font-display text-3xl font-bold tracking-tighter uppercase inline-block">
@@ -63,51 +68,54 @@ export default function Footer() {
             <p className="text-gray-400 max-w-md text-lg font-light leading-relaxed">
               {brand.taglineExtended}
             </p>
+            <div className="space-y-4">
+              <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-gray-500">Connect With Us</h3>
+              <div className="flex justify-center md:justify-start space-x-6">
+                <a 
+                  href={brand.socials.instagram} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:scale-110 transition-transform text-white/40 hover:text-brand-cyan"
+                  aria-label="Visit our Instagram profile"
+                >
+                  <Instagram size={24} />
+                  <span className="sr-only">Instagram</span>
+                </a>
+                <a 
+                  href={brand.socials.facebook} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:scale-110 transition-transform text-white/40 hover:text-brand-cyan"
+                  aria-label="Visit our Facebook page"
+                >
+                  <Facebook size={24} />
+                  <span className="sr-only">Facebook</span>
+                </a>
+                <a 
+                  href={brand.socials.youtube} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:scale-110 transition-transform text-white/40 hover:text-brand-cyan"
+                  aria-label="Visit our YouTube channel"
+                >
+                  <Youtube size={24} />
+                  <span className="sr-only">YouTube</span>
+                </a>
+                <a 
+                  href={brand.socials.vimeo} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:scale-110 transition-transform text-white/40 hover:text-brand-cyan"
+                  aria-label="Visit our Vimeo portfolio"
+                >
+                  <Video size={24} />
+                  <span className="sr-only">Vimeo</span>
+                </a>
+              </div>
+            </div>
             <p className="text-[10px] text-gray-600 uppercase tracking-widest leading-loose">
               {brand.location}
             </p>
-            <div className="flex space-x-6">
-              <a 
-                href={brand.socials.instagram} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="hover:scale-110 transition-transform text-white/40 hover:text-brand-cyan"
-                aria-label="Visit our Instagram profile"
-              >
-                <Instagram size={24} />
-                <span className="sr-only">Instagram</span>
-              </a>
-              <a 
-                href={brand.socials.facebook} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="hover:scale-110 transition-transform text-white/40 hover:text-brand-cyan"
-                aria-label="Visit our Facebook page"
-              >
-                <Facebook size={24} />
-                <span className="sr-only">Facebook</span>
-              </a>
-              <a 
-                href={brand.socials.youtube} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="hover:scale-110 transition-transform text-white/40 hover:text-brand-cyan"
-                aria-label="Visit our YouTube channel"
-              >
-                <Youtube size={24} />
-                <span className="sr-only">YouTube</span>
-              </a>
-              <a 
-                href={brand.socials.vimeo} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="hover:scale-110 transition-transform text-white/40 hover:text-brand-cyan"
-                aria-label="Visit our Vimeo portfolio"
-              >
-                <Video size={24} />
-                <span className="sr-only">Vimeo</span>
-              </a>
-            </div>
           </div>
 
           <div className="space-y-6">

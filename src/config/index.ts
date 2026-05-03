@@ -88,6 +88,11 @@ export const SERVICES = [
 export const PORTFOLIO: any[] = [];
 
 export const SEO = {
+  default: {
+    ogImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200",
+    twitterHandle: "@jonniarmani",
+    twitterCard: "summary_large_image"
+  },
   home: {
     title: "Video & Photography | Bradenton & Sarasota",
     description: "Professional video and photography services for brands and athletes in Bradenton and Sarasota.",

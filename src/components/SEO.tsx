@@ -14,12 +14,14 @@ export default function SEO({ title, description, keywords, ogImage, canonicalUr
   const seo = content.seo;
 
   useEffect(() => {
-    // Priority: Props > Context Content > Default Empty
+    // Priority: Props > Context Content > Config Default > Default Empty
     const finalTitle = title || seo?.title || '';
     const finalDescription = description || seo?.description || '';
     const finalKeywords = keywords || seo?.keywords || '';
-    const finalOgImage = ogImage || seo?.ogImage || '';
+    const finalOgImage = ogImage || seo?.ogImage || 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200';
     const finalCanonical = canonicalUrl || seo?.canonicalUrl || '';
+    const twitterCard = seo?.twitterCard || 'summary_large_image';
+    const twitterHandle = seo?.twitterHandle || '@jonniarmani';
 
     if (finalTitle) document.title = finalTitle;
 
@@ -76,9 +78,9 @@ export default function SEO({ title, description, keywords, ogImage, canonicalUr
       }
     };
 
-    setTwitterTag('twitter:card', seo?.twitterCard || 'summary_large_image');
-    setTwitterTag('twitter:site', seo?.twitterHandle || '');
-    setTwitterTag('twitter:creator', seo?.twitterHandle || '');
+    setTwitterTag('twitter:card', twitterCard);
+    setTwitterTag('twitter:site', twitterHandle);
+    setTwitterTag('twitter:creator', twitterHandle);
     setTwitterTag('twitter:title', finalTitle);
     setTwitterTag('twitter:description', finalDescription);
     setTwitterTag('twitter:image', finalOgImage);
