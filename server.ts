@@ -1,5 +1,4 @@
 import express from "express";
-import { createServer as createViteServer } from "vite";
 import path from "path";
 import helmet from "helmet";
 
@@ -7,29 +6,17 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  console.log("Starting server with process.env.NODE_ENV:", process.env.NODE_ENV);
+
+  app.get("/api/health", (req, res) => {
+    res.json({ status: "ok", env: process.env.NODE_ENV });
+  });
+
   // Security headers using Helmet
   app.use(
     helmet({
-      contentSecurityPolicy: {
-        directives: {
-          defaultSrc: ["'self'"],
-          scriptSrc: ["'self'", "'unsafe-inline'", "https://apis.google.com"],
-          styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-          fontSrc: ["'self'", "https://fonts.gstatic.com"],
-          imgSrc: ["'self'", "data:", "https://*.googleapis.com", "https://*.firebaseapp.com", "https://firebasestorage.googleapis.com"],
-          connectSrc: [
-            "'self'",
-            "https://*.googleapis.com",
-            "https://*.firebaseio.com",
-            "https://*.firebaseapp.com",
-            "wss://*.firebaseio.com",
-          ],
-          frameSrc: ["'self'", "https://*.firebaseapp.com"],
-          objectSrc: ["'none'"],
-          upgradeInsecureRequests: [],
-        },
-      },
-      crossOriginEmbedderPolicy: false, // Often needed for mixed content or third party scripts
+      contentSecurityPolicy: false, // Temporarily disable to check if it's the cause
+      crossOriginEmbedderPolicy: false,
       frameguard: { action: "sameorigin" },
       hsts: {
         maxAge: 31536000,
@@ -37,20 +24,21 @@ async function startServer() {
         preload: true,
       },
       referrerPolicy: { policy: "strict-origin-when-cross-origin" },
-      permissionsPolicy: {
-        features: {
-          camera: ["'none'"],
-          microphone: ["'none'"],
-          geolocation: ["'none'"],
-        },
-      },
     })
   );
+
+  // Custom headers
+  app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    res.setHeader("Alt-Svc", 'h3=":443"; ma=86400');
+    next();
+  });
 
   // Custom X-Content-Type-Options: nosniff is already handled by helmet.noSniff() by default
 
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
@@ -63,6 +51,12 @@ async function startServer() {
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
+
+  // Error handling middleware
+  app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+    console.error("Express Error:", err);
+    res.status(500).send("Internal Server Error");
+  });
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);

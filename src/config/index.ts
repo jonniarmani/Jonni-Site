@@ -89,24 +89,24 @@ export const PORTFOLIO: any[] = [];
 
 export const SEO = {
   home: {
-    title: "Jonni Armani Media | Video & Photography",
-    description: "Professional video and photography for local brands, athletes, and healthcare in Bradenton and Sarasota.",
+    title: "Video & Photography | Bradenton & Sarasota",
+    description: "Professional video and photography services for brands and athletes in Bradenton and Sarasota.",
   },
   about: {
     title: "The Artist | Jonni Armani Media",
-    description: "With 14 years of experience, Jonni Armani Media creates high-end video and brand stories for local Florida business leaders.",
+    description: "Jonni Armani Media creates high-end video and brand stories for Florida business leaders.",
   },
   services: {
     title: "Production Services | Video & Photography",
-    description: "Tailored films for luxury resorts, sports teams, and medical groups. Quality visual services across Southwest Florida.",
+    description: "Tailored films for luxury resorts, sports teams, and medical groups in Southwest Florida.",
   },
   work: {
     title: "Portfolio | Video & Photography",
-    description: "See our professional films and photography from across Sarasota, Tampa, and the Florida Gulf Coast.",
+    description: "Professional films and photography from across Sarasota, Tampa, and the Gulf Coast.",
   },
   contact: {
-    title: "Start Your Production | Jonni Armani Media",
-    description: "Work with our team on your next video project. Contact Jonni Armani Media for quality local production services.",
+    title: "Contact | Jonni Armani Media",
+    description: "Work with our team on your next video project. Contact us for local production services.",
   }
 };
 

@@ -127,11 +127,12 @@ export default function FloatingActionHub() {
 
               <Link 
                 to="/contact" 
+                title="Contact and Inquire about Video/Photo services"
                 aria-label="Contact and Inquire"
                 className={`flex flex-col items-center justify-center w-12 h-12 rounded-full transition-all bg-brand-black text-brand-cyan shadow-lg active:scale-95`}
               >
                 <Plus size={20} />
-                <span className="sr-only">Contact and Inquire</span>
+                <span className="sr-only">Contact Jonni Armani Media for Bookings</span>
               </Link>
             </div>
           </motion.div>
