@@ -131,6 +131,7 @@ export default function FloatingActionHub() {
                 className={`flex flex-col items-center justify-center w-12 h-12 rounded-full transition-all bg-brand-black text-brand-cyan shadow-lg active:scale-95`}
               >
                 <Plus size={20} />
+                <span className="sr-only">Contact and Inquire</span>
               </Link>
             </div>
           </motion.div>

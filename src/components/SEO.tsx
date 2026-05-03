@@ -96,7 +96,13 @@ export default function SEO({ title, description, keywords, ogImage, canonicalUr
         document.head.appendChild(canonical);
       }
       
-      const href = finalCanonical || window.location.href.split('?')[0];
+      let href = finalCanonical || window.location.href.split('?')[0];
+      
+      // Enforce non-www and specific domain if desired
+      if (href.includes('jonniarmani.com')) {
+        href = href.replace('www.', '');
+      }
+      
       canonical.setAttribute('href', href);
     } else {
       if (canonical) canonical.remove();
