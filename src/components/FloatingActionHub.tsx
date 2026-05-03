@@ -127,7 +127,8 @@ export default function FloatingActionHub() {
 
               <Link 
                 to="/contact" 
-                className={`flex flex-col items-center justify-center w-12 h-12 rounded-full transition-all bg-brand-cyan text-white shadow-lg active:scale-95`}
+                aria-label="Contact and Inquire"
+                className={`flex flex-col items-center justify-center w-12 h-12 rounded-full transition-all bg-brand-black text-brand-cyan shadow-lg active:scale-95`}
               >
                 <Plus size={20} />
               </Link>

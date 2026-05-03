@@ -162,10 +162,34 @@ export default function Services() {
                 <div className="h-[1px] w-12 bg-white/20 mb-8" />
                 <p className="text-gray-500 text-[10px] uppercase font-black tracking-[0.4em] mb-4">Production Regions</p>
                 <p className="text-gray-400 text-xs font-bold uppercase tracking-widest leading-loose">
-                  Tampa • St. Pete • Bradenton • Sarasota • Lakewood Ranch • Venice • Palmetto
+                   Tampa • St. Pete • Bradenton • Sarasota • Lakewood Ranch • Venice • Palmetto
                 </p>
              </div>
           </div>
+        </section>
+
+        {/* Content Boost for SEO */}
+        <section className="mt-24 bg-white py-20 border-t border-gray-100">
+           <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 px-4">
+              <div className="space-y-6">
+                 <h4 className="text-brand-black font-bold uppercase tracking-widest text-xs">Why Quality Media Matters</h4>
+                 <p className="text-gray-600 text-sm leading-relaxed">
+                    In the local Florida market, your small business needs to stand out. Good video and photos show that you care about your work. If you have poor media, it can make people doubt your skills. We help you look your best so that potential clients choose you over others. Our high-end visual services are designed to make your brand look professional and established.
+                 </p>
+                 <p className="text-gray-600 text-sm leading-relaxed">
+                    We've helped teams at IMG Academy and doctors in Sarasota reach their goals. By using professional lighting and sharp cameras, we create a look that cannot be matched by basic smartphones. This quality is what builds a bridge of trust between you and your audience.
+                 </p>
+              </div>
+              <div className="space-y-6">
+                 <h4 className="text-brand-black font-bold uppercase tracking-widest text-xs">Service Excellence in Bradenton</h4>
+                 <p className="text-gray-600 text-sm leading-relaxed">
+                    Based in Bradenton and Sarasota, we are near to our clients. This allows us to provide quick service and local knowledge. We know what works for Florida brands. Whether it is a sunset shoot on Anna Maria Island or a business profile in downtown Tampa, we have the experience to handle it.
+                 </p>
+                 <p className="text-gray-600 text-sm leading-relaxed">
+                    Our team is committed to your growth. We don't just deliver a file and walk away. We want to see your business succeed. We offer advice on how to best use your new media for social ads, website backgrounds, and television spots. We are your local source for all things video and photo.
+                 </p>
+              </div>
+           </div>
         </section>
       </div>
     </div>

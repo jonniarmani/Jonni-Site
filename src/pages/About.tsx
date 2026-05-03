@@ -68,17 +68,17 @@ export default function About() {
             </p>
 
             <p className="text-gray-500 text-sm leading-relaxed mb-12">
-              Over the years, I've worked across many fields. My focus is always on quality. Whether it's a small local project or a large commercial production, I bring the same level of care and attention to detail. I understand that my clients are looking for more than just images; they are looking for a way to communicate their value to the world. That's why I take the time to learn about your goals before we ever start shooting.
+              Over the years, I have worked with many different clients. My main focus is always on making sure the work is top quality. Whether it is a small local project or a large business film, I bring the same level of care. I know that my clients want more than just photos and videos. They want a way to show their value to the world. That is why I take the time to learn about your goals before we ever start.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
               <div className="bg-brand-gray p-8">
-                <h3 className="text-brand-cyan text-lg mb-4 uppercase tracking-widest font-bold">The Approach</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">I don't just "film." I architect visual assets. Every shot is calculated to reinforce your brand's authority, utilizing broadcast-quality gear and an editorial eye that strips away the noise.</p>
+                <h3 className="text-brand-cyan text-lg mb-4 uppercase tracking-widest font-bold">Our Simple Process</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">We don't just "record." We build visual stories that help your brand grow. Every shot is planned to make you look like a leader in your field. We use the best gear and a sharp eye to make sure your message is clear and powerful.</p>
               </div>
               <div className="bg-brand-gray p-8">
-                <h3 className="text-brand-cyan text-lg mb-4 uppercase tracking-widest font-bold">The Result</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">Whether it's a 30-second sports highlight or a 10-minute medical documentary, the goal is the same: A visual experience that leaves your competition in the background.</p>
+                <h3 className="text-brand-cyan text-lg mb-4 uppercase tracking-widest font-bold">The Final Result</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">Whether it is a short sports reel or a longer medical film, the goal is the same. We want to create a video that makes you stand out from the crowd. Our work helps you build trust with your audience and reach your business goals.</p>
               </div>
             </div>
 
@@ -94,34 +94,47 @@ export default function About() {
               {about.storyText3}
             </p>
 
-            {/* Behind the Lens Content Expansion */}
             <div className="my-24 space-y-12">
               <div className="flex items-center space-x-4 mb-8">
                 <div className="h-[1px] flex-grow bg-gray-200" />
-                <h3 className="text-xs font-black uppercase tracking-[0.5em] text-brand-cyan">Behind the Lens</h3>
+                <h3 className="text-xs font-black uppercase tracking-[0.5em] text-brand-cyan">Our Local Roots</h3>
                 <div className="h-[1px] flex-grow bg-gray-200" />
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-gray-600 leading-relaxed font-light">
                 <div className="space-y-6">
-                  <h4 className="text-xl font-display font-bold text-brand-black">The Florida Connection</h4>
+                  <h4 className="text-xl font-display font-bold text-brand-black">Sarasota and Bradenton Service</h4>
                   <p className="text-sm">
-                    Operating primarily out of Bradenton and Sarasota, Florida, Jonni Armani Media is deeply rooted in the Gulf Coast community. We understand the unique coastal light, the energy of local athletic powerhouses like IMG Academy, and the high standards of the region's expanding medical and luxury real estate markets. Our local presence isn't just about geography—it's about a shared commitment to seeing our regional economy thrive through better visual storytelling.
+                    Based in Bradenton and Sarasota, Florida, Jonni Armani Media is proud to be part of the local Gulf Coast area. We know the local landscape and the energy of our sports teams. We have spent years working with local businesses to understand what helps them succeed. Our local focus means we can be there when you need us, providing fast and reliable service.
                   </p>
                   <p className="text-sm">
-                    We've spent over 14 years refining our technical toolkit to match the specific demands of Florida's high-stakes industries. Whether navigating a humid sideline during a midday match or the controlled environment of a surgical suite, we bring the right gear and the right mindset to every location.
+                    We have spent over 14 years getting our process just right for the needs of Florida companies. Whether it is on the field or in the office, we bring the right tools to get the best results. We are dedicated to helping our neighbors and our local economy grow through the power of professional film and photography.
                   </p>
                 </div>
                 <div className="space-y-6">
-                  <h4 className="text-xl font-display font-bold text-brand-black">Commitment to Growth</h4>
+                  <h4 className="text-xl font-display font-bold text-brand-black">Helping You Grow</h4>
                   <p className="text-sm">
-                    We believe that "good enough" is the enemy of great. In an era where anyone with a smartphone can call themselves a creator, we differentiate through professional maturity and strategic intent. Our clients aren't just buying a video file; they are investing in a strategic asset designed to solve specific business problems—be it lack of trust, poor engagement, or a weak brand identity.
+                    We believe that "good enough" is not enough for our clients. In a world where everyone has a phone camera, we stand out by being professional and clear. Our clients are not just buying a video file; they are investing in a tool that helps them solve problems. We help you build trust, get more people to notice you, and create a strong brand that people remember.
                   </p>
                   <p className="text-sm">
-                    Every year, we reinvest in higher-quality cinema optics, faster editing workflows, and advanced color science to ensure our clients always receive a product that feels ahead of the curve. Your growth is our growth, and we take that partnership seriously.
+                    Every year, we invest in better cameras and faster ways to edit. This ensures that you always get a product that feels new and exciting. Your success is our success, and we take that work very seriously. We are here to support your brand every step of the way.
                   </p>
                 </div>
               </div>
+            </div>
+
+            {/* Content Boost Section */}
+            <div className="bg-white border border-gray-200 p-10 my-24 space-y-8">
+                <h4 className="text-brand-black font-bold uppercase tracking-widest text-xs">The Power of Visual Content</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  The way people see your business online matters more than ever. A single high-quality video can explain your value faster than pages of text. We help you cut through the noise and deliver your message with impact. Our team handles every part of the production, from the first script to the final export.
+                </p>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  We specialize in industries that require a high level of trust, such as healthcare and high-end services. By showing the real faces and stories behind your brand, we help you build a human connection with your customers. This leads to more sales, higher client loyalty, and a stronger local reputation in the Florida market.
+                </p>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Throughout Southwest Florida, from the beaches of Siesta Key to the tech hubs in Tampa, businesses are realizing that they need better media. Jonni Armani Media is here to be your source for professional, reliable, and cinematic production. We work hard to make sure every project we do reflects the excellence of your business.
+                </p>
             </div>
 
             <div className="pt-10 border-t border-gray-100">
