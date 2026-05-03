@@ -101,72 +101,9 @@ export default function Header() {
           <Link to="/contact" className="bg-brand-black text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-brand-cyan transition-all shadow-md">Inquire</Link>
         </nav>
 
-        {/* Mobile Toggle Button */}
-        <motion.button 
-          className="md:hidden p-2 rounded-lg text-brand-black hover:bg-gray-100 transition-colors"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-          id="mobile-nav-toggle"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </motion.button>
+        {/* Mobile Toggle Button - Hidden as we use the Floating Hub for thumb-friendly mobile nav */}
+        <div className="md:hidden" />
       </div>
-
-      {/* Mobile Nav Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 bg-white z-[60] md:hidden flex flex-col justify-center items-center"
-          >
-            <motion.nav 
-              initial="closed"
-              animate="open"
-              variants={{
-                open: {
-                  transition: { staggerChildren: 0.1, delayChildren: 0.2 }
-                },
-                closed: {
-                  transition: { staggerChildren: 0.05, staggerDirection: -1 }
-                }
-              }}
-              className="flex flex-col items-center space-y-8"
-            >
-              {[
-                { label: "Home", href: "/" },
-                { label: "Video", href: "/video" },
-                { label: "Photo", href: "/photo" },
-                { label: "Services", href: "/services" },
-                { label: "About", href: "/about" },
-                { label: "Booking", href: "/booking" },
-                { label: "Contact", href: "/contact" },
-                { label: "Admin", href: "/admin" }
-              ].map((item) => (
-                <motion.div
-                  key={item.href}
-                  variants={{
-                    open: { y: 0, opacity: 1 },
-                    closed: { y: 20, opacity: 0 }
-                  }}
-                >
-                  <Link
-                    to={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`text-4xl font-display font-bold tracking-tighter uppercase transition-colors ${
-                      location.pathname === item.href ? "text-brand-cyan" : "text-brand-black"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </motion.nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </header>
   );
 }

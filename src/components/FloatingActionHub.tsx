@@ -93,41 +93,33 @@ export default function FloatingActionHub() {
             exit={{ y: 100, opacity: 0 }}
             className="fixed bottom-6 left-0 right-0 z-[70] md:hidden px-4 pointer-events-none"
           >
-            <div className="bg-white/90 backdrop-blur-xl border border-white/20 shadow-[0_15px_50px_rgba(0,0,0,0.15)] rounded-full px-2 py-2 flex items-center justify-between pointer-events-auto max-w-sm mx-auto">
+            <div className="bg-white text-brand-black border border-gray-200 shadow-[0_15px_50px_rgba(0,0,0,0.15)] rounded-full p-1.5 flex items-center justify-between pointer-events-auto max-w-sm mx-auto">
               <Link 
                 to="/" 
-                className={`flex flex-col items-center justify-center w-12 h-12 rounded-full transition-all ${location.pathname === '/' ? 'text-brand-cyan bg-gray-50' : 'text-gray-400'}`}
+                className={`flex-1 flex flex-col items-center justify-center h-12 rounded-full transition-all ${location.pathname === '/' ? 'bg-black text-white' : 'text-gray-400'}`}
               >
-                <div className="text-[10px] font-black uppercase tracking-tighter">Home</div>
+                <div className="text-[9px] font-black uppercase tracking-tighter">Home</div>
               </Link>
               
               <Link 
                 to="/video" 
-                className={`flex items-center gap-2 px-4 h-11 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
-                  location.pathname === '/video' 
-                    ? 'bg-brand-cyan text-black shadow-lg shadow-brand-cyan/20' 
-                    : 'text-gray-700'
-                }`}
+                className={`flex-1 flex flex-col items-center justify-center h-12 rounded-full transition-all ${location.pathname === '/video' ? 'bg-black text-white' : 'text-gray-400'}`}
               >
-                <Video size={14} />
-                <span>Video</span>
+                <Video size={14} className="mb-0.5" />
+                <div className="text-[8px] font-black uppercase tracking-tighter">Video</div>
               </Link>
 
               <Link 
                 to="/photo" 
-                className={`flex items-center gap-2 px-4 h-11 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${
-                  location.pathname === '/photo' 
-                    ? 'bg-black text-white shadow-lg' 
-                    : 'text-gray-700'
-                }`}
+                className={`flex-1 flex flex-col items-center justify-center h-12 rounded-full transition-all ${location.pathname === '/photo' ? 'bg-black text-white' : 'text-gray-400'}`}
               >
-                <Camera size={14} />
-                <span>Photo</span>
+                <Camera size={14} className="mb-0.5" />
+                <div className="text-[8px] font-black uppercase tracking-tighter">Photo</div>
               </Link>
 
               <button 
                 onClick={() => setIsOpen(!isOpen)}
-                className={`flex flex-col items-center justify-center w-12 h-12 rounded-full transition-all ${isOpen ? 'bg-brand-cyan text-black' : 'bg-brand-black text-brand-cyan'} shadow-lg active:scale-95`}
+                className={`w-14 h-12 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-brand-cyan text-black' : 'bg-brand-black text-white'} active:scale-95`}
                 aria-label="Toggle mobile menu"
               >
                 {isOpen ? <X size={20} /> : <MenuIcon size={20} />}
@@ -135,35 +127,75 @@ export default function FloatingActionHub() {
             </div>
           </motion.div>
 
+          {/* MOBILE: Expanded Menu Backdrop */}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsOpen(false)}
+                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[64] md:hidden"
+              />
+            )}
+          </AnimatePresence>
+
           {/* MOBILE: Expanded Menu */}
           <AnimatePresence>
             {isOpen && (
               <motion.div
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                exit={{ opacity: 0, y: 50, scale: 0.9 }}
                 className="fixed bottom-24 left-4 right-4 z-[65] md:hidden"
               >
-                <div className="bg-brand-black/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl max-w-sm mx-auto">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="bg-brand-black border border-white/10 rounded-3xl p-5 shadow-2xl max-w-sm mx-auto overflow-hidden">
+                  <div className="mb-6 flex justify-between items-end">
+                    <div>
+                      <h3 className="text-white font-display text-xl font-bold tracking-tighter uppercase italic">
+                        Jonni Armani <span className="text-brand-cyan">Hub</span>
+                      </h3>
+                      <p className="text-gray-500 text-[10px] uppercase font-bold tracking-widest mt-1">Select your destination</p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-3">
                     {[
-                      { label: "Book Now", href: "/booking", icon: Plus, color: "text-brand-cyan" },
-                      { label: "Services", href: "/services", icon: Video, color: "text-white" },
-                      { label: "About", href: "/about", icon: ArrowUpRight, color: "text-white" },
-                      { label: "Contact", href: "/contact", icon: Plus, color: "text-white" },
+                      { label: "Book", href: "/booking", icon: Plus, color: "text-brand-cyan", bg: "bg-brand-cyan/5" },
+                      { label: "Services", href: "/services", icon: Video, color: "text-white", bg: "bg-white/5" },
+                      { label: "About", href: "/about", icon: ArrowUpRight, color: "text-white", bg: "bg-white/5" },
+                      { label: "Contact", href: "/contact", icon: Plus, color: "text-brand-cyan", bg: "bg-brand-cyan/5" },
+                      { label: "Client Area", href: "/admin", icon: ArrowUpRight, color: "text-white", bg: "bg-white/5" },
+                      { label: "Portfolio", href: "/photo", icon: Camera, color: "text-white", bg: "bg-white/5" },
                     ].map((item, idx) => (
                       <Link
                         key={idx}
                         to={item.href}
                         onClick={() => setIsOpen(false)}
-                        className="flex flex-col items-center justify-center aspect-square bg-white/5 rounded-2xl hover:bg-white/10 transition-colors border border-white/5 group"
+                        className={`flex flex-col items-center justify-center py-4 px-2 rounded-2xl transition-all border border-white/5 active:bg-white/10 ${item.bg} group`}
                       >
-                        <item.icon size={24} className={`mb-3 ${item.color} group-hover:scale-110 transition-transform`} />
-                        <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors">
+                        <item.icon size={20} className={`mb-2 ${item.color} group-hover:scale-110 transition-transform`} />
+                        <span className="text-[8px] font-black uppercase tracking-widest text-gray-400 text-center">
                           {item.label}
                         </span>
                       </Link>
                     ))}
+                  </div>
+
+                  <div className="mt-6 pt-6 border-t border-white/5 flex gap-3">
+                    <a 
+                      href="tel:9415368833" 
+                      className="flex-1 bg-white text-black py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-center active:scale-95 transition-transform"
+                    >
+                      Call Now
+                    </a>
+                    <Link 
+                      to="/contact" 
+                      onClick={() => setIsOpen(false)}
+                      className="flex-1 bg-brand-cyan text-black py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-center active:scale-95 transition-transform"
+                    >
+                      Inquire
+                    </Link>
                   </div>
                 </div>
               </motion.div>
