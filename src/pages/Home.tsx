@@ -182,10 +182,13 @@ export default function Home() {
               <h4 className="text-brand-black font-bold uppercase tracking-widest text-xs mb-6">Strategic Visual Positioning</h4>
               <div className="columns-1 md:columns-2 gap-12 text-gray-500 text-sm font-light leading-loose">
                 <p className="mb-6">
-                  Jonni Armani Media is more than just a production house; we are a strategic partner for brands, athletes, and industry leaders across the Florida Gulf Coast. Our work is defined by a commitment to cinematic integrity and human connection. We believe that professional video and photography are the most powerful tools available for building trust and establishing market authority in today's visual-first economy.
+                  Jonni Armani Media is more than just a production house; we are a dedicated partner for local brands, pro athletes, and medical leaders across the Florida Gulf Coast. Our work is defined by a commitment to high quality and real connection. We believe that professional video and photography are the most powerful tools you have to build trust with your customers. In today's visual world, a great first impression is everything.
+                </p>
+                <p className="mb-6">
+                  Based in Bradenton and serving Sarasota, Tampa, and St. Petersburg, we specialize in industries where details matter most. From showing the talent of athletes at local sports fields to filming careful medical stories for doctors, we bring a level of focus that is hard to find. We take the time to understand your goals before we ever pick up a camera.
                 </p>
                 <p>
-                  Based in Bradenton and serving Sarasota, Tampa, and St. Petersburg, we specialize in high-stakes industries where precision matters. From capturing the legacy of athletes at LECOM Park to documenting complex surgical transformations for medical providers, we bring a level of focus and professional maturity that is rare in the creative space. Every project is handled with the same level of care, ensuring your message is delivered clearly and effectively.
+                  Our local teams are trained to handle any production size. Whether you need a short social media ad or a full brand documentary, we provide the technical skill and creative vision to get it done right. We serve hundreds of clients in the Southwest Florida area, helping them grow their reach and establish a strong local presence through consistent, high-end visual storytelling.
                 </p>
               </div>
             </div>

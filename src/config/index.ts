@@ -89,24 +89,24 @@ export const PORTFOLIO: any[] = [];
 
 export const SEO = {
   home: {
-    title: "Jonni Armani Media | Cinematic Video & Commercial Photography",
-    description: "Premium cinematic video production and commercial photography for brands, athletes, and healthcare in Bradenton, Sarasota, and the Florida Gulf Coast.",
+    title: "Jonni Armani Media | Cinematic Video & Photography",
+    description: "Premium cinematic video and photography for brands, athletes, and healthcare in Bradenton, Sarasota, and the Florida Gulf Coast.",
   },
   about: {
     title: "The Artist | Jonni Armani Media",
-    description: "With over 14 years of cinematic mastery, Jonni Armani Media architects high-stakes visual assets and brand storytelling for Florida's industry leaders.",
+    description: "With 14 years of experience, Jonni Armani Media creates high-end video and brand stories for the top industry leaders in Florida.",
   },
   services: {
     title: "Production Services | Cinematic Film & Brand Photography",
-    description: "Tailored cinematic production solutions for luxury hospitality, professional sports, and surgical narratives. Premium visual services in Southwest Florida.",
+    description: "Tailored films for luxury resorts, sports, and medical groups. Premium visual production services across Southwest Florida.",
   },
   work: {
-    title: "The Frame | Commercial Portfolio",
-    description: "Visual proof of strategic growth through high-impact cinematography and professional photography projects across Sarasota, Tampa, and Southwest Florida.",
+    title: "Portfolio | Cinematic Video & Photography",
+    description: "See our high-impact cinematography and professional photography projects from across Sarasota, Tampa, and Southwest Florida.",
   },
   contact: {
-    title: "Genesis | Start Your Production",
-    description: "Deploy our technical team for your next major campaign on the Florida Gulf Coast. Contact Jonni Armani Media for premium video and photography services.",
+    title: "Start Your Production | Jonni Armani Media",
+    description: "Work with our technical team on your next major campaign. Contact Jonni Armani Media for premium video and photography services.",
   }
 };
 
@@ -122,28 +122,28 @@ export const ABOUT_CONTENT = {
 };
 
 export const HOME_CONTENT = {
-  lensTitle: "Absolute Clarity. Strategic Growth.",
-  lensText: "In a visual-first economy, the quality of your media dictates the ceiling of your brand's growth. Jonni Armani Media specializes in high-stakes visual storytelling, providing the cinematic infrastructure needed for brands to dominate their market. From the surgical suites of Sarasota to the high-energy sidelines of Palmetto, we deliver visual assets that translate directly into professional trust and business ROI.\n\nOur process is refined, focused, and explicitly designed for those who refuse to settle for the generic. We deploy industry-standard cinema optics and a meticulous post-production pipeline to ensure your narrative is delivered with unrivaled power. Serving Bradenton, Sarasota, and the Florida Gulf Coast.",
+  lensTitle: "Clear Vision. Real Growth.",
+  lensText: "In a world built on visuals, the quality of your media determines how people see your brand. Jonni Armani Media makes professional films and photos that help local businesses stand out and lead their market. From the medical offices in Sarasota to the high-energy sports fields in Palmetto, we deliver high-quality media that builds trust and grows your company.\n\nOur process is simple, focused, and made for those who want more than just average content. We use the best gear and expert editing to make sure your message is powerful and clear. Serving Bradenton, Sarasota, and the Florida Gulf Coast.",
   lensImage: "",
   ctaBackground: "",
   faqTitle: "Operational Details",
-  faqSubtitle: "Strategic Information for Your Next Production",
+  faqSubtitle: "Information for Your Next Production",
   faqs: [
     {
-      question: "What is the primary operational area for Jonni Armani Media?",
-      answer: "We are based in Bradenton, Florida, and primarily serve Sarasota, Tampa, Palmetto, and the surrounding Gulf Coast keys. We are available for global deployment on a per-project basis."
+      question: "Where does Jonni Armani Media work?",
+      answer: "We are based in Bradenton, Florida. We mainly work in Sarasota, Tampa, Palmetto, and the nearby Gulf Coast areas. We also travel for special projects outside of Florida."
     },
     {
-      question: "What is the standard production timeline?",
-      answer: "A standard commercial production typically spans 3-5 weeks from discovery to delivery. This timeline ensures a meticulous edit and professional color grade that meets our rigorous internal standards."
+      question: "How long does it take to make a video?",
+      answer: "A standard business video usually takes about 3 to 5 weeks from the first meeting to the final file. This gives us time to edit and color your video to a professional standard."
     },
     {
-      question: "Do you specialize in surgical and medical media?",
-      answer: "Yes. We have extensive experience in high-stakes medical narratives, specializing in cosmetic and clinical transformations. Our technical team understands the protocol and precision required within surgical environments."
+      question: "Do you make medical and doctor videos?",
+      answer: "Yes. We have a lot of experience making films for surgeons and health clinics. We know how to work safely and carefully in medical spaces to show your care and skill."
     },
     {
-      question: "Are performance reels available for IMG Academy athletes?",
-      answer: "We provide broadcast-quality recruitment media and athletic identity reels for elite performers at IMG Academy and other professional training facilities in Southwest Florida."
+      question: "Can you make sport reels for high school athletes?",
+      answer: "We provide professional reels for athletes at IMG Academy and other local schools. Our videos help you get noticed by college scouts and build your personal social brand."
     }
   ],
   heroVisuals: []
@@ -174,12 +174,12 @@ export const INDUSTRIES = [
 export const SCHEMA_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  "@id": "https://jonniarmani.com/#organization",
+  "@id": "https://www.jonniarmani.com/#organization",
   "name": "Jonni Armani Media",
-  "url": "https://jonniarmani.com",
+  "url": "https://www.jonniarmani.com",
   "logo": {
     "@type": "ImageObject",
-    "url": "https://jonniarmani.com/logo.png"
+    "url": "https://www.jonniarmani.com/logo.png"
   },
   "image": "",
   "description": "Premium cinematic video production and commercial photography specializing in sports, healthcare, and luxury brands across the Florida Gulf Coast.",
