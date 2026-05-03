@@ -90,23 +90,23 @@ export const PORTFOLIO: any[] = [];
 export const SEO = {
   home: {
     title: "Jonni Armani Media | Cinematic Video & Commercial Photography",
-    description: "Premium visual storytelling for brands, athletes, and healthcare in Bradenton, Sarasota, and the Florida Gulf Coast.",
+    description: "Premium cinematic video production and commercial photography for brands, athletes, and healthcare in Bradenton, Sarasota, and the Florida Gulf Coast.",
   },
   about: {
     title: "The Artist | Jonni Armani Media",
-    description: "14+ years of cinematic mastery. Architecting high-stakes visual assets for Florida's industry leaders.",
+    description: "With over 14 years of cinematic mastery, Jonni Armani Media architects high-stakes visual assets and brand storytelling for Florida's industry leaders.",
   },
   services: {
     title: "Production Services | Cinematic Film & Brand Photography",
-    description: "Tailored cinematic solutions for luxury hospitality, sports, and surgical narratives.",
+    description: "Tailored cinematic production solutions for luxury hospitality, professional sports, and surgical narratives. Premium visual services in Southwest Florida.",
   },
   work: {
     title: "The Frame | Commercial Portfolio",
-    description: "Visual proof of strategic growth. High-impact cinematography and photography across Southwest Florida.",
+    description: "Visual proof of strategic growth through high-impact cinematography and professional photography projects across Sarasota, Tampa, and Southwest Florida.",
   },
   contact: {
     title: "Genesis | Start Your Production",
-    description: "Deploy our technical team for your next major campaign on the Florida Gulf Coast.",
+    description: "Deploy our technical team for your next major campaign on the Florida Gulf Coast. Contact Jonni Armani Media for premium video and photography services.",
   }
 };
 
