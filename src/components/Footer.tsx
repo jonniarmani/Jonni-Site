@@ -113,25 +113,25 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-            <p className="text-[10px] text-gray-600 uppercase tracking-widest leading-loose">
+            <p className="text-[10px] text-gray-500 uppercase tracking-widest leading-loose">
               {brand.location}
             </p>
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-gray-500">Navigation</h3>
+            <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-gray-400">Navigation</h3>
             <ul className="space-y-4 text-sm font-medium">
-              <li><Link to="/video" className="hover:text-brand-cyan transition-colors">Video Production</Link></li>
-              <li><Link to="/photo" className="hover:text-brand-cyan transition-colors">Photography</Link></li>
-              <li><Link to="/services" className="hover:text-brand-cyan transition-colors">Services</Link></li>
-              <li><Link to="/about" className="hover:text-brand-cyan transition-colors">About Story</Link></li>
-              <li><Link to="/contact" className="hover:text-brand-cyan transition-colors">Contact & Booking</Link></li>
+              <li><Link to="/video" className="hover:text-brand-cyan transition-colors text-gray-300">Video Production</Link></li>
+              <li><Link to="/photo" className="hover:text-brand-cyan transition-colors text-gray-300">Photography</Link></li>
+              <li><Link to="/services" className="hover:text-brand-cyan transition-colors text-gray-300">Services</Link></li>
+              <li><Link to="/about" className="hover:text-brand-cyan transition-colors text-gray-300">About Story</Link></li>
+              <li><Link to="/contact" className="hover:text-brand-cyan transition-colors text-gray-300">Contact & Booking</Link></li>
             </ul>
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-gray-500">Service Areas</h3>
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs font-medium text-gray-500">
+            <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-gray-400">Service Areas</h3>
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs font-medium text-gray-400">
               <li className="hover:text-brand-cyan transition-colors">Bradenton</li>
               <li className="hover:text-brand-cyan transition-colors">Sarasota</li>
               <li className="hover:text-brand-cyan transition-colors">Tampa</li>
@@ -144,25 +144,25 @@ export default function Footer() {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-gray-500">Contact</h3>
+            <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-gray-400">Contact</h3>
             <ul className="space-y-4 text-sm">
               <li className="flex items-center space-x-3">
                 <Mail size={16} className="text-brand-cyan" />
-                <a href={`mailto:${brand.contact.email}`} className="hover:text-brand-cyan transition-colors">{brand.contact.email}</a>
+                <a href={`mailto:${brand.contact.email}`} className="hover:text-brand-cyan transition-colors text-gray-300">{brand.contact.email}</a>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={16} className="text-brand-cyan" />
-                <a href={`tel:${brand.contact.phone.replace(/\./g, '')}`} className="hover:text-brand-cyan transition-colors">{brand.contact.phone}</a>
+                <a href={`tel:${brand.contact.phone.replace(/\./g, '')}`} className="hover:text-brand-cyan transition-colors text-gray-300">{brand.contact.phone}</a>
               </li>
               <li className="flex items-center space-x-3">
                 <Calendar size={16} className="text-brand-cyan" />
-                <Link to="/booking" className="hover:text-brand-cyan transition-colors">Book a Session</Link>
+                <Link to="/booking" className="hover:text-brand-cyan transition-colors text-gray-300">Book a Session</Link>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 uppercase tracking-widest font-medium">
+        <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400 uppercase tracking-widest font-medium">
           <p>© {currentYear} {brand.name}. All Visuals Protected.</p>
           <div className="flex space-x-8 mt-4 md:mt-0">
             <Link to="/admin" className="hover:text-brand-cyan transition-colors font-bold">Admin Access</Link>

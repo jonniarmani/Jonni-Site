@@ -162,7 +162,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       title: SEO.home.title,
       description: SEO.home.description,
       keywords: "video production Bradenton, Sarasota commercial photographer, Tampa brand storytelling, luxury real estate video Florida, healthcare marketing media, sports performance reels, architectural photography, yacht cinematography Gulf Coast",
-      ogImage: "",
+      ogImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200&h=630&fm=jpg",
       h1Override: "Cinematic Video <br /> <span class='text-brand-cyan'>Commercial Photography</span>",
       altTags: {
         "home-lens": "Jonni Armani Professional Video Production Bradenton Florida Gulf Coast Luxury Real Estate & Commercial",

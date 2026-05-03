@@ -20,13 +20,13 @@ export default function IndustriesGrid({ industries }: { industries?: Industry[]
               Strategic Vertical Authority
             </span>
             <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight uppercase leading-none italic">
-              Industries <span className="text-gray-600 not-italic">Served.</span>
+              Industries <span className="text-gray-500 not-italic">Served.</span>
             </h2>
-            <p className="text-gray-400 mt-6 text-lg font-light leading-relaxed">
+            <p className="text-gray-300 mt-6 text-lg font-light leading-relaxed">
               Tailored cinematic solutions for high-stakes professions across the Florida Gulf Coast. From Sarasota waterfront estates to Tampa tech headquarters.
             </p>
           </div>
-          <div className="hidden md:flex items-center space-x-4 text-brand-cyan opacity-30">
+          <div className="hidden md:flex items-center space-x-4 text-brand-cyan opacity-50">
              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-right">
                 Vertical <br /> Specialist
              </span>
@@ -52,7 +52,7 @@ export default function IndustriesGrid({ industries }: { industries?: Industry[]
               <h3 className="text-xl font-display font-bold uppercase tracking-tight mb-3 group-hover:text-brand-cyan transition-colors">
                 {industry.name}
               </h3>
-              <p className="text-gray-500 text-xs leading-relaxed group-hover:text-gray-300 transition-colors">
+              <p className="text-gray-400 text-xs leading-relaxed group-hover:text-gray-200 transition-colors">
                 {industry.description}
               </p>
               
