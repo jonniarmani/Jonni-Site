@@ -37,8 +37,8 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      hmr: false,
-      host: '0.0.0.0',
+      hmr: True,
+      host: 'localhost',
       port: 3000,
     },
   };
