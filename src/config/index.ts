@@ -156,7 +156,29 @@ export const HOME_CONTENT = {
 
 
 
-export const TESTIMONIALS: { author: string; role: string; content: string; rating: number; date: string; }[] = [];
+export const TESTIMONIALS: { author: string; role: string; content: string; rating: number; date: string; }[] = [
+  {
+    author: "Michael R.",
+    role: "Real Estate Director",
+    content: "The level of cinematic quality Jonni brings to luxury listings is unmatched. His work directly contributed to one of our fastest sales this year on Longboat Key.",
+    rating: 5,
+    date: "March 2026"
+  },
+  {
+    author: "Sarah J.",
+    role: "Elite Performance Coach",
+    content: "Working with Jonni at IMG Academy was a game changer for our athletes. The recruiting reels he produces are professional, high-energy, and exactly what scouts are looking for.",
+    rating: 5,
+    date: "February 2026"
+  },
+  {
+    author: "Dr. Thomas L.",
+    role: "Chief Surgeon",
+    content: "We needed a team that understood the delicacy of a clinical environment. Jonni Armani Media delivered a surgical profile that was both technically precise and visually stunning.",
+    rating: 5,
+    date: "January 2026"
+  }
+];
 
 export const INDUSTRIES = [
   { id: "real-estate", name: "Real Estate", description: "Video tours for luxury homes and waterfront properties in the Sarasota area." },

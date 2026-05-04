@@ -125,6 +125,7 @@ export default function Footer() {
               <li><Link to="/photo" className="hover:text-brand-cyan transition-colors text-gray-300">Photography</Link></li>
               <li><Link to="/services" className="hover:text-brand-cyan transition-colors text-gray-300">Services</Link></li>
               <li><Link to="/about" className="hover:text-brand-cyan transition-colors text-gray-300">About Story</Link></li>
+              <li><Link to="/reviews" className="hover:text-brand-cyan transition-colors text-gray-300">Client Reviews</Link></li>
               <li><Link to="/contact" className="hover:text-brand-cyan transition-colors text-gray-300">Contact & Booking</Link></li>
             </ul>
           </div>

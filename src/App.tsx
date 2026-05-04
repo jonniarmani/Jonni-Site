@@ -27,6 +27,7 @@ const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Portal = lazy(() => import("./pages/Portal"));
+const Reviews = lazy(() => import("./pages/Reviews"));
 
 // Helper to scroll to top on navigation
 function ScrollToTop() {
@@ -72,6 +73,7 @@ export default function App() {
                   <Route path="/terms" element={<Terms />} />
                   <Route path="/admin" element={<Admin />} />
                   <Route path="/portal/:id" element={<Portal />} />
+                  <Route path="/reviews" element={<Reviews />} />
                 </Routes>
               </Suspense>
             </PageTransition>

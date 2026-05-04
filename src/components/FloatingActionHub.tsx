@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect, useRef } from "react";
-import { Video, Camera, Plus, X, ArrowUpRight, Menu as MenuIcon } from "lucide-react";
+import { Video, Camera, Plus, X, ArrowUpRight, Star, Menu as MenuIcon } from "lucide-react";
 
 export default function FloatingActionHub() {
   const location = useLocation();
@@ -165,7 +165,7 @@ export default function FloatingActionHub() {
                       { label: "Services", href: "/services", icon: Video, color: "text-white", bg: "bg-white/5" },
                       { label: "About", href: "/about", icon: ArrowUpRight, color: "text-white", bg: "bg-white/5" },
                       { label: "Contact", href: "/contact", icon: Plus, color: "text-brand-cyan", bg: "bg-brand-cyan/5" },
-                      { label: "Client Area", href: "/admin", icon: ArrowUpRight, color: "text-white", bg: "bg-white/5" },
+                      { label: "Reviews", href: "/reviews", icon: Star, color: "text-white", bg: "bg-white/5" },
                       { label: "Portfolio", href: "/photo", icon: Camera, color: "text-white", bg: "bg-white/5" },
                     ].map((item, idx) => (
                       <Link
@@ -184,7 +184,7 @@ export default function FloatingActionHub() {
 
                   <div className="mt-6 pt-6 border-t border-white/5 flex gap-3">
                     <a 
-                      href="tel:9415368833" 
+                      href="tel:2085499544" 
                       className="flex-1 bg-white text-black py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-center active:scale-95 transition-transform"
                     >
                       Call Now
