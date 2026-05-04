@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useContent } from '../lib/ContentContext';
 import { auth, googleProvider, signInWithPopup, signOut, db, doc, setDoc, handleFirestoreError, OperationType, collection, deleteDoc, onSnapshot } from '../lib/firebase';
 import { addDoc, query, where, orderBy, getDocs, updateDoc, Timestamp, serverTimestamp } from 'firebase/firestore';
-import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image, Trash, Plus, Megaphone, Video as VideoIcon, Camera, MessageSquare, Star, Code, Palette, Upload, Download, RefreshCw, Globe, Copy, Twitter, ShieldCheck, Check, Filter, Settings, Activity, Zap, Search, ExternalLink, AlertCircle, Target, BarChart as ChartIcon, PieChart as PieIcon, LineChart as LineIcon, MousePointer2, Mail, Send, History, Briefcase as ProjectIcon, Layers, Loader2, Gauge, Menu, Radio } from 'lucide-react';
+import { Save, LogIn, LogOut, ChevronRight, Info, Home, User, Briefcase, Image, Trash, Plus, Megaphone, Video as VideoIcon, Camera, MessageSquare, Star, Code, Palette, Upload, Download, RefreshCw, Globe, Copy, Twitter, ShieldCheck, Check, Filter, Settings, Activity, Zap, Search, ExternalLink, AlertCircle, Target, BarChart as ChartIcon, PieChart as PieIcon, LineChart as LineIcon, MousePointer2, Mail, Send, History, Briefcase as ProjectIcon, Layers, Loader2, Gauge, Menu, Radio, Eye, EyeOff } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import FileUploader from '../components/FileUploader';
 
@@ -3208,38 +3208,69 @@ export default function Admin() {
                         <h2 className="text-2xl font-display font-bold uppercase tracking-tight">Social Proof Architecture</h2>
                         <p className="text-xs text-gray-400 uppercase tracking-widest font-medium mt-2">Manage verified Google reviews and testimonials</p>
                       </div>
-                      <button 
-                        onClick={() => setLocalContent({
-                          ...localContent, 
-                          testimonials: [
-                            ...localContent.testimonials, 
-                            { author: "New Reviewer", role: "Client", content: "Great experience...", rating: 5, date: "Just now" }
-                          ]
-                        })}
-                        className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-cyan transition-all shadow-xl active:scale-90"
-                        title="Add Strategy Endorsement"
-                      >
-                        <Plus size={24} />
-                      </button>
+                      <div className="flex items-center gap-4">
+                        <button 
+                          onClick={() => setLocalContent({
+                            ...localContent, 
+                            showTestimonials: !localContent.showTestimonials
+                          })}
+                          className={`flex items-center space-x-2 px-4 py-2 rounded-full border transition-all text-[10px] font-black uppercase tracking-widest ${
+                            localContent.showTestimonials 
+                              ? 'bg-brand-cyan/10 border-brand-cyan text-brand-cyan' 
+                              : 'bg-gray-100 border-gray-200 text-gray-400'
+                          }`}
+                        >
+                          {localContent.showTestimonials ? <Eye size={14} /> : <EyeOff size={14} />}
+                          <span>Global Display: {localContent.showTestimonials ? 'ON' : 'OFF'}</span>
+                        </button>
+                        <button 
+                          onClick={() => setLocalContent({
+                            ...localContent, 
+                            testimonials: [
+                              ...localContent.testimonials, 
+                              { author: "New Reviewer", role: "Client", content: "Great experience...", rating: 5, date: "Just now", isVisible: true }
+                            ]
+                          })}
+                          className="w-12 h-12 rounded-full bg-brand-black text-white flex items-center justify-center hover:bg-brand-cyan transition-all shadow-xl active:scale-90"
+                          title="Add Strategy Endorsement"
+                        >
+                          <Plus size={24} />
+                        </button>
+                      </div>
                     </div>
                   </div>
                   
                   <div className="grid grid-cols-1 gap-8">
                     {localContent.testimonials.map((review, idx) => (
-                      <div key={idx} className="bg-gray-50 p-8 relative group border border-gray-100 rounded-xl">
-                        <button 
-                          onClick={() => {
-                            if (window.confirm("Authorize disposal of this endorsement?")) {
-                              const newTestimonials = [...localContent.testimonials];
-                              newTestimonials.splice(idx, 1);
-                              setLocalContent({...localContent, testimonials: newTestimonials});
-                            }
-                          }}
-                          className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center text-gray-300 hover:text-red-500 hover:border-red-500 transition-all z-10"
-                          title="Dispose Endorsement"
-                        >
-                          <Trash size={16} />
-                        </button>
+                        <div key={idx} className={`bg-gray-50 p-8 relative group border rounded-xl transition-all ${review.isVisible === false ? 'opacity-50 grayscale' : 'border-gray-100'}`}>
+                          <div className="absolute -top-3 -right-3 flex flex-col space-y-2 z-10">
+                            <button 
+                              onClick={() => {
+                                if (window.confirm("Authorize disposal of this endorsement?")) {
+                                  const newTestimonials = [...localContent.testimonials];
+                                  newTestimonials.splice(idx, 1);
+                                  setLocalContent({...localContent, testimonials: newTestimonials});
+                                }
+                              }}
+                              className="w-10 h-10 rounded-full bg-white border border-gray-100 shadow-xl flex items-center justify-center text-gray-300 hover:text-red-500 hover:border-red-500 transition-all"
+                              title="Dispose Endorsement"
+                            >
+                              <Trash size={16} />
+                            </button>
+                            <button 
+                              onClick={() => {
+                                const newTestimonials = [...localContent.testimonials];
+                                newTestimonials[idx].isVisible = !(newTestimonials[idx].isVisible ?? true);
+                                setLocalContent({...localContent, testimonials: newTestimonials});
+                              }}
+                              className={`w-10 h-10 rounded-full bg-white border shadow-xl flex items-center justify-center transition-all ${
+                                (review.isVisible ?? true) ? 'text-brand-cyan border-brand-cyan/20' : 'text-gray-400 border-gray-100'
+                              }`}
+                              title={review.isVisible === false ? "Enable Display" : "Disable Display"}
+                            >
+                              {review.isVisible === false ? <EyeOff size={16} /> : <Eye size={16} />}
+                            </button>
+                          </div>
                         
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                           <div className="space-y-4">

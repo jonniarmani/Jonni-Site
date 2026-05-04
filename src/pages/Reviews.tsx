@@ -1,16 +1,29 @@
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import { useContent } from "../lib/ContentContext";
 import SEOComp from "../components/SEO";
 import { Star, Quote, ExternalLink, Calendar, User } from "lucide-react";
 
 export default function Reviews() {
   const { content } = useContent();
-  const { testimonials = [] } = content;
+  const visibleTestimonials = (content.testimonials || []).filter(t => t.isVisible !== false);
 
   // Calculate average rating if needed, but usually it's just 5 stars for curated ones
-  const averageRating = testimonials.length > 0 
-    ? (testimonials.reduce((acc, curr) => acc + curr.rating, 0) / testimonials.length).toFixed(1)
+  const averageRating = visibleTestimonials.length > 0 
+    ? (visibleTestimonials.reduce((acc, curr) => acc + curr.rating, 0) / visibleTestimonials.length).toFixed(1)
     : "5.0";
+
+  if (content.showTestimonials === false) {
+    return (
+      <div className="pt-40 pb-40 min-h-screen bg-white text-center container mx-auto px-6">
+        <h1 className="text-4xl font-display font-bold uppercase italic tracking-tighter mb-4">Reviews Offline.</h1>
+        <p className="text-gray-500 uppercase tracking-widest text-xs font-bold">The cinematic evidence is currently undergoing internal audit.</p>
+        <div className="mt-12">
+            <Link to="/" className="inline-block bg-brand-black text-white px-8 py-4 font-bold uppercase tracking-widest text-[10px]">Return to Base</Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="pt-24 min-h-screen bg-white">
@@ -95,7 +108,7 @@ export default function Reviews() {
       {/* Reviews Grid */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6">
-          {testimonials.length === 0 ? (
+          {visibleTestimonials.length === 0 ? (
             <div className="text-center py-20 border-2 border-dashed border-gray-100 rounded-3xl">
               <p className="text-gray-400 font-display font-medium text-xl uppercase tracking-widest italic">
                 Awaiting first cinematic endorsement...
@@ -103,7 +116,7 @@ export default function Reviews() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {testimonials.map((review, idx) => (
+              {visibleTestimonials.map((review, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 30 }}

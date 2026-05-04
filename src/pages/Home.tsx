@@ -277,60 +277,70 @@ export default function Home() {
       </section>
 
       {/* Reviews Quick Look - NEW section */}
-      <section className="py-24 bg-zinc-50 overflow-hidden">
-        <div className="container mx-auto px-6 text-center">
-          <div className="max-w-4xl mx-auto">
-            <span className="text-brand-cyan font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">
-              Verified Excellence
-            </span>
-            <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tighter uppercase italic mb-12">
-              The Client <span className="text-gray-300 not-italic">Verdict.</span>
-            </h2>
+      {content.showTestimonials && (
+        <section className="py-24 bg-zinc-50 overflow-hidden">
+          <div className="container mx-auto px-6 text-center">
+            <div className="max-w-4xl mx-auto">
+              <span className="text-brand-cyan font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">
+                Verified Excellence
+              </span>
+              <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tighter uppercase italic mb-12">
+                The Client <span className="text-gray-300 not-italic">Verdict.</span>
+              </h2>
 
-            <div className="bg-white p-12 rounded-[2rem] shadow-xl border border-gray-100 relative mb-16 overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-cyan/5 rounded-full -translate-x-1/2 -translate-y-1/2" />
-              <div className="flex flex-col items-center">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="flex text-brand-cyan">
-                    {[1, 2, 3, 4, 5].map(s => <Star key={s} size={20} fill="currentColor" />)}
+              <div className="bg-white p-12 rounded-[2rem] shadow-xl border border-gray-100 relative mb-16 overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-brand-cyan/5 rounded-full -translate-x-1/2 -translate-y-1/2" />
+                <div className="flex flex-col items-center">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="flex text-brand-cyan">
+                      {[1, 2, 3, 4, 5].map(s => <Star key={s} size={20} fill="currentColor" />)}
+                    </div>
+                    <span className="text-xl font-bold font-display tracking-tight">5.0 Rating</span>
                   </div>
-                  <span className="text-xl font-bold font-display tracking-tight">5.0 Rating</span>
-                </div>
-                
-                <div className="flex items-center justify-center space-x-2 mb-8">
-                  <svg viewBox="0 0 24 24" width="20" height="20">
-                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                    <path fill="#FBBC05" d="M5.84 14.1c-.22-.66-.35-1.36-.35-2.1s.13-1.44.35-2.1V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l3.66-2.84z" />
-                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
-                  </svg>
-                  <span className="text-gray-400 font-bold uppercase tracking-widest text-[10px]">Verified Google Business Reviews</span>
-                </div>
+                  
+                  <div className="flex items-center justify-center space-x-2 mb-8">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                      <path fill="#FBBC05" d="M5.84 14.1c-.22-.66-.35-1.36-.35-2.1s.13-1.44.35-2.1V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l3.66-2.84z" />
+                      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+                    </svg>
+                    <span className="text-gray-400 font-bold uppercase tracking-widest text-[10px]">Verified Google Business Reviews</span>
+                  </div>
 
-                <div className="relative max-w-2xl">
-                  <div className="absolute -top-10 -left-10 opacity-10">
-                    <Star size={80} className="text-brand-cyan fill-brand-cyan" />
-                  </div>
-                  <p className="text-2xl md:text-3xl font-light text-brand-black leading-tight italic relative z-10">
-                    "The video was even better than we imagined. It captured the heart of our brand perfectly. Working with Jonni was professional and inspiring."
-                  </p>
-                  <div className="mt-8">
-                    <p className="text-brand-black font-bold uppercase tracking-widest text-sm">Strategic Partner</p>
-                    <p className="text-gray-400 text-[10px] uppercase font-black tracking-[0.2em] mt-1">Sarasota, FL</p>
+                  <div className="relative max-w-2xl">
+                    <div className="absolute -top-10 -left-10 opacity-10">
+                      <Star size={80} className="text-brand-cyan fill-brand-cyan" />
+                    </div>
+                    {content.testimonials.filter(t => t.isVisible !== false).length > 0 ? (
+                      <>
+                        <p className="text-2xl md:text-3xl font-light text-brand-black leading-tight italic relative z-10">
+                          "{content.testimonials.filter(t => t.isVisible !== false)[0].content}"
+                        </p>
+                        <div className="mt-8">
+                          <p className="text-brand-black font-bold uppercase tracking-widest text-sm">{content.testimonials.filter(t => t.isVisible !== false)[0].author}</p>
+                          <p className="text-gray-400 text-[10px] uppercase font-black tracking-[0.2em] mt-1">{content.testimonials.filter(t => t.isVisible !== false)[0].role}</p>
+                        </div>
+                      </>
+                    ) : (
+                      <p className="text-2xl md:text-3xl font-light text-brand-black leading-tight italic relative z-10">
+                        "The video was even better than we imagined. It captured the heart of our brand perfectly. Working with Jonni was professional and inspiring."
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
-            </div>
 
-            <Link 
-              to="/reviews" 
-              className="inline-flex items-center text-brand-black font-bold uppercase tracking-[0.3em] text-xs border-b-2 border-brand-cyan pb-2 hover:border-brand-black hover:text-brand-cyan transition-all group"
-            >
-              Examine All Client Endorsements <ArrowRight size={14} className="ml-4 group-hover:translate-x-2 transition-transform" />
-            </Link>
+              <Link 
+                to="/reviews" 
+                className="inline-flex items-center text-brand-black font-bold uppercase tracking-[0.3em] text-xs border-b-2 border-brand-cyan pb-2 hover:border-brand-black hover:text-brand-cyan transition-all group"
+              >
+                Examine All Client Endorsements <ArrowRight size={14} className="ml-4 group-hover:translate-x-2 transition-transform" />
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* FAQ Section */}
       <section className="pt-8 pb-8 bg-white">

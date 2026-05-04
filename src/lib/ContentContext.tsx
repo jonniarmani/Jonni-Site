@@ -30,6 +30,7 @@ interface SiteContent {
     code: string;
   };
   testimonials: typeof TESTIMONIALS;
+  showTestimonials: boolean;
   industries?: typeof INDUSTRIES;
   contact: {
     title: string;
@@ -133,6 +134,7 @@ export const ContentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       code: "STORY20"
     },
     testimonials: TESTIMONIALS,
+    showTestimonials: true,
     industries: INDUSTRIES,
     contact: {
       title: "Start Your Brand Genesis.",
