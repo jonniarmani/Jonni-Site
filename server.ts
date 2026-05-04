@@ -31,7 +31,10 @@ async function startServer() {
     console.log("Initializing Vite middleware...");
     const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: { 
+        middlewareMode: true,
+        hmr: false
+      },
       appType: "spa",
     });
     app.use(vite.middlewares);
@@ -39,7 +42,7 @@ async function startServer() {
     console.log("Serving static production build...");
     const distPath = path.resolve(__dirname, "dist");
     app.use(express.static(distPath));
-    app.use("*", (req, res) => {
+    app.get("*all", (req, res) => {
       res.sendFile(path.join(distPath, "index.html"));
     });
   }

@@ -98,6 +98,7 @@ export default function Header() {
           </div>
 
           <Link to="/about" className={`text-[10px] uppercase tracking-widest font-black hover:text-brand-cyan transition-colors ${location.pathname === "/about" ? "text-brand-cyan" : "text-brand-black"}`}>About</Link>
+          <Link to="/reviews" className={`text-[10px] uppercase tracking-widest font-black hover:text-brand-cyan transition-colors ${location.pathname === "/reviews" ? "text-brand-cyan" : "text-brand-black"}`}>Reviews</Link>
           <Link to="/contact" className="bg-brand-black text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-brand-cyan transition-all shadow-md">Inquire</Link>
         </nav>
 

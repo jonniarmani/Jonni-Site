@@ -185,7 +185,7 @@ export default function FloatingActionHub() {
                   <div className="mt-6 pt-6 border-t border-white/5 flex gap-3">
                     <a 
                       href="tel:2085499544" 
-                      className="flex-1 bg-white text-black py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-center active:scale-95 transition-transform"
+                      className="flex-1 bg-green-600 text-white py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-center active:scale-95 transition-transform shadow-lg shadow-green-900/20"
                     >
                       Call Now
                     </a>
