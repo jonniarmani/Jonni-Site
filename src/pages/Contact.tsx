@@ -112,8 +112,18 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-widest font-black text-gray-400 mb-2">Live Availability</p>
-                    <Link to="/booking" className="text-2xl font-display font-bold hover:text-brand-cyan transition-colors inline-flex items-center group">
-                      Book a Session <ArrowRight size={20} className="ml-3 group-hover:translate-x-1 transition-transform" />
+                    <Link 
+                      to="/booking" 
+                      className="relative group inline-flex items-center bg-brand-cyan text-black px-8 py-3 rounded-full text-xl font-display font-bold hover:bg-brand-black hover:text-white transition-all shadow-[0_0_20px_rgba(0,242,255,0.3)] hover:shadow-[0_0_35px_rgba(0,242,255,0.5)] overflow-hidden"
+                    >
+                      <span className="relative z-10 flex items-center">
+                        Book a Session <ArrowRight size={20} className="ml-3 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                      <motion.div 
+                        animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.3, 0.1] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                        className="absolute inset-0 bg-white"
+                      />
                     </Link>
                   </div>
                </div>
