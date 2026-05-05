@@ -103,7 +103,7 @@ export default function Home() {
             <ResponsiveImage 
               src={content.home.lensImage} 
               alt={content.seo?.altTags?.['home-lens'] || `${brand.name} - Professional Video Production and Brand Storytelling Bradenton, Sarasota`} 
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              className="w-full h-full object-cover transition-all duration-700"
               style={{ objectPosition: content.home.lensImagePosition || 'center center' }}
               sizes="(max-width: 1024px) 100vw, 50vw"
               loading="eager"
